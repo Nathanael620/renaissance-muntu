@@ -1,0 +1,2552 @@
+
+
+DOCUMENT DE CONCEPTION
+
+FONCTIONNELLE ET TECHNIQUE (DCFT)
+
+  
+
+POUR LA RENAISSANCE DU MUNTU
+
+Plateforme institutionnelle — Site internet & espace d'administration
+
+Une même Humanité. Des peuples multiples. Une destinée commune.
+
+« La renaissance des peuples commence toujours par la renaissance de la conscience. »
+
+Version 1.0 — Document confidentiel remis au Client
+
+Préparé par : Cabinet de Conseil en Architecture Logicielle & Design Institutionnel
+
+Destinataire : Direction du mouvement « Pour la Renaissance du Muntu »
+
+Date : Août 2026
+
+
+
+Sommaire
+
+1.  Présentation générale du projet	
+
+2.  Contexte et enjeux	
+
+3.  Vision, mission et valeurs	
+
+4.  Public cible et personas	
+
+5.  Parcours utilisateurs et scénarios d'utilisation	
+
+6.  Identité graphique	
+
+7.  Les cinq piliers fondamentaux	
+
+8.  Fonctionnalités générales de la plateforme	
+
+9.  Spécifications fonctionnelles détaillées par page	
+
+10.  Tableau de bord d'administration	
+
+11.  Règles métier	
+
+12.  Exigences fonctionnelles	
+
+13.  Exigences non fonctionnelles	
+
+14.  Architecture applicative, logicielle et réseau	
+
+15.  Diagrammes UML	
+
+16.  Modèle de données	
+
+17.  Sécurité	
+
+18.  Sauvegardes	
+
+19.  Performances	
+
+20.  Référencement SEO	
+
+21.  Recommandations UX/UI	
+
+22.  Accessibilité	
+
+23.  Maintenance	
+
+24.  Stratégie de déploiement	
+
+25.  Plan de tests	
+
+26.  Architecture de dossiers, conventions et stratégie Git	
+
+27.  Planning du projet	
+
+28.  Livrables	
+
+29.  Annexes	
+
+
+
+1. Présentation générale du projet
+
+Le présent Document de Conception Fonctionnelle et Technique (DCFT) constitue le livrable de référence encadrant la conception, la spécification et la réalisation de la plateforme numérique institutionnelle du mouvement « Pour la Renaissance du Muntu ». Il a pour vocation de traduire, en exigences fonctionnelles et techniques précises, la vision philosophique et socio-spirituelle portée par le mouvement, afin que celle-ci trouve sur le web une incarnation à la hauteur de son ambition.
+
+« Pour la Renaissance du Muntu » n'est ni une association classique, ni une organisation non gouvernementale au sens administratif du terme. C'est un mouvement de pensée, une philosophie, une vision, un appel adressé aux consciences africaines et à l'humanité tout entière. Le site internet qui en découle ne doit donc pas être conçu comme un simple site vitrine, mais comme une véritable institution numérique, comparable dans son niveau d'exigence à celui des grandes organisations internationales telles que l'UNESCO, le World Economic Forum, la Fondation Nelson Mandela ou les grandes universités de rang mondial.
+
+Ce document s'adresse à la fois à la direction du mouvement, qui y trouvera la traduction fidèle de sa vision, et à l'équipe technique qui y trouvera l'ensemble des spécifications nécessaires à la réalisation du projet : architecture, base de données, exigences, diagrammes UML, règles métier, planning et livrables.
+
+1.1 Objet du document
+
+Ce DCFT a pour objectifs de :
+
+Décrire avec précision la vision, la mission et les valeurs du mouvement et leur traduction numérique ;
+
+Définir l'ensemble des fonctionnalités attendues, page par page, module par module ;
+
+Spécifier l'architecture applicative, logicielle et réseau retenue ;
+
+Fournir les diagrammes UML nécessaires à la compréhension du système (cas d'utilisation, classes, séquence, activité, composants) ;
+
+Définir le modèle de données (conceptuel, logique, dictionnaire de données, schéma relationnel) ;
+
+Poser les exigences non fonctionnelles (sécurité, performance, accessibilité, SEO) ;
+
+Établir le planning, les livrables et les modalités de recette du projet.
+
+1.2 Méthodologie d'élaboration
+
+Le présent document a été élaboré selon une démarche de conception centrée utilisateur (UCD) associée à une approche d'architecture logicielle éprouvée. Il s'appuie sur trois piliers méthodologiques :
+
+Une phase de cadrage stratégique et éditorial, permettant de traduire la vision institutionnelle en objectifs numériques mesurables ;
+
+Une phase de conception fonctionnelle, détaillant chaque page, chaque parcours et chaque règle métier ;
+
+Une phase de conception technique, définissant l'architecture, la base de données et les standards de développement.
+
+1.3 Portée du projet
+
+Le périmètre du projet couvre la conception et le développement d'un site internet institutionnel multilingue-ready (français en langue principale), doté d'un espace d'administration complet (back-office), permettant la gestion autonome de l'ensemble des contenus par les équipes du mouvement, sans intervention technique récurrente. Le projet inclut également la définition de l'identité numérique (charte graphique appliquée au digital), la structuration de l'arborescence des contenus autour des cinq piliers fondateurs, ainsi que la mise en place des briques techniques de sécurité, de performance et de référencement naturel.
+
+2. Contexte et enjeux
+
+2.1 Contexte général
+
+Le continent africain et sa diaspora traversent une période charnière de leur histoire contemporaine, marquée par une aspiration croissante à la souveraineté des consciences, à la réappropriation des héritages culturels et à la construction d'un récit endogène de développement. Dans ce contexte, le mouvement « Pour la Renaissance du Muntu » se positionne comme un espace de pensée et d'action visant à accompagner cette transformation, en s'appuyant sur le concept philosophique bantou du « Muntu » — l'être humain relié à sa communauté, à ses ancêtres et à son destin collectif.
+
+Le mouvement s'inscrit dans la continuité des grandes voix de la pensée panafricaine et humaniste, tout en portant une vision résolument tournée vers l'avenir, fondée sur le dialogue, la responsabilité et la construction d'une culture de paix durable.
+
+2.2 Enjeux du projet numérique
+
+Enjeu
+
+Description
+
+Crédibilité institutionnelle
+
+Offrir une expérience digitale au niveau des grandes institutions internationales, afin d'asseoir la légitimité et le sérieux du mouvement auprès de ses partenaires, chercheurs et institutions.
+
+Diffusion de la pensée
+
+Permettre la publication et la diffusion large des travaux, essais, manifestes et recherches produits par le mouvement et ses membres.
+
+Rayonnement panafricain et international
+
+Toucher un public situé sur l'ensemble du continent africain et dans la diaspora, avec une présence numérique pérenne et accessible.
+
+Autonomie de gestion
+
+Permettre aux équipes non techniques de gérer l'intégralité des contenus du site via un tableau de bord intuitif.
+
+Pérennité et évolutivité
+
+Construire une plateforme robuste, sécurisée et évolutive, capable d'accompagner la croissance du mouvement sur le long terme.
+
+Mobilisation et engagement
+
+Convertir les visiteurs en abonnés, participants aux formations, lecteurs engagés et soutiens actifs du mouvement.
+
+2.3 Facteurs clés de succès
+
+Une identité visuelle sobre, premium et intemporelle, cohérente sur l'ensemble des supports ;
+
+Une architecture de l'information claire, organisée autour des cinq piliers fondateurs ;
+
+Une expérience utilisateur fluide sur tous les types d'appareils (desktop, tablette, mobile) ;
+
+Un contenu éditorial riche, régulièrement enrichi grâce à une administration autonome ;
+
+Une infrastructure technique sécurisée, performante et conforme aux bonnes pratiques actuelles du développement web.
+
+3. Vision, mission et valeurs
+
+3.1 Vision officielle
+
+« La renaissance des peuples commence toujours par la renaissance de la conscience. »
+
+Le mouvement croit que les grandes transformations commencent toujours par une transformation intérieure. Aucun peuple ne peut bâtir une paix durable sans vérité. Aucune nation ne peut s'élever sans responsabilité. Aucune civilisation ne peut traverser les siècles sans transmettre ce qui nourrit son âme.
+
+« Pour la Renaissance du Muntu » est une vision socio-spirituelle qui œuvre à la renaissance des consciences, à la restauration de la dignité humaine, à la transmission des héritages féconds, à la construction d'une culture de paix, au dialogue, à la responsabilité et au bien commun.
+
+3.2 Slogan et devise
+
+Élément
+
+Formulation
+
+Slogan principal
+
+Une même Humanité. Des peuples multiples. Une destinée commune.
+
+Devise officielle
+
+Une même terre. Plusieurs racines. Un seul avenir.
+
+Phrase institutionnelle
+
+La renaissance des peuples commence toujours par la renaissance de la conscience.
+
+Ces trois formulations constitueront les piliers rédactionnels de la page d'accueil, des supports de communication et des signatures institutionnelles (pied de page, en-tête des documents officiels, réseaux sociaux).
+
+3.3 Mission
+
+La mission de la plateforme numérique est de transformer les consciences pour transformer les sociétés. Il s'agit de porter, à l'échelle du continent et de sa diaspora, une vision pour l'Afrique et pour le monde, et de bâtir une paix durable, une humanité digne et une civilisation féconde.
+
+3.4 Valeurs fondatrices
+
+Valeur
+
+Traduction éditoriale et fonctionnelle
+
+Vérité
+
+Contenus sourcés, recherches rigoureuses, transparence sur les auteurs et les publications.
+
+Responsabilité
+
+Mise en avant des engagements du mouvement, reddition de comptes via la rubrique Actualités.
+
+Dignité humaine
+
+Ligne éditoriale respectueuse, iconographie valorisante, absence de tout misérabilisme.
+
+Transmission
+
+Espaces dédiés à la jeunesse, à la famille et à l'éducation (pilier Transmission MUNTU).
+
+Dialogue
+
+Formulaires d'échange, espaces de contribution, mise en avant du pilier ELIMB'A DIKALO.
+
+Bien commun
+
+Accès libre à une large part des contenus, logique de partage de la connaissance.
+
+3.5 Positionnement éditorial et tonalité
+
+Le ton éditorial du site est institutionnel, inspirant et intemporel. Il évite tout registre commercial ou promotionnel agressif. Le vocabulaire employé privilégie la sobriété, la profondeur et la dignité, à l'image des publications des grandes fondations internationales. Chaque page doit conjuguer rigueur intellectuelle et force d'inspiration, de manière à ce que le visiteur ressente, dès les premières secondes, qu'il pénètre dans un espace de pensée exigeant et non un site institutionnel générique.
+
+4. Public cible et personas
+
+4.1 Segments d'audience
+
+Segment
+
+Description
+
+Attentes principales
+
+Grand public africain et diaspora
+
+Citoyens sensibles aux questions identitaires, culturelles et sociétales.
+
+Comprendre la vision, s'informer, s'engager
+
+Chercheurs et universitaires
+
+Enseignants-chercheurs, doctorants, spécialistes des études africaines.
+
+Accéder aux publications, recherches et manifestes
+
+Étudiants et jeunesse
+
+Lycéens, étudiants, jeunes professionnels en quête de repères.
+
+Formations, mentorat, ressources pédagogiques
+
+Institutions et partenaires
+
+ONG, fondations, institutions culturelles et diplomatiques.
+
+Crédibilité, rapports, opportunités de partenariat
+
+Journalistes et médias
+
+Presse panafricaine et internationale.
+
+Communiqués, dossiers de presse, contacts
+
+Donateurs et mécènes
+
+Particuliers et organisations souhaitant soutenir le mouvement.
+
+Transparence, impact, moyens de contribution
+
+4.2 Personas
+
+Persona 1 — Amara, 24 ans, étudiante en sciences humaines à Yaoundé
+
+Attribut
+
+Détail
+
+Objectifs
+
+Approfondir sa compréhension de la pensée panafricaine, trouver des formations et mentors.
+
+Comportement
+
+Navigue principalement depuis son smartphone, consulte les réseaux sociaux avant le site.
+
+Frustrations potentielles
+
+Sites lents, contenus difficiles d'accès, absence de mise en relation avec des formations concrètes.
+
+Fonctionnalités clés pour elle
+
+Académie MUNTU, Bibliothèque MUNTU, formulaire d'inscription aux formations.
+
+Persona 2 — Professeur Ibrahim, 52 ans, chercheur en anthropologie
+
+Attribut
+
+Détail
+
+Objectifs
+
+Consulter les manifestes et publications de recherche, évaluer la rigueur intellectuelle du mouvement.
+
+Comportement
+
+Navigue depuis un ordinateur de bureau, recherche des documents téléchargeables et citables.
+
+Frustrations potentielles
+
+Absence de sources, contenus superficiels, mauvaise organisation bibliographique.
+
+Fonctionnalités clés pour lui
+
+Bibliothèque MUNTU, moteur de recherche interne, fiches détaillées des publications.
+
+Persona 3 — Madame Nsangou, 45 ans, responsable de fondation partenaire
+
+Attribut
+
+Détail
+
+Objectifs
+
+Évaluer la crédibilité institutionnelle du mouvement avant d'engager un partenariat.
+
+Comportement
+
+Consulte la page « À propos », les partenaires existants et les actualités récentes.
+
+Frustrations potentielles
+
+Manque de transparence, absence de contact clair, design peu professionnel.
+
+Fonctionnalités clés pour elle
+
+Page Partenaires, formulaire de contact institutionnel, actualités et rapports.
+
+Persona 4 — Jean-Paul, 35 ans, membre de la diaspora en France
+
+Attribut
+
+Détail
+
+Objectifs
+
+Rester connecté aux racines culturelles, transmettre des valeurs à ses enfants.
+
+Comportement
+
+Consulte le site le soir, sur mobile et tablette, s'abonne à la newsletter.
+
+Frustrations potentielles
+
+Contenu inaccessible depuis l'étranger, absence de newsletter régulière.
+
+Fonctionnalités clés pour lui
+
+Transmission MUNTU, newsletter, galerie photo et vidéothèque.
+
+5. Parcours utilisateurs et scénarios d'utilisation
+
+5.1 Le parcours du visiteur (cinq étapes)
+
+Le parcours-type du visiteur, présenté sur la page d'accueil, structure l'ensemble de l'expérience du site en cinq temps :
+
+Étape
+
+Intitulé
+
+Objectif
+
+1
+
+Découverte
+
+Une vision du monde — le visiteur perçoit l'identité et l'ambition du mouvement dès la page d'accueil.
+
+2
+
+Compréhension
+
+Pourquoi le MUNTU ? — le visiteur comprend le fondement philosophique et le sens du mouvement.
+
+3
+
+Exploration
+
+Les 5 grands piliers — le visiteur explore les domaines d'action du mouvement.
+
+4
+
+Approfondissement
+
+Livres, formations, recherches, conférences — le visiteur consulte les contenus de fond.
+
+5
+
+Engagement
+
+Rejoindre le mouvement — le visiteur s'inscrit, contribue ou entre en contact.
+
+5.2 Scénario d'utilisation n°1 — Découverte par un nouveau visiteur
+
+Le visiteur arrive sur la page d'Accueil via un moteur de recherche ou un réseau social.
+
+Il découvre le message institutionnel, le slogan et la citation fondatrice dans le hero visuel.
+
+Il fait défiler la page et découvre les cinq piliers fondamentaux, présentés sous forme de cartes visuelles.
+
+Il clique sur « Découvrir la vision » pour accéder à la page Vision détaillée.
+
+Convaincu, il s'inscrit à la newsletter depuis le pied de page.
+
+5.3 Scénario d'utilisation n°2 — Recherche documentaire par un chercheur
+
+Le chercheur accède directement à la Bibliothèque MUNTU depuis un lien partagé.
+
+Il utilise le moteur de recherche interne pour trouver un manifeste sur un thème précis.
+
+Il consulte la fiche détaillée de la publication (auteur, résumé, date, catégorie, pilier associé).
+
+Il télécharge le document au format PDF.
+
+Il explore les publications associées suggérées en bas de page.
+
+5.4 Scénario d'utilisation n°3 — Inscription à une formation
+
+L'utilisateur consulte la page Académie MUNTU depuis son smartphone.
+
+Il sélectionne une formation à venir et consulte le détail (programme, intervenants, dates, lieu).
+
+Il remplit le formulaire d'inscription (nom, email, téléphone, motivation).
+
+Il reçoit un email de confirmation automatique.
+
+Son inscription apparaît dans le tableau de bord de l'administrateur pour suivi et validation.
+
+5.5 Scénario d'utilisation n°4 — Publication d'un article par l'équipe éditoriale
+
+L'éditeur se connecte au tableau de bord d'administration avec ses identifiants sécurisés (Sanctum).
+
+Il crée un nouvel article, rédige le contenu à l'aide de l'éditeur enrichi, ajoute une image de couverture.
+
+Il associe l'article à un pilier et une catégorie, puis planifie sa date de publication.
+
+Il soumet l'article pour validation par un administrateur, qui le publie.
+
+L'article apparaît automatiquement dans la rubrique Actualités et dans le flux du pilier concerné.
+
+6. Identité graphique
+
+6.1 Principes directeurs
+
+L'identité graphique du site traduit visuellement la nature institutionnelle, sobre et intemporelle du mouvement. Elle s'inspire des codes visuels des grandes institutions culturelles et diplomatiques internationales : sobriété des compositions, hiérarchie typographique claire, usage mesuré de la couleur, respect strict des espaces blancs (ou « respiration »).
+
+6.2 Palette chromatique
+
+Couleur
+
+Code hexadécimal
+
+Usage
+
+Vert profond
+
+#1B4332
+
+Couleur principale — en-têtes, fonds institutionnels, boutons primaires
+
+Or mat
+
+#B8860B
+
+Couleur d'accent — citations, éléments actifs, séparateurs, icônes des piliers
+
+Blanc cassé
+
+#F5F1E6
+
+Fond principal des pages, zones de respiration
+
+Gris anthracite
+
+#3A3A3A
+
+Textes secondaires, footer, éléments neutres
+
+6.3 Typographie
+
+Usage
+
+Famille recommandée
+
+Justification
+
+Titres institutionnels
+
+Serif premium (type Georgia / Playfair Display)
+
+Évoque l'autorité, la mémoire et la permanence
+
+Textes courants
+
+Sans-serif sobre (type Calibri / Inter)
+
+Assure la lisibilité sur écran et la modernité
+
+Citations et devises
+
+Serif italique
+
+Renforce la dimension inspirante des formules institutionnelles
+
+6.4 Iconographie et photographie
+
+Photographies à dominante chaude, mettant en scène des figures humaines dignes, intergénérationnelles et africaines contemporaines ;
+
+Icônes des cinq piliers traitées sous forme de médaillons circulaires, dans une teinte or ou verte selon le pilier ;
+
+Absence de photographies misérabilistes ou stéréotypées ; privilégier des scènes de transmission, de savoir et de dignité ;
+
+Traitement graphique de l'arbre (symbole de racines et de croissance) comme motif récurrent, en filigrane sur certaines sections.
+
+6.5 Composants visuels génériques
+
+Composant
+
+Description
+
+Bouton primaire
+
+Fond or mat, texte anthracite ou blanc, angles légèrement arrondis, effet de survol assombri.
+
+Bouton secondaire
+
+Contour vert profond, fond transparent, texte vert, utilisé pour les actions secondaires.
+
+Carte pilier
+
+Image de fond, médaillon icône, titre, sous-thèmes, bouton « Découvrir ».
+
+Bloc citation
+
+Fond vert profond ou encart clair, guillemets stylisés en or, texte centré en italique.
+
+Bandeau statistique / impact
+
+Fond anthracite ou vert, chiffres clés en or, courte légende en blanc cassé.
+
+7. Les cinq piliers fondamentaux
+
+L'ensemble de l'architecture de l'information du site repose sur cinq piliers, qui doivent impérativement apparaître dans cet ordre sur l'ensemble des supports (menu principal, page d'accueil, plan du site, pied de page). Chaque pilier constitue à la fois une entrée de navigation principale et une catégorie de classement pour les contenus (articles, publications, événements).
+
+7.1 Pilier 1 — Renaissance des peuples
+
+Ce pilier constitue la porte d'entrée culturelle et mémorielle du mouvement. Il rassemble l'ensemble des contenus relatifs à la culture, aux traditions, au patrimoine et au processus de décolonisation des consciences.
+
+Sous-rubrique
+
+Rôle éditorial
+
+Culture
+
+Valorisation des expressions culturelles africaines contemporaines et traditionnelles.
+
+Traditions
+
+Documentation et transmission des pratiques, rites et savoirs ancestraux.
+
+Patrimoine
+
+Mise en lumière du patrimoine matériel et immatériel africain.
+
+Décolonisation des consciences
+
+Contenus analytiques sur la déconstruction des héritages coloniaux dans les représentations mentales.
+
+7.2 Pilier 2 — ELIMB'A DIKALO
+
+« ELIMB'A DIKALO » incarne le pilier du dialogue et de la responsabilité partagée. C'est l'espace de la parole, de l'échange entre générations, entre peuples et entre visions du monde, ainsi que de la réflexion sur l'écologie spirituelle des peuples — c'est-à-dire le rapport équilibré entre l'humain, la nature et le sacré.
+
+Sous-rubrique
+
+Rôle éditorial
+
+Dialogue
+
+Espace de mise en avant des échanges interculturels et intergénérationnels organisés par le mouvement.
+
+Responsabilité
+
+Contenus sur l'éthique de l'engagement individuel et collectif.
+
+Écologie spirituelle des peuples
+
+Réflexions sur l'équilibre entre l'humain, la nature et la dimension spirituelle des sociétés.
+
+7.3 Pilier 3 — Transmission MUNTU
+
+Ce pilier porte l'ambition éducative et intergénérationnelle du mouvement. Il s'adresse en priorité à la famille et à la jeunesse, et constitue le socle de l'action pédagogique de long terme.
+
+Sous-rubrique
+
+Rôle éditorial
+
+Famille
+
+Ressources et réflexions sur le rôle de la famille dans la transmission des valeurs.
+
+Jeunesse
+
+Programmes et contenus dédiés spécifiquement aux jeunes générations.
+
+Éducation
+
+Approches pédagogiques et outils éducatifs portés par le mouvement.
+
+7.4 Pilier 4 — Académie MUNTU
+
+L'Académie MUNTU est le pôle de formation et de renforcement des capacités du mouvement. Elle rassemble les conférences, les formations et les programmes de leadership destinés à former une nouvelle génération d'acteurs du changement.
+
+Sous-rubrique
+
+Rôle éditorial
+
+Conférences
+
+Calendrier et comptes rendus des conférences organisées ou soutenues par le mouvement.
+
+Formations
+
+Catalogue des formations, avec fiches détaillées et formulaire d'inscription.
+
+Leadership
+
+Programmes dédiés au développement du leadership responsable et éthique.
+
+7.5 Pilier 5 — Bibliothèque MUNTU
+
+La Bibliothèque MUNTU constitue le socle documentaire et intellectuel du mouvement. Elle centralise l'ensemble de la production écrite : livres, essais, manifestes et travaux de recherche.
+
+Sous-rubrique
+
+Rôle éditorial
+
+Livres
+
+Catalogue des ouvrages publiés ou recommandés par le mouvement, avec fiches détaillées.
+
+Essais
+
+Textes de réflexion plus courts, souvent liés à l'actualité ou à des thématiques précises.
+
+Manifestes
+
+Textes fondateurs et déclarations officielles du mouvement, téléchargeables.
+
+Recherche
+
+Travaux de recherche académique produits ou soutenus par le mouvement.
+
+7.6 Synthèse de l'architecture des piliers
+
+Chaque pilier dispose de sa propre page de présentation (objectif, description, vision spécifique) et agrège dynamiquement les contenus publiés (articles, événements, publications) qui lui sont rattachés via le champ « pilier » présent dans chaque table de contenu. Cette architecture permet une gestion éditoriale fine tout en garantissant une cohérence globale de navigation.
+
+8. Fonctionnalités générales de la plateforme
+
+Au-delà de la présentation de la vision institutionnelle, la plateforme doit remplir une fonction de média et de centre de ressources. Les fonctionnalités générales suivantes sont attendues sur l'ensemble du site public.
+
+8.1 Fonctionnalités côté visiteur
+
+Fonctionnalité
+
+Description synthétique
+
+Présentation de la vision
+
+Pages dédiées à la vision, la mission, les valeurs et l'histoire du mouvement.
+
+Diffusion des publications
+
+Accès aux articles, essais, manifestes classés par pilier et catégorie.
+
+Présentation des recherches
+
+Fiches dédiées aux travaux de recherche, avec auteurs et résumés.
+
+Publication des livres
+
+Catalogue des livres avec fiches détaillées et liens d'acquisition ou de téléchargement.
+
+Mise à disposition des manifestes
+
+Téléchargement des textes fondateurs au format PDF.
+
+Présentation des conférences
+
+Calendrier, replays et comptes-rendus des conférences.
+
+Présentation des formations
+
+Catalogue de formations avec inscription en ligne.
+
+Publication des actualités
+
+Fil d'actualités du mouvement, classé chronologiquement et par pilier.
+
+Présentation des événements
+
+Agenda des événements à venir et passés, avec fiches détaillées.
+
+Mise en valeur des partenaires
+
+Page dédiée présentant logos, descriptions et liens des partenaires.
+
+Formulaire de contact
+
+Formulaire sécurisé avec choix du motif de contact et pièce jointe optionnelle.
+
+Réseaux sociaux
+
+Intégration des liens et flux vers les réseaux sociaux du mouvement.
+
+Newsletter
+
+Inscription à la newsletter avec confirmation double opt-in.
+
+Galerie photo
+
+Albums photo organisés par événement ou thématique.
+
+Vidéothèque
+
+Bibliothèque de vidéos (conférences, interviews, reportages) intégrées ou hébergées.
+
+Moteur de recherche interne
+
+Recherche transversale sur l'ensemble des contenus publiés du site.
+
+8.2 Fonctionnalités transverses
+
+Navigation responsive adaptée aux trois familles de terminaux (desktop, tablette, mobile) ;
+
+Fil d'Ariane sur l'ensemble des pages de contenu ;
+
+Système de tags et de filtres par pilier, catégorie et date ;
+
+Partage social natif sur les articles, publications et événements ;
+
+Système de suggestions de contenus similaires en bas de page ;
+
+Gestion multilingue évolutive (structure prête pour l'ajout de l'anglais en phase 2).
+
+9. Spécifications fonctionnelles détaillées par page
+
+Cette section détaille, pour chacune des pages principales du site public, l'objectif, la description, le contenu attendu, les composants d'interface, les interactions, les données manipulées, les règles métier applicables, les permissions, une maquette textuelle, le flux utilisateur ainsi que les contraintes techniques particulières.
+
+9.1 Page Accueil
+
+Champ
+
+Détail
+
+Objectif
+
+Incarner en une seule page la vision, l'identité et l'ambition du mouvement, et orienter le visiteur vers les cinq piliers et les contenus de fond.
+
+Description
+
+Page d'atterrissage principale, structurée en sections successives : hero visuel institutionnel, citation fondatrice, présentation des cinq piliers, vision et mission, actions et ressources, présence géographique, appel à l'engagement, parcours du visiteur.
+
+Contenu
+
+Titre institutionnel, slogan, sous-titre de mission, boutons d'appel à l'action, citation fondatrice, cartes des cinq piliers, bloc vision/mission, carte de présence géographique, bandeau d'engagement.
+
+Composants
+
+Header sticky avec navigation, hero avec image/vidéo de fond, cartes piliers (icône + titre + sous-thèmes + CTA), bloc citation encadré, carte Afrique interactive, footer institutionnel complet.
+
+Interactions
+
+Défilement fluide (scroll), boutons menant aux pages Vision et Piliers, survol des cartes piliers avec effet de mise en avant, ouverture du menu mobile.
+
+Données manipulées
+
+Articles récents (3 derniers), événements à venir (2 prochains), statistiques d'impact (nombre de pays, publications, membres) issues de la base de données.
+
+Règles métier
+
+Les cinq piliers doivent toujours être affichés dans l'ordre officiel défini. Les statistiques affichées sont recalculées automatiquement à chaque publication.
+
+Permissions
+
+Page publique, accessible sans authentification.
+
+Maquette textuelle
+
+En-tête → Hero (titre + slogan + CTA) → Citation → 5 piliers → Vision/Mission → Actions & Ressources → Présence & Impact → Rejoindre le mouvement → Parcours visiteur → Phrase fondatrice → Pied de page.
+
+Flux utilisateur
+
+Arrivée sur la page → lecture du hero → défilement vers les piliers → clic vers une page pilier ou vers Vision → poursuite de la navigation ou inscription newsletter.
+
+Contraintes techniques
+
+Temps de chargement cible inférieur à 2,5 secondes ; images optimisées et servies en formats modernes (WebP/AVIF) ; lazy loading des sections basses de page.
+
+
+
+9.2 Page Vision
+
+Champ
+
+Détail
+
+Objectif
+
+Développer en profondeur la vision philosophique et socio-spirituelle du mouvement.
+
+Description
+
+Page longue-forme présentant le contexte, la pensée fondatrice, la citation institutionnelle, le triptyque slogan/devise/phrase institutionnelle et les valeurs du mouvement.
+
+Contenu
+
+Texte de vision complet, citations, illustrations, éventuellement un texte du fondateur ou de la direction.
+
+Composants
+
+Bloc de texte éditorial riche, citations mises en exergue, chronologie ou frise si pertinent, liens vers les manifestes associés.
+
+Interactions
+
+Navigation d'ancrage vers les sous-sections (Vision, Mission, Valeurs), liens sortants vers la Bibliothèque MUNTU.
+
+Données manipulées
+
+Contenu de type page statique éditable, géré depuis le module Pages du tableau de bord.
+
+Règles métier
+
+Le contenu doit rester éditable sans intervention technique ; les citations institutionnelles ne peuvent être supprimées, seulement modifiées par un administrateur.
+
+Permissions
+
+Page publique.
+
+Maquette textuelle
+
+En-tête → Titre + accroche → Texte de vision → Citations → Valeurs (grille) → Lien vers manifestes → Pied de page.
+
+Flux utilisateur
+
+Accès depuis l'accueil ou le menu → lecture → clic vers Bibliothèque MUNTU pour approfondir.
+
+Contraintes techniques
+
+Contenu structuré en blocs (WYSIWYG) pour permettre une mise à jour éditoriale simple.
+
+
+
+9.3 Pages des cinq piliers (structure commune)
+
+Champ
+
+Détail
+
+Objectif
+
+Présenter chaque pilier et donner accès à l'ensemble des contenus qui lui sont rattachés.
+
+Description
+
+Chaque pilier dispose d'une page dédiée reprenant une structure commune : bannière du pilier, description, sous-rubriques, flux de contenus associés (articles, publications, événements).
+
+Contenu
+
+Titre du pilier, description éditoriale, liste des sous-thèmes, flux de contenus filtrable par sous-rubrique et par type de contenu.
+
+Composants
+
+Bannière visuelle avec médaillon icône du pilier, onglets de sous-rubriques, grille de cartes contenu, pagination ou chargement progressif.
+
+Interactions
+
+Filtrage par sous-rubrique, tri par date/popularité, clic vers la fiche détaillée d'un contenu.
+
+Données manipulées
+
+Contenus (articles, livres, manifestes, événements) dont le champ pilier_id correspond au pilier consulté.
+
+Règles métier
+
+Seuls les contenus au statut « publié » apparaissent ; le tri par défaut est antéchronologique.
+
+Permissions
+
+Page publique.
+
+Maquette textuelle
+
+En-tête → Bannière pilier → Description → Sous-rubriques (onglets) → Grille de contenus → Pagination → Pied de page.
+
+Flux utilisateur
+
+Arrivée depuis l'accueil ou le menu → exploration des sous-rubriques → clic vers un contenu détaillé.
+
+Contraintes techniques
+
+Requêtes filtrées et paginées côté API pour limiter la charge ; mise en cache des listes de contenus fréquemment consultées.
+
+
+
+9.4 Page Actualités
+
+Champ
+
+Détail
+
+Objectif
+
+Centraliser l'ensemble des actualités du mouvement (communiqués, événements passés, prises de position).
+
+Description
+
+Liste chronologique des actualités, avec filtres par pilier et par catégorie.
+
+Contenu
+
+Titre, image de couverture, extrait, date de publication, auteur, pilier associé pour chaque actualité.
+
+Composants
+
+Barre de filtres, grille de cartes actualité, pagination, encart « À la une » pour l'actualité principale.
+
+Interactions
+
+Filtrage, recherche, clic vers la fiche détaillée de l'actualité, partage social.
+
+Données manipulées
+
+Table articles (type = actualité), avec relations vers categories, pillars et users (auteur).
+
+Règles métier
+
+Une actualité « à la une » est mise en avant automatiquement (la plus récente marquée comme telle par l'administrateur).
+
+Permissions
+
+Page publique.
+
+Maquette textuelle
+
+En-tête → À la une → Filtres → Grille d'actualités → Pagination → Pied de page.
+
+Flux utilisateur
+
+Consultation de la liste → filtrage éventuel → lecture d'une actualité → partage ou navigation vers un contenu lié.
+
+Contraintes techniques
+
+Pagination côté serveur ; balisage SEO (schema.org Article) pour chaque actualité.
+
+
+
+9.5 Page Galerie photo
+
+Champ
+
+Détail
+
+Objectif
+
+Valoriser visuellement les événements et activités du mouvement.
+
+Description
+
+Organisation en albums thématiques ou événementiels, avec vue en grille et visionneuse plein écran.
+
+Contenu
+
+Albums (titre, date, couverture), photos associées avec légendes optionnelles.
+
+Composants
+
+Grille d'albums, visionneuse (lightbox) avec navigation entre photos, légendes, bouton de partage.
+
+Interactions
+
+Ouverture d'un album, navigation au clavier/tactile dans la visionneuse, téléchargement optionnel.
+
+Données manipulées
+
+Table galleries et table media (relation polymorphique mediable).
+
+Règles métier
+
+Les images sont automatiquement compressées et redimensionnées à l'upload en plusieurs formats (vignette, moyen, plein écran).
+
+Permissions
+
+Page publique en lecture ; gestion réservée aux éditeurs et administrateurs.
+
+Maquette textuelle
+
+En-tête → Grille d'albums → Vue album (grille photos) → Visionneuse plein écran → Pied de page.
+
+Flux utilisateur
+
+Sélection d'un album → parcours des photos → fermeture ou partage.
+
+Contraintes techniques
+
+Chargement différé (lazy load) des images ; formats optimisés WebP ; CDN recommandé pour la diffusion.
+
+
+
+9.6 Page Vidéothèque
+
+Champ
+
+Détail
+
+Objectif
+
+Donner accès aux contenus vidéo du mouvement (conférences filmées, interviews, reportages).
+
+Description
+
+Liste de vidéos organisées par catégorie et par pilier, avec lecteur intégré.
+
+Contenu
+
+Titre, description, miniature, durée, date, vidéo hébergée en externe (YouTube/Vimeo) ou en interne.
+
+Composants
+
+Grille de vignettes vidéo, lecteur intégré en modal ou en page dédiée, filtres par pilier/catégorie.
+
+Interactions
+
+Lecture, filtrage, recherche, partage, suggestions de vidéos similaires.
+
+Données manipulées
+
+Table media (type = vidéo) avec métadonnées et lien d'hébergement externe le cas échéant.
+
+Règles métier
+
+Les vidéos volumineuses sont hébergées sur une plateforme tierce et simplement intégrées (embed), afin de préserver la performance du serveur.
+
+Permissions
+
+Page publique.
+
+Maquette textuelle
+
+En-tête → Filtres → Grille de vidéos → Lecteur modal → Suggestions → Pied de page.
+
+Flux utilisateur
+
+Parcours de la grille → sélection d'une vidéo → visionnage → exploration de suggestions.
+
+Contraintes techniques
+
+Intégration via iframe sécurisée (sandbox), respect du RGPD pour les cookies tiers liés aux lecteurs vidéo.
+
+
+
+9.7 Page Contact
+
+Champ
+
+Détail
+
+Objectif
+
+Permettre à tout visiteur d'entrer en contact avec le mouvement de manière simple et sécurisée.
+
+Description
+
+Formulaire de contact structuré, informations de contact institutionnelles, carte de localisation.
+
+Contenu
+
+Formulaire (nom, email, sujet, message), adresse, téléphone, email institutionnel, liens réseaux sociaux, carte.
+
+Composants
+
+Formulaire avec validation en temps réel, message de confirmation, bloc coordonnées, carte intégrée.
+
+Interactions
+
+Saisie et soumission du formulaire, validation côté client et serveur, envoi d'un accusé de réception par email.
+
+Données manipulées
+
+Table contact_messages (nom, email, sujet, message, statut, date).
+
+Règles métier
+
+Chaque message reçoit un statut initial « nouveau » ; protection anti-spam (reCAPTCHA ou honeypot) obligatoire.
+
+Permissions
+
+Page publique en écriture (formulaire) ; consultation des messages réservée aux administrateurs.
+
+Maquette textuelle
+
+En-tête → Coordonnées → Formulaire → Carte → Pied de page.
+
+Flux utilisateur
+
+Remplissage du formulaire → soumission → confirmation visuelle → réception d'un email de confirmation.
+
+Contraintes techniques
+
+Validation stricte côté serveur (Form Request Laravel), limitation du taux de soumission (rate limiting).
+
+
+
+9.8 Page À propos
+
+Champ
+
+Détail
+
+Objectif
+
+Présenter l'histoire, la gouvernance et l'équipe du mouvement pour renforcer la confiance institutionnelle.
+
+Description
+
+Page institutionnelle reprenant l'histoire, la philosophie, les valeurs, l'organisation et les membres clés.
+
+Contenu
+
+Texte historique, organigramme simplifié, présentation de l'équipe dirigeante, valeurs, partenaires.
+
+Composants
+
+Frise chronologique, grille de portraits, bloc valeurs, bloc partenaires.
+
+Interactions
+
+Navigation d'ancrage, liens vers les profils ou pages associées.
+
+Données manipulées
+
+Contenu de type page statique, table partners pour les partenaires affichés.
+
+Règles métier
+
+La liste des partenaires est gérée dynamiquement depuis le tableau de bord et peut être triée par ordre d'affichage.
+
+Permissions
+
+Page publique.
+
+Maquette textuelle
+
+En-tête → Histoire → Gouvernance/Équipe → Valeurs → Partenaires → Pied de page.
+
+Flux utilisateur
+
+Consultation de l'histoire → découverte de l'équipe → consultation des partenaires → contact éventuel.
+
+Contraintes techniques
+
+Images d'équipe optimisées et redimensionnées automatiquement.
+
+
+
+9.9 Pages légales — Mentions légales et Politique de confidentialité
+
+Champ
+
+Détail
+
+Objectif
+
+Assurer la conformité légale et la transparence sur le traitement des données personnelles.
+
+Description
+
+Pages de contenu statique, éditables depuis le tableau de bord, présentant les informations légales et la politique de gestion des données.
+
+Contenu
+
+Éditeur du site, hébergeur, conditions d'utilisation, politique de cookies, droits des utilisateurs sur leurs données.
+
+Composants
+
+Bloc de texte structuré avec sommaire d'ancrage interne.
+
+Interactions
+
+Navigation d'ancrage entre les sections.
+
+Données manipulées
+
+Contenu de type page statique.
+
+Règles métier
+
+Ces pages doivent être accessibles depuis le pied de page sur l'ensemble du site, sans exception.
+
+Permissions
+
+Page publique en lecture ; édition réservée aux administrateurs.
+
+Maquette textuelle
+
+En-tête → Sommaire → Sections légales → Pied de page.
+
+Flux utilisateur
+
+Accès direct depuis le pied de page, généralement en fin de parcours.
+
+Contraintes techniques
+
+Contenu conforme aux exigences RGPD/CEMAC selon la juridiction applicable au mouvement.
+
+
+
+10. Tableau de bord d'administration
+
+Le tableau de bord constitue le cœur opérationnel de la plateforme. Il doit permettre à l'équipe du mouvement de gérer l'intégralité des contenus et des paramètres du site sans aucune intervention technique récurrente. L'interface d'administration est développée en React/TypeScript, connectée à l'API Laravel via des appels authentifiés par Laravel Sanctum.
+
+10.1 Modules d'administration
+
+Module
+
+Fonctions principales
+
+Articles
+
+Création, édition, publication, dépublication, archivage, association à un pilier/catégorie.
+
+Livres
+
+Gestion du catalogue (fiches, couvertures, fichiers), classement par catégorie.
+
+Manifestes
+
+Publication de documents officiels, gestion des versions.
+
+Actualités
+
+Rédaction, planification de publication, mise en avant (à la une).
+
+Catégories
+
+Création et hiérarchisation des catégories rattachées aux piliers.
+
+Conférences
+
+Planification, gestion des intervenants, comptes rendus.
+
+Formations
+
+Création de fiches formation, gestion des places et des inscriptions.
+
+Évènements
+
+Agenda global, gestion des lieux, dates et statuts.
+
+Utilisateurs
+
+Gestion des comptes, rôles et permissions.
+
+Galeries
+
+Création d'albums, upload et organisation de photos.
+
+Vidéos
+
+Ajout de vidéos (upload ou lien externe), organisation par catégorie.
+
+Documents
+
+Gestion centralisée des fichiers téléchargeables (PDF, etc.).
+
+Images
+
+Bibliothèque de médias partagée entre les modules.
+
+Contacts
+
+Consultation et traitement des messages reçus via le formulaire.
+
+Newsletter
+
+Gestion des abonnés, envoi de campagnes, export de listes.
+
+Partenaires
+
+Gestion des logos, descriptions et liens des partenaires.
+
+Médias
+
+Vue centralisée de l'ensemble des fichiers médias du site.
+
+Pages
+
+Édition des pages statiques (Vision, À propos, pages légales).
+
+Menus
+
+Configuration de la structure de navigation du site.
+
+SEO
+
+Gestion des balises meta, sitemap, redirections.
+
+Statistiques
+
+Tableaux de bord analytiques (trafic, engagement, publications).
+
+10.2 Rôles et permissions
+
+Rôle
+
+Périmètre
+
+Super Administrateur
+
+Accès complet, y compris gestion des utilisateurs, des rôles et des paramètres système.
+
+Administrateur
+
+Gestion complète des contenus, validation et publication, gestion des partenaires et newsletters.
+
+Éditeur
+
+Création et modification de contenus, soumission pour validation, sans droit de publication directe.
+
+Contributeur
+
+Rédaction de brouillons uniquement, sans accès aux modules sensibles (utilisateurs, paramètres).
+
+10.3 Détail fonctionnel — module Articles (exemple représentatif)
+
+Champ
+
+Détail
+
+Objectif
+
+Permettre la gestion complète du cycle de vie éditorial des articles et actualités.
+
+Description
+
+Interface listant l'ensemble des articles avec recherche, filtres par statut/pilier/auteur, et actions rapides.
+
+Contenu
+
+Formulaire de création/édition : titre, slug auto-généré et modifiable, extrait, corps de texte (éditeur riche), image de couverture, pilier, catégorie, statut, date de publication, mots-clés SEO.
+
+Composants
+
+Table paginée et triable, éditeur WYSIWYG, sélecteur de médias, sélecteurs pilier/catégorie, bascule de statut.
+
+Interactions
+
+Création, édition, prévisualisation avant publication, publication/dépublication en un clic, suppression avec confirmation, duplication d'article.
+
+Données manipulées
+
+Table articles et tables associées (categories, pillars, users, media).
+
+Règles métier
+
+Un article ne peut être publié que s'il possède un titre, un contenu, une catégorie et une image de couverture. Le slug doit être unique.
+
+Permissions
+
+Lecture/écriture pour Éditeur, Administrateur, Super Administrateur ; publication réservée à Administrateur et Super Administrateur.
+
+Maquette textuelle
+
+Barre d'actions (Nouveau, Filtres, Recherche) → Table des articles → Panneau latéral d'édition ou page dédiée.
+
+Flux utilisateur
+
+Connexion → sélection du module Articles → création ou édition → soumission → validation → publication.
+
+Contraintes techniques
+
+Sauvegarde automatique des brouillons ; historique des versions recommandé en V2.
+
+10.4 Tableau de bord — vue d'ensemble (accueil administration)
+
+La page d'accueil du tableau de bord affiche une synthèse visuelle de l'activité de la plateforme : nombre de contenus publiés par pilier, messages de contact en attente, inscriptions récentes aux formations, évolution des abonnés à la newsletter, et raccourcis vers les actions fréquentes (créer un article, ajouter un événement, consulter les messages).
+
+11. Règles métier
+
+Les règles métier ci-dessous encadrent le fonctionnement transversal de la plateforme, au-delà des règles spécifiques déjà énoncées page par page et module par module.
+
+Domaine
+
+Règle métier
+
+Publication de contenu
+
+Un contenu n'est visible publiquement que s'il a le statut « publié » et que sa date de publication est passée ou égale à la date du jour.
+
+Ordre des piliers
+
+Les cinq piliers sont toujours affichés dans l'ordre officiel : Renaissance des peuples, ELIMB'A DIKALO, Transmission MUNTU, Académie MUNTU, Bibliothèque MUNTU.
+
+Unicité des slugs
+
+Chaque contenu (article, livre, manifeste, page) possède un slug unique utilisé dans son URL publique.
+
+Gestion des inscriptions
+
+Une inscription à une formation ou conférence n'est confirmée que si le nombre de places disponibles est suffisant ; au-delà, l'utilisateur est placé en liste d'attente.
+
+Newsletter
+
+Un abonné doit confirmer son inscription par email (double opt-in) avant d'être considéré comme actif dans les campagnes d'envoi.
+
+Messages de contact
+
+Tout message reçu génère un accusé de réception automatique à l'expéditeur et une notification à l'équipe d'administration.
+
+Suppression de contenu
+
+La suppression d'un contenu publié requiert une confirmation explicite et est journalisée (log d'audit).
+
+Modération éditoriale
+
+Un Contributeur ne peut publier directement ; tout contenu créé par un Contributeur doit être validé par un Éditeur ou un Administrateur.
+
+Médias
+
+Toute image uploadée est automatiquement compressée et déclinée en plusieurs formats (vignette, standard, haute définition).
+
+Archivage
+
+Un événement passé bascule automatiquement en statut « archivé » le lendemain de sa date de fin.
+
+12. Exigences fonctionnelles
+
+Les exigences fonctionnelles ci-dessous synthétisent, sous forme de liste consolidée et priorisée, l'ensemble des besoins fonctionnels détaillés dans les sections précédentes. La priorité « Must » désigne une exigence indispensable à la mise en production initiale ; « Should » désigne une exigence fortement souhaitable ; « Could » désigne une amélioration envisageable en phase ultérieure.
+
+Réf.
+
+Exigence
+
+Priorité
+
+EF-01
+
+Le site présente la vision, la mission et les valeurs du mouvement sur des pages dédiées.
+
+Must
+
+EF-02
+
+Le site organise l'ensemble des contenus autour des cinq piliers officiels.
+
+Must
+
+EF-03
+
+Le site permet la publication et la consultation d'articles, actualités, livres, manifestes et recherches.
+
+Must
+
+EF-04
+
+Le site propose un catalogue de conférences et de formations avec inscription en ligne.
+
+Must
+
+EF-05
+
+Le site propose un agenda d'événements avec fiches détaillées.
+
+Must
+
+EF-06
+
+Le site propose un formulaire de contact sécurisé.
+
+Must
+
+EF-07
+
+Le site propose une inscription à une newsletter avec confirmation.
+
+Must
+
+EF-08
+
+Le site propose une galerie photo organisée en albums.
+
+Should
+
+EF-09
+
+Le site propose une vidéothèque intégrant des vidéos hébergées en externe.
+
+Should
+
+EF-10
+
+Le site propose un moteur de recherche interne transversal.
+
+Must
+
+EF-11
+
+Le site met en valeur les partenaires du mouvement.
+
+Should
+
+EF-12
+
+Le tableau de bord permet la gestion complète des contenus sans intervention du développeur.
+
+Must
+
+EF-13
+
+Le tableau de bord gère des rôles et permissions différenciés.
+
+Must
+
+EF-14
+
+Le tableau de bord propose des statistiques d'usage et de publication.
+
+Should
+
+EF-15
+
+Le site est administrable en matière de SEO (balises meta, sitemap).
+
+Should
+
+EF-16
+
+Le site propose une gestion des menus de navigation depuis l'administration.
+
+Could
+
+13. Exigences non fonctionnelles
+
+Catégorie
+
+Exigence
+
+Performance
+
+Temps de chargement des pages inférieur à 2,5 secondes sur connexion 4G standard ; score Lighthouse cible supérieur à 90 sur les critères Performance et Best Practices.
+
+Disponibilité
+
+Taux de disponibilité cible de 99,5 % hors fenêtres de maintenance planifiées.
+
+Sécurité
+
+Chiffrement HTTPS obligatoire, protection contre les injections SQL, XSS et CSRF, authentification par jetons Sanctum, journalisation des accès administrateur.
+
+Accessibilité
+
+Conformité visée au niveau AA des Web Content Accessibility Guidelines (WCAG 2.1).
+
+Compatibilité
+
+Support des navigateurs modernes (Chrome, Firefox, Safari, Edge) sur leurs deux dernières versions majeures.
+
+Responsive design
+
+Adaptation fluide sur trois familles de résolutions : mobile (< 768 px), tablette (768–1024 px), desktop (> 1024 px).
+
+Scalabilité
+
+Architecture permettant l'ajout de serveurs applicatifs additionnels derrière un répartiteur de charge sans refonte.
+
+Maintenabilité
+
+Code structuré selon les standards PSR (PHP) et les conventions ESLint/Prettier (TypeScript/React), documentation technique à jour.
+
+Sauvegarde
+
+Sauvegardes automatiques quotidiennes de la base de données et hebdomadaires des fichiers médias, conservées 30 jours glissants.
+
+SEO technique
+
+Génération automatique du sitemap XML, balises meta dynamiques, URLs propres et indexables, temps de premier rendu optimisé.
+
+Internationalisation
+
+Architecture prête pour l'ajout de langues supplémentaires sans refonte structurelle (structure i18n).
+
+Ergonomie
+
+Interface d'administration utilisable par un profil non technique après une formation de moins de deux heures.
+
+14. Architecture applicative, logicielle et réseau
+
+14.1 Choix technologiques
+
+Composant
+
+Technologie retenue
+
+Justification
+
+Backend / API
+
+Laravel 12 (PHP)
+
+Framework robuste, écosystème mature, excellent support ORM et sécurité intégrée.
+
+Frontend
+
+React + TypeScript + Tailwind CSS
+
+Interface réactive, typage fort réduisant les erreurs, développement rapide et cohérent grâce à Tailwind.
+
+Base de données
+
+MySQL 8
+
+Fiabilité, large adoption, performances éprouvées pour ce volume de données.
+
+Authentification
+
+Laravel Sanctum
+
+Solution légère et sécurisée adaptée à une SPA consommant une API first-party.
+
+Stockage fichiers
+
+Système de fichiers local avec abstraction compatible S3
+
+Simplicité initiale, migration possible vers un stockage objet sans réécriture applicative.
+
+Cache / Files d'attente
+
+Redis (recommandé)
+
+Accélère les temps de réponse et gère les traitements asynchrones (emails, notifications).
+
+14.2 Architecture applicative globale
+
+L'architecture retenue est une architecture découplée (« decoupled » / headless), où le frontend React consomme exclusivement les données exposées par l'API REST Laravel. Ce découplage garantit une évolutivité maximale : le frontend pourra évoluer indépendamment du backend, et l'API pourra à terme alimenter d'autres canaux (application mobile, bornes interactives, etc.).
+
+
+
+Figure 1 — Architecture applicative globale de la plateforme
+
+14.3 Architecture logicielle en couches
+
+Le backend Laravel est structuré selon une architecture en couches strictes, garantissant la séparation des responsabilités et la testabilité du code :
+
+
+
+Figure 2 — Architecture logicielle en couches
+
+Couche Présentation : composants React, pages, gestion d'état, appels API via un client HTTP centralisé ;
+
+Couche Application : contrôleurs Laravel, validation des requêtes (Form Requests), transformation des réponses (API Resources) ;
+
+Couche Métier : services et actions encapsulant la logique métier (ex. gestion des inscriptions, publication conditionnelle) ;
+
+Couche Accès aux données : modèles Eloquent, repositories optionnels pour les requêtes complexes ;
+
+Couche Infrastructure : base de données MySQL, stockage de fichiers, service d'envoi d'emails, files d'attente.
+
+14.4 Architecture réseau et déploiement
+
+L'architecture réseau prévoit, dès la mise en production, une séparation claire entre la couche de diffusion (CDN, pare-feu applicatif), la couche applicative (serveurs web) et la couche de données (base de données avec réplique de lecture), afin de garantir sécurité, performance et possibilité de montée en charge progressive.
+
+
+
+Figure 3 — Architecture réseau et déploiement
+
+14.5 Environnements
+
+Environnement
+
+Usage
+
+Caractéristiques
+
+Développement (local)
+
+Développement quotidien des équipes techniques.
+
+Environnement Docker/Laravel Sail, données factices.
+
+Recette / Staging
+
+Validation fonctionnelle par le client avant mise en production.
+
+Réplique de la production, données de test, accès restreint.
+
+Production
+
+Environnement final accessible au public.
+
+Sauvegardes automatiques, monitoring actif, certificat SSL.
+
+15. Diagrammes UML
+
+Les diagrammes ci-après illustrent, selon les notations UML standard, les principaux flux fonctionnels et structurels du système. Ils constituent un support de dialogue entre l'équipe technique et les parties prenantes du projet.
+
+15.1 Diagramme de cas d'utilisation
+
+Ce diagramme présente les principaux acteurs du système (Visiteur, Membre inscrit, Éditeur de contenu, Administrateur) et leurs interactions avec les fonctionnalités clés de la plateforme.
+
+
+
+Figure 4 — Diagramme de cas d'utilisation
+
+15.2 Diagramme de classes (extrait)
+
+Ce diagramme présente un extrait des classes métier principales et de leurs relations, correspondant directement aux entités du modèle de données détaillé en section 16.
+
+
+
+Figure 5 — Diagramme de classes (extrait des entités principales)
+
+15.3 Diagramme de séquence — Inscription à la newsletter
+
+Ce diagramme illustre le déroulement temporel d'un scénario représentatif : l'inscription d'un visiteur à la newsletter, depuis la saisie jusqu'à la confirmation par email.
+
+
+
+Figure 6 — Diagramme de séquence : inscription à la newsletter
+
+15.4 Diagramme d'activité — Inscription à une formation
+
+Ce diagramme décrit le flux logique et les points de décision du processus d'inscription à une formation ou conférence, incluant la gestion de la liste d'attente.
+
+
+
+Figure 7 — Diagramme d'activité : inscription à une formation
+
+15.5 Diagramme de composants
+
+Ce diagramme présente l'organisation modulaire du frontend et du backend, et la manière dont les modules fonctionnels communiquent entre eux via l'API.
+
+
+
+Figure 8 — Diagramme de composants
+
+16. Modèle de données
+
+16.1 Modèle conceptuel des données (MCD)
+
+Le modèle conceptuel des données ci-dessous représente les entités principales du système et leurs relations, indépendamment de toute contrainte d'implémentation technique.
+
+
+
+Figure 9 — Modèle conceptuel des données (extrait des entités principales)
+
+16.2 Modèle logique des données (MLD)
+
+Le modèle logique traduit le MCD en structure relationnelle, avec explicitation des clés primaires (PK) et étrangères (FK). Il constitue la base directe des migrations Laravel.
+
+Table
+
+Structure logique (clés)
+
+users
+
+id (PK), name, email, password, role, created_at, updated_at
+
+pillars
+
+id (PK), name, slug, description, order, icon
+
+categories
+
+id (PK), pillar_id (FK → pillars.id), name, slug
+
+articles
+
+id (PK), category_id (FK → categories.id), user_id (FK → users.id), title, slug, excerpt, body, cover_path, status, published_at
+
+books
+
+id (PK), category_id (FK → categories.id), title, author, description, cover_path, file_path
+
+manifestos
+
+id (PK), category_id (FK → categories.id), title, body, file_path, published_at
+
+researches
+
+id (PK), category_id (FK → categories.id), title, author, abstract, file_path
+
+events
+
+id (PK), type (conférence/formation/évènement), title, description, start_at, end_at, location, capacity, status
+
+registrations
+
+id (PK), event_id (FK → events.id), user_id (FK → users.id, nullable), name, email, status
+
+galleries
+
+id (PK), title, description, cover_path
+
+media
+
+id (PK), mediable_id (FK polymorphique), mediable_type, path, type, caption, order
+
+partners
+
+id (PK), name, logo_path, website, order
+
+newsletter_subscribers
+
+id (PK), email, status, confirmed_at
+
+contact_messages
+
+id (PK), name, email, subject, message, status, created_at
+
+pages
+
+id (PK), title, slug, body, meta_title, meta_description
+
+menus
+
+id (PK), label, url, order, parent_id (FK → menus.id, nullable)
+
+16.3 Dictionnaire de données (extrait — table articles)
+
+Champ
+
+Type
+
+Contrainte
+
+Description
+
+id
+
+BIGINT UNSIGNED
+
+PK, auto-increment
+
+Identifiant unique de l'article
+
+category_id
+
+BIGINT UNSIGNED
+
+FK, NOT NULL
+
+Référence vers la catégorie de rattachement
+
+user_id
+
+BIGINT UNSIGNED
+
+FK, NOT NULL
+
+Référence vers l'auteur de l'article
+
+title
+
+VARCHAR(255)
+
+NOT NULL
+
+Titre de l'article
+
+slug
+
+VARCHAR(255)
+
+UNIQUE, NOT NULL
+
+Identifiant URL, généré automatiquement
+
+excerpt
+
+VARCHAR(500)
+
+NULLABLE
+
+Résumé court affiché dans les listes
+
+body
+
+LONGTEXT
+
+NOT NULL
+
+Contenu complet de l'article (HTML)
+
+cover_path
+
+VARCHAR(255)
+
+NULLABLE
+
+Chemin de l'image de couverture
+
+status
+
+ENUM(draft, pending, published, archived)
+
+NOT NULL, défaut draft
+
+Statut éditorial de l'article
+
+published_at
+
+DATETIME
+
+NULLABLE
+
+Date et heure de publication effective ou planifiée
+
+created_at / updated_at
+
+TIMESTAMP
+
+auto-géré
+
+Horodatage de création et de mise à jour
+
+16.4 Schéma relationnel — synthèse des relations
+
+Relation
+
+Cardinalité
+
+Description
+
+pillars → categories
+
+1,n
+
+Un pilier regroupe plusieurs catégories.
+
+categories → articles / books / manifestos / researches
+
+1,n
+
+Une catégorie regroupe plusieurs contenus de chaque type.
+
+users → articles
+
+1,n
+
+Un utilisateur (auteur) rédige plusieurs articles.
+
+events → registrations
+
+1,n
+
+Un événement reçoit plusieurs inscriptions.
+
+users → registrations
+
+1,n
+
+Un utilisateur peut s'inscrire à plusieurs événements.
+
+galleries → media
+
+1,n
+
+Un album regroupe plusieurs médias.
+
+media → * (polymorphique)
+
+1,n
+
+Un média peut être rattaché à un article, une galerie ou une page.
+
+menus → menus
+
+1,n (auto-référence)
+
+Un menu peut posséder des sous-menus (parent_id).
+
+16.5 Spécifications techniques de la base de données MySQL
+
+Moteur de stockage : InnoDB, pour le support des transactions et des clés étrangères ;
+
+Jeu de caractères : utf8mb4 avec collation utf8mb4_unicode_ci, pour un support complet des caractères spéciaux ;
+
+Indexation : index sur les champs slug, status, published_at et sur toutes les clés étrangères ;
+
+Contraintes d'intégrité référentielle : suppression en cascade contrôlée (onDelete cascade ou restrict selon la sensibilité de la table) ;
+
+Horodatage : usage systématique des champs created_at / updated_at gérés automatiquement par Eloquent ;
+
+Soft deletes : activés sur les tables de contenu (articles, books, manifestos, events) pour permettre une restauration en cas de suppression accidentelle.
+
+17. Sécurité
+
+La sécurité de la plateforme repose sur une approche de défense en profondeur, combinant des mesures au niveau applicatif, réseau et organisationnel.
+
+Domaine
+
+Mesures retenues
+
+Transport
+
+Chiffrement systématique HTTPS (certificat TLS), redirection automatique HTTP → HTTPS.
+
+Authentification
+
+Laravel Sanctum avec jetons à durée de vie limitée, hachage des mots de passe (bcrypt/argon2).
+
+Autorisation
+
+Contrôle d'accès basé sur les rôles (RBAC) via les Policies et Gates de Laravel.
+
+Protection des formulaires
+
+Jetons CSRF, validation stricte côté serveur, protection anti-spam (reCAPTCHA/honeypot).
+
+Protection des injections
+
+Utilisation exclusive de l'ORM Eloquent (requêtes préparées), échappement systématique des sorties.
+
+Téléversement de fichiers
+
+Validation stricte des types MIME, limitation de taille, stockage hors répertoire exécutable.
+
+Journalisation
+
+Historique des actions sensibles (connexion, publication, suppression) à des fins d'audit.
+
+Limitation de débit
+
+Rate limiting sur les endpoints sensibles (connexion, formulaire de contact, recherche).
+
+Mises à jour
+
+Politique de mise à jour régulière des dépendances (Composer, npm) et surveillance des vulnérabilités connues.
+
+18. Sauvegardes
+
+Élément sauvegardé
+
+Fréquence
+
+Rétention
+
+Modalités
+
+Base de données MySQL
+
+Quotidienne
+
+30 jours glissants
+
+Export automatisé chiffré, stockage hors site
+
+Fichiers médias / documents
+
+Hebdomadaire
+
+8 semaines glissantes
+
+Synchronisation vers un stockage distant
+
+Code source
+
+À chaque déploiement
+
+Historique complet
+
+Versionnement Git (dépôt distant)
+
+Une procédure de restauration documentée doit être testée à intervalle régulier (recommandation : trimestrielle) afin de garantir la reprise effective d'activité en cas d'incident.
+
+19. Performances
+
+Mise en cache des requêtes fréquentes (listes de contenus, statistiques d'accueil) via Redis ou cache de fichiers ;
+
+Optimisation systématique des images (compression, formats modernes WebP/AVIF, dimensions adaptées) ;
+
+Chargement différé (lazy loading) des images et sections hors champ de vision initial ;
+
+Minification et regroupement des ressources JavaScript et CSS via le bundler du frontend (Vite recommandé) ;
+
+Pagination systématique des listes de contenus côté API pour limiter la charge réseau et mémoire ;
+
+Utilisation d'un CDN pour la diffusion des assets statiques et des médias.
+
+20. Référencement SEO
+
+20.1 SEO technique
+
+Génération automatique d'un sitemap XML mis à jour à chaque publication de contenu ;
+
+Fichier robots.txt configuré pour autoriser l'indexation des contenus publics et exclure le back-office ;
+
+URLs propres et sémantiques basées sur les slugs des contenus ;
+
+Temps de chargement optimisé, facteur reconnu de classement dans les moteurs de recherche ;
+
+Rendu côté serveur ou pré-rendu (SSR/SSG) recommandé pour les pages de contenu, afin de garantir une indexation optimale malgré l'architecture React.
+
+20.2 SEO éditorial
+
+Gestion des balises meta (titre, description) éditable pour chaque contenu depuis le module SEO du tableau de bord ;
+
+Structure de titres hiérarchisée (H1 unique par page, sous-titres H2/H3 cohérents) ;
+
+Balisage de données structurées (schema.org) pour les articles, événements et publications, afin de faciliter les extraits enrichis ;
+
+Attributs alternatifs (alt) systématiques sur les images à des fins d'accessibilité et de référencement.
+
+21. Recommandations UX/UI
+
+Hiérarchie visuelle claire, guidée par la typographie et la palette institutionnelle définie en section 6 ;
+
+Temps de première interaction minimisé grâce à un chargement progressif du contenu (skeleton loaders) ;
+
+Navigation simplifiée à cinq entrées principales, reflétant directement les cinq piliers ;
+
+Cohérence des composants d'interface (boutons, cartes, formulaires) sur l'ensemble du site, via un système de design partagé (design system) ;
+
+Retours visuels systématiques lors des interactions (chargement, succès, erreur) ;
+
+Densité d'information adaptée à chaque support : synthétique sur mobile, plus riche sur desktop.
+
+22. Accessibilité
+
+Contraste des couleurs conforme au niveau AA des WCAG 2.1, en particulier entre le vert profond/or mat et les fonds clairs ;
+
+Navigation complète au clavier sur l'ensemble des composants interactifs ;
+
+Attributs ARIA appropriés sur les composants complexes (menus, modales, carrousels) ;
+
+Textes alternatifs descriptifs sur toutes les images porteuses de sens ;
+
+Structure sémantique HTML5 respectée (landmarks, hiérarchie de titres) ;
+
+Taille de police et zones interactives suffisamment grandes pour un usage confortable sur mobile.
+
+23. Maintenance
+
+Type de maintenance
+
+Description
+
+Fréquence recommandée
+
+Maintenance corrective
+
+Correction des anomalies identifiées après mise en production.
+
+Selon criticité (immédiate à hebdomadaire)
+
+Maintenance évolutive
+
+Ajout de nouvelles fonctionnalités demandées par le client.
+
+Selon feuille de route convenue
+
+Maintenance préventive
+
+Mises à jour de sécurité, dépendances, surveillance proactive.
+
+Mensuelle
+
+Maintenance de contenu
+
+Accompagnement éditorial ponctuel de l'équipe du mouvement.
+
+Selon besoin
+
+24. Stratégie de déploiement
+
+Mise en place d'une chaîne d'intégration et de déploiement continu (CI/CD) automatisant les tests et le déploiement vers la recette puis la production ;
+
+Déploiement en environnement de recette pour validation fonctionnelle par le client avant toute mise en production ;
+
+Stratégie de déploiement sans interruption de service (zero-downtime deployment) pour les mises à jour en production ;
+
+Procédure de retour arrière (rollback) documentée en cas d'anomalie critique post-déploiement ;
+
+Surveillance post-déploiement (monitoring applicatif et infrastructure) pendant les 48 heures suivant chaque mise en production majeure.
+
+25. Plan de tests
+
+25.1 Niveaux de tests
+
+Niveau
+
+Objectif
+
+Responsable
+
+Tests unitaires
+
+Vérifier le comportement isolé des fonctions, services et composants.
+
+Équipe de développement
+
+Tests d'intégration
+
+Vérifier les interactions entre modules (API, base de données).
+
+Équipe de développement
+
+Tests fonctionnels
+
+Vérifier la conformité aux exigences fonctionnelles décrites en section 12.
+
+Équipe QA
+
+Tests de recette (UAT)
+
+Validation finale par le client sur l'environnement de recette.
+
+Client / Équipe projet
+
+Tests de performance
+
+Vérifier les temps de réponse sous charge simulée.
+
+Équipe technique
+
+Tests de sécurité
+
+Vérifier l'absence de vulnérabilités courantes (OWASP Top 10).
+
+Équipe technique / audit externe
+
+Tests d'accessibilité
+
+Vérifier la conformité WCAG 2.1 niveau AA.
+
+Équipe QA / UX
+
+25.2 Critères d'acceptation
+
+Toutes les exigences fonctionnelles classées « Must » sont implémentées et validées ;
+
+Aucune anomalie bloquante ou majeure n'est ouverte au moment de la recette finale ;
+
+Les temps de chargement respectent les seuils définis dans les exigences non fonctionnelles ;
+
+Le tableau de bord permet la réalisation de l'ensemble des scénarios de gestion de contenu sans assistance technique ;
+
+Le site est validé sur les trois familles de résolutions (mobile, tablette, desktop) et les navigateurs cibles.
+
+26. Architecture de dossiers, conventions et stratégie Git
+
+26.1 Arborescence recommandée du projet Laravel (backend)
+
+backend/├── app/│   ├── Http/Controllers/Api/      (Contrôleurs REST par domaine : ArticleController, EventController...)│   ├── Http/Requests/             (Form Requests de validation)│   ├── Http/Resources/            (API Resources — formatage des réponses JSON)│   ├── Http/Middleware/           (Middlewares personnalisés)│   ├── Models/                    (Modèles Eloquent : Article, Pillar, Category, Event...)│   ├── Services/                  (Logique métier encapsulée)│   ├── Policies/                  (Règles d'autorisation par ressource)│   └── Jobs/ & Mail/               (Traitements asynchrones, emails)├── database/│   ├── migrations/                (Schéma versionné de la base de données)│   ├── seeders/                   (Données de démonstration)│   └── factories/                 (Générateurs de données de test)├── routes/│   ├── api.php                    (Routes de l'API publique et privée)│   └── web.php├── tests/                         (Tests unitaires et fonctionnels — PestPHP/PHPUnit)├── config/└── storage/app/public/            (Fichiers médias uploadés)
+
+26.2 Arborescence recommandée du projet React (frontend)
+
+frontend/├── src/│   ├── components/                (Composants UI réutilisables : Button, Card, Modal...)│   ├── modules/│   │   ├── piliers/                (Composants et pages liés aux 5 piliers)│   │   ├── publications/           (Articles, livres, manifestes, recherches)│   │   ├── evenements/             (Conférences, formations, agenda)│   │   ├── medias/                 (Galerie, vidéothèque)│   │   └── contact/                (Formulaire de contact, newsletter)│   ├── admin/                      (Interface d'administration — un sous-module par entité gérée)│   ├── pages/                      (Pages de routage de premier niveau)│   ├── hooks/                      (Hooks personnalisés — useAuth, useFetch...)│   ├── services/                   (Clients API centralisés — axios/fetch typés)│   ├── types/                      (Interfaces et types TypeScript partagés)│   ├── styles/                     (Configuration Tailwind, tokens de design)│   └── App.tsx / main.tsx└── public/
+
+26.3 Conventions de nommage
+
+Élément
+
+Convention
+
+Exemple
+
+Modèles Eloquent (PHP)
+
+PascalCase, singulier
+
+Article, Pillar, EventRegistration
+
+Tables MySQL
+
+snake_case, pluriel
+
+articles, pillars, event_registrations
+
+Contrôleurs
+
+PascalCase + suffixe Controller
+
+ArticleController
+
+Composants React
+
+PascalCase
+
+PillarCard.tsx, ArticleList.tsx
+
+Fichiers utilitaires / hooks
+
+camelCase
+
+useAuth.ts, formatDate.ts
+
+Routes API
+
+kebab-case, ressource au pluriel
+
+/api/articles, /api/newsletter-subscribers
+
+Branches Git
+
+type/description-courte
+
+feature/module-articles, fix/formulaire-contact
+
+26.4 Bonnes pratiques de développement
+
+Respect des standards PSR-12 pour le code PHP, vérifié par un outil de style automatique (Laravel Pint) ;
+
+Respect des règles ESLint et Prettier pour le code TypeScript/React, intégré en pré-commit (Husky) ;
+
+Typage strict systématique côté TypeScript (mode strict activé) ;
+
+Couverture de tests minimale exigée sur les services métier critiques (inscriptions, authentification) ;
+
+Revue de code obligatoire (pull request) avant fusion sur la branche principale ;
+
+Documentation des endpoints API maintenue à jour (OpenAPI/Swagger recommandé).
+
+26.5 Stratégie de versionnement Git
+
+Le projet adopte une stratégie inspirée de Git Flow, adaptée à la taille de l'équipe :
+
+Branche
+
+Rôle
+
+main
+
+Code en production, toujours stable et déployable.
+
+develop
+
+Branche d'intégration continue des fonctionnalités validées.
+
+feature/*
+
+Développement d'une fonctionnalité isolée, fusionnée dans develop via pull request.
+
+fix/*
+
+Correction de bug, fusionnée dans develop ou directement dans main selon l'urgence.
+
+release/*
+
+Préparation d'une mise en production, tests finaux avant fusion dans main.
+
+Messages de commit normalisés selon la convention Conventional Commits (ex. feat: ajout du module galerie) ;
+
+Tags sémantiques (SemVer) posés à chaque mise en production (ex. v1.0.0, v1.1.0) ;
+
+Fichier CHANGELOG maintenu à jour à chaque version livrée.
+
+27. Planning du projet
+
+Le planning ci-dessous présente une estimation macroscopique des grandes phases du projet, à affiner conjointement avec le client lors du cadrage détaillé.
+
+Phase
+
+Contenu
+
+Durée estimée
+
+Phase 1 — Cadrage
+
+Validation du présent DCFT, ateliers de cadrage complémentaires, validation de la charte graphique.
+
+2 semaines
+
+Phase 2 — Design UI
+
+Maquettes haute-fidélité de l'ensemble des pages et du tableau de bord, validation client.
+
+3 semaines
+
+Phase 3 — Développement backend
+
+Mise en place de l'architecture Laravel, migrations, API, authentification.
+
+5 semaines
+
+Phase 4 — Développement frontend
+
+Intégration React/TypeScript/Tailwind des pages publiques et de l'administration.
+
+6 semaines (en parallèle partiel de la phase 3)
+
+Phase 5 — Intégration et tests
+
+Tests fonctionnels, correction des anomalies, tests de performance et de sécurité.
+
+3 semaines
+
+Phase 6 — Recette client (UAT)
+
+Validation fonctionnelle complète par le client sur l'environnement de recette.
+
+2 semaines
+
+Phase 7 — Mise en production
+
+Déploiement, migration finale des contenus, formation des équipes.
+
+1 semaine
+
+Phase 8 — Accompagnement post-lancement
+
+Support renforcé, ajustements mineurs, transfert de compétences.
+
+4 semaines
+
+Durée totale estimée du projet, de la validation du cadrage à la fin de l'accompagnement post-lancement : environ 20 à 22 semaines, selon la disponibilité des parties prenantes et la réactivité des cycles de validation.
+
+28. Livrables
+
+Livrable
+
+Phase associée
+
+Présent Document de Conception Fonctionnelle et Technique (DCFT)
+
+Phase 1
+
+Charte graphique appliquée (design system digital)
+
+Phase 1-2
+
+Maquettes haute-fidélité (desktop, tablette, mobile)
+
+Phase 2
+
+Code source backend (API Laravel) versionné sur dépôt Git
+
+Phase 3
+
+Code source frontend (React/TypeScript) versionné sur dépôt Git
+
+Phase 4
+
+Tableau de bord d'administration fonctionnel
+
+Phase 4
+
+Documentation technique (installation, architecture, API)
+
+Phase 5
+
+Rapport de tests et de recette
+
+Phase 6
+
+Site en production, accessible publiquement
+
+Phase 7
+
+Guide utilisateur du tableau de bord (manuel d'administration)
+
+Phase 7
+
+Session de formation des équipes du mouvement
+
+Phase 7-8
+
+29. Annexes
+
+29.1 Glossaire
+
+Terme
+
+Définition
+
+Muntu
+
+Concept philosophique bantou désignant l'être humain relié à sa communauté, ses ancêtres et son destin collectif.
+
+DCFT
+
+Document de Conception Fonctionnelle et Technique.
+
+SPA
+
+Single Page Application — application web fonctionnant sur une seule page rechargée dynamiquement.
+
+API REST
+
+Interface de programmation respectant les principes de représentation d'état transférable, utilisée pour la communication frontend/backend.
+
+ORM
+
+Object-Relational Mapping — technique de correspondance entre objets applicatifs et tables de base de données (Eloquent pour Laravel).
+
+RBAC
+
+Role-Based Access Control — modèle de contrôle d'accès fondé sur les rôles utilisateurs.
+
+WCAG
+
+Web Content Accessibility Guidelines — référentiel international d'accessibilité numérique.
+
+CI/CD
+
+Intégration continue / Déploiement continu — automatisation des tests et de la mise en production.
+
+29.2 Références institutionnelles de comparaison
+
+UNESCO — organisation.unesco.org : sobriété institutionnelle et richesse documentaire ;
+
+World Economic Forum — weforum.org : clarté de la hiérarchie de l'information et mise en avant des publications ;
+
+Fondation Nelson Mandela — nelsonmandela.org : dimension inspirante et narrative de la mission ;
+
+Grandes universités internationales : structuration académique des contenus de recherche et de formation.
+
+29.3 Prochaines étapes
+
+La validation du présent document par la direction du mouvement « Pour la Renaissance du Muntu » constitue le point de départ officiel de la Phase 1 du projet. Toute évolution substantielle du périmètre fonctionnel décrit dans ce document fera l'objet d'un avenant formalisé, afin de préserver la cohérence du planning et du budget convenus.
+
