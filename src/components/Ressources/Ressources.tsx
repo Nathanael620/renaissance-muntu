@@ -1,4 +1,4 @@
-import { BookOpen, MapPin } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import africaMap from "../../assets/images/Africa.png";
 import { ressources } from "../../data/siteData";
 

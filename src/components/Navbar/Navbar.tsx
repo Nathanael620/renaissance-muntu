@@ -65,6 +65,13 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
+                  onClick={(event) => {
+                    if (link.href.startsWith("/")) {
+                      event.preventDefault();
+                      window.history.pushState({}, "", link.href);
+                      window.dispatchEvent(new Event("routechange"));
+                    }
+                  }}
                   className={cn(
                     "font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-white",
                     "border-b-2 border-transparent pb-0.5 transition-colors duration-200",
@@ -122,8 +129,15 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
+                  onClick={(event) => {
+                    if (link.href.startsWith("/")) {
+                      event.preventDefault();
+                      window.history.pushState({}, "", link.href);
+                      window.dispatchEvent(new Event("routechange"));
+                    }
+                    setOpen(false);
+                  }}
                   className="block rounded-md px-3 py-3 font-sans text-sm font-medium uppercase tracking-wide text-vert transition-colors hover:bg-creme hover:text-or"
-                  onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </a>

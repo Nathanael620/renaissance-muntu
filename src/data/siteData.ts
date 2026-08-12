@@ -14,6 +14,7 @@ export const brand = {
 /** Liens de navigation principale (maquette navbar) */
 export const navLinks = [
   { label: "ACCUEIL", href: "#accueil" },
+  { label: "ELIMB'A DIKALO", href: "/elimba" },
   { label: "VISION", href: "#vision" },
   { label: "NOS PILIERS", href: "#piliers" },
   { label: "BIBLIOTHÈQUE", href: "#bibliotheque" },
