@@ -42,8 +42,15 @@ export default function Home() {
       <CarteAfrique />
       <Mission />
       <Objectifs />
-      <ParcoursUtilisateur />
-      <CitationFinale />
+
+      {/* Parcours + Phrase fondatrice côte à côte (desktop) */}
+      <div className="bg-creme px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+          <ParcoursUtilisateur />
+          <CitationFinale />
+        </div>
+      </div>
+
       <SoutienBanner />
 
       {/* Ancres secondaires pour la nav */}
