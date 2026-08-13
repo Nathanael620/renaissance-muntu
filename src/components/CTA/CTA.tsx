@@ -1,6 +1,7 @@
 import { Heart, Mail, Users } from "lucide-react";
 import engagementImg from "../../assets/images/engagement.png";
 import { engagementText, soutienText } from "../../data/siteData";
+import SupportButton from "../support/SupportButton";
 import { cn } from "../../utils/cn";
 
 /**
@@ -34,12 +35,11 @@ export default function CTA() {
         <p className="flex-1 font-sans text-sm leading-relaxed text-anthracite">
           {engagementText}
         </p>
-        <a
-          href="#soutien"
+        <SupportButton
           className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce"
         >
           S&apos;engager maintenant
-        </a>
+        </SupportButton>
       </article>
     </>
   );
@@ -76,13 +76,12 @@ export function SoutienBanner() {
           </div>
         </div>
 
-        <a
-          href="#contact"
+        <SupportButton
           className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg md:text-sm"
         >
           <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
           Faire un don ou devenir partenaire
-        </a>
+        </SupportButton>
       </div>
     </section>
   );

@@ -90,7 +90,7 @@ export default function Piliers() {
           {pillars.map((pillar) => (
             <article
               key={pillar.id}
-              id={pillar.slug === "elimba-dikalo" ? "elimba" : undefined}
+              id={pillar.slug === "elimba" ? "elimba" : undefined}
               className={cn(
                 "group flex flex-col overflow-hidden rounded-2xl border border-or/30 bg-creme-clair",
                 "shadow-sm transition-shadow duration-300 hover:shadow-md",
@@ -117,7 +117,15 @@ export default function Piliers() {
                 </p>
                 
                 <a
-                  href={`#${pillar.slug}`}
+                  href={pillar.slug === "elimba" ? "/elimba" : `#${pillar.slug}`}
+                  onClick={(event) => {
+                    const href = pillar.slug === "elimba" ? "/elimba" : `#${pillar.slug}`;
+                    if (href.startsWith("/")) {
+                      event.preventDefault();
+                      window.history.pushState({}, "", href);
+                      window.dispatchEvent(new Event("routechange"));
+                    }
+                  }}
                   className={cn(
                     "mt-4 inline-flex items-center justify-center rounded-md border border-or/50 bg-creme px-4 py-2",
                     "font-sans text-[11px] font-semibold uppercase tracking-wide text-vert",

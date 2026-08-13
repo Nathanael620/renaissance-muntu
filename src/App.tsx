@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Elimba from "./pages/Elimba";
+import Soutenir from "./pages/Soutenir";
 
 const routeMap = {
   "/": <Home />,
   "/elimba": <Elimba />,
+  "/soutenir": <Soutenir />,
 };
 
 function App() {

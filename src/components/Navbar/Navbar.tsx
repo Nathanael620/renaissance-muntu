@@ -4,6 +4,7 @@ import logo from "../../assets/icons/renaissance.png";
 import { brand, navLinks } from "../../data/siteData";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { cn } from "../../utils/cn";
+import SupportButton from "../support/SupportButton";
 
 /**
  * Navbar — maquette2 desktop (overlay hero) + mobile (barre blanche + menu).
@@ -70,6 +71,15 @@ export default function Navbar() {
                       event.preventDefault();
                       window.history.pushState({}, "", link.href);
                       window.dispatchEvent(new Event("routechange"));
+                      // If the link contains a hash, attempt to scroll to the target
+                      const hashIndex = link.href.indexOf("#");
+                      if (hashIndex !== -1) {
+                        const id = link.href.slice(hashIndex + 1);
+                        setTimeout(() => {
+                          const el = document.getElementById(id);
+                          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }, 80);
+                      }
                     }
                   }}
                   className={cn(
@@ -88,8 +98,7 @@ export default function Navbar() {
 
         {/* ——— CTA + burger ——— */}
         <div className="flex items-center gap-2 md:gap-3">
-          <a
-            href="#soutien"
+          <SupportButton
             className={cn(
               "btn-or hidden items-center gap-2 rounded-full px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-wide shadow-md sm:inline-flex",
               "md:px-5 md:text-xs",
@@ -100,7 +109,7 @@ export default function Navbar() {
             </span>
             <span className="hidden xl:inline">Soutenir le projet</span>
             <span className="xl:hidden">Soutenir</span>
-          </a>
+          </SupportButton>
 
           <button
             type="button"
@@ -134,6 +143,14 @@ export default function Navbar() {
                       event.preventDefault();
                       window.history.pushState({}, "", link.href);
                       window.dispatchEvent(new Event("routechange"));
+                      const hashIndex = link.href.indexOf("#");
+                      if (hashIndex !== -1) {
+                        const id = link.href.slice(hashIndex + 1);
+                        setTimeout(() => {
+                          const el = document.getElementById(id);
+                          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }, 80);
+                      }
                     }
                     setOpen(false);
                   }}
@@ -144,14 +161,13 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <a
-            href="#soutien"
+          <SupportButton
             className="btn-or mt-4 flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wide"
             onClick={() => setOpen(false)}
           >
             <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
             Soutenir le projet
-          </a>
+          </SupportButton>
         </nav>
       </div>
     </header>

@@ -13,9 +13,9 @@ export const brand = {
 
 /** Liens de navigation principale (maquette navbar) */
 export const navLinks = [
-  { label: "ACCUEIL", href: "#accueil" },
-  { label: "VISION", href: "#vision" },
-  { label: "NOS PILIERS", href: "#piliers" },
+  { label: "ACCUEIL", href: "/" },
+  { label: "VISION", href: "/#objectifs" },
+  { label: "NOS PILIERS", href: "/#piliers" },
   { label: "BIBLIOTHÈQUE", href: "#bibliotheque" },
   { label: "ACADÉMIE", href: "#academie" },
   { label: "TRANSMISSION", href: "#transmission" },
@@ -51,7 +51,7 @@ export const pillars = [
   },
   {
     id: 2,
-    slug: "elimba-dikalo",
+    slug: "elimba",
     title: "ELIMB'A DIKALO",
     themes: ["Dialogue", "Responsabilité", "Écologie spirituelle des peuples"],
     image: "elimba.png",
@@ -177,11 +177,11 @@ export const footerLinks = {
     { label: "Notre histoire", href: "#vision" },
   ],
   departements: [
-    { label: "Renaissance des peuples", href: "#piliers" },
-    { label: "Elimb'a Dikalo", href: "#piliers" },
-    { label: "Transmission Muntu", href: "#transmission" },
-    { label: "Académie Muntu", href: "#academie" },
-    { label: "Bibliothèque Muntu", href: "#bibliotheque" },
+    { label: "Renaissance des peuples", href: "/" },
+    { label: "Elimb'a Dikalo", href: "/elimba" },
+    { label: "Transmission du Ntu ", href: "#transmission" },
+    { label: "Académie du Muntu", href: "#academie" },
+    { label: "Bibliothèque du Muntu", href: "#bibliotheque" },
   ],
   ressources: [
     { label: "Livres", href: "#ressources" },
@@ -198,7 +198,7 @@ export const footerLinks = {
 } as const;
 
 export const contact = {
-  email: "contact@renaissancedumuntu.org",
-  phone: "+237 000 000 000",
+  email: "elimbadikalo.renaissancemuntu@gmail.com",
+  phone: "+1 (514) 224-3872",
   address: "Afrique — Diaspora mondiale",
 } as const;

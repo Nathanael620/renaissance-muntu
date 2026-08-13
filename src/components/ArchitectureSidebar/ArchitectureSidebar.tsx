@@ -3,6 +3,7 @@ import logo from "../../assets/icons/renaissance.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
 import { architectureItems } from "../../data/siteData";
 import { cn } from "../../utils/cn";
+import SupportButton from "../support/SupportButton";
 
 type Item = (typeof architectureItems)[number];
 
@@ -105,10 +106,7 @@ export default function ArchitectureSidebar() {
         ))}
       </div>
 
-      <a
-        href="#soutien"
-        className="btn-or mt-6 flex w-full flex-col items-center gap-1 rounded-xl px-4 py-3 text-center"
-      >
+      <SupportButton className="btn-or mt-6 flex w-full flex-col items-center gap-1 rounded-xl px-4 py-3 text-center">
         <span className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide underline underline-offset-2">
           <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
             <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
@@ -118,7 +116,7 @@ export default function ArchitectureSidebar() {
         <span className="font-sans text-[10px] font-normal normal-case tracking-normal text-white/90">
           Semez aujourd&apos;hui une humanité plus juste et durable
         </span>
-      </a>
+      </SupportButton>
     </aside>
   );
 }

@@ -72,7 +72,7 @@ export default function Elimba() {
     <div className="space-y-14 px-4 py-20 md:px-8 lg:px-10">
       <section
         id="elimba-hero"
-        className="relative overflow-hidden rounded-[2rem] bg-vert-fonce text-white shadow-2xl"
+        className="relative -mx-4 md:-mx-8 lg:-mx-10 -mt-20 md:-mt-24 lg:-mt-28 z-0 overflow-visible bg-vert-fonce text-white shadow-2xl"
         aria-labelledby="elimba-hero-title"
       >
         <img
@@ -120,9 +120,9 @@ export default function Elimba() {
           </div>
 
           <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-sm">
-            <div className="flex items-center gap-4">
-              <div className="h-16 w-16 overflow-hidden rounded-full border border-or/50 bg-white">
-                <img src={logo} alt="Logo Elimb'a Dikalo" className="h-full w-full object-cover" />
+            <div className="flex items-center gap-6">
+                <div className="h-28 w-28 md:h-36 md:w-36 lg:h-56 lg:w-56 overflow-visible rounded-full border-2 border-or/50 bg-white p-1">
+                <img src={logo} alt="Logo Elimb'a Dikalo" className="h-full w-full object-contain" />
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-[0.28em] text-or-clair">Pilier fondateur</p>

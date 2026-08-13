@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Mail,
   MapPin,
@@ -23,10 +24,10 @@ function IconInstagram({ className }: { className?: string }) {
     </svg>
   );
 }
-function IconLinkedin({ className }: { className?: string }) {
+function IconTikTok({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M6.5 9H3.5v12h3V9zM5 3.5A1.75 1.75 0 1 0 5 7a1.75 1.75 0 0 0 0-3.5zM20.5 21h-3v-6.2c0-1.7-.7-2.3-1.7-2.3s-1.9.8-1.9 2.4V21h-3V9h3v1.6c.6-.9 1.8-1.9 3.6-1.9 2.4 0 3 1.6 3 4.5V21z" />
+      <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" />
     </svg>
   );
 }
@@ -38,12 +39,29 @@ function IconYoutube({ className }: { className?: string }) {
   );
 }
 
+function IconWhatsApp({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 2.04C6.48 2.04 2 6.52 2 12.04c0 2.12.66 4.08 1.8 5.7L2 22l4.4-1.16c1.58.98 3.44 1.58 5.6 1.58 5.52 0 10-4.48 10-10 0-5.52-4.48-10-10-10zm5.2 13.3c-.18.5-1.06 1.04-1.6 1.18-.42.11-.86.12-1.28.02-1.04-.24-2.34-.96-3.86-2.48-1.5-1.5-2.22-2.8-2.48-3.84-.1-.42-.09-.86.02-1.28.14-.54.68-1.42 1.18-1.6.28-.1.6-.08.87.05.23.11.5.32.81.63.32.32.57.68.76.93.18.24.3.4.44.44.13.04.28.02.5-.06.22-.09 1.18-.44 1.36-.49.18-.05.31-.08.45.06.14.14.5.47.81.78.3.32.54.61.63.82.1.27.12.6.04.88-.08.28-.45 1.1-.49 1.28-.04.22-.1.37-.02.5.04.12.2.26.44.44.25.19.61.44.93.76.31.31.52.58.63.81.13.27.15.6.05.88z" />
+    </svg>
+  );
+}
+
 /**
  * Footer institutionnel — maquette + DCFT
  */
 export default function Footer() {
+  const [showVideosModal, setShowVideosModal] = useState(false);
+
+  const socialVideoLinks = {
+    facebook: "https://www.facebook.com/share/1AX46GCkQg/",
+    tiktok: "https://www.tiktok.com/@pour.la.renaissan?_r=1&_t=ZS-98qX3f0yDEl",
+    youtube: "https://youtube.com/@pourlarenaissancedumuntu?si=7Ji0YRGdDkcPW0Ml",
+    instagram: "https://www.instagram.com/pourlarenaissancedu?utm_source=qr&igsh=MXh5dTFqZThyZjF4cw==",
+  } as const;
   return (
-    <footer id="contact" className="bg-vert-fonce text-white" role="contentinfo">
+    <>
+      <footer id="contact" className="bg-vert-fonce text-white" role="contentinfo">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-4 py-14 sm:grid-cols-2 md:px-8 lg:grid-cols-6 lg:gap-6 lg:px-10 lg:py-16">
         {/* Marque + réseaux */}
         <div className="lg:col-span-1">
@@ -55,14 +73,16 @@ export default function Footer() {
           </p>
           <ul className="mt-5 flex flex-wrap gap-2" aria-label="Réseaux sociaux">
             {[
-              { Icon: IconFacebook, label: "Facebook" },
-              { Icon: IconLinkedin, label: "LinkedIn" },
-              { Icon: IconYoutube, label: "YouTube" },
-              { Icon: IconInstagram, label: "Instagram" },
-            ].map(({ Icon, label }) => (
+              { Icon: IconFacebook, label: "Facebook", href: "https://www.facebook.com/share/1AX46GCkQg/" },
+              { Icon: IconTikTok, label: "TikTok", href: "https://www.tiktok.com/@pour.la.renaissan?_r=1&_t=ZS-98qX3f0yDEl" },
+              { Icon: IconYoutube, label: "YouTube", href: "https://youtube.com/@pourlarenaissancedumuntu?si=7Ji0YRGdDkcPW0Ml" },
+              { Icon: IconInstagram, label: "Instagram", href: "https://www.instagram.com/pourlarenaissancedu?utm_source=qr&igsh=MXh5dTFqZThyZjF4cw==" },
+            ].map(({ Icon, label, href }) => (
               <li key={label}>
                 <a
-                  href="#contact"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-or hover:text-or"
                 >
@@ -75,7 +95,11 @@ export default function Footer() {
 
         <FooterCol title="L'Institut" links={footerLinks.institut} />
         <FooterCol title="Nos départements" links={footerLinks.departements} />
-        <FooterCol title="Ressources" links={footerLinks.ressources} />
+        <FooterCol
+          title="Ressources"
+          links={footerLinks.ressources}
+          onVideosClick={() => setShowVideosModal(true)}
+        />
         <FooterCol title="Actualités" links={footerLinks.actualites} />
 
         {/* Contact */}
@@ -84,9 +108,12 @@ export default function Footer() {
             Contact
           </h3>
           <ul className="mt-4 space-y-3 font-sans text-sm text-white/85">
-            <li className="flex items-start gap-2">
+            <li className="flex items-start gap-2 min-w-0">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-or" aria-hidden />
-              <a href={`mailto:${contact.email}`} className="hover:text-or transition-colors">
+              <a
+                href={`mailto:${contact.email}`}
+                className="hover:text-or transition-colors break-all"
+              >
                 {contact.email}
               </a>
             </li>
@@ -100,10 +127,13 @@ export default function Footer() {
             </li>
           </ul>
           <a
-            href={`mailto:${contact.email}`}
+            href={`https://wa.me/15142243872`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Contacter via WhatsApp ${contact.phone}`}
             className="btn-or mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-wide"
           >
-            <Mail className="h-3.5 w-3.5" aria-hidden />
+            <IconWhatsApp className="h-3.5 w-3.5" />
             Nous écrire
           </a>
         </div>
@@ -125,16 +155,71 @@ export default function Footer() {
           </nav>
         </div>
       </div>
-    </footer>
+      </footer>
+        {showVideosModal && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4"
+            onClick={() => setShowVideosModal(false)}
+          >
+            <div
+              className="max-w-sm rounded-lg bg-white p-6 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+          <h3 className="mb-4 text-lg font-semibold">Voir les vidéos sur</h3>
+          <div className="mb-4 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.facebook, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              Facebook
+            </button>
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.tiktok, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              TikTok
+            </button>
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.youtube, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              YouTube
+            </button>
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.instagram, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              Instagram
+            </button>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowVideosModal(false)}
+            className="mt-2 inline-flex items-center justify-center rounded-md bg-vert px-4 py-2 text-sm text-white"
+          >
+            Fermer
+          </button>
+        </div>
+      </div>
+      )}
+    </>
   );
 }
 
 function FooterCol({
   title,
   links,
+  onVideosClick,
 }: {
   title: string;
   links: readonly { label: string; href: string }[];
+  onVideosClick?: () => void;
 }) {
   return (
     <div className="border-white/10 lg:border-l lg:border-or/20 lg:pl-5">
@@ -146,6 +231,18 @@ function FooterCol({
           <li key={link.label}>
             <a
               href={link.href}
+              onClick={(event) => {
+                if (link.label === "Vidéos" && onVideosClick) {
+                  event.preventDefault();
+                  onVideosClick();
+                  return;
+                }
+                if (link.href.startsWith("/")) {
+                  event.preventDefault();
+                  window.history.pushState({}, "", link.href);
+                  window.dispatchEvent(new Event("routechange"));
+                }
+              }}
               className="font-sans text-sm text-white/80 transition-colors hover:text-or"
             >
               {link.label}
