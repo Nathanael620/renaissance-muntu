@@ -47,6 +47,22 @@ function IconWhatsApp({ className }: { className?: string }) {
   );
 }
 
+function IconX({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M18.9 2h3.4l-7.4 8.5L22.8 22h-6.7l-5.2-7.2L4.7 22H1.3l7.9-9.1L1.2 2h6.9l4.7 6.5L18.9 2zm-1.2 18h1.9L7.1 3.9H5.1L17.7 20z" />
+    </svg>
+  );
+}
+
+function IconLinkedin({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M6.94 8.5A1.56 1.56 0 1 1 6.94 5.4a1.56 1.56 0 0 1 0 3.1ZM5.5 9.8h2.9v9.8H5.5V9.8Zm4.7 0h2.8v1.34h.04c.39-.75 1.35-1.54 2.78-1.54 2.97 0 3.52 1.95 3.52 4.48v6.52h-2.9V14.8c0-1.12-.02-2.56-1.56-2.56-1.57 0-1.81 1.22-1.81 2.48v4.87H10.2V9.8Z" />
+    </svg>
+  );
+}
+
 /**
  * Footer institutionnel — maquette + DCFT
  */
@@ -74,9 +90,11 @@ export default function Footer() {
           <ul className="mt-5 flex flex-wrap gap-2" aria-label="Réseaux sociaux">
             {[
               { Icon: IconFacebook, label: "Facebook", href: "https://www.facebook.com/share/1AX46GCkQg/" },
-              { Icon: IconTikTok, label: "TikTok", href: "https://www.tiktok.com/@pour.la.renaissan?_r=1&_t=ZS-98qX3f0yDEl" },
+              { Icon: IconX, label: "X", href: "https://x.com/Elimba_Dikalo" },
+              { Icon: IconLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/pour-la-renaissance-du-muntu-532a1542a?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
               { Icon: IconYoutube, label: "YouTube", href: "https://youtube.com/@pourlarenaissancedumuntu?si=7Ji0YRGdDkcPW0Ml" },
               { Icon: IconInstagram, label: "Instagram", href: "https://www.instagram.com/pourlarenaissancedu?utm_source=qr&igsh=MXh5dTFqZThyZjF4cw==" },
+              { Icon: IconTikTok, label: "TikTok", href: "https://www.tiktok.com/@pour.la.renaissan?_r=1&_t=ZS-98qX3f0yDEl" },
             ].map(({ Icon, label, href }) => (
               <li key={label}>
                 <a

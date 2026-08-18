@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { User, Building2, Mail, Phone, Briefcase, MessageSquare, Send } from "lucide-react";
 import { submitPartnershipRequest, type PartnershipRequest } from "../../services/supportService";
 
 export default function PartnershipForm() {
@@ -33,56 +34,133 @@ export default function PartnershipForm() {
 
   if (success) {
     return (
-      <div className="rounded-2xl border border-or/20 bg-creme p-6 text-center">
-        <h3 className="font-serif text-lg font-semibold text-vert">Merci</h3>
-        <p className="mt-2 text-sm text-anthracite">Votre demande de partenariat a été reçue (simulation). Nous vous contacterons bientôt.</p>
+      <div className="relative overflow-hidden rounded-2xl border border-or/30 bg-gradient-to-br from-creme via-creme-clair to-white p-8 text-center">
+        <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-vert/10" aria-hidden />
+        <div className="relative z-10">
+          <div className="mb-4 flex justify-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-vert">
+              <Send className="h-6 w-6 text-or-clair" aria-hidden />
+            </div>
+          </div>
+          <h3 className="font-serif text-xl font-semibold text-vert">Merci pour votre intérêt !</h3>
+          <p className="mt-3 text-sm leading-relaxed text-anthracite">Votre demande de partenariat a été reçue. Nous vous contacterons très bientôt pour discuter des opportunités de collaboration.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <form id="partnership-form" onSubmit={onSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div>
-          <label className="block text-sm font-medium text-anthracite">Nom complet *</label>
-          <input value={form.fullName} onChange={(e)=>onChange("fullName", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" />
-          {errors.fullName && <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-anthracite">Organisation</label>
-          <input value={form.organization} onChange={(e)=>onChange("organization", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div>
-          <label className="block text-sm font-medium text-anthracite">Email *</label>
-          <input value={form.email} onChange={(e)=>onChange("email", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" />
-          {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-anthracite">Téléphone</label>
-          <input value={form.phone} onChange={(e)=>onChange("phone", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" />
-        </div>
-      </div>
-
+    <form id="partnership-form" onSubmit={onSubmit} className="space-y-6">
+      {/* Champ : Nom complet */}
       <div>
-        <label className="block text-sm font-medium text-anthracite">Type de partenariat</label>
-        <input value={form.partnershipType} onChange={(e)=>onChange("partnershipType", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" />
+        <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+          <User className="h-4 w-4" aria-hidden />
+          Nom complet *
+        </label>
+        <input
+          value={form.fullName}
+          onChange={(e) => onChange("fullName", e.target.value)}
+          placeholder="Votre nom complet"
+          className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+        />
+        {errors.fullName && <p className="mt-2 text-xs font-medium text-red-600">{errors.fullName}</p>}
       </div>
 
+      {/* Champ : Organisation */}
       <div>
-        <label className="block text-sm font-medium text-anthracite">Message</label>
-        <textarea value={form.message} onChange={(e)=>onChange("message", e.target.value)} className="mt-1 block w-full rounded-md border px-3 py-2" rows={5} />
+        <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+          <Building2 className="h-4 w-4" aria-hidden />
+          Organisation
+        </label>
+        <input
+          value={form.organization}
+          onChange={(e) => onChange("organization", e.target.value)}
+          placeholder="Nom de votre organisation"
+          className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+        />
       </div>
 
-      {errors.submit && <p className="text-sm text-red-600">{errors.submit}</p>}
+      {/* Grille : Email et Téléphone */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div>
+          <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+            <Mail className="h-4 w-4" aria-hidden />
+            Email *
+          </label>
+          <input
+            value={form.email}
+            onChange={(e) => onChange("email", e.target.value)}
+            placeholder="votre.email@example.com"
+            type="email"
+            className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+          />
+          {errors.email && <p className="mt-2 text-xs font-medium text-red-600">{errors.email}</p>}
+        </div>
 
+        <div>
+          <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+            <Phone className="h-4 w-4" aria-hidden />
+            Téléphone
+          </label>
+          <input
+            value={form.phone}
+            onChange={(e) => onChange("phone", e.target.value)}
+            placeholder="+1 (514) 123-4567"
+            type="tel"
+            className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+          />
+        </div>
+      </div>
+
+      {/* Champ : Type de partenariat */}
       <div>
-        <button type="submit" disabled={loading} className="btn-or inline-flex items-center justify-center rounded-full px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md">
+        <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+          <Briefcase className="h-4 w-4" aria-hidden />
+          Type de partenariat
+        </label>
+        <select
+          value={form.partnershipType}
+          onChange={(e) => onChange("partnershipType", e.target.value)}
+          className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+        >
+          <option value="">-- Sélectionnez un type --</option>
+          <option value="sponsorship">Sponsorship</option>
+          <option value="collaborative">Projet collaboratif</option>
+          <option value="media">Média & Communication</option>
+          <option value="research">Recherche & Académique</option>
+          <option value="event">Événement & Formation</option>
+          <option value="other">Autre</option>
+        </select>
+      </div>
+
+      {/* Champ : Message */}
+      <div>
+        <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
+          <MessageSquare className="h-4 w-4" aria-hidden />
+          Message
+        </label>
+        <textarea
+          value={form.message}
+          onChange={(e) => onChange("message", e.target.value)}
+          placeholder="Décrivez votre vision de partenariat avec nous..."
+          rows={5}
+          className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
+        />
+      </div>
+
+      {errors.submit && <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700 border border-red-200">{errors.submit}</p>}
+
+      {/* Bouton de soumission */}
+      <div className="flex items-center gap-3 pt-4">
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-vert to-vert-fonce px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:from-vert-fonce hover:to-vert disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          <Send className="h-4 w-4" aria-hidden />
           {loading ? "Envoi…" : "Envoyer ma demande"}
         </button>
+        <p className="text-xs text-anthracite/60">* Champs obligatoires</p>
       </div>
     </form>
   );

@@ -1,4 +1,4 @@
-import { ArrowRight, Eye } from "lucide-react";
+import { ArrowRight, Eye, BookOpen } from "lucide-react";
 import { visionText } from "../../data/siteData";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -34,6 +34,7 @@ export default function Vision() {
         href="#mission"
         className="mt-6 inline-flex w-fit items-center gap-2 rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce"
       >
+        <BookOpen className="h-3.5 w-3.5" aria-hidden />
         En savoir plus
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </a>

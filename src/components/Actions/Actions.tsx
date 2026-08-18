@@ -47,7 +47,12 @@ export default function Actions() {
           return (
             <li key={action.label} className="flex items-center gap-2.5">
               <Icon className="h-4 w-4 shrink-0 text-vert" aria-hidden />
-              <span className="font-sans text-sm text-anthracite">{action.label}</span>
+              <a
+                href={action.href}
+                className="font-sans text-sm text-anthracite transition-colors hover:text-vert focus:outline-none focus:ring-2 focus:ring-or/50"
+              >
+                {action.label}
+              </a>
             </li>
           );
         })}

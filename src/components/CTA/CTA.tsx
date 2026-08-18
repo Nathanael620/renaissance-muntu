@@ -13,7 +13,7 @@ export default function CTA() {
       {/* Carte rejoindre (grille 4 colonnes) */}
       <article
         id="engagement"
-        className="flex h-full flex-col rounded-2xl border border-or/30 bg-creme-clair p-6 shadow-sm md:p-7"
+        className="rounded-2xl border border-or/30 bg-creme-clair p-6 shadow-sm md:p-7"
       >
         <div className="mb-4 flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#5c3d1e]">
@@ -24,22 +24,29 @@ export default function CTA() {
           </h2>
         </div>
         <div className="mb-4 h-px w-full bg-or/30" aria-hidden />
-        <div className="mb-4 overflow-hidden rounded-lg">
-          <img
-            src={engagementImg}
-            alt=""
-            className="mx-auto h-24 w-auto object-contain"
-            loading="lazy"
-          />
+
+        <div className="flex flex-col gap-5">
+          <div className="relative overflow-hidden rounded-xl border border-or/20 bg-white/60">
+            <img
+              src={engagementImg}
+              alt=""
+              className="block h-auto w-full object-contain"
+              loading="lazy"
+            />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white/90 via-white/30 to-transparent" />
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <p className="font-sans text-sm leading-relaxed text-anthracite">
+              {engagementText}
+            </p>
+            <SupportButton
+              className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce md:w-auto"
+            >
+              S&apos;engager maintenant
+            </SupportButton>
+          </div>
         </div>
-        <p className="flex-1 font-sans text-sm leading-relaxed text-anthracite">
-          {engagementText}
-        </p>
-        <SupportButton
-          className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce"
-        >
-          S&apos;engager maintenant
-        </SupportButton>
       </article>
     </>
   );

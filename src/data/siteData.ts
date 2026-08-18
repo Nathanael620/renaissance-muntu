@@ -6,7 +6,7 @@ export const brand = {
   name: "POUR LA RENAISSANCE DU MUNTU",
   shortName: "MUNTU",
   tagline: "Dignité • Conscience • Éveil",
-  slogan: "Une même Humanité. Des peuples multiples. Une destinée commune.",
+  slogan: "Une vision Africaine de la renaissance de l'etre humain, des peuples et de la civilisation.",
   citation:
     "La renaissance des peuples commence toujours par la renaissance de la conscience.",
 } as const;
@@ -34,7 +34,7 @@ export const heroContent = {
   pillarCard: {
     label: "PILIER FONDATEUR",
     title: "ELIMB'A DIKALO",
-    tagline: "Le cœur battant de notre vision",
+    tagline: "Soyez le cœur battant de notre vision",
     keywords: "DIALOGUE • RESPONSABILITÉ • ÉCOLOGIE SPIRITUELLE DES PEUPLES",
     cta: "EN SAVOIR PLUS",
   },
@@ -113,34 +113,34 @@ export const architectureItems = [
 ] as const;
 
 export const actions = [
-  { label: "Conférences", icon: "FilePen" },
-  { label: "Formations", icon: "GraduationCap" },
-  { label: "Publications", icon: "FileText" },
-  { label: "Recherche", icon: "Microscope" },
-  { label: "Leadership", icon: "User" },
-  { label: "Débats", icon: "MessagesSquare" },
-  { label: "Rencontres", icon: "Globe" },
-  { label: "Projets", icon: "ShieldCheck" },
+  { label: "Conférences", icon: "FilePen", href: "#conferences" },
+  { label: "Formations", icon: "GraduationCap", href: "#formations" },
+  { label: "Publications", icon: "FileText", href: "#publications" },
+  { label: "Recherche", icon: "Microscope", href: "#recherche" },
+  { label: "Leadership", icon: "User", href: "#leadership" },
+  { label: "Débats", icon: "MessagesSquare", href: "#debats" },
+  { label: "Rencontres", icon: "Globe", href: "#rencontres" },
+  { label: "Projets", icon: "ShieldCheck", href: "#projets" },
 ] as const;
 
 export const ressources = [
-  "Livres",
-  "Essais",
-  "Manifestes",
-  "Vidéos",
-  "Podcasts",
-  "Études & Recherches",
+  { label: "Livres", href: "#livres" },
+  { label: "Essais", href: "#essais" },
+  { label: "Manifestes", href: "#manifestes" },
+  { label: "Vidéos", href: "#videos" },
+  { label: "Podcasts", href: "#podcasts" },
+  { label: "Études & Recherches", href: "#etudes-recherches" },
 ] as const;
 
 export const parcours = [
   {
     title: "DÉCOUVERTE",
-    description: "La vision et l'identité",
+    description: "Une vision du monde",
     icon: "Eye",
   },
   {
     title: "COMPRÉHENSION",
-    description: "La pensée fondatrice",
+    description: "Pourquoi le Muntu ?",
     icon: "Lightbulb",
   },
   {
@@ -167,14 +167,16 @@ export const engagementText =
   "Ensemble, cultivons la conscience, la responsabilité et le service du bien commun pour bâtir un avenir de paix, de dignité et de prospérité partagée." as const;
 
 export const soutienText =
-  "Le soutien fait la différence. Aidez-nous à faire grandir cette vision pour une Afrique plus consciente, plus unie et plus prospère." as const;
+  "Votre soutien fait la différence. Aidez-nous à faire grandir cette vision pour une Afrique plus consciente, plus unie et plus prospère." as const;
 
 export const footerLinks = {
   institut: [
     { label: "Notre vision", href: "#vision" },
+    { label: "Notre philosophie", href: "#mission" },
     { label: "Notre mission", href: "#mission" },
     { label: "Nos valeurs", href: "#vision" },
     { label: "Notre histoire", href: "#vision" },
+    { label: "Notre equipe", href: "#vision" },
   ],
   departements: [
     { label: "Renaissance des peuples", href: "/" },
@@ -189,11 +191,14 @@ export const footerLinks = {
     { label: "Manifestes", href: "#ressources" },
     { label: "Vidéos", href: "#ressources" },
     { label: "Podcasts", href: "#ressources" },
+    { label: "Etudes & Recherches", href: "#ressources" },
   ],
   actualites: [
+    { label: "Actualités", href: "#actualites" },
     { label: "Événements", href: "#actualites" },
     { label: "Communiqués", href: "#actualites" },
-    { label: "Newsletter", href: "#contact" },
+    { label: "Galerie", href: "#actualites" },
+    { label: "Presse", href: "#actualites" },
   ],
 } as const;
 

@@ -1,4 +1,3 @@
-import React from "react";
 import SupportHero from "../components/support/SupportHero";
 import DonationCard from "../components/support/DonationCard";
 import PartnershipCard from "../components/support/PartnershipCard";

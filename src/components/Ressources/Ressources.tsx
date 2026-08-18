@@ -1,4 +1,5 @@
 import { BookOpen } from "lucide-react";
+import africaIcon from "../../assets/icons/Africa.png";
 import africaMap from "../../assets/images/Africa.png";
 import { ressources } from "../../data/siteData";
 
@@ -13,7 +14,7 @@ export default function Ressources() {
     >
       <div className="mb-4 flex items-center gap-3">
         <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-or/40 bg-white">
-          <img src={africaMap} alt="" className="h-9 w-9 object-contain" />
+          <img src={africaIcon} alt="" className="h-9 w-9 object-contain" />
         </span>
         <h2 className="font-serif text-lg font-semibold uppercase tracking-wide text-vert md:text-xl">
           Nos ressources
@@ -33,9 +34,14 @@ export default function Ressources() {
 
         <ul className="flex-1 space-y-1.5">
           {ressources.map((item) => (
-            <li key={item} className="flex items-center gap-2 font-sans text-sm text-anthracite">
+            <li key={item.label} className="flex items-center gap-2 font-sans text-sm text-anthracite">
               <span className="h-1.5 w-1.5 rounded-full bg-vert" aria-hidden />
-              {item}
+              <a
+                href={item.href}
+                className="transition-colors hover:text-vert focus:outline-none focus:ring-2 focus:ring-or/50"
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>

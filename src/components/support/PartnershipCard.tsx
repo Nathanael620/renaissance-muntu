@@ -1,4 +1,4 @@
-import React from "react";
+import { Handshake } from "lucide-react";
 
 export default function PartnershipCard() {
   const goToForm = () => {
@@ -9,7 +9,9 @@ export default function PartnershipCard() {
   return (
     <article className="rounded-2xl border border-or/20 bg-white p-6 shadow-sm">
       <div className="mb-3 flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-vert text-white">🤝</span>
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-vert text-white">
+          <Handshake className="h-5 w-5" aria-hidden />
+        </span>
         <h3 className="font-serif text-lg font-semibold uppercase text-vert">Devenir partenaire</h3>
       </div>
 

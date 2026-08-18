@@ -72,7 +72,7 @@ export default function ParcoursUtilisateur() {
         </ol>
 
         <p className="mt-8 text-center font-sans text-xs italic text-anthracite/70 md:mt-auto md:pt-8 md:text-sm">
-          Un mouvement inspirant qui transforme la réflexion en action.
+          Un Cheminement inspirant qui transforme la réflexion en action.
         </p>
       </div>
     </section>

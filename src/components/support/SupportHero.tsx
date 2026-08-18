@@ -1,4 +1,3 @@
-import React from "react";
 import { heroContent } from "../../data/siteData";
 
 export default function SupportHero() {

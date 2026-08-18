@@ -75,9 +75,9 @@ export default function Hero() {
               <a
                 href="#piliers"
                 className={cn(
-                  "inline-flex items-center justify-center gap-2 rounded-md border border-white/70 bg-black/25 px-6 py-3.5",
+                  "inline-flex items-center justify-center gap-2 rounded-md border border-white/70 bg-vert/70 px-6 py-3.5",
                   "font-sans text-xs font-semibold uppercase tracking-wider text-white",
-                  "backdrop-blur-[2px] transition-colors duration-200 hover:border-or hover:bg-black/40",
+                  "backdrop-blur-[2px] transition-colors duration-200 hover:border-or hover:bg-vert",
                 )}
               >
                 {ctaSecondary}
