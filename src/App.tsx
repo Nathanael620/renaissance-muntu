@@ -3,11 +3,13 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Elimba from "./pages/Elimba";
 import Soutenir from "./pages/Soutenir";
+import Bibliotheque from "./pages/Bibliotheque";
 
 const routeMap = {
   "/": <Home />,
   "/elimba": <Elimba />,
   "/soutenir": <Soutenir />,
+  "/bibliotheque": <Bibliotheque />,
 };
 
 function App() {
@@ -24,6 +26,11 @@ function App() {
       window.removeEventListener("routechange", onRouteChange);
     };
   }, []);
+
+  /* Retour en haut de page à chaque changement de route */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const content = routeMap[pathname as keyof typeof routeMap] ?? routeMap["/"];
 

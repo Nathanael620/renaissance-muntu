@@ -27,7 +27,7 @@ export default function PartnershipForm() {
     try {
       await submitPartnershipRequest(form);
       setSuccess(true);
-    } catch (err) {
+    } catch {
       setErrors({ submit: "Une erreur est survenue, veuillez réessayer." });
     } finally { setLoading(false); }
   };
@@ -137,7 +137,7 @@ export default function PartnershipForm() {
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <MessageSquare className="h-4 w-4" aria-hidden />
-          Message
+          Message/suggestions/Commentaire
         </label>
         <textarea
           value={form.message}

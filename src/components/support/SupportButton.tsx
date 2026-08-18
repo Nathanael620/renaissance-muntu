@@ -3,8 +3,8 @@ import React from "react";
 type Props = React.ComponentPropsWithoutRef<"a"> & { to?: string };
 
 export default function SupportButton({ to = "/soutenir", onClick, children, ...rest }: Props) {
-  const handle = (e: React.MouseEvent) => {
-    if (onClick) onClick(e as any);
+  const handle = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) onClick(e);
     e.preventDefault();
     window.history.pushState({}, "", to);
     window.dispatchEvent(new Event("routechange"));

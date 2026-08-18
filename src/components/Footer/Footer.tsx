@@ -112,7 +112,7 @@ export default function Footer() {
         </div>
 
         <FooterCol title="L'Institut" links={footerLinks.institut} />
-        <FooterCol title="Nos départements" links={footerLinks.departements} />
+        <FooterCol title="Nos piliers" links={footerLinks.departements} />
         <FooterCol
           title="Ressources"
           links={footerLinks.ressources}
@@ -259,6 +259,17 @@ function FooterCol({
                   event.preventDefault();
                   window.history.pushState({}, "", link.href);
                   window.dispatchEvent(new Event("routechange"));
+                  // Si le lien pointe vers une ancre de la page d'accueil
+                  // (ex. /#vision), on défile vers elle après le changement de route.
+                  const hashIndex = link.href.indexOf("#");
+                  if (hashIndex !== -1) {
+                    const id = link.href.slice(hashIndex + 1);
+                    setTimeout(() => {
+                      const el = document.getElementById(id);
+                      if (el)
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 80);
+                  }
                 }
               }}
               className="font-sans text-sm text-white/80 transition-colors hover:text-or"

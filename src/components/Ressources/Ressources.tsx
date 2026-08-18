@@ -38,6 +38,22 @@ export default function Ressources() {
               <span className="h-1.5 w-1.5 rounded-full bg-vert" aria-hidden />
               <a
                 href={item.href}
+                onClick={(event) => {
+                  if (item.href.startsWith("/")) {
+                    event.preventDefault();
+                    window.history.pushState({}, "", item.href);
+                    window.dispatchEvent(new Event("routechange"));
+                    const hashIndex = item.href.indexOf("#");
+                    if (hashIndex !== -1) {
+                      const id = item.href.slice(hashIndex + 1);
+                      setTimeout(() => {
+                        const el = document.getElementById(id);
+                        if (el)
+                          el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }, 80);
+                    }
+                  }
+                }}
                 className="transition-colors hover:text-vert focus:outline-none focus:ring-2 focus:ring-or/50"
               >
                 {item.label}
@@ -48,7 +64,12 @@ export default function Ressources() {
       </div>
 
       <a
-        href="#bibliotheque"
+        href="/bibliotheque"
+        onClick={(event) => {
+          event.preventDefault();
+          window.history.pushState({}, "", "/bibliotheque");
+          window.dispatchEvent(new Event("routechange"));
+        }}
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce"
       >
         <BookOpen className="h-4 w-4" aria-hidden />

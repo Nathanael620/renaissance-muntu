@@ -20,6 +20,12 @@ const images: Record<string, string> = {
   "bibliotheque.png": bibliothequeImg,
 };
 
+/** Pages dédiées des piliers (lien interne via pushState). */
+const pillarRoutes: Record<string, string> = {
+  elimba: "/elimba",
+  "bibliotheque-muntu": "/bibliotheque",
+};
+
 function PillarMedallion({ id }: { id: number }) {
   const base =
     "absolute left-1/2 top-full z-10 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full border-[3px] border-creme bg-white shadow-md";
@@ -117,9 +123,9 @@ export default function Piliers() {
                 </p>
                 
                 <a
-                  href={pillar.slug === "elimba" ? "/elimba" : `#${pillar.slug}`}
+                  href={pillarRoutes[pillar.slug] ?? `#${pillar.slug}`}
                   onClick={(event) => {
-                    const href = pillar.slug === "elimba" ? "/elimba" : `#${pillar.slug}`;
+                    const href = pillarRoutes[pillar.slug] ?? `#${pillar.slug}`;
                     if (href.startsWith("/")) {
                       event.preventDefault();
                       window.history.pushState({}, "", href);

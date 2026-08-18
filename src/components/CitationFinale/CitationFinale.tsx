@@ -9,7 +9,7 @@ export default function CitationFinale() {
   return (
     <div className="flex flex-col h-full">
       <h2 className="px-6 py-6 text-center font-serif text-lg font-semibold uppercase tracking-wide text-dark md:px-10 md:py-8 md:text-xl lg:px-12 lg:py-8 lg:text-2xl">
-        PHRASE FONDATRICE-NOTRE BOUSSOLE
+        NOTRE BOUSSOLE
       </h2>
       <section
         className="relative flex-1 min-h-[280px] overflow-hidden rounded-2xl md:min-h-[320px] lg:min-h-0"

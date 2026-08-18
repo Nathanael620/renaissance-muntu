@@ -91,7 +91,7 @@ export default function Elimba() {
               id="elimba-hero-title"
               className="mt-6 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-6xl"
             >
-              Le courage de la vérité
+              Pour la Renaissance du Muntu
             </h1>
             <p className="mt-6 max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
               Placer le dialogue exigeant et la responsabilité collective au cœur de la renaissance. 

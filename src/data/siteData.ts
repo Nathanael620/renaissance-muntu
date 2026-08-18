@@ -16,7 +16,7 @@ export const navLinks = [
   { label: "ACCUEIL", href: "/" },
   { label: "VISION", href: "/#objectifs" },
   { label: "NOS PILIERS", href: "/#piliers" },
-  { label: "BIBLIOTHÈQUE", href: "#bibliotheque" },
+  { label: "BIBLIOTHÈQUE", href: "/bibliotheque" },
   { label: "ACADÉMIE", href: "#academie" },
   { label: "TRANSMISSION", href: "#transmission" },
   { label: "ACTUALITÉS", href: "#actualites" },
@@ -124,7 +124,7 @@ export const actions = [
 ] as const;
 
 export const ressources = [
-  { label: "Livres", href: "#livres" },
+  { label: "Livres", href: "/bibliotheque#nos-livres" },
   { label: "Essais", href: "#essais" },
   { label: "Manifestes", href: "#manifestes" },
   { label: "Vidéos", href: "#videos" },
@@ -171,22 +171,22 @@ export const soutienText =
 
 export const footerLinks = {
   institut: [
-    { label: "Notre vision", href: "#vision" },
-    { label: "Notre philosophie", href: "#mission" },
-    { label: "Notre mission", href: "#mission" },
-    { label: "Nos valeurs", href: "#vision" },
-    { label: "Notre histoire", href: "#vision" },
-    { label: "Notre equipe", href: "#vision" },
+    { label: "Notre vision", href: "/#vision" },
+    { label: "Notre philosophie", href: "/#mission" },
+    { label: "Notre mission", href: "/#mission" },
+    { label: "Nos valeurs", href: "/#objectifs" },
+    { label: "Notre histoire", href: "/#vision" },
+    { label: "Notre equipe", href: "/#vision" },
   ],
   departements: [
     { label: "Renaissance des peuples", href: "/" },
     { label: "Elimb'a Dikalo", href: "/elimba" },
     { label: "Transmission du Ntu ", href: "#transmission" },
     { label: "Académie du Muntu", href: "#academie" },
-    { label: "Bibliothèque du Muntu", href: "#bibliotheque" },
+    { label: "Bibliothèque du Muntu", href: "/bibliotheque" },
   ],
   ressources: [
-    { label: "Livres", href: "#ressources" },
+    { label: "Livres", href: "/bibliotheque#nos-livres" },
     { label: "Essais", href: "#ressources" },
     { label: "Manifestes", href: "#ressources" },
     { label: "Vidéos", href: "#ressources" },

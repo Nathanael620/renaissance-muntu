@@ -27,8 +27,9 @@ export type PartnershipRequest = {
   message?: string;
 };
 
-export async function submitPartnershipRequest(_data: PartnershipRequest): Promise<{ ok: boolean }>{
+export async function submitPartnershipRequest(data: PartnershipRequest): Promise<{ ok: boolean }>{
   // TODO: Implement API call to submit partnership request.
   // This function is a stub to be replaced by a real POST to the backend.
+  void data; // Consommé intentionnellement tant que le backend n'est pas branché.
   return new Promise((resolve) => setTimeout(() => resolve({ ok: true }), 800));
 }
