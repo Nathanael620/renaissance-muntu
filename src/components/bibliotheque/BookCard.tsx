@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink } from "lucide-react";
+import { Eye, ShoppingBag } from "lucide-react";
 import type { LibraryItem } from "../../data/libraryData";
 
 /**
@@ -7,8 +7,9 @@ import type { LibraryItem } from "../../data/libraryData";
  * - La couverture conserve ses proportions d'origine (object-contain), posée
  *   dans un écrin vert profond souligné d'un filet doré.
  * - Prix absent => badge « PRIX À DÉFINIR » (aucun prix n'est inventé).
- * - Bouton « LIRE » : ouvre l'URL Chariow individuelle du livre ; tant que
+ * - Bouton « ACHETER » : ouvre l'URL Chariow individuelle du livre ; tant que
  *   cette URL n'est pas fournie, il reste désactivé.
+ * - Bouton « CONSULTER » : mène à la page détail /bibliotheque/consulter/:id.
  */
 export default function BookCard({ book }: { book: LibraryItem }) {
   const hasShopUrl = Boolean(book.shopUrl);
@@ -92,34 +93,54 @@ export default function BookCard({ book }: { book: LibraryItem }) {
           )}
         </div>
 
-        {/* Bouton LIRE — URL Chariow individuelle ou placeholder */}
-        {hasShopUrl ? (
-          <a
-            href={book.shopUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-or mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            Lire
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-          </a>
-        ) : (
-          <div className="mt-5 w-full">
-            <button
-              type="button"
-              disabled
-              aria-disabled="true"
-              title="Lien Chariow du livre — disponible prochainement"
-              className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border border-or/50 bg-creme px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-vert opacity-70"
+        {/* Actions : Acheter (Chariow) + Consulter (page détail) */}
+        <div className="mt-5 w-full">
+          <div className="grid grid-cols-2 gap-3">
+            {hasShopUrl ? (
+              <a
+                href={book.shopUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-or inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
+                Acheter
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                aria-disabled="true"
+                title="Achat Chariow — disponible prochainement"
+                className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-md"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
+                Acheter
+              </button>
+            )}
+            <a
+              href={`/bibliotheque/consulter/${book.id}`}
+              onClick={(event) => {
+                event.preventDefault();
+                window.history.pushState(
+                  {},
+                  "",
+                  `/bibliotheque/consulter/${book.id}`,
+                );
+                window.dispatchEvent(new Event("routechange"));
+              }}
+              className="inline-flex items-center justify-center gap-1.5 rounded-full border border-vert px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors duration-300 hover:bg-vert hover:text-white"
             >
-              <BookOpen className="h-3.5 w-3.5" aria-hidden />
-              Lire
-            </button>
-            <p className="mt-2 text-center font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
-              Lien disponible prochainement
-            </p>
+              <Eye className="h-3.5 w-3.5" aria-hidden />
+              Consulter
+            </a>
           </div>
-        )}
+          {!hasShopUrl ? (
+            <p className="mt-2 text-center font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
+              Achat disponible prochainement
+            </p>
+          ) : null}
+        </div>
       </div>
     </article>
   );

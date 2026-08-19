@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Elimba from "./pages/Elimba";
 import Soutenir from "./pages/Soutenir";
 import Bibliotheque from "./pages/Bibliotheque";
+import ConsulterLivre from "./pages/ConsulterLivre";
 
 const routeMap = {
   "/": <Home />,
@@ -32,7 +33,15 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const content = routeMap[pathname as keyof typeof routeMap] ?? routeMap["/"];
+  const content = (() => {
+    if (pathname.startsWith("/bibliotheque/consulter/")) {
+      const id = decodeURIComponent(
+        pathname.slice("/bibliotheque/consulter/".length),
+      );
+      return <ConsulterLivre id={id} />;
+    }
+    return routeMap[pathname as keyof typeof routeMap] ?? routeMap["/"];
+  })();
 
   return <MainLayout>{content}</MainLayout>;
 }

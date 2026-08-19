@@ -124,8 +124,7 @@ export const actions = [
 ] as const;
 
 export const ressources = [
-  { label: "Livres", href: "/bibliotheque#nos-livres" },
-  { label: "Essais", href: "#essais" },
+  { label: "Livres & Essais", href: "/bibliotheque#nos-livres" },
   { label: "Manifestes", href: "#manifestes" },
   { label: "Vidéos", href: "#videos" },
   { label: "Podcasts", href: "#podcasts" },
@@ -186,8 +185,7 @@ export const footerLinks = {
     { label: "Bibliothèque du Muntu", href: "/bibliotheque" },
   ],
   ressources: [
-    { label: "Livres", href: "/bibliotheque#nos-livres" },
-    { label: "Essais", href: "#ressources" },
+    { label: "Livres & Essais", href: "/bibliotheque#nos-livres" },
     { label: "Manifestes", href: "#ressources" },
     { label: "Vidéos", href: "#ressources" },
     { label: "Podcasts", href: "#ressources" },

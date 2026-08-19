@@ -151,31 +151,48 @@ export default function Elimba() {
         <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-              Objectif
+              Objectif central
             </p>
             <h2
               id="elimba-objective-title"
               className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
             >
-              Rendre visible la vérité qui transforme.
+              Prévenir les fractures communautaires avant qu’elles ne deviennent des conflits.
             </h2>
             <p className="mt-5 max-w-3xl font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-              Nous voulons faire de la vérité partagée un levier de transformation collective, en donnant aux peuples les moyens de se parler, de se comprendre, et de bâtir des responsabilités communes.
+              Au lieu d’attendre que les tensions explosent, agir sur les causes profondes : la peur, les préjugés, les rumeurs et les discours de division.
             </p>
           </div>
           <div className="rounded-[2rem] border border-or/20 bg-white p-6 shadow-sm">
             <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-or-clair">
-              Pilier clé
+              Message central
             </p>
-            <ul className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite">
-              <li>
-                <span className="font-semibold text-vert">Dialogue</span> — instaurer des échanges honnêtes et respectueux.
+            <p className="mt-5 font-serif text-lg font-semibold leading-snug text-vert">
+              Le problème n’est pas « les autres ».
+            </p>
+            <p className="mt-3 font-sans text-sm leading-relaxed text-anthracite">
+              Le vrai danger est :
+            </p>
+            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-anthracite">
+              <li className="flex items-start gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
+                la division,
               </li>
-              <li>
-                <span className="font-semibold text-vert">Responsabilité</span> — engager chacun dans la parole et l’action.
+              <li className="flex items-start gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
+                l’absence de vision,
               </li>
-              <li>
-                <span className="font-semibold text-vert">Écologie spirituelle</span> — relier les mémoires, les cultures et les paysages.
+              <li className="flex items-start gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
+                la perte du sens communautaire,
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
+                la mauvaise gestion de l’héritage,
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
+                et la culture de la victimisation.
               </li>
             </ul>
           </div>
