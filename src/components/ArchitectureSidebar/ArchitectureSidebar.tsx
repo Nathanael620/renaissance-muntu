@@ -111,7 +111,7 @@ export default function ArchitectureSidebar() {
           <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
             <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
           </span>
-          Soutenir le projet
+          Soutenir le Mouvement
         </span>
         <span className="font-sans text-[10px] font-normal normal-case tracking-normal text-white/90">
           Semez aujourd&apos;hui une humanité plus juste et durable

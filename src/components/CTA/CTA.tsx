@@ -87,7 +87,7 @@ export function SoutienBanner() {
           className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg md:text-sm"
         >
           <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
-          Soutenir ou devenir partenaire
+          Soutenir le mouvement ou devenir partenaire
         </SupportButton>
       </div>
     </section>

@@ -107,8 +107,8 @@ export default function Navbar() {
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
               <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
             </span>
-            <span className="hidden xl:inline">Soutenir le projet</span>
-            <span className="xl:hidden">Soutenir</span>
+            <span className="hidden xl:inline">Soutenir le Mouvement</span>
+            <span className="xl:hidden">Soutenir le Mouvement</span>
           </SupportButton>
 
           <button
@@ -166,7 +166,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
           >
             <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
-            Soutenir le projet
+            Soutenir le Mouvement
           </SupportButton>
         </nav>
       </div>
