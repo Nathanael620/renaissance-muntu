@@ -5,12 +5,15 @@ import Elimba from "./pages/Elimba";
 import Soutenir from "./pages/Soutenir";
 import Bibliotheque from "./pages/Bibliotheque";
 import ConsulterLivre from "./pages/ConsulterLivre";
+import Manifestes from "./pages/Manifestes";
+import ManifestePage from "./pages/ManifestePage";
 
 const routeMap = {
   "/": <Home />,
   "/elimba": <Elimba />,
   "/soutenir": <Soutenir />,
   "/bibliotheque": <Bibliotheque />,
+  "/manifestes": <Manifestes />,
 };
 
 function App() {
@@ -39,6 +42,10 @@ function App() {
         pathname.slice("/bibliotheque/consulter/".length),
       );
       return <ConsulterLivre id={id} />;
+    }
+    if (pathname.startsWith("/manifestes/")) {
+      const slug = decodeURIComponent(pathname.slice("/manifestes/".length));
+      return <ManifestePage slug={slug} />;
     }
     return routeMap[pathname as keyof typeof routeMap] ?? routeMap["/"];
   })();

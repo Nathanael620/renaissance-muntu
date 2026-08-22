@@ -83,3 +83,19 @@ body {
 .btn-or:active {
   transform: translateY(1px);
 }
+
+/* Impression : version lisible des documents (manifestes notamment) */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  header,
+  footer {
+    display: none !important;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

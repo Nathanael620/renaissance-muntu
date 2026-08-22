@@ -2,7 +2,9 @@ import { BookOpen, ExternalLink } from "lucide-react";
 import bibliothequeBg from "../assets/images/bibliotheque.png";
 import publisherLogo from "../assets/icons/zero-revenge-books.jpeg";
 import BookCard from "../components/bibliotheque";
+import { ManifestoCard } from "../components/manifestes";
 import { CHARIOW_STORE_URL, libraryBooks } from "../data/libraryData";
+import { manifestes } from "../data/manifestesData";
 import { useFadeIn } from "../hooks/useFadeIn";
 import { cn } from "../utils/cn";
 
@@ -161,6 +163,84 @@ export default function Bibliotheque() {
               </p>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* ——— Manifestes ——— */}
+      <section
+        id="nos-manifestes"
+        className="scroll-mt-24 rounded-[2rem] bg-creme-clair px-6 py-10 shadow-sm sm:px-8 lg:px-10"
+        aria-labelledby="bibliotheque-manifestes-title"
+      >
+        <div className="mx-auto max-w-[1440px]">
+          <div className="mb-10 flex items-center justify-center gap-4 md:mb-12">
+            <span
+              className="hidden h-px max-w-40 flex-1 bg-or/60 sm:block"
+              aria-hidden
+            />
+            <h2
+              id="bibliotheque-manifestes-title"
+              className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
+            >
+              Manifestes
+            </h2>
+            <span
+              className="hidden h-px max-w-40 flex-1 bg-or/60 sm:block"
+              aria-hidden
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 xl:gap-8">
+            {manifestes.length > 0 ? (
+              manifestes.map((manifesto, index) => (
+                <ManifestoCard
+                  key={manifesto.slug}
+                  manifesto={manifesto}
+                  index={index}
+                />
+              ))
+            ) : (
+              <p className="col-span-full text-center font-sans text-sm text-anthracite/70">
+                La collection de manifestes sera bientôt disponible.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ——— Accès à tous les manifestes ——— */}
+      <section
+        className="rounded-[2rem] border border-or/40 bg-vert-profond/90 px-6 py-10 shadow-sm sm:px-8 lg:px-10"
+        aria-labelledby="tous-les-manifestes-title"
+      >
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-6 md:flex-row md:gap-10">
+          <div className="max-w-xl text-center md:text-left">
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
+              Textes fondateurs
+            </p>
+            <h2
+              id="tous-les-manifestes-title"
+              className="mt-3 font-serif text-xl font-semibold uppercase tracking-wide text-white md:text-2xl"
+            >
+              Consulter tous les manifestes
+            </h2>
+            <p className="mt-2 font-sans text-sm leading-relaxed text-white/85">
+              Retrouvez la collection complète des manifestes et plongez dans
+              chaque texte fondateur du projet.
+            </p>
+          </div>
+          <a
+            href="/manifestes"
+            onClick={(event) => {
+              event.preventDefault();
+              window.history.pushState({}, "", "/manifestes");
+              window.dispatchEvent(new Event("routechange"));
+            }}
+            className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
+          >
+            Voir tous les manifestes
+            <ExternalLink className="h-4 w-4" aria-hidden />
+          </a>
         </div>
       </section>
 

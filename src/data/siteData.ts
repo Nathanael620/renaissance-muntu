@@ -5,10 +5,10 @@
 export const brand = {
   name: "POUR LA RENAISSANCE DU MUNTU",
   shortName: "MUNTU",
-  tagline: "Dignité • Conscience • Éveil",
-  slogan: "Une vision Africaine de la renaissance de l'etre humain, des peuples et de la civilisation.",
+  tagline: "Pour la formation d’une jeunesse consciente, digne et protégée",
+  slogan: "Pour la formation d’une jeunesse consciente, digne et protégée",
   citation:
-    "La renaissance des peuples commence toujours par la renaissance de la conscience.",
+    "La renaissance des peuples commence toujours par la renaissance de la conscience"
 } as const;
 
 /** Liens de navigation principale (maquette navbar) */
@@ -26,9 +26,9 @@ export const navLinks = [
 
 export const heroContent = {
   titleLines: ["POUR LA", "RENAISSANCE", "DU MUNTU"],
-  subtitle:
-    "Une vision africaine de la renaissance de l'être humain, des peuples et de la civilisation.",
-  body: "Nous croyons que les grandes transformations commencent toujours par une transformation intérieure. Aucun peuple ne peut bâtir une paix durable sans vérité. Aucune nation ne peut s'élever sans responsabilité. Aucune civilisation ne peut traverser les siècles sans transmettre ce qui nourrit son âme.",
+  subtitle: "Pour la formation d’une jeunesse consciente, digne et protégée",
+  body:
+    "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable.",
   ctaPrimary: "DÉCOUVRIR LA VISION",
   ctaSecondary: "EXPLORER NOS PILIERS",
   pillarCard: {
@@ -160,13 +160,107 @@ export const parcours = [
 ] as const;
 
 export const visionText =
-  "« Pour la Renaissance du Muntu » est une vision socio-spirituelle qui œuvre à la renaissance des consciences, à la restauration de la dignité humaine, à la transmission des héritages féconds, à la construction d'une culture de paix, au dialogue, à la responsabilité et au bien commun." as const;
+  "Une Afrique et une diaspora portées par une jeunesse intérieurement digne, consciente, éveillée, libre, stable, enracinée et capable de bâtir l’avenir sans imitation ni vengeance." as const;
+
+/** Identité institutionnelle — INSTITUT POUR LA RENAISSANCE DU MUNTU (doc officiel). */
+export const institutIdentite = {
+  titre: "",
+  sousTitre: "Pour la formation d’une jeunesse consciente, digne et protégée",
+  nom: "Association POUR LA RENAISSANCE DU MUNTU",
+  natureJuridique: "Association à but non lucratif, apolitique, non confessionnelle",
+  domaines: [
+    "éducation",
+    "jeunesse",
+    "cohésion sociale",
+    "prévention de la violence",
+    "valorisation culturelle et spirituelle africaine",
+  ],
+} as const;
+
+/** Mission — document officiel. */
+export const missionInfo = {
+  general:
+    "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable.",
+  explicative:
+    "L’Association POUR LA RENAISSANCE DU MUNTU a pour mission de répondre aux blessures invisibles laissées par l’histoire (esclavage, colonisation, néocolonisation) en agissant sur la dimension intérieure, mentale, morale et spirituelle de la jeunesse.",
+  orientations: [
+    "décoloniser l’esprit sans haine",
+    "prévenir la violence et la radicalisation",
+    "restaurer l’estime de soi et la dignité humaine",
+    "renforcer la protection intérieure et la lucidité",
+    "transformer la conscience individuelle en action collective constructive",
+  ],
+} as const;
+
+/** Valeurs fondamentales — document officiel (6 valeurs). */
+export const valeurs = [
+  { title: "Dignité humaine", text: "toute personne a une valeur intrinsèque" },
+  {
+    title: "Non-violence consciente",
+    text: "refus de la haine, de la naïveté et de la destruction",
+  },
+  { title: "Lucidité et discernement", text: "comprendre avant d’agir" },
+  {
+    title: "Responsabilité",
+    text: "individuelle, collective et intergénérationnelle",
+  },
+  { title: "Spiritualité de vie", text: "force intérieure, protection, équilibre" },
+  { title: "Transmission", text: "relier les générations" },
+] as const;
+
+/** Objectifs — document officiel (objectif général + 5 axes hiérarchisés). */
+export const objectifs = {
+  general:
+    "Contribuer à la formation d’une jeunesse africaine intérieurement libérée, moralement solide et socialement engagée, capable de prévenir la violence et de bâtir une paix durable.",
+  axes: [
+    {
+      title: "Restaurer le MUNTU",
+      items: [
+        "Revaloriser la dignité humaine africaine",
+        "Réconcilier les jeunes avec leur identité",
+        "Lutter contre le complexe d’infériorité",
+      ],
+    },
+    {
+      title: "Activer le NTU",
+      items: [
+        "Développer la stabilité émotionnelle",
+        "Renforcer la protection intérieure",
+        "Favoriser le discernement et la maîtrise de soi",
+      ],
+    },
+    {
+      title: "Décoloniser l’esprit sans haïr",
+      items: [
+        "Comprendre l’histoire sans vengeance",
+        "Déconstruire les schémas mentaux hérités",
+        "Former des esprits critiques et autonomes",
+      ],
+    },
+    {
+      title: "Prévenir la violence et la radicalisation",
+      items: [
+        "Offrir des alternatives éducatives et spirituelles",
+        "Canaliser les frustrations",
+        "Promouvoir la non-violence stratégique",
+      ],
+    },
+    {
+      title: "Former des leaders responsables, dignes, conscients et éveillés",
+      items: [
+        "Encourager l’engagement citoyen",
+        "Développer une éthique de l’action",
+        "Favoriser les initiatives locales durables",
+      ],
+    },
+  ],
+} as const;
 
 export const engagementText =
-  "Ensemble, cultivons la conscience, la responsabilité et le service du bien commun pour bâtir un avenir de paix, de dignité et de prospérité partagée." as const;
+  "Contribuer à la formation d’une jeunesse africaine intérieurement libérée, moralement solide et socialement engagée, capable de prévenir la violence et de bâtir une paix durable." as const;
 
 export const soutienText =
-  "Votre soutien fait la différence. Aidez-nous à faire grandir cette vision pour une Afrique plus consciente, plus unie et plus prospère." as const;
+  "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable." as const;
 
 export const footerLinks = {
   institut: [

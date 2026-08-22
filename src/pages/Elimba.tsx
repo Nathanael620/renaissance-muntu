@@ -1,39 +1,35 @@
 import { ArrowRight } from "lucide-react";
 import heroBg from "../assets/images/elimba.png";
 import logo from "../assets/icons/elimba.jpeg";
+import {
+  ElimbaActivites,
+  ElimbaDevise,
+  ElimbaIdee,
+  ElimbaMission,
+  ElimbaMotivation,
+  ElimbaPhilosophie,
+  ElimbaPresentation,
+  ElimbaPrincipesDirecteurs,
+  ElimbaProblematique,
+  ElimbaVision,
+} from "../components/elimba";
 
 const pageNavigation = [
   { id: "elimba-hero", label: "Hero" },
   { id: "elimba-objective", label: "Objectif" },
+  { id: "elimba-problematique", label: "Problématique" },
+  { id: "elimba-motivation", label: "Motivation" },
+  { id: "elimba-presentation", label: "Présentation" },
+  { id: "elimba-idee", label: "Idée" },
   { id: "elimba-principes", label: "Principes" },
-  { id: "elimba-missions", label: "Missions" },
+  { id: "elimba-missions", label: "Mission" },
+  { id: "elimba-devise", label: "Devise" },
+  { id: "elimba-philosophie", label: "Philosophie" },
+  { id: "elimba-vision-projet", label: "Vision" },
+  { id: "elimba-activites", label: "Activités" },
   { id: "elimba-actions", label: "Actions" },
   { id: "elimba-ressources", label: "Ressources" },
   { id: "elimba-temoignages", label: "Témoignages" },
-];
-
-const principes = [
-  {
-    label: "Dialogue courageux",
-    summary:
-      "Oser dire la vérité et écouter l’autre dans le respect des peuples, sans compromis sur l’intégrité.",
-  },
-  {
-    label: "Responsabilité partagée",
-    summary:
-      "Construire ensemble les conditions d’une renaissance qui engage chaque individu et chaque communauté.",
-  },
-  {
-    label: "Écologie spirituelle",
-    summary:
-      "Reconnaître la relation entre les êtres, les terres et les mémoires pour une civilisation durable.",
-  },
-];
-
-const missions = [
-  "Valoriser les voix des peuples à travers un dialogue libre et conscient.",
-  "Articuler des principes clairs pour une transition éthique des sociétés.",
-  "Soutenir des actions éducatives et culturelles ancrées dans la vérité.",
 ];
 
 const actions = [
@@ -82,8 +78,8 @@ export default function Elimba() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/80" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 py-16 md:grid-cols-[1.2fr_auto] md:items-center md:py-20 lg:px-10 lg:py-24">
-          <div className="max-w-2xl">
+        <div className="relative mx-auto grid max-w-[1440px] gap-12 px-6 pt-40 pb-16 md:grid-cols-[auto_minmax(0,1.2fr)] md:items-center md:gap-16 md:pt-48 md:pb-24 lg:px-10 lg:pt-56 lg:pb-28 xl:gap-28">
+          <div className="max-w-2xl md:order-last md:ml-8 lg:ml-20 xl:ml-36 2xl:ml-44">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
               ELIMB’A DIKALO
             </p>
@@ -119,7 +115,7 @@ export default function Elimba() {
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-sm">
+          <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-sm md:order-first">
             <div className="flex items-center gap-6">
                 <div className="h-28 w-28 md:h-36 md:w-36 lg:h-56 lg:w-56 overflow-visible rounded-full border-2 border-or/50 bg-white p-1">
                 <img src={logo} alt="Logo Elimb'a Dikalo" className="h-full w-full object-contain" />
@@ -246,56 +242,25 @@ export default function Elimba() {
         </div>
       </section>
 
-      <section
-        id="elimba-principes"
-        className="rounded-[2rem] bg-creme px-6 py-10 shadow-sm sm:px-8 lg:px-10"
-        aria-labelledby="elimba-principes-title"
-      >
-        <div className="mx-auto max-w-[1440px]">
-          <h2 id="elimba-principes-title" className="font-serif text-3xl font-semibold uppercase tracking-wide text-vert">
-            Principes
-          </h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {principes.map((item) => (
-              <article key={item.label} className="rounded-[1.75rem] border border-or/20 bg-white p-6 shadow-sm">
-                <h3 className="font-serif text-xl font-semibold uppercase text-vert">
-                  {item.label}
-                </h3>
-                <p className="mt-4 font-sans text-sm leading-relaxed text-anthracite/85">
-                  {item.summary}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ElimbaProblematique />
 
-      <section
-        id="elimba-missions"
-        className="rounded-[2rem] bg-white px-6 py-10 shadow-sm sm:px-8 lg:px-10"
-        aria-labelledby="elimba-missions-title"
-      >
-        <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div>
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-              Missions
-            </p>
-            <h2 id="elimba-missions-title" className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl">
-              Ce que nous portons.
-            </h2>
-            <p className="mt-5 max-w-2xl font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-              Nos missions sont conçues pour traduire le principe en action, semer la pensée critique et établir des ponts entre conscience individuelle et responsabilité collective.
-            </p>
-          </div>
-          <div className="space-y-4 rounded-[1.75rem] border border-or/20 bg-creme p-6">
-            {missions.map((item) => (
-              <p key={item} className="font-sans text-sm leading-relaxed text-anthracite/85">
-                <span className="font-semibold text-vert">•</span> {item}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ElimbaMotivation />
+
+      <ElimbaPresentation />
+
+      <ElimbaIdee />
+
+      <ElimbaPrincipesDirecteurs />
+
+      <ElimbaMission />
+
+      <ElimbaDevise />
+
+      <ElimbaPhilosophie />
+
+      <ElimbaVision />
+
+      <ElimbaActivites />
 
       <section
         id="elimba-actions"

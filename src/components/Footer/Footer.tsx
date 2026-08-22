@@ -71,6 +71,8 @@ export default function Footer() {
 
   const socialVideoLinks = {
     facebook: "https://www.facebook.com/share/1AX46GCkQg/",
+    x: "https://x.com/Elimba_Dikalo",
+    linkedin: "https://www.linkedin.com/in/pour-la-renaissance-du-muntu-532a1542a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     tiktok: "https://www.tiktok.com/@pour.la.renaissan?_r=1&_t=ZS-98qX3f0yDEl",
     youtube: "https://youtube.com/@pourlarenaissancedumuntu?si=7Ji0YRGdDkcPW0Ml",
     instagram: "https://www.instagram.com/pourlarenaissancedu?utm_source=qr&igsh=MXh5dTFqZThyZjF4cw==",
@@ -193,6 +195,20 @@ export default function Footer() {
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
               Facebook
+            </button>
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.x, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              X
+            </button>
+            <button
+              type="button"
+              onClick={() => window.open(socialVideoLinks.linkedin, "_blank", "noopener")}
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+            >
+              LinkedIn
             </button>
             <button
               type="button"

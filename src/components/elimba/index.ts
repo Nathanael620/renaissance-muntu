@@ -1,0 +1,10 @@
+export { default as ElimbaProblematique } from "./ElimbaProblematique";
+export { default as ElimbaMotivation } from "./ElimbaMotivation";
+export { default as ElimbaPresentation } from "./ElimbaPresentation";
+export { default as ElimbaIdee } from "./ElimbaIdee";
+export { default as ElimbaMission } from "./ElimbaMission";
+export { default as ElimbaPrincipesDirecteurs } from "./ElimbaPrincipesDirecteurs";
+export { default as ElimbaDevise } from "./ElimbaDevise";
+export { default as ElimbaPhilosophie } from "./ElimbaPhilosophie";
+export { default as ElimbaVision } from "./ElimbaVision";
+export { default as ElimbaActivites } from "./ElimbaActivites";
