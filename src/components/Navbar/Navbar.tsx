@@ -5,6 +5,7 @@ import { brand, navLinks } from "../../data/siteData";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { cn } from "../../utils/cn";
 import SupportButton from "../support/SupportButton";
+import { requestContactModal } from "../ContactModal/contactModalEvents";
 
 /**
  * Navbar — maquette2 desktop (overlay hero) + mobile (barre blanche + menu).
@@ -67,6 +68,11 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={(event) => {
+                    if (link.label === "CONTACT") {
+                      event.preventDefault();
+                      requestContactModal();
+                      return;
+                    }
                     if (link.href.startsWith("/")) {
                       event.preventDefault();
                       window.history.pushState({}, "", link.href);
@@ -139,6 +145,12 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={(event) => {
+                    if (link.label === "CONTACT") {
+                      event.preventDefault();
+                      requestContactModal();
+                      setOpen(false);
+                      return;
+                    }
                     if (link.href.startsWith("/")) {
                       event.preventDefault();
                       window.history.pushState({}, "", link.href);

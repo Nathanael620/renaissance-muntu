@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import logo from "../../assets/icons/renaissance.png";
 import { brand, contact, footerLinks } from "../../data/siteData";
+import { requestContactModal } from "../ContactModal/contactModalEvents";
 
 /** Icônes réseaux (Lucide n'exporte plus les marques) */
 function IconFacebook({ className }: { className?: string }) {
@@ -146,16 +147,17 @@ export default function Footer() {
               <span>{contact.address}</span>
             </li>
           </ul>
-          <a
-            href={`https://wa.me/15142243872`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Contacter via WhatsApp ${contact.phone}`}
+          <button
+            type="button"
+            onClick={(event) => {
+              event.preventDefault();
+              requestContactModal();
+            }}
             className="btn-or mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-wide"
           >
             <IconWhatsApp className="h-3.5 w-3.5" />
             Nous écrire
-          </a>
+          </button>
         </div>
       </div>
 
