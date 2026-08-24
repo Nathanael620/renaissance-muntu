@@ -36,7 +36,7 @@ export default function Objectifs() {
           Objectifs spécifiques
         </p>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {objectifs.axes.map((axe) => (
+          {objectifs.axes.map((axe, index) => (
             <div
               key={axe.title}
               className="flex flex-col rounded-xl border border-or/25 bg-creme p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
@@ -45,7 +45,7 @@ export default function Objectifs() {
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-vert">
                   <Target className="h-4 w-4 text-or-clair" aria-hidden />
                 </span>
-                Axe
+                Axe {index + 1}
               </h3>
               <p className="mt-2 font-serif text-lg font-semibold uppercase leading-snug text-vert">
                 {axe.title}

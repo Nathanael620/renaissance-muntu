@@ -99,7 +99,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
             {/* 4e de couverture */}
             <div className="mt-6">
               <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-or-fonce">
-                4e de couverture
+                Resumé
               </h3>
               {book.backCover ? (
                 <div className="mt-3 flex aspect-[3/4] items-center justify-center overflow-hidden rounded-xl border border-or/30 bg-gradient-to-br from-vert-fonce via-vert to-vert-profond p-4 shadow-md">

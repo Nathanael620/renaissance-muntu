@@ -166,8 +166,8 @@ export const visionText =
 export const institutIdentite = {
   titre: "",
   sousTitre: "Pour la formation d’une jeunesse consciente, digne et protégée",
-  nom: "Association POUR LA RENAISSANCE DU MUNTU",
-  natureJuridique: "Association à but non lucratif, apolitique, non confessionnelle",
+  nom: "POUR LA RENAISSANCE DU MUNTU",
+  natureJuridique: "est: non confessionnelle",
   domaines: [
     "éducation",
     "jeunesse",
@@ -182,13 +182,13 @@ export const missionInfo = {
   general:
     "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable.",
   explicative:
-    "L’Association POUR LA RENAISSANCE DU MUNTU a pour mission de répondre aux blessures invisibles laissées par l’histoire (esclavage, colonisation, néocolonisation) en agissant sur la dimension intérieure, mentale, morale et spirituelle de la jeunesse.",
+    " POUR LA RENAISSANCE DU MUNTU veut répondre aux blessures invisibles laissées par l’histoire (esclavage, colonisation, néocolonisation) en agissant sur la dimension intérieure, mentale, morale et spirituelle de la jeunesse.",
   orientations: [
-    "décoloniser l’esprit sans haine",
-    "prévenir la violence et la radicalisation",
-    "restaurer l’estime de soi et la dignité humaine",
-    "renforcer la protection intérieure et la lucidité",
-    "transformer la conscience individuelle en action collective constructive",
+    "Décoloniser l’esprit sans haine",
+    "Prévenir la violence et la radicalisation",
+    "Restaurer l’estime de soi et la dignité humaine",
+    "Renforcer la protection intérieure et la lucidité",
+    "Transformer la conscience individuelle en action collective constructive",
   ],
 } as const;
 

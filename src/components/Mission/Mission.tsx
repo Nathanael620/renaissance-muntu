@@ -20,7 +20,7 @@ export default function Mission() {
             « {institutIdentite.sousTitre} »
           </p>
           <p className="mx-auto mt-4 max-w-3xl font-sans text-sm leading-7 text-anthracite md:text-base">
-            {institutIdentite.nom}, {institutIdentite.natureJuridique}, œuvrant dans les domaines de {institutIdentite.domaines.join(", ")}.
+            {institutIdentite.nom}, {institutIdentite.natureJuridique}, œuvrant dans les domaines suivant: {institutIdentite.domaines.join(", ")}.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export default function Mission() {
 
         <div className="mt-14 border-t border-or/25 pt-10">
           <p className="text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-or-fonce md:text-base">
-            Nos Valeurs 
+            Nos Valeurs Fondamentales
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {valeurs.map((valeur) => (
