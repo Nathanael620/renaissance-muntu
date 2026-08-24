@@ -8,3 +8,4 @@ export { default as ElimbaDevise } from "./ElimbaDevise";
 export { default as ElimbaPhilosophie } from "./ElimbaPhilosophie";
 export { default as ElimbaVision } from "./ElimbaVision";
 export { default as ElimbaActivites } from "./ElimbaActivites";
+export { default as ReturnToNavigation } from "./ReturnToNavigation";

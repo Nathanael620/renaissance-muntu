@@ -65,7 +65,10 @@ export default function Mission() {
         </ul>
 
         <div className="mt-14 border-t border-or/25 pt-10">
-          <p className="text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-or-fonce md:text-base">
+          <p
+            id="valeurs-fondamentales"
+            className="text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-or-fonce md:text-base"
+          >
             Nos Valeurs Fondamentales
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">

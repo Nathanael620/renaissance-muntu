@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
-import { CheckCircle2, Mail, Send, X } from "lucide-react";
+import { CheckCircle2, Mail, Phone, Send, X } from "lucide-react";
 import { contact } from "../../data/siteData";
 import { openContactModalEvent } from "./contactModalEvents";
 
@@ -116,6 +116,14 @@ export default function ContactModal() {
                     <input required name="email" type="email" autoComplete="email" placeholder="vous@exemple.com" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
                   </label>
                 </div>
+
+                <label className="block text-xs font-semibold text-vert-fonce">
+                  Numéro de téléphone
+                  <span className="relative mt-2 block">
+                    <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-vert/60" aria-hidden />
+                    <input name="phone" type="tel" autoComplete="tel" placeholder="+237 6 00 00 00 00" className="w-full rounded-md border border-vert/15 bg-white py-3 pl-10 pr-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                  </span>
+                </label>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
                   Objet de votre message

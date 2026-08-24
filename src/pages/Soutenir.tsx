@@ -18,7 +18,7 @@ export default function Soutenir() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1200px]">
+      <section id="partnership-form" className="scroll-mt-20 mx-auto max-w-[1200px]">
         <h3 className="font-serif text-xl font-semibold text-vert">Formulaire de partenariat</h3>
         <div className="mt-6 rounded-2xl border border-or/20 bg-white p-6 shadow-sm">
           <PartnershipForm />

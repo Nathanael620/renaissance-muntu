@@ -14,7 +14,19 @@ import { requestContactModal } from "../ContactModal/contactModalEvents";
 export default function Navbar() {
   const scrolled = useScrollPosition(40);
   const [open, setOpen] = useState(false);
+  const [pathname, setPathname] = useState(window.location.pathname);
   const menuId = useId();
+  const isSupportPage = pathname === "/soutenir";
+
+  useEffect(() => {
+    const onRouteChange = () => setPathname(window.location.pathname);
+    window.addEventListener("routechange", onRouteChange);
+    window.addEventListener("popstate", onRouteChange);
+    return () => {
+      window.removeEventListener("routechange", onRouteChange);
+      window.removeEventListener("popstate", onRouteChange);
+    };
+  }, []);
 
   /* Ferme le menu mobile au resize ≥ 1024px */
   useEffect(() => {
@@ -40,7 +52,7 @@ export default function Navbar() {
         /* Mobile : fond blanc solide (maquette) */
         "bg-white lg:bg-transparent",
         /* Desktop scroll : fond vert semi-opaque pour lisibilité */
-        scrolled && "lg:bg-vert/90 lg:backdrop-blur-sm lg:shadow-md",
+        (scrolled || isSupportPage) && "lg:bg-vert/90 lg:backdrop-blur-sm lg:shadow-md",
       )}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:px-8 lg:py-3">

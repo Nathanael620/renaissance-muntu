@@ -47,7 +47,7 @@ export default function ManifestePage({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="space-y-14 px-4 py-20 md:px-8 lg:px-10">
+    <div className="space-y-8 px-4 py-12 md:px-8 lg:px-10">
       <ManifestoReader manifesto={manifesto} />
     </div>
   );

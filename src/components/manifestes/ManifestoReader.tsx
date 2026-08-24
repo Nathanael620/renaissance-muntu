@@ -41,7 +41,7 @@ function renderBlock(block: ManifestoBlock, index: number) {
   const key = `${index}-${block.type}`;
   if (block.type === "paragraph") {
     return (
-      <p key={key} className="font-sans text-base leading-[1.9] text-anthracite/90">
+      <p key={key} className="font-sans text-sm leading-[1.5] text-anthracite/90 sm:text-base">
         {block.text}
       </p>
     );
@@ -51,7 +51,7 @@ function renderBlock(block: ManifestoBlock, index: number) {
     return (
       <blockquote
         key={key}
-        className="rounded-r-[1.5rem] border-l-4 border-or bg-creme-clair px-6 py-5 font-serif text-xl italic leading-relaxed text-vert shadow-sm sm:text-2xl"
+        className="rounded-r-[1.5rem] border-l-4 border-or bg-creme-clair px-5 py-4 font-serif text-lg italic leading-tight text-vert shadow-sm sm:text-xl"
       >
         {block.text}
       </blockquote>
@@ -60,11 +60,11 @@ function renderBlock(block: ManifestoBlock, index: number) {
 
   if (block.type === "bulletList") {
     return (
-      <ul key={key} className="space-y-3">
+      <ul key={key} className="space-y-1.5">
         {block.items.map((item) => (
           <li key={item} className="flex items-start gap-3">
             <span className="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-            <span className="font-sans text-base leading-relaxed text-anthracite/90">{item}</span>
+            <span className="font-sans text-sm leading-tight text-anthracite/90 sm:text-base">{item}</span>
           </li>
         ))}
       </ul>
@@ -74,10 +74,10 @@ function renderBlock(block: ManifestoBlock, index: number) {
   return (
     <ol
       key={key}
-      className="list-decimal space-y-3 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce"
+      className="list-decimal space-y-1.5 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce"
     >
       {block.items.map((item) => (
-        <li key={item} className="pl-1 font-sans text-base leading-relaxed text-anthracite/90">
+        <li key={item} className="pl-1 font-sans text-sm leading-tight text-anthracite/90 sm:text-base">
           {item}
         </li>
       ))}
@@ -160,6 +160,18 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
     <>
       <ManifestoProgress />
 
+      <a
+        href="/bibliotheque"
+        onClick={(event) => {
+          event.preventDefault();
+          navigate("/bibliotheque");
+        }}
+        className="fixed right-4 top-24 z-40 inline-flex items-center gap-2 rounded-full bg-creme-clair px-4 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-wide text-vert shadow-lg ring-1 ring-or/30 transition hover:bg-white hover:text-or focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or md:right-8 lg:right-10"
+      >
+        <ArrowLeft className="h-4 w-4" aria-hidden />
+        Retour à la bibliothèque
+      </a>
+
       {/* ——— En-tête éditorial du manifeste ——— */}
       <section
         className="relative -mx-4 md:-mx-8 lg:-mx-10 -mt-20 md:-mt-24 lg:-mt-28 z-0 overflow-hidden bg-vert-fonce text-white shadow-2xl"
@@ -173,18 +185,20 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               "radial-gradient(circle at 15% 25%, #d4a84b 0%, transparent 40%), radial-gradient(circle at 85% 80%, #f5f1e6 0%, transparent 35%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1440px] px-6 py-24 md:py-28 lg:px-10 lg:py-32">
-          <a
-            href="/bibliotheque"
-            onClick={(event) => {
-              event.preventDefault();
-              navigate("/bibliotheque");
-            }}
-            className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-or"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden />
-            Retour à la bibliothèque
-          </a>
+        <div className="relative mx-auto max-w-[1440px] px-6 py-12 md:py-16 lg:px-10 lg:py-20">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a
+              href="/manifestes"
+              onClick={(event) => {
+                event.preventDefault();
+                navigate("/manifestes");
+              }}
+              className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-or"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden />
+              Retour aux manifestes
+            </a>
+          </div>
 
           <p className="mt-10 font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
             Bibliothèque du Muntu — Manifestes
@@ -209,27 +223,27 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
 
       {/* ——— Sommaire + contenu ——— */}
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14">
+        <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
           <ManifestoToc items={tocItems} />
 
           <article className="mx-auto w-full max-w-[840px]">
             <section
               id={ids.preamble}
-              className="scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-6 py-8 shadow-sm sm:px-8"
+              className="scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-5 py-5 shadow-sm sm:px-6"
             >
               <SectionHeading id={ids.preamble} section={manifesto.preamble} />
-              <div className="mt-6 space-y-5">{manifesto.preamble.blocks.map(renderBlock)}</div>
+              <div className="mt-3 space-y-2">{manifesto.preamble.blocks.map(renderBlock)}</div>
             </section>
 
             {manifesto.sections.map((section, index) => (
-              <section key={ids.sections[index]} id={ids.sections[index]} className="scroll-mt-28 pt-14">
+              <section key={ids.sections[index]} id={ids.sections[index]} className="scroll-mt-28 pt-5">
                 <SectionHeading id={ids.sections[index]} section={section} />
-                <div className="mt-6 space-y-5">{section.blocks.map(renderBlock)}</div>
+                <div className="mt-3 space-y-2">{section.blocks.map(renderBlock)}</div>
               </section>
             ))}
             <section
               id={ids.finalDeclaration}
-              className="relative mt-14 overflow-hidden rounded-[2rem] border border-or/40 bg-vert-profond px-6 py-12 text-center shadow-lg sm:px-10"
+              className="relative mt-5 overflow-hidden rounded-[2rem] border border-or/40 bg-vert-profond px-5 py-6 text-center shadow-lg sm:px-8"
               aria-labelledby={ids.finalDeclaration}
             >
               <div
@@ -246,13 +260,13 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               >
                 {manifesto.finalDeclaration.title}
               </h2>
-              <span className="mx-auto mt-5 h-px w-16 bg-or/60" aria-hidden />
-              <div className="relative mx-auto mt-8 max-w-[560px] space-y-4">
+              <span className="mx-auto mt-3 h-px w-16 bg-or/60" aria-hidden />
+              <div className="relative mx-auto mt-4 max-w-[560px] space-y-2">
                 {manifesto.finalDeclaration.blocks.map((block, index) =>
                   block.type === "paragraph" ? (
                     <p
                       key={block.text}
-                      className="font-serif text-xl italic leading-relaxed text-white sm:text-2xl"
+                      className="font-serif text-xl italic leading-snug text-white sm:text-2xl"
                     >
                       {block.text}
                     </p>
@@ -263,25 +277,25 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               </div>
             </section>
 
-            <section id={ids.references} className="scroll-mt-28 pt-14">
+            <section id={ids.references} className="scroll-mt-28 pt-5">
               <SectionHeading id={ids.references} section={{ title: manifesto.references.title }} />
               {manifesto.references.numbered ? (
-                <ol className="mt-7 list-decimal space-y-4 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce">
+                <ol className="mt-3 list-decimal space-y-2 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce">
                   {manifesto.references.items.map((ref) => (
                     <li
                       key={ref.text}
-                      className="pl-1 font-serif text-base italic leading-relaxed text-anthracite/90 sm:text-lg"
+                      className="pl-1 font-serif text-base italic leading-snug text-anthracite/90 sm:text-lg"
                     >
                       {ref.text}
                     </li>
                   ))}
                 </ol>
               ) : (
-                <ul className="mt-7 space-y-4">
+                <ul className="mt-3 space-y-2">
                   {manifesto.references.items.map((ref) => (
                     <li key={ref.text} className="flex items-start gap-3">
                       <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                      <span className="font-serif text-base italic leading-relaxed text-anthracite/90 sm:text-lg">
+                      <span className="font-serif text-base italic leading-snug text-anthracite/90 sm:text-lg">
                         {ref.text}
                       </span>
                     </li>
@@ -290,7 +304,7 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               )}
             </section>
 
-            <section className="print:hidden mt-16 flex flex-col items-center gap-4 text-center">
+            <section className="print:hidden mt-8 flex flex-col items-center gap-3 text-center">
               <span className="h-px w-24 bg-or/40" aria-hidden />
               <h2 className="font-serif text-xl font-semibold uppercase tracking-wide text-vert">
                 Partager le manifeste
@@ -319,6 +333,17 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
                 ) : null}
               </div>
 
+              <a
+                href="/manifestes"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigate("/manifestes");
+                }}
+                className="btn-or inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden />
+                Retour aux manifestes
+              </a>
               <a
                 href="/bibliotheque"
                 onClick={(event) => {

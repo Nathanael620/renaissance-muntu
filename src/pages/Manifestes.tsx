@@ -34,7 +34,7 @@ export default function Manifestes() {
               "radial-gradient(circle at 15% 25%, #d4a84b 0%, transparent 40%), radial-gradient(circle at 85% 80%, #f5f1e6 0%, transparent 35%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1440px] px-6 py-24 md:py-28 lg:px-10 lg:py-32">
+        <div className="relative mx-auto max-w-[1440px] px-6 pt-32 pb-24 md:pt-36 md:pb-28 lg:px-10 lg:pt-40 lg:pb-32">
           <a
             href="/bibliotheque"
             onClick={(event) => {

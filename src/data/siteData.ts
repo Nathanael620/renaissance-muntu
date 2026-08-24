@@ -14,7 +14,7 @@ export const brand = {
 /** Liens de navigation principale (maquette navbar) */
 export const navLinks = [
   { label: "ACCUEIL", href: "/" },
-  { label: "VISION", href: "/#objectifs" },
+  { label: "VISION", href: "/#vision" },
   { label: "NOS PILIERS", href: "/#piliers" },
   { label: "BIBLIOTHÈQUE", href: "/bibliotheque" },
   { label: "ACADÉMIE", href: "#academie" },
@@ -266,8 +266,8 @@ export const footerLinks = {
   institut: [
     { label: "Notre vision", href: "/#vision" },
     { label: "Notre philosophie", href: "/#mission" },
-    { label: "Notre mission", href: "/#mission" },
-    { label: "Nos valeurs", href: "/#objectifs" },
+    { label: "Notre mission", href: "/#mission-title" },
+    { label: "Nos valeurs", href: "/#valeurs-fondamentales" },
     { label: "Notre histoire", href: "/#vision" },
     { label: "Notre equipe", href: "/#vision" },
   ],
@@ -280,7 +280,7 @@ export const footerLinks = {
   ],
   ressources: [
     { label: "Livres & Essais", href: "/bibliotheque#nos-livres" },
-    { label: "Manifestes", href: "#ressources" },
+    { label: "Manifestes", href: "/manifestes" },
     { label: "Vidéos", href: "#ressources" },
     { label: "Podcasts", href: "#ressources" },
     { label: "Etudes & Recherches", href: "#ressources" },

@@ -50,7 +50,7 @@ export default function PartnershipForm() {
   }
 
   return (
-    <form id="partnership-form" onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-6">
       {/* Champ : Nom complet */}
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">

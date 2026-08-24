@@ -12,6 +12,7 @@ import {
   ElimbaPrincipesDirecteurs,
   ElimbaProblematique,
   ElimbaVision,
+  ReturnToNavigation,
 } from "../components/elimba";
 
 const pageNavigation = [
@@ -65,7 +66,7 @@ const temoignage = {
 
 export default function Elimba() {
   return (
-    <div className="space-y-14 px-4 py-20 md:px-8 lg:px-10">
+    <div className="space-y-10 px-4 py-12 md:px-8 lg:px-10">
       <section
         id="elimba-hero"
         className="relative -mx-4 md:-mx-8 lg:-mx-10 -mt-20 md:-mt-24 lg:-mt-28 z-0 overflow-visible bg-vert-fonce text-white shadow-2xl"
@@ -78,9 +79,9 @@ export default function Elimba() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/80" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-[1440px] gap-12 px-6 pt-40 pb-16 md:grid-cols-[auto_minmax(0,1.2fr)] md:items-center md:gap-16 md:pt-48 md:pb-24 lg:px-10 lg:pt-56 lg:pb-28 xl:gap-28">
+        <div className="relative mx-auto grid max-w-[1440px] gap-12 px-6 pt-28 pb-16 md:grid-cols-[auto_minmax(0,1.2fr)] md:items-center md:gap-16 md:pt-32 md:pb-24 lg:px-10 lg:pt-36 lg:pb-28 xl:gap-28">
           <div className="max-w-2xl md:order-last md:ml-8 lg:ml-20 xl:ml-36 2xl:ml-44">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
+            <p className="font-sans text-lg font-semibold uppercase tracking-[0.28em] text-white sm:text-xl">
               ELIMB’A DIKALO
             </p>
             <h1
@@ -115,14 +116,17 @@ export default function Elimba() {
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-sm md:order-first">
-            <div className="flex items-center gap-6">
-                <div className="h-28 w-28 md:h-36 md:w-36 lg:h-56 lg:w-56 overflow-visible rounded-full border-2 border-or/50 bg-white p-1">
-                <img src={logo} alt="Logo Elimb'a Dikalo" className="h-full w-full object-contain" />
+          <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-md md:order-first">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
+              <div className="w-44 shrink-0 md:w-52 lg:w-64">
+                <img src={logo} alt="Logo Elimb'a Dikalo" className="h-auto w-full object-contain" />
+                <p className="mt-3 font-serif text-center text-sm font-semibold leading-tight text-white sm:text-base">
+                  Une même terre. Plusieurs racines. Un seul avenir.
+                </p>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-[11px] uppercase tracking-[0.28em] text-or-clair">Pilier fondateur</p>
-                <h2 className="mt-2 font-serif text-xl font-semibold uppercase text-white">
+                <h2 className="mt-2 break-words font-serif text-xl font-semibold uppercase text-white">
                   Vérité & Dialogue
                 </h2>
               </div>
@@ -242,25 +246,16 @@ export default function Elimba() {
         </div>
       </section>
 
-      <ElimbaProblematique />
-
-      <ElimbaMotivation />
-
-      <ElimbaPresentation />
-
-      <ElimbaIdee />
-
-      <ElimbaPrincipesDirecteurs />
-
-      <ElimbaMission />
-
-      <ElimbaDevise />
-
-      <ElimbaPhilosophie />
-
-      <ElimbaVision />
-
-      <ElimbaActivites />
+      <div className="space-y-4"><ElimbaProblematique /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaMotivation /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaPresentation /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaIdee /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaPrincipesDirecteurs /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaMission /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaDevise /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaPhilosophie /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaVision /><ReturnToNavigation /></div>
+      <div className="space-y-4"><ElimbaActivites /><ReturnToNavigation /></div>
 
       <section
         id="elimba-actions"
@@ -285,6 +280,7 @@ export default function Elimba() {
           </div>
         </div>
       </section>
+      <ReturnToNavigation />
 
       <section
         id="elimba-ressources"
@@ -323,6 +319,7 @@ export default function Elimba() {
           </div>
         </div>
       </section>
+      <ReturnToNavigation />
 
       <section
         id="elimba-temoignages"
@@ -343,6 +340,7 @@ export default function Elimba() {
           </div>
         </div>
       </section>
+      <ReturnToNavigation />
     </div>
   );
 }

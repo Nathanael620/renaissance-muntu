@@ -38,8 +38,8 @@ export default function ManifestoToc({ items }: { items: ManifestoTocItem[] }) {
     <ul
       className={
         isDesktop
-          ? "space-y-1 border-l border-or/25"
-          : "grid grid-cols-1 gap-2 sm:grid-cols-2"
+          ? "space-y-0.5 border-l border-or/25"
+          : "grid grid-cols-1 gap-1.5 sm:grid-cols-2"
       }
     >
       {items.map((item) => (
@@ -47,10 +47,10 @@ export default function ManifestoToc({ items }: { items: ManifestoTocItem[] }) {
           <a
             href={`#${item.id}`}
             className={cn(
-              "group inline-flex items-baseline gap-2 rounded-md font-sans text-xs uppercase tracking-[0.08em] transition-colors",
+              "group inline-flex items-baseline gap-2 rounded-md font-sans text-xs uppercase leading-tight tracking-[0.08em] transition-colors",
               isDesktop
-                ? "-ml-px block border-l-2 py-2 pl-3 pr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
-                : "w-full border border-or/20 bg-white px-3 py-2.5 shadow-sm hover:border-or/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or",
+                ? "-ml-px block border-l-2 py-1.5 pl-3 pr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
+                : "w-full border border-or/20 bg-white px-3 py-2 shadow-sm hover:border-or/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or",
               activeId === item.id
                 ? "border-or font-semibold text-or-fonce"
                 : "border-transparent text-anthracite/70 hover:text-vert",

@@ -3,7 +3,7 @@ import { Handshake } from "lucide-react";
 export default function PartnershipCard() {
   const goToForm = () => {
     const el = document.getElementById("partnership-form");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
