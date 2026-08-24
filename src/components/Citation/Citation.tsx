@@ -1,4 +1,4 @@
-import { brand } from "../../data/siteData";
+import { visionText } from "../../data/siteData";
 
 /**
  * Citation fondatrice — bandeau vert profond + guillemets or (maquette / DCFT §6.5)
@@ -17,7 +17,7 @@ export default function Citation() {
           “
         </span>
         <p className="text-center font-serif text-base italic leading-relaxed text-white md:text-xl lg:text-2xl">
-          {brand.citation}
+          {visionText}
         </p>
         <span
           className="select-none font-serif text-5xl leading-none text-or md:text-7xl"

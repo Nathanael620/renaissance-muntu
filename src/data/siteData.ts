@@ -167,7 +167,7 @@ export const institutIdentite = {
   titre: "",
   sousTitre: "Pour la formation d’une jeunesse consciente, digne et protégée",
   nom: "POUR LA RENAISSANCE DU MUNTU",
-  natureJuridique: "est: non confessionnelle",
+  natureJuridique: "est non confessionnelle",
   domaines: [
     "éducation",
     "jeunesse",

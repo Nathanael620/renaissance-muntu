@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Citation />
+      <CitationFinale />
       <Piliers />
 
       {/* Grille Vision / Actions / Ressources / Engagement */}
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="bg-creme px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           <ParcoursUtilisateur />
-          <CitationFinale />
+          <Citation />
         </div>
       </div>
 
