@@ -8,11 +8,11 @@ export default function DonationCard() {
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-vert text-white">
           <Gift className="h-5 w-5" aria-hidden />
         </span>
-        <h3 className="font-serif text-lg font-semibold uppercase text-vert">DONNEZ ET BÉNÉFICIER D’UN REÇU DÉDUCTIBLE D’IMPÔT</h3>
+        <h3 className="font-serif text-lg font-semibold uppercase text-vert">DONNEZ ET RECEVEZ UN REÇU DÉDUCTIBLE D’IMPÔT</h3>
       </div>
 
       <p className="mb-6 font-sans text-sm text-anthracite">
-        Votre contribution financière permet de soutenir nos actions, programmes et projets. Merci de votre confiance.
+        Soutenez le programme Elimb’a Dikalo de Mener Autrement
       </p>
 
       <button

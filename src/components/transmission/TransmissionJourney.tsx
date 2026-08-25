@@ -67,7 +67,7 @@ export default function TransmissionJourney() {
           id="transmission-parcours-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Écouter, comprendre, transmettre
+          Écouter, comprendre, transmettre.
         </h2>
 
         <div className={cn("mt-8 flex flex-col items-center gap-5 lg:flex-row lg:items-stretch lg:gap-3", visible && "animate-fade-in-delay-1")}>

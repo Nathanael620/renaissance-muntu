@@ -1,4 +1,5 @@
 export { default as TransmissionHero } from "./TransmissionHero";
+export { default as TransmissionCitation } from "./TransmissionCitation";
 export { default as TransmissionIntro } from "./TransmissionIntro";
 export { default as MuntuNtuSection } from "./MuntuNtuSection";
 export { default as TransmissionAxes } from "./TransmissionAxes";

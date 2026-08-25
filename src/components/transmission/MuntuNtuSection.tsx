@@ -59,7 +59,7 @@ export default function MuntuNtuSection() {
             id="muntu-ntu-title"
             className="mt-3 font-serif text-3xl font-semibold uppercase tracking-wide text-white sm:text-4xl"
           >
-            De MUNTU à NTU
+            Du NTU au  MUNTU 
           </h2>
           <p className="mt-3 max-w-xl font-sans text-sm leading-relaxed text-white/80 sm:text-base">
             Ce schéma restitue visuellement la logique du pilier : restaurer

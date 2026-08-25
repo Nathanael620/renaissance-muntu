@@ -32,10 +32,15 @@ export default function ManifestePage({ slug }: { slug: string }) {
           Ce manifeste n’existe pas ou n’est pas encore publié.
         </p>
         <a
-          href="/manifestes"
+          href="/manifestes#nos-manifestes"
           onClick={(event) => {
             event.preventDefault();
-            navigate("/manifestes");
+            navigate("/manifestes#nos-manifestes");
+            /* Cible la section « Nos manifestes » après le rendu de la page. */
+            setTimeout(() => {
+              const el = document.getElementById("nos-manifestes");
+              if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 80);
           }}
           className="btn-or mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
         >

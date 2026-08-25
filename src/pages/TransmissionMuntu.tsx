@@ -3,6 +3,7 @@ import {
   PillarNavigation,
   TransformationSection,
   TransmissionAxes,
+  TransmissionCitation,
   TransmissionCTA,
   TransmissionHero,
   TransmissionIntro,
@@ -19,6 +20,7 @@ export default function TransmissionMuntu() {
   return (
     <div className="space-y-14 px-4 py-20 md:px-8 lg:px-10">
       <TransmissionHero />
+      <TransmissionCitation />
       <TransmissionIntro />
       <MuntuNtuSection />
       <TransmissionAxes />

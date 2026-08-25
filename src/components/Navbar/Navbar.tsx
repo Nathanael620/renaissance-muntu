@@ -11,23 +11,10 @@ import { requestContactModal } from "../ContactModal/contactModalEvents";
  * Navbar — maquette2 desktop (overlay hero) + mobile (barre blanche + menu).
  * Sticky selon DCFT §9.1.
  */
-
-/** Lien de navigation mis en évidence selon la route courante. */
-function getActiveNavLabel(pathname: string): string {
-  if (pathname === "/") return "ACCUEIL";
-  if (pathname.startsWith("/transmission-muntu")) return "TRANSMISSION";
-  if (pathname.startsWith("/academie-muntu")) return "ACADÉMIE";
-  if (pathname.startsWith("/elimba")) return "NOS PILIERS";
-  if (pathname.startsWith("/bibliotheque")) return "BIBLIOTHÈQUE";
-  if (pathname.startsWith("/manifestes")) return "RESSOURCES";
-  return "";
-}
-
 export default function Navbar() {
   const scrolled = useScrollPosition(40);
   const [open, setOpen] = useState(false);
   const [pathname, setPathname] = useState(window.location.pathname);
-  const activeLabel = getActiveNavLabel(pathname);
   const menuId = useId();
   const isSupportPage = pathname === "/soutenir";
 
@@ -71,12 +58,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:px-8 lg:py-3">
         {/* ——— Logo ——— */}
         <a
-          href="/"
-          onClick={(event) => {
-            event.preventDefault();
-            window.history.pushState({}, "", "/");
-            window.dispatchEvent(new Event("routechange"));
-          }}
+          href="#accueil"
           className="flex shrink-0 items-center rounded-sm bg-white px-2 py-1.5 shadow-sm transition-opacity hover:opacity-90"
           aria-label={brand.name}
         >
@@ -119,13 +101,11 @@ export default function Navbar() {
                     }
                   }}
                   className={cn(
-                    "font-sans text-[11px] font-medium uppercase tracking-[0.08em]",
-                    "border-b-2 pb-0.5 transition-colors duration-200",
-                    activeLabel === link.label
-                      ? "border-or text-or-clair"
-                      : "border-transparent text-white hover:border-or hover:text-or-clair",
+                    "font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-white",
+                    "border-b-2 border-transparent pb-0.5 transition-colors duration-200",
+                    "hover:border-or hover:text-or-clair",
+                    link.label === "ACCUEIL" && "border-or",
                   )}
-                  aria-current={activeLabel === link.label ? "page" : undefined}
                 >
                   {link.label}
                 </a>
@@ -198,13 +178,7 @@ export default function Navbar() {
                     }
                     setOpen(false);
                   }}
-                  className={cn(
-                    "block rounded-md px-3 py-3 font-sans text-sm font-medium uppercase tracking-wide transition-colors",
-                    activeLabel === link.label
-                      ? "bg-or/15 text-or"
-                      : "text-vert hover:bg-creme hover:text-or",
-                  )}
-                  aria-current={activeLabel === link.label ? "page" : undefined}
+                  className="block rounded-md px-3 py-3 font-sans text-sm font-medium uppercase tracking-wide text-vert transition-colors hover:bg-creme hover:text-or"
                 >
                   {link.label}
                 </a>

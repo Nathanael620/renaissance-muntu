@@ -160,18 +160,6 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
     <>
       <ManifestoProgress />
 
-      <a
-        href="/bibliotheque"
-        onClick={(event) => {
-          event.preventDefault();
-          navigate("/bibliotheque");
-        }}
-        className="fixed right-4 top-24 z-40 inline-flex items-center gap-2 rounded-full bg-creme-clair px-4 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-wide text-vert shadow-lg ring-1 ring-or/30 transition hover:bg-white hover:text-or focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or md:right-8 lg:right-10"
-      >
-        <ArrowLeft className="h-4 w-4" aria-hidden />
-        Retour à la bibliothèque
-      </a>
-
       {/* ——— En-tête éditorial du manifeste ——— */}
       <section
         className="relative -mx-4 md:-mx-8 lg:-mx-10 -mt-20 md:-mt-24 lg:-mt-28 z-0 overflow-hidden bg-vert-fonce text-white shadow-2xl"
@@ -185,20 +173,18 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               "radial-gradient(circle at 15% 25%, #d4a84b 0%, transparent 40%), radial-gradient(circle at 85% 80%, #f5f1e6 0%, transparent 35%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1440px] px-6 py-12 md:py-16 lg:px-10 lg:py-20">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a
-              href="/manifestes"
-              onClick={(event) => {
-                event.preventDefault();
-                navigate("/manifestes");
-              }}
-              className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-or"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden />
-              Retour aux manifestes
-            </a>
-          </div>
+        <div className="relative mx-auto max-w-[1440px] px-6 py-24 md:py-28 lg:px-10 lg:py-32">
+          <a
+            href="/bibliotheque"
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/bibliotheque");
+            }}
+            className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-or"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden />
+            Retour à la bibliothèque
+          </a>
 
           <p className="mt-10 font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
             Bibliothèque du Muntu — Manifestes
@@ -223,27 +209,27 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
 
       {/* ——— Sommaire + contenu ——— */}
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-10">
+        <div className="grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14">
           <ManifestoToc items={tocItems} />
 
           <article className="mx-auto w-full max-w-[840px]">
             <section
               id={ids.preamble}
-              className="scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-5 py-5 shadow-sm sm:px-6"
+              className="scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-6 py-8 shadow-sm sm:px-8"
             >
               <SectionHeading id={ids.preamble} section={manifesto.preamble} />
-              <div className="mt-3 space-y-2">{manifesto.preamble.blocks.map(renderBlock)}</div>
+              <div className="mt-5 space-y-2">{manifesto.preamble.blocks.map(renderBlock)}</div>
             </section>
 
             {manifesto.sections.map((section, index) => (
-              <section key={ids.sections[index]} id={ids.sections[index]} className="scroll-mt-28 pt-5">
+              <section key={ids.sections[index]} id={ids.sections[index]} className="scroll-mt-28 pt-8">
                 <SectionHeading id={ids.sections[index]} section={section} />
-                <div className="mt-3 space-y-2">{section.blocks.map(renderBlock)}</div>
+                <div className="mt-5 space-y-2">{section.blocks.map(renderBlock)}</div>
               </section>
             ))}
             <section
               id={ids.finalDeclaration}
-              className="relative mt-5 overflow-hidden rounded-[2rem] border border-or/40 bg-vert-profond px-5 py-6 text-center shadow-lg sm:px-8"
+              className="relative mt-8 overflow-hidden rounded-[2rem] border border-or/40 bg-vert-profond px-6 py-10 text-center shadow-lg sm:px-10"
               aria-labelledby={ids.finalDeclaration}
             >
               <div
@@ -260,8 +246,8 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               >
                 {manifesto.finalDeclaration.title}
               </h2>
-              <span className="mx-auto mt-3 h-px w-16 bg-or/60" aria-hidden />
-              <div className="relative mx-auto mt-4 max-w-[560px] space-y-2">
+              <span className="mx-auto mt-5 h-px w-16 bg-or/60" aria-hidden />
+              <div className="relative mx-auto mt-6 max-w-[560px] space-y-2">
                 {manifesto.finalDeclaration.blocks.map((block, index) =>
                   block.type === "paragraph" ? (
                     <p
@@ -277,10 +263,10 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               </div>
             </section>
 
-            <section id={ids.references} className="scroll-mt-28 pt-5">
+            <section id={ids.references} className="scroll-mt-28 pt-8">
               <SectionHeading id={ids.references} section={{ title: manifesto.references.title }} />
               {manifesto.references.numbered ? (
-                <ol className="mt-3 list-decimal space-y-2 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce">
+                <ol className="mt-5 list-decimal space-y-2 pl-6 marker:font-serif marker:font-semibold marker:text-or-fonce">
                   {manifesto.references.items.map((ref) => (
                     <li
                       key={ref.text}
@@ -291,7 +277,7 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
                   ))}
                 </ol>
               ) : (
-                <ul className="mt-3 space-y-2">
+                <ul className="mt-5 space-y-2">
                   {manifesto.references.items.map((ref) => (
                     <li key={ref.text} className="flex items-start gap-3">
                       <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
@@ -304,7 +290,7 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               )}
             </section>
 
-            <section className="print:hidden mt-8 flex flex-col items-center gap-3 text-center">
+            <section className="print:hidden mt-16 flex flex-col items-center gap-4 text-center">
               <span className="h-px w-24 bg-or/40" aria-hidden />
               <h2 className="font-serif text-xl font-semibold uppercase tracking-wide text-vert">
                 Partager le manifeste
@@ -333,17 +319,6 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
                 ) : null}
               </div>
 
-              <a
-                href="/manifestes"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigate("/manifestes");
-                }}
-                className="btn-or inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden />
-                Retour aux manifestes
-              </a>
               <a
                 href="/bibliotheque"
                 onClick={(event) => {

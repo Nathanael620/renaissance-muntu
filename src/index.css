@@ -22,11 +22,11 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 7rem;
 }
 
 [id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 7rem;
 }
 
 body {
