@@ -21,13 +21,13 @@ export default function ElimbaIdee() {
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <div className="space-y-5 font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
             <p>
-              Aujourd&apos;hui, beaucoup de personnes parlent de politique, de tribalisme,
-              d&apos;économie, de foncier, d&apos;histoire. Très peu parlent de la transformation
-              intérieure. Or, si on veut réellement prévenir les conflits avant qu&apos;ils
-              n&apos;éclatent, il faut agir là où ils naissent.
+              Aujourd’hui, beaucoup de personnes parlent de politique, de tribalisme,
+              d’économie, de foncier, d’histoire. Très peu parlent de la transformation
+              intérieure. Or, si on veut réellement prévenir les conflits avant qu’ils
+              n’éclatent, il faut agir là où ils naissent.
             </p>
             <p className="font-serif text-lg font-semibold text-vert">
-              À notre avis, ils naissent d&apos;abord dans le cœur.
+              À notre avis, ils naissent d’abord dans le cœur.
             </p>
           </div>
           <div className="rounded-[1.75rem] border border-or/20 bg-creme p-6 shadow-sm">
@@ -37,7 +37,7 @@ export default function ElimbaIdee() {
             <ul className="mt-5 grid grid-cols-2 gap-3 text-sm leading-relaxed text-anthracite">
               {[
                 "La jalousie",
-                "L&apos;orgueil",
+                "L’orgueil",
                 "La peur",
                 "La cupidité",
                 "Le ressentiment",
@@ -50,7 +50,7 @@ export default function ElimbaIdee() {
               ))}
             </ul>
             <p className="mt-5 border-t border-or/20 pt-4 font-serif text-sm font-semibold uppercase leading-relaxed text-vert">
-              Elimb&rsquo;a Dikalo n&apos;est donc pas un projet contre le tribalisme. C&apos;est
+              Elimb&rsquo;a Dikalo n’est donc pas un projet contre le tribalisme. C’est
               une école de guérison intérieure des peuples.
             </p>
           </div>

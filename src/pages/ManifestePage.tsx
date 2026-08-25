@@ -29,7 +29,7 @@ export default function ManifestePage({ slug }: { slug: string }) {
           Manifeste introuvable
         </p>
         <p className="mt-4 max-w-md font-sans text-sm leading-relaxed text-anthracite/85">
-          Ce manifeste n&apos;existe pas ou n&apos;est pas encore publié.
+          Ce manifeste n’existe pas ou n’est pas encore publié.
         </p>
         <a
           href="/manifestes"

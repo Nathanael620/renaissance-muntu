@@ -43,7 +43,7 @@ export default function CTA() {
             <SupportButton
               className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce md:w-auto"
             >
-              S&apos;engager maintenant
+              S’engager maintenant
             </SupportButton>
           </div>
         </div>

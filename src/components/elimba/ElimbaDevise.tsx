@@ -20,16 +20,16 @@ export default function ElimbaDevise() {
         </h2>
         <div className="mx-auto mt-8 max-w-3xl space-y-5 font-sans text-sm leading-relaxed text-white/85 sm:text-base">
           <p className="italic">
-            « Nous croyons qu&apos;aucune communauté ne s&apos;élève durablement en rabaissant une
+            « Nous croyons qu’aucune communauté ne s’élève durablement en rabaissant une
             autre. Nous croyons que la paix se construit par la vérité, que la responsabilité est
             plus féconde que la victimisation, et que la transmission des bonnes pratiques est plus
             puissante que la recherche de boucs émissaires. »
           </p>
           <p>
             Elimb&rsquo;a Dikalo est un espace où les différences deviennent des occasions
-            d&apos;apprendre, où le dialogue remplace la méfiance, et où chaque Camerounais est
-            invité à contribuer à un avenir commun. Parce qu&apos;une même terre peut nourrir
-            plusieurs racines sans cesser d&apos;être un seul pays.
+            d’apprendre, où le dialogue remplace la méfiance, et où chaque Camerounais est
+            invité à contribuer à un avenir commun. Parce qu’une même terre peut nourrir
+            plusieurs racines sans cesser d’être un seul pays.
           </p>
         </div>
       </div>

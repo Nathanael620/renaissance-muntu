@@ -20,7 +20,7 @@ export default function ElimbaMotivation() {
         </h2>
         <div className="mt-8 mx-auto max-w-4xl">
           <p className="font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-            Le clivage et l&apos;indexation d&apos;un groupe dans un pays est très dangereux pour la
+            Le clivage et l’indexation d’un groupe dans un pays est très dangereux pour la
             cohésion sociale et le vivre-ensemble. Le manque de courage de reconnaître leurs
             faiblesses et les fabulations des parents d&rsquo;aujourd&rsquo;hui deviennent des
             vérités de leurs enfants futurs-parents. Nous voulons contribuer à faire taire cette

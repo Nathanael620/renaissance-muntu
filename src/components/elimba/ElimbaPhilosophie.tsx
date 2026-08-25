@@ -20,15 +20,15 @@ export default function ElimbaPhilosophie() {
         </h2>
         <div className="mt-8 rounded-[1.75rem] border border-or/20 bg-white p-8 shadow-sm">
           <p className="font-serif text-xl italic leading-relaxed text-anthracite/90">
-            « Toute communauté grandit lorsqu&apos;elle est capable de reconnaître ses forces,
-            d&apos;assumer ses responsabilités et d&apos;apprendre des réussites des autres, sans
+            « Toute communauté grandit lorsqu’elle est capable de reconnaître ses forces,
+            d’assumer ses responsabilités et d’apprendre des réussites des autres, sans
             renoncer à son identité. »
           </p>
         </div>
         <p className="mt-6 font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-          La philosophie d&apos;Elimb&rsquo;a Dikalo peut être formulée ainsi&nbsp;: toute
-          communauté grandit lorsqu&apos;elle est capable de reconnaître ses forces, d&apos;assumer
-          ses responsabilités et d&apos;apprendre des réussites des autres, sans renoncer à son
+          La philosophie d’Elimb&rsquo;a Dikalo peut être formulée ainsi&nbsp;: toute
+          communauté grandit lorsqu’elle est capable de reconnaître ses forces, d’assumer
+          ses responsabilités et d’apprendre des réussites des autres, sans renoncer à son
           identité.
         </p>
       </div>

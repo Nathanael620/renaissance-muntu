@@ -27,7 +27,7 @@ export default function ElimbaMission() {
             </p>
             <ul className="space-y-3 pl-1">
               {[
-                "transformer les différences culturelles en occasions d&apos;apprentissage",
+                "transformer les différences culturelles en occasions d’apprentissage",
                 "prévenir les discriminations",
                 "favoriser la compréhension mutuelle, la responsabilité, la transmission, la solidarité et la résolution pacifique des différends",
               ].map((item) => (

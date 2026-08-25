@@ -59,7 +59,7 @@ function ArchitectureRow({ item, index }: { item: Item; index: number }) {
           DU MUNTU
         </p>
         <p className="mt-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-or-clair">
-          (L&apos;INSTITUT)
+          (L’INSTITUT)
         </p>
       </div>
     );
@@ -114,7 +114,7 @@ export default function ArchitectureSidebar() {
           Soutenir le Mouvement
         </span>
         <span className="font-sans text-[10px] font-normal normal-case tracking-normal text-white/90">
-          Semez aujourd&apos;hui une humanité plus juste et durable
+          Semez aujourd’hui une humanité plus juste et durable
         </span>
       </SupportButton>
     </aside>

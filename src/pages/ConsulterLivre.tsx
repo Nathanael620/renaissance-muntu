@@ -156,7 +156,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
               </p>
             ) : (
               <p className="mt-5 font-sans text-sm italic leading-relaxed text-anthracite/70">
-                Présentation détaillée de l&apos;ouvrage à venir.
+                Présentation détaillée de l’ouvrage à venir.
               </p>
             )}
 

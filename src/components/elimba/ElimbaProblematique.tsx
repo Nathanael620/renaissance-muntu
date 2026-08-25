@@ -45,7 +45,7 @@ export default function ElimbaProblematique() {
               ))}
             </ul>
             <p>
-              Toute communauté est appelée à traverser ce combat intérieur. Ce combat n&apos;oppose
+              Toute communauté est appelée à traverser ce combat intérieur. Ce combat n’oppose
               pas un peuple à un autre. Il oppose chaque peuple à ses propres faiblesses.
             </p>
             <div className="rounded-[1.75rem] border border-or/20 bg-white p-5 shadow-sm">
@@ -81,7 +81,7 @@ export default function ElimbaProblematique() {
 
             <div className="rounded-[1.75rem] border border-vert/20 bg-vert/5 p-6 shadow-sm">
               <p className="font-serif text-sm font-semibold uppercase leading-relaxed text-vert">
-                « Une même terre peut porter plusieurs racines sans cesser d&apos;être un seul arbre. »
+                « Une même terre peut porter plusieurs racines sans cesser d’être un seul arbre. »
               </p>
             </div>
           </div>
