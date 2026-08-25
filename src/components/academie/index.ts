@@ -1,0 +1,11 @@
+export { default as AcademieHero } from "./AcademieHero";
+export { default as AcademieRaisonEtre } from "./AcademieRaisonEtre";
+export { default as AcademieMission } from "./AcademieMission";
+export { default as AcademieDomaines } from "./AcademieDomaines";
+export { default as AcademieProgramme } from "./AcademieProgramme";
+export { default as AcademieFormations } from "./AcademieFormations";
+export { default as AcademieRessources } from "./AcademieRessources";
+export { default as AcademieSensibilisation } from "./AcademieSensibilisation";
+export { default as AcademieAmbassadeur } from "./AcademieAmbassadeur";
+export { default as AcademieCitation } from "./AcademieCitation";
+export { default as AcademiePillarNavigation } from "./AcademiePillarNavigation";

@@ -7,4 +7,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  // Remarque : pas de configuration supplémentaire nécessaire pour les routes
+  // profondes (ex. /elimba, /transmission-muntu). Vite applique nativement le
+  // fallback SPA (appType: "spa") en dev comme en preview : les chemins inconnus
+  // sont servis avec index.html.
 })

@@ -37,6 +37,12 @@ export default function ElimbaMission() {
                 </li>
               ))}
             </ul>
+            <p>
+              À travers des ateliers éducatifs, formations, conférences, discussions encadrées,
+              activités de réflexion et outils de sensibilisation, Elimb&rsquo;a Dikalo contribue à
+              former des jeunes capables de devenir des acteurs de dialogue, de responsabilité et de
+              paix au sein de leur famille et de leur communauté.
+            </p>
           </div>
 
           <div className="rounded-[1.75rem] border border-or/20 bg-white p-6 shadow-sm">

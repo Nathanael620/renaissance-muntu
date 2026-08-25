@@ -22,8 +22,11 @@ const images: Record<string, string> = {
 
 /** Pages dédiées des piliers (lien interne via pushState). */
 const pillarRoutes: Record<string, string> = {
+  "renaissance-des-peuples": "/#piliers",
   elimba: "/elimba",
   "bibliotheque-muntu": "/bibliotheque",
+  "transmission-muntu": "/transmission-muntu",
+  "academie-muntu": "/academie-muntu",
 };
 
 function PillarMedallion({ id }: { id: number }) {

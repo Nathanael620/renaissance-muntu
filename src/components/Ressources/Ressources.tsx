@@ -2,6 +2,12 @@ import { BookOpen } from "lucide-react";
 import africaIcon from "../../assets/icons/Africa.png";
 import africaMap from "../../assets/images/Africa.png";
 import { ressources } from "../../data/siteData";
+import { openSocialModal } from "../social/socialModalEvents";
+
+const modalTitles: Record<string, string> = {
+  Vidéos: "Où voir nos vidéos",
+  Podcasts: "Où écouter nos podcasts",
+};
 
 /**
  * Nos Ressources — carte Afrique + liste (maquette)
@@ -39,6 +45,12 @@ export default function Ressources() {
               <a
                 href={item.href}
                 onClick={(event) => {
+                  const opensModal = "opensModal" in item && item.opensModal === true;
+                  if (opensModal) {
+                    event.preventDefault();
+                    openSocialModal(modalTitles[item.label]);
+                    return;
+                  }
                   if (item.href.startsWith("/")) {
                     event.preventDefault();
                     window.history.pushState({}, "", item.href);

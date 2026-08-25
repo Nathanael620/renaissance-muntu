@@ -17,10 +17,10 @@ export const navLinks = [
   { label: "VISION", href: "/#vision" },
   { label: "NOS PILIERS", href: "/#piliers" },
   { label: "BIBLIOTHÈQUE", href: "/bibliotheque" },
-  { label: "ACADÉMIE", href: "#academie" },
-  { label: "TRANSMISSION", href: "#transmission" },
-  { label: "ACTUALITÉS", href: "#actualites" },
-  { label: "RESSOURCES", href: "#ressources" },
+  { label: "ACADÉMIE", href: "/academie-muntu" },
+  { label: "TRANSMISSION", href: "/transmission-muntu" },
+  { label: "ACTUALITÉS", href: "/#actualites" },
+  { label: "RESSOURCES", href: "/#ressources" },
   { label: "CONTACT", href: "#contact" },
 ] as const;
 
@@ -125,9 +125,9 @@ export const actions = [
 
 export const ressources = [
   { label: "Livres & Essais", href: "/bibliotheque#nos-livres" },
-  { label: "Manifestes", href: "#manifestes" },
-  { label: "Vidéos", href: "#videos" },
-  { label: "Podcasts", href: "#podcasts" },
+  { label: "Manifestes", href: "/manifestes" },
+  { label: "Vidéos", href: "#videos", opensModal: true },
+  { label: "Podcasts", href: "#podcasts", opensModal: true },
   { label: "Études & Recherches", href: "#etudes-recherches" },
 ] as const;
 
@@ -166,12 +166,12 @@ export const visionText =
 export const institutIdentite = {
   titre: "",
   sousTitre: "Pour la formation d’une jeunesse consciente, digne et protégée",
-  nom: "POUR LA RENAISSANCE DU MUNTU",
+  nom: " POUR LA RENAISSANCE DU MUNTU",
   natureJuridique: "est non confessionnelle",
   domaines: [
     "éducation",
-    "jeunesse",
-    "cohésion sociale",
+    " jeunesse",
+    " cohésion sociale",
     "prévention de la violence",
     "valorisation culturelle et spirituelle africaine",
   ],
@@ -182,7 +182,7 @@ export const missionInfo = {
   general:
     "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable.",
   explicative:
-    " POUR LA RENAISSANCE DU MUNTU veut répondre aux blessures invisibles laissées par l’histoire (esclavage, colonisation, néocolonisation) en agissant sur la dimension intérieure, mentale, morale et spirituelle de la jeunesse.",
+    "POUR LA RENAISSANCE DU MUNTU veut répondre aux blessures invisibles laissées par l’histoire (esclavage, colonisation, néocolonisation) en agissant sur la dimension intérieure, mentale, morale et spirituelle de la jeunesse.",
   orientations: [
     "Décoloniser l’esprit sans haine",
     "Prévenir la violence et la radicalisation",
@@ -274,23 +274,23 @@ export const footerLinks = {
   departements: [
     { label: "Renaissance des peuples", href: "/" },
     { label: "Elimb'a Dikalo", href: "/elimba" },
-    { label: "Transmission du Ntu ", href: "#transmission" },
-    { label: "Académie du Muntu", href: "#academie" },
+    { label: "Transmission du Ntu ", href: "/transmission-muntu" },
+    { label: "Académie du Muntu", href: "/academie-muntu" },
     { label: "Bibliothèque du Muntu", href: "/bibliotheque" },
   ],
   ressources: [
     { label: "Livres & Essais", href: "/bibliotheque#nos-livres" },
     { label: "Manifestes", href: "/manifestes" },
-    { label: "Vidéos", href: "#ressources" },
-    { label: "Podcasts", href: "#ressources" },
-    { label: "Etudes & Recherches", href: "#ressources" },
+    { label: "Vidéos", href: "/#ressources" },
+    { label: "Podcasts", href: "/#ressources" },
+    { label: "Etudes & Recherches", href: "/#ressources" },
   ],
   actualites: [
-    { label: "Actualités", href: "#actualites" },
-    { label: "Événements", href: "#actualites" },
-    { label: "Communiqués", href: "#actualites" },
-    { label: "Galerie", href: "#actualites" },
-    { label: "Presse", href: "#actualites" },
+    { label: "Actualités", href: "/#actualites" },
+    { label: "Événements", href: "/#actualites" },
+    { label: "Communiqués", href: "/#actualites" },
+    { label: "Galerie", href: "/#actualites" },
+    { label: "Presse", href: "/#actualites" },
   ],
 } as const;
 

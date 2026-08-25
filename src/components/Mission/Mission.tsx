@@ -20,7 +20,8 @@ export default function Mission() {
             « {institutIdentite.sousTitre} »
           </p>
           <p className="mx-auto mt-4 max-w-3xl font-sans text-sm leading-7 text-anthracite md:text-base">
-            {institutIdentite.nom}, {institutIdentite.natureJuridique}, œuvrant dans les domaines suivant: {institutIdentite.domaines.join(", ")}.
+            {institutIdentite.nom}, {institutIdentite.natureJuridique}, œuvrant dans les
+            domaines suivants: {institutIdentite.domaines.join(", ")}.
           </p>
         </div>
 

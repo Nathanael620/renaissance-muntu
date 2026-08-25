@@ -9,9 +9,16 @@ export default function Soutenir() {
       <SupportHero />
 
       <section className="mx-auto max-w-[1200px]">
-        <h2 className="font-serif text-2xl font-semibold text-vert">Pourquoi nous soutenir ?</h2>
-        <p className="mt-3 max-w-3xl text-sm text-anthracite">Votre soutien permet de financer des formations, des rencontres publiques, des publications et des programmes éducatifs.</p>
-
+        <p className="max-w-4xl font-sans text-sm leading-relaxed text-anthracite md:text-base">
+          <span className="font-bold text-vert">
+            ELIMB’A DIKALO POUR LA RENAISSANCE DU MUNTU,
+          </span>{" "}
+          Une initiative de Mener Autrement, est un Programme d’éducation, de dialogue interculturel
+          et de prévention des fractures communautaires.
+        </p>
+        <p className="mt-3 max-w-3xl font-sans text-sm font-bold uppercase tracking-wide text-vert italic">
+          FORMULAIRE ÉMIS APRÈS PAIEMENT ET REÇU PAR COURRIEL LE DONNATEUR ET PAR NOUS
+        </p>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <DonationCard />
           <PartnershipCard />

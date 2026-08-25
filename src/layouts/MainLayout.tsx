@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactModal from "../components/ContactModal/ContactModal";
+import SocialModal from "../components/social/SocialModal";
 
 /**
  * Layout principal — header sticky + footer institutionnel
@@ -13,6 +14,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <Footer />
       <ContactModal />
+      <SocialModal />
     </div>
   );
 }
