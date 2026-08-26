@@ -402,6 +402,81 @@ export const manifestes: Manifesto[] = [
       ],
     },
   },
+  {
+    slug: "le-muntu-ne-s-agenouille-pas",
+    title: "Manifeste du Muntu",
+    subtitle: "Le Muntu ne s’agenouille pas",
+    badge: "À lire",
+    preamble: {
+      title: "Introduction",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "On a tenté de faire croire au Muntu qu’il était périphérique.",
+        },
+        {
+          type: "paragraph",
+          text: "Qu’il était une note de bas de page dans l’histoire du monde.",
+        },
+        {
+          type: "paragraph",
+          text: "Qu’il devait recevoir le sacré d’ailleurs.",
+        },
+        { type: "paragraph", text: "Mais le Muntu n’est pas vide." },
+        { type: "paragraph", text: "Le Muntu est force." },
+        { type: "paragraph", text: "Le Muntu est relation." },
+        { type: "paragraph", text: "Le Muntu est mémoire." },
+        { type: "paragraph", text: "Le Muntu est verticalité." },
+        {
+          type: "paragraph",
+          text: "Dire « Dieu est africain » n’est pas une revendication raciale.",
+        },
+        {
+          type: "paragraph",
+          text: "C’est dire : Le sacré n’a jamais quitté cette terre.",
+        },
+        {
+          type: "paragraph",
+          text: "Dire « l’Africain est Dieu » n’est pas idolâtrie.",
+        },
+        {
+          type: "paragraph",
+          text: "C’est dire : Le Muntu porte en lui la flamme du divin.",
+        },
+        { type: "paragraph", text: "Mais attention." },
+        {
+          type: "paragraph",
+          text: "Si le Muntu est porteur du sacré, alors :",
+        },
+        {
+          type: "bulletList",
+          items: [
+            "Il ne peut pas vivre dans la petitesse.",
+            "Il ne peut pas vendre sa terre.",
+            "Il ne peut pas trahir sa communauté.",
+            "Il ne peut pas servir l’oppression.",
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "Car chaque trahison est une rupture du lien sacré.",
+        },
+      ],
+    },
+    sections: [],
+    finalDeclaration: {
+      title: "Déclaration finale",
+      blocks: [
+        { type: "paragraph", text: "Le Muntu n’est pas un slogan." },
+        { type: "paragraph", text: "Il est une exigence." },
+      ],
+    },
+    references: {
+      title: "Repères (pour approfondir)",
+      shortLabel: "Repères",
+      items: [],
+    },
+  },
 ];
 
 /** Récupère un manifeste par son slug d'URL. */

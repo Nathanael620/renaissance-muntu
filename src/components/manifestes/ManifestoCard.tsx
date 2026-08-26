@@ -1,5 +1,8 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import type { Manifesto } from "../../data/manifestesData";
+import renaissanceLogo from "../../assets/images/1.png";
+import elimbaLogo from "../../assets/images/3.png";
+import zeroRevengeLogo from "../../assets/icons/zero-revenge-books.jpeg";
 
 /** Navigation interne maison (pushState + routechange). */
 function navigate(href: string) {
@@ -41,7 +44,23 @@ export default function ManifestoCard({
             }}
           />
 
-          <span className="relative break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
+          {/* Logo Renaissance du Muntu — haut gauche */}
+          <img
+            src={renaissanceLogo}
+            alt="Logo Pour la Renaissance du Muntu"
+            className="absolute left-1 top-2 z-10 h-20 w-20 object-contain drop-shadow-md sm:h-24 sm:w-24"
+            loading="lazy"
+          />
+
+          {/* Logo Elimb'a Dikalo — haut droite */}
+          <img
+            src={elimbaLogo}
+            alt="Logo Elimb'a Dikalo"
+            className="absolute right-1 top-2 z-10 h-20 w-20 object-contain drop-shadow-md sm:h-24 sm:w-24"
+            loading="lazy"
+          />
+
+          <span className="relative mx-auto max-w-full break-words self-center text-center font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
             Manifeste
           </span>
 
@@ -59,7 +78,15 @@ export default function ManifestoCard({
             ) : null}
           </div>
 
-          <span className="relative h-px w-12 bg-or/60" aria-hidden />
+          <span className="relative h-px w-12 self-start bg-or/60" aria-hidden />
+
+          {/* Logo Zero Revenge Books — bas droite */}
+          <img
+            src={zeroRevengeLogo}
+            alt="Logo Zero Revenge Books"
+            className="absolute bottom-3 right-3 z-10 h-22 w-22 rounded-full bg-white/20 object-contain p-1 shadow-md sm:h-24 sm:w-24 sm:p-1.5"
+            loading="lazy"
+          />
         </div>
       </div>
 

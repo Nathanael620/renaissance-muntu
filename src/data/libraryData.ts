@@ -72,7 +72,7 @@ export const libraryItems: LibraryItem[] = [
   {
     id: "livre-001",
     category: "livre",
-    title: "Le Magnificat de la pensée VF",
+    title: "Le Magnificat de la pensée blanche",
     // TODO: renseigner l'auteur
     author: "À communiquer",
     cover: magnificatFrCover,
@@ -86,7 +86,7 @@ export const libraryItems: LibraryItem[] = [
   {
     id: "livre-002",
     category: "livre",
-    title: "Le Magnificat de la pensée VE",
+    title: "Le Magnificat de la pensée Blanche",
     // TODO: renseigner l'auteur
     author: "À communiquer",
     cover: magnificatEnCover,
@@ -100,7 +100,7 @@ export const libraryItems: LibraryItem[] = [
   {
     id: "livre-003",
     category: "livre",
-    title: "L'Africain",
+    title: "L'Africain plus Résistant que le titane",
     // TODO: renseigner l'auteur
     author: "À communiquer",
     cover: africainCover,

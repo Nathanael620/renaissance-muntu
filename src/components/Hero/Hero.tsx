@@ -3,6 +3,7 @@ import heroBg from "../../assets/images/hero.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
 import { heroContent } from "../../data/siteData";
 import { cn } from "../../utils/cn";
+import { navigateTo } from "../../utils/navigate";
 
 /**
  * Hero — maquette2
@@ -116,7 +117,8 @@ export default function Hero() {
                   {pillarCard.keywords}
                 </p>
                 <a
-                  href="elimba"
+                  href="/elimba"
+                  onClick={(event) => navigateTo(event, "/elimba")}
                   className="btn-or mt-3 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-wide"
                 >
                   {pillarCard.cta}

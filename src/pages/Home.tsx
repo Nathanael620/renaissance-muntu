@@ -10,6 +10,7 @@ import ParcoursUtilisateur from "../components/ParcoursUtilisateur";
 import Piliers from "../components/Piliers";
 import Ressources from "../components/Ressources";
 import Vision from "../components/Vision";
+import VisionIntro from "../components/VisionIntro";
 
 /**
  * Page Accueil — enchaînement DCFT §9.1 + maquette2 (colonne centrale)
@@ -25,6 +26,9 @@ export default function Home() {
       <Hero />
       <CitationFinale />
       <Piliers />
+
+      {/* Présentation introductive de la vision (après les 5 piliers) */}
+      <VisionIntro />
 
       {/* Grille Vision / Actions / Ressources / Engagement */}
       <section

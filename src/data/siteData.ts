@@ -5,7 +5,7 @@
 export const brand = {
   name: "POUR LA RENAISSANCE DU MUNTU",
   shortName: "MUNTU",
-  tagline: "Pour la formation d’une jeunesse consciente, digne et protégée",
+  tagline: "Une vision africaine de la renaissance de l'être humain, des peuples et de la civilisation",
   slogan: "Pour la formation d’une jeunesse consciente, digne et protégée",
   citation:
     "La renaissance des peuples commence toujours par la renaissance de la conscience"
@@ -26,9 +26,8 @@ export const navLinks = [
 
 export const heroContent = {
   titleLines: ["POUR LA", "RENAISSANCE", "DU MUNTU"],
-  subtitle: "Pour la formation d’une jeunesse consciente, digne et protégée",
-  body:
-    "Former et accompagner les jeunes afin de restaurer leur dignité intérieure (MUNTU), activer leur force vitale et leur discernement (NTU), et favoriser l’émergence d’une jeunesse africaine consciente, non violente, responsable et actrice de paix durable.",
+  subtitle: "Une vision africaine de la renaissance de l'être humain, des peuples et de la civilisation",
+  body:" Nous croyons que les grandes transformations commencent toujours par une transformation intérieure. Aucun peuple ne peut bâtir une paix durable sans vérité.Aucune nation ne peut s'élever sans responsabilité.Aucune civilisation ne peut traverser les siècles sans transmettre ce qui nourrit son âme.",
   ctaPrimary: "DÉCOUVRIR LA VISION",
   ctaSecondary: "EXPLORER NOS PILIERS",
   pillarCard: {
