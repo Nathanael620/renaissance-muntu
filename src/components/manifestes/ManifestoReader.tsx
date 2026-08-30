@@ -174,10 +174,40 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
 
   const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "error">("idle");
 
-  const canShare = typeof navigator !== "undefined" && "share" in navigator;
+  const canShare =
+    typeof navigator !== "undefined" && typeof navigator.share === "function";
   const canCopy =
     typeof navigator !== "undefined" &&
-    typeof navigator.clipboard?.writeText === "function";
+    (typeof navigator.clipboard?.writeText === "function" ||
+      typeof document.execCommand === "function");
+
+  /**
+   * Copie fiable : Clipboard API d'abord, puis repli sur `execCommand("copy")`
+   * (anciens navigateurs, iframes, contextes sans permission clipboard).
+   */
+  const copyLink = async (text: string): Promise<void> => {
+    if (
+      typeof navigator !== "undefined" &&
+      typeof navigator.clipboard?.writeText === "function"
+    ) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch {
+        /* On retombe sur le repli ci-dessous. */
+      }
+    }
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(textarea);
+    if (!ok) throw new Error("copy-failed");
+  };
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -185,24 +215,26 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
       try {
         await navigator.share({
           title: manifesto.title,
-          text: `${manifesto.title} — ${manifesto.subtitle}`,
+          text: `${manifesto.title} — ${manifesto.subtitle}`.replace(/\n+/g, " "),
           url,
         });
-      } catch {
-        /* Partage annulé par l'utilisateur : rien à faire. */
-      }
-      return;
-    }
-    if (canCopy) {
-      try {
-        await navigator.clipboard.writeText(url);
-        setShareStatus("copied");
-        setTimeout(() => setShareStatus("idle"), 2500);
-      } catch {
-        setShareStatus("error");
-        setTimeout(() => setShareStatus("idle"), 2500);
+        return;
+      } catch (error) {
+        /* L'utilisateur a annulé la fenêtre de partage : rien à faire. */
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+        /* Échec du partage natif (desktop, contexte non sécurisé…) :
+           repli sur la copie du lien dans le presse-papiers. */
       }
     }
+    try {
+      await copyLink(url);
+      setShareStatus("copied");
+    } catch {
+      setShareStatus("error");
+    }
+    setTimeout(() => setShareStatus("idle"), 2500);
   };
 
   return (

@@ -17,6 +17,8 @@ export default function Navbar() {
   const [pathname, setPathname] = useState(window.location.pathname);
   const menuId = useId();
   const isSupportPage = pathname === "/soutenir";
+  /* Pages de consultation d'un ouvrage : navbar à fond constant comme sur /soutenir. */
+  const isConsultationPage = pathname.startsWith("/bibliotheque/consulter/");
 
   useEffect(() => {
     const onRouteChange = () => setPathname(window.location.pathname);
@@ -52,7 +54,8 @@ export default function Navbar() {
         /* Mobile : fond blanc solide (maquette) */
         "bg-white lg:bg-transparent",
         /* Desktop scroll : fond vert semi-opaque pour lisibilité */
-        (scrolled || isSupportPage) && "lg:bg-vert/90 lg:backdrop-blur-sm lg:shadow-md",
+        (scrolled || isSupportPage || isConsultationPage) &&
+          "lg:bg-vert/90 lg:backdrop-blur-sm lg:shadow-md",
       )}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:px-8 lg:py-3">
