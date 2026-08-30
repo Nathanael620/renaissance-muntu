@@ -73,27 +73,29 @@ export const libraryItems: LibraryItem[] = [
     id: "livre-001",
     category: "livre",
     title: "Le Magnificat de la pensée blanche",
-    // TODO: renseigner l'auteur
-    author: "À communiquer",
+    author: "Oscar Elimby",
     cover: magnificatFrCover,
     language: "Français",
-    // price: 5000, // TODO: renseigner le prix définitif (FCFA)
+    price: 14000,
     currency: "FCFA",
-    // shopUrl: "https://app.chariow.com/...", // TODO: URL Chariow du livre
+    shopUrl: "https://ycjmkfmn.mychariow.com/prd_884nk6hy",
+    edition: "Zero Revenge Books",
+    pages: "312",
     backCoverText: magnificatVfBackCoverText,
     // summary: "..." // TODO: présentation détaillée
   },
   {
     id: "livre-002",
     category: "livre",
-    title: "Le Magnificat de la pensée Blanche",
-    // TODO: renseigner l'auteur
-    author: "À communiquer",
+    title: "The Magnificate Of White Thought Manuscript",
+    author: "Oscar Elimby",
     cover: magnificatEnCover,
     language: "English",
-    // price: 5000, // TODO: renseigner le prix définitif (FCFA)
+    price: 14000,
     currency: "FCFA",
-    // shopUrl: "https://app.chariow.com/...", // TODO: URL Chariow du livre
+    shopUrl: "https://ycjmkfmn.mychariow.com/prd_n8j2nhhx",
+    edition: "Zero Revenge Books",
+    pages: "290",
     backCover: magnificatVeBackCover,
     // summary: "..." // TODO: présentation détaillée
   },
@@ -101,13 +103,14 @@ export const libraryItems: LibraryItem[] = [
     id: "livre-003",
     category: "livre",
     title: "L'Africain plus Résistant que le titane",
-    // TODO: renseigner l'auteur
-    author: "À communiquer",
+    author: "Oscar Elimby",
     cover: africainCover,
     language: "Français",
-    // price: 5000, // TODO: renseigner le prix définitif (FCFA)
+    price: 14000,
     currency: "FCFA",
-    // shopUrl: "https://app.chariow.com/...", // TODO: URL Chariow du livre
+    edition: "Zero Revenge Books",
+    // TODO: URL Chariow de ce livre dès qu'elle sera fournie :
+    // shopUrl: "https://app.chariow.com/...",
     // backCover: ... // TODO: visuel de la 4e de couverture à fournir
     // summary: "..." // TODO: présentation détaillée
   },

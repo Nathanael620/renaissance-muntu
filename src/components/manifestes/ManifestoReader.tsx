@@ -1,6 +1,10 @@
 import { useMemo, useState } from "react";
-import { ArrowLeft, Check, Share2 } from "lucide-react";
-import type { Manifesto, ManifestoBlock } from "../../data/manifestesData";
+import { ArrowLeft, Check, Lock, Share2, ShoppingBag, UserRound } from "lucide-react";
+import type {
+  Manifesto,
+  ManifestoBlock,
+  ManifestoSection,
+} from "../../data/manifestesData";
 import ManifestoProgress from "./ManifestoProgress";
 import ManifestoToc, { type ManifestoTocItem } from "./ManifestoToc";
 
@@ -85,12 +89,20 @@ function renderBlock(block: ManifestoBlock, index: number) {
   );
 }
 
+/** Tranche d'aperçu : un en-tête de section + les blocs exposés librement. */
+interface PreviewSlice {
+  id: string;
+  section: ManifestoSection;
+}
+
 /**
  * Lecteur générique de manifeste — reçoit un Manifesto et l'affiche sans
  * aucune logique liée à un titre précis (extensible à tout nouveau texte).
  */
 export default function ManifestoReader({ manifesto }: { manifesto: Manifesto }) {
   const { slug } = manifesto;
+  const isPaywalled = manifesto.paywall === true;
+  const previewBlocks = manifesto.previewBlocks ?? 6;
 
   const ids = useMemo(() => {
     return {
@@ -101,7 +113,44 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
     };
   }, [slug, manifesto.sections]);
 
+  const priceLabel =
+    manifesto.price != null
+      ? `${manifesto.price.toLocaleString("fr-FR")} ${manifesto.currency ?? ""}`.trim()
+      : null;
+
+  /**
+   * Aperçu libre d'un manifeste payant : les `previewBlocks` premiers blocs
+   * (préambule puis première(s) section(s)) ; le reste du texte reste payant.
+   */
+  const previewSlices = useMemo<PreviewSlice[]>(() => {
+    if (!isPaywalled) return [];
+    const ordered: { id: string; section: ManifestoSection }[] = [
+      { id: ids.preamble, section: manifesto.preamble },
+      ...manifesto.sections.map((section, index) => ({
+        id: ids.sections[index],
+        section,
+      })),
+    ];
+    const slices: PreviewSlice[] = [];
+    let remaining = previewBlocks;
+    for (const { id, section } of ordered) {
+      if (remaining <= 0) break;
+      const take = Math.min(section.blocks.length, remaining);
+      if (take <= 0) continue;
+      slices.push({ id, section: { ...section, blocks: section.blocks.slice(0, take) } });
+      remaining -= take;
+    }
+    return slices;
+  }, [ids, manifesto, isPaywalled, previewBlocks]);
+
   const tocItems = useMemo<ManifestoTocItem[]>(() => {
+    if (isPaywalled) {
+      return previewSlices.map((slice) => ({
+        id: slice.id,
+        label: slice.section.shortLabel ?? slice.section.title,
+        number: slice.section.number,
+      }));
+    }
     return [
       {
         id: ids.preamble,
@@ -121,7 +170,7 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
         label: manifesto.references.shortLabel ?? "Repères",
       },
     ];
-  }, [ids, manifesto]);
+  }, [ids, manifesto, isPaywalled, previewSlices]);
 
   const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "error">("idle");
 
@@ -204,6 +253,12 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               {manifesto.inspiration}
             </p>
           ) : null}
+          {manifesto.author ? (
+            <p className="mt-6 inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-or-clair">
+              <UserRound className="h-3.5 w-3.5" aria-hidden />
+              {manifesto.author}
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -213,7 +268,26 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
           <ManifestoToc items={tocItems} />
 
           <article className="mx-auto w-full max-w-[840px]">
-            <section
+            {isPaywalled && previewSlices.length > 0 ? (
+              previewSlices.map((slice, sliceIndex) => (
+                <section
+                  key={slice.id}
+                  id={slice.id}
+                  className={
+                    sliceIndex === 0
+                      ? "scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-6 py-8 shadow-sm sm:px-8"
+                      : "scroll-mt-28 pt-8"
+                  }
+                >
+                  <SectionHeading id={slice.id} section={slice.section} />
+                  <div className="mt-5 space-y-2">
+                    {slice.section.blocks.map((block, index) => renderBlock(block, index))}
+                  </div>
+                </section>
+              ))
+            ) : (
+              <>
+                <section
               id={ids.preamble}
               className="scroll-mt-28 rounded-[1.5rem] border border-or/20 bg-creme-clair px-6 py-8 shadow-sm sm:px-8"
             >
@@ -288,7 +362,86 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
                   ))}
                 </ul>
               )}
-            </section>
+                </section>
+              </>
+            )}
+
+            {isPaywalled ? (
+              <section
+                className="relative mt-8 overflow-hidden rounded-[2rem] border border-or/40 bg-vert-profond px-6 py-12 text-center shadow-lg sm:px-10"
+                aria-labelledby="paywall-titre"
+              >
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.07]"
+                  aria-hidden
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 20% 15%, #d4a84b 0%, transparent 40%), radial-gradient(circle at 85% 85%, #f5f1e6 0%, transparent 35%)",
+                  }}
+                />
+                <div className="relative mx-auto max-w-[560px]">
+                  <span
+                    className="inline-flex items-center justify-center rounded-full border border-or/40 bg-or/10 p-3"
+                    aria-hidden
+                  >
+                    <Lock className="h-5 w-5 text-or-clair" />
+                  </span>
+                  <h2
+                    id="paywall-titre"
+                    className="mt-5 font-serif text-2xl font-semibold uppercase tracking-wide text-white sm:text-3xl"
+                  >
+                    Texte intégral réservé aux lecteurs
+                  </h2>
+                  <p className="mt-4 font-sans text-sm leading-relaxed text-white/85">
+                    Ce manifeste n&apos;est plus consulté gratuitement dans son
+                    intégralité. Vous venez de lire un aperçu — le texte complet
+                    est accessible après achat sur notre boutique.
+                  </p>
+
+                  <div className="mt-7">
+                    {priceLabel ? (
+                      <p className="inline-flex items-center rounded-full border border-or/40 bg-or/10 px-6 py-2 font-serif text-2xl font-bold text-or-clair">
+                        {priceLabel}
+                      </p>
+                    ) : (
+                      <p className="inline-flex items-center rounded-full border border-or-fonce/40 bg-or/10 px-6 py-2 font-sans text-xs font-bold uppercase tracking-[0.14em] text-white/85">
+                        Prix à définir
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="mt-7">
+                    {manifesto.shopUrl ? (
+                      <a
+                        href={manifesto.shopUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-or inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg transition-transform duration-300 hover:-translate-y-0.5"
+                      >
+                        <ShoppingBag className="h-4 w-4" aria-hidden />
+                        Acheter le manifeste
+                      </a>
+                    ) : (
+                      <div>
+                        <button
+                          type="button"
+                          disabled
+                          aria-disabled="true"
+                          title="Achat Chariow — disponible prochainement"
+                          className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-full px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-lg"
+                        >
+                          <ShoppingBag className="h-4 w-4" aria-hidden />
+                          Acheter le manifeste
+                        </button>
+                        <p className="mt-3 font-sans text-[10px] font-medium uppercase tracking-wide text-white/70">
+                          Achat disponible prochainement
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+            ) : null}
 
             <section className="print:hidden mt-16 flex flex-col items-center gap-4 text-center">
               <span className="h-px w-24 bg-or/40" aria-hidden />

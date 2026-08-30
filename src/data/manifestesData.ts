@@ -8,6 +8,13 @@
  * Architecture générique : ajouter un manifeste revient à ajouter une
  * entrée dans le tableau `manifestes` — aucun composant n'a besoin d'être
  * modifié pour afficher un nouveau texte.
+ *
+ * Règles (identiques aux livres de `libraryData.ts`) :
+ * - Les prix ne sont jamais inventés : non renseigné => « PRIX À DÉFINIR ».
+ * - Les URLs Chariow individuelles ne sont jamais inventées : non renseignée
+ *   => bouton « ACHETER » désactivé (« Achat disponible prochainement »).
+ * - Un manifeste payant (`paywall: true`) n'expose que son aperçu en lecture
+ *   libre ; le texte intégral est accessible après achat sur Chariow.
  */
 
 /** Bloc de contenu d'une section d'un manifeste. */
@@ -56,6 +63,22 @@ export interface Manifesto {
   inspiration?: string;
   /** Étiquette courte affichée sur la carte (ex. « À lire »). */
   badge?: string;
+  /** Auteur du manifeste (affiché sur la carte et dans le lecteur). */
+  author?: string;
+  /**
+   * Manifeste payant : seule l'aperçu (extrait) est en lecture libre, le
+   * texte intégral s'obtient via la boutique Chariow.
+   * Absent => lecture gratuite conservée.
+   */
+  paywall?: boolean;
+  /** Prix en devise locale — non renseigné => « PRIX À DÉFINIR ». */
+  price?: number;
+  /** Devise du prix (ex. « FCFA »). */
+  currency?: string;
+  /** URL Chariow individuelle — absente => bouton « ACHETER » désactivé. */
+  shopUrl?: string;
+  /** Nombre de blocs présentés en aperçu libre avant le paywall (défaut : 6). */
+  previewBlocks?: number;
   preamble: ManifestoSection;
   sections: ManifestoSection[];
   finalDeclaration: ManifestoSection;
@@ -68,6 +91,11 @@ export const manifestes: Manifesto[] = [
     title: "Manifeste révolutionnaire",
     subtitle: "L’Afrique n’était pas à civiliser\nIl était à neutraliser",
     badge: "À lire",
+    author: "Oscar Elimby",
+    paywall: true,
+    price: 14000,
+    currency: "FCFA",
+    shopUrl: "https://ycjmkfmn.mychariow.com/prd_ijgbiwjh",
     preamble: {
       title: "Introduction",
       blocks: [
@@ -293,6 +321,11 @@ export const manifestes: Manifesto[] = [
     subtitle: "Se souvenir pour se tenir debout",
     inspiration: "Inspiré de la pensée de Cheikh Anta Diop",
     badge: "À lire",
+    author: "Oscar Elimby",
+    paywall: true,
+    price: 14000,
+    currency: "FCFA",
+    shopUrl: "https://ycjmkfmn.mychariow.com/prd_2tfpnjlb",
     preamble: {
       title: "Préambule",
       blocks: [
@@ -407,6 +440,11 @@ export const manifestes: Manifesto[] = [
     title: "Manifeste du Muntu",
     subtitle: "Le Muntu ne s’agenouille pas",
     badge: "À lire",
+    author: "Oscar Elimby",
+    paywall: true,
+    price: 14000,
+    currency: "FCFA",
+    shopUrl: "https://ycjmkfmn.mychariow.com/prd_9168ut8g",
     preamble: {
       title: "Introduction",
       blocks: [

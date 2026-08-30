@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Eye, ShoppingBag } from "lucide-react";
 import type { Manifesto } from "../../data/manifestesData";
 
 /** Navigation interne maison (pushState + routechange). */
@@ -11,6 +11,10 @@ function navigate(href: string) {
  * Carte d'un manifeste — composition graphique éditoriale (aucune image
  * de couverture n'est utilisée). Le visuel reprend la charte du site :
  * écrin vert profond, filet doré, typographie serif.
+ *
+ * - Manifeste payant (`paywall: true`) : prix affiché (ou « PRIX À DÉFINIR »)
+ *   + bouton « ACHETER » (boutique Chariow) + bouton « LIRE UN EXTRAIT ».
+ * - Manifeste gratuit : bouton « LIRE LE MANIFESTE » unique.
  */
 export default function ManifestoCard({
   manifesto,
@@ -20,6 +24,15 @@ export default function ManifestoCard({
   index?: number;
 }) {
   const href = `/manifestes/${manifesto.slug}`;
+  const isPaywalled = manifesto.paywall === true;
+  const hasShopUrl = Boolean(manifesto.shopUrl);
+
+  const priceLabel =
+    manifesto.price != null
+      ? `${manifesto.price.toLocaleString("fr-FR")} ${manifesto.currency ?? ""}`.trim()
+      : null;
+
+  const readLabel = isPaywalled ? "Lire un extrait" : "Lire le manifeste";
 
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-or/25 bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-or/50 hover:shadow-[0_20px_40px_-16px_rgba(13,40,24,0.35)]">
@@ -76,18 +89,85 @@ export default function ManifestoCard({
             {manifesto.badge}
           </span>
         ) : null}
+        {manifesto.author ? (
+          <p className="mt-2 font-sans text-sm text-anthracite/85">
+            <span className="font-semibold text-vert">Auteur&nbsp;: </span>
+            {manifesto.author}
+          </p>
+        ) : null}
 
-        <a
-          href={href}
-          onClick={(event) => {
-            event.preventDefault();
-            navigate(href);
-          }}
-          className="btn-or mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
-        >
-          Lire le manifeste
-          <ArrowRight className="h-4 w-4" aria-hidden />
-        </a>
+        {isPaywalled ? (
+          <>
+            {/* Prix */}
+            <div className="mt-auto w-full pt-5">
+              {priceLabel ? (
+                <p className="inline-flex items-center rounded-full border border-or/30 bg-or/5 px-4 py-1.5 font-serif text-xl font-bold text-or-fonce">
+                  {priceLabel}
+                </p>
+              ) : (
+                <p className="inline-flex items-center rounded-full border border-or-fonce/40 bg-or/10 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-or-fonce">
+                  Prix à définir
+                </p>
+              )}
+            </div>
+
+            {/* Actions : Acheter (Chariow) + Lire un extrait (page détail) */}
+            <div className="mt-5 w-full">
+              <div className="grid grid-cols-2 gap-3">
+                {hasShopUrl ? (
+                  <a
+                    href={manifesto.shopUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-or inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
+                  >
+                    <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
+                    Acheter
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    disabled
+                    aria-disabled="true"
+                    title="Achat Chariow — disponible prochainement"
+                    className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-md"
+                  >
+                    <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
+                    Acheter
+                  </button>
+                )}
+                <a
+                  href={href}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    navigate(href);
+                  }}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full border border-vert px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors duration-300 hover:bg-vert hover:text-white"
+                >
+                  <Eye className="h-3.5 w-3.5" aria-hidden />
+                  {readLabel}
+                </a>
+              </div>
+              {!hasShopUrl ? (
+                <p className="mt-2 text-center font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
+                  Achat disponible prochainement
+                </p>
+              ) : null}
+            </div>
+          </>
+        ) : (
+          <a
+            href={href}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate(href);
+            }}
+            className="btn-or mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
+          >
+            {readLabel}
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </a>
+        )}
       </div>
     </article>
   );
