@@ -51,7 +51,7 @@ export default function Bibliotheque() {
               Bibliothèque du Muntu
             </h1>
             <p className="mt-6 max-w-xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-              Une sélection d’ouvrages et de ressources qui transmettent la
+              Une sélection d&apos;ouvrages et de ressources qui transmettent la
               pensée, la culture, les connaissances et la vision du Muntu.
             </p>
 
@@ -88,7 +88,7 @@ export default function Bibliotheque() {
               />
             </div>
             <p className="mt-4 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-or-clair">
-              Maison d’édition 
+              Maison d&apos;édition 
             </p>
             <p className="mt-1 font-serif text-lg font-semibold uppercase leading-tight text-white">
               Zero Revenge Books
@@ -118,7 +118,7 @@ export default function Bibliotheque() {
             qui portent la pensée, la culture, les connaissances et la vision
             du Muntu. Chaque livre est une fenêtre ouverte sur un héritage
             fécond — une invitation à découvrir puis à transmettre ce qui
-            nourrit l’âme des peuples.
+            nourrit l&apos;âme des peuples.
           </p>
         </div>
       </section>
@@ -262,7 +262,7 @@ export default function Bibliotheque() {
             </h2>
             <p className="mt-2 font-sans text-sm leading-relaxed text-white/85">
               Retrouvez tous les ouvrages de la Bibliothèque du Muntu, les
-              nouvelles parutions de notre maison d’édition et les
+              nouvelles parutions de notre maison d&apos;édition et les
               prochaines sorties sur la boutique Chariow.
             </p>
           </div>
