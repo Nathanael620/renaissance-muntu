@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirection…</title>
+    <script>
+      /* SPA fallback — GitHub Pages (et tout hébergement sans réécriture serveur).
+         Ce fichier 404.html est servi par le serveur pour toute route inconnue
+         (liens profonds partagés : /manifestes/…, /bibliotheque/consulter/…).
+         On mémorise le chemin réel puis on charge l'application : main.tsx
+         restaurera l'URL avant le rendu, le routeur client prendra le relais. */
+      (function () {
+        try {
+          sessionStorage.setItem(
+            "spa:fallback-path",
+            window.location.pathname +
+              window.location.search +
+              window.location.hash,
+          );
+        } catch (_) {
+          /* stockage indisponible : rien à faire */
+        }
+        window.location.replace("/index.html");
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

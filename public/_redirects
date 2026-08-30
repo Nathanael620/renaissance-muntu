@@ -1,0 +1,4 @@
+# SPA fallback — Cloudflare Pages / Netlify.
+# Toute route inconnue (liens profonds partagés : /bibliotheque/consulter/…, /manifestes/…)
+# est servie via index.html afin que le routing client-side (pushState) prenne le relais.
+/*    /index.html   200
