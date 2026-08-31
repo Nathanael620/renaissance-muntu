@@ -128,7 +128,7 @@ export default function Navbar() {
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
               <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
             </span>
-            <span className="hidden xl:inline">Soutenir le Mouvement</span>
+            <span className="hidden xl:inline">Soutenir la vision</span>
             <span className="xl:hidden">Soutenir la vision</span>
           </SupportButton>
 
