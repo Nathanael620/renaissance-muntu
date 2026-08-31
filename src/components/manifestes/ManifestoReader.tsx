@@ -291,6 +291,7 @@ export default function ManifestoReader({ manifesto }: { manifesto: Manifesto })
               {manifesto.author}
             </p>
           ) : null}
+
         </div>
       </section>
 

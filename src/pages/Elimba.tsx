@@ -79,10 +79,10 @@ export default function Elimba() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/80" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-[1440px] gap-12 px-6 pt-40 pb-16 md:grid-cols-[auto_minmax(0,1.2fr)] md:items-center md:gap-16 md:pt-48 md:pb-24 lg:px-10 lg:pt-56 lg:pb-28 xl:gap-28">
-          <div className="max-w-2xl md:order-last md:ml-8 lg:ml-20 xl:ml-36 2xl:ml-44">
-            <p className="font-sans text-lg font-semibold uppercase tracking-[0.28em] text-white sm:text-xl">
-              ELIMB’A DIKALO
+        <div className="relative mx-auto grid max-w-[1440px] gap-6 px-6 pt-28 pb-10 md:grid-cols-[minmax(280px,440px)_minmax(0,1fr)] md:items-center md:gap-8 md:pt-32 md:pb-16 lg:px-10 lg:pt-36 lg:pb-14 xl:gap-14">
+          <div className="max-w-2xl md:order-last md:ml-6 lg:ml-12 xl:ml-20">
+            <p className="font-sans text-xl font-semibold uppercase tracking-[0.18em] text-white sm:text-2xl lg:text-3xl [overflow-wrap:anywhere]">
+              ELIMB&rsquo;A DIKALO
             </p>
             <h1
               id="elimba-hero-title"
@@ -91,7 +91,7 @@ export default function Elimba() {
               Pour la Renaissance du Muntu
             </h1>
             <p className="mt-6 max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-              Placer le dialogue exigeant et la responsabilité collective au cœur de la renaissance. 
+              Placer le dialogue exigeant et la responsabilité collective au cœur de la renaissance.
               Ce pilier fondateur met en lumière les forces qui rendent possible une transformation authentique.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -116,32 +116,44 @@ export default function Elimba() {
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-sm md:max-w-sm md:order-first">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
-              <div className="w-32 shrink-0 md:w-36 lg:w-44">
-                <img src={logo} alt="Logo Elimb'a Dikalo" className="h-auto w-full object-contain" />
-                <p className="mt-3 font-serif text-center text-sm font-semibold leading-tight text-white sm:text-base">
-                  Une même terre. Plusieurs racines. Un seul avenir.
-                </p>
+          <aside className="w-full max-w-[460px] rounded-[1.5rem] border border-white/15 bg-white/10 p-4 text-center shadow-lg backdrop-blur-sm md:order-first md:justify-self-center">
+            <div className="flex w-full flex-col items-center gap-3 sm:gap-4">
+              <div className="w-64 shrink-0 sm:w-72 lg:w-[20rem] xl:w-[22rem]">
+                <img
+                  src={logo}
+                  alt="Logo Elimb'a Dikalo"
+                  className="h-auto w-full object-contain"
+                />
               </div>
-              <div className="min-w-0">
-                <p className="text-[11px] uppercase tracking-[0.28em] text-or-clair">Pilier fondateur</p>
-                <h2 className="mt-2 break-words font-serif text-xl font-semibold uppercase text-white">
-                  Vérité & Dialogue
+
+              <p className="max-w-[18rem] font-serif text-sm italic leading-snug text-white/90 sm:text-base">
+                Une même terre. Plusieurs racines. Un seul avenir.
+              </p>
+
+              <div className="w-full">
+                <p className="font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-or-clair">
+                  Pilier fondateur
+                </p>
+                <h2 className="mt-2 break-words font-serif text-2xl font-semibold uppercase leading-tight text-white sm:text-3xl [overflow-wrap:anywhere]">
+                  Vérité &amp; Dialogue
                 </h2>
               </div>
-            </div>
-            <div className="mt-6 space-y-4 text-sm text-white/85">
-              <p>
-                Elimb’a Dikalo est le volet de la renaissance qui interroge, relie et élève par la parole vraie.
-              </p>
-              <p>
-                Son engagement : écouter les peuples, mesurer les responsabilités et offrir un horizon de conscience partagée.
-              </p>
+
+              <div className="w-full space-y-3 text-sm leading-relaxed text-white/85 sm:text-[0.95rem]">
+                <p>
+                  Elimb&rsquo;a Dikalo est le volet de la renaissance qui interroge, relie et élève par la parole vraie.
+                </p>
+                <p>
+                  Son engagement : écouter les peuples, mesurer les responsabilités et offrir un horizon de conscience partagée.
+                </p>
+              </div>
             </div>
           </aside>
         </div>
       </section>
+
+      {/* Mission — placée directement après le héro */}
+      <div className="space-y-4"><ElimbaMission /><ReturnToNavigation /></div>
 
       <section
         id="elimba-objective"
@@ -251,7 +263,6 @@ export default function Elimba() {
       <div className="space-y-4"><ElimbaPresentation /><ReturnToNavigation /></div>
       <div className="space-y-4"><ElimbaIdee /><ReturnToNavigation /></div>
       <div className="space-y-4"><ElimbaPrincipesDirecteurs /><ReturnToNavigation /></div>
-      <div className="space-y-4"><ElimbaMission /><ReturnToNavigation /></div>
       <div className="space-y-4"><ElimbaDevise /><ReturnToNavigation /></div>
       <div className="space-y-4"><ElimbaPhilosophie /><ReturnToNavigation /></div>
       <div className="space-y-4"><ElimbaVision /><ReturnToNavigation /></div>

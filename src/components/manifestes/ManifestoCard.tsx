@@ -1,4 +1,7 @@
 import { ArrowRight, BookOpen, Eye, ShoppingBag } from "lucide-react";
+import renaissanceLogo from "../../assets/images/3.png";
+import elimbaLogo from "../../assets/images/1.png";
+import publisherLogo from "../../assets/icons/zero-revenge-books.jpeg";
 import type { Manifesto } from "../../data/manifestesData";
 
 /** Navigation interne maison (pushState + routechange). */
@@ -54,11 +57,38 @@ export default function ManifestoCard({
             }}
           />
 
-          <span className="relative break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
+          <div className="absolute inset-x-3 top-3 z-10 flex items-start justify-between gap-2">
+            <div className="flex h-20 w-20 items-center justify-center bg-transparent p-0 shadow-none sm:h-24 sm:w-24 lg:h-28 lg:w-28">
+              <img
+                src={renaissanceLogo}
+                alt="Logo Pour la Renaissance du Muntu"
+                className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
+              />
+            </div>
+            <div className="flex h-20 w-20 items-center justify-center bg-transparent p-0 shadow-none sm:h-24 sm:w-24 lg:h-28 lg:w-28">
+              <img
+                src={elimbaLogo}
+                alt="Logo Elimb'a Dikalo"
+                className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
+              />
+            </div>
+          </div>
+
+          <div className="absolute bottom-3 right-3 z-10 flex items-center justify-end">
+            <div className="flex h-14 w-14 items-center justify-center bg-transparent p-0 shadow-none sm:h-16 sm:w-16 lg:h-20 lg:w-20">
+              <img
+                src={publisherLogo}
+                alt="Logo Zero Revenge Books — maison d'édition"
+                className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
+              />
+            </div>
+          </div>
+
+          <span className="relative z-10 break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
             Manifeste
           </span>
 
-          <div className="relative min-w-0">
+          <div className="relative z-10 min-w-0">
             <h3 className="break-words font-serif text-2xl font-bold uppercase leading-tight text-white [overflow-wrap:anywhere]">
               {manifesto.title}
             </h3>
@@ -72,7 +102,7 @@ export default function ManifestoCard({
             ) : null}
           </div>
 
-          <span className="relative h-px w-12 bg-or/60" aria-hidden />
+          <span className="relative z-10 h-px w-12 bg-or/60" aria-hidden />
         </div>
       </div>
 
