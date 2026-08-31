@@ -193,7 +193,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
           >
             <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
-            Soutenir le Mouvement
+            Soutenir la vision
           </SupportButton>
         </nav>
       </div>

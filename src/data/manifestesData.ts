@@ -93,8 +93,8 @@ export const manifestes: Manifesto[] = [
     badge: "À lire",
     author: "Oscar Elimby",
     paywall: true,
-    price: 14000,
-    currency: "FCFA",
+    price: 36,
+    currency: "CAD",
     shopUrl: "https://ycjmkfmn.mychariow.com/prd_ijgbiwjh",
     preamble: {
       title: "Introduction",
@@ -323,8 +323,8 @@ export const manifestes: Manifesto[] = [
     badge: "À lire",
     author: "Oscar Elimby",
     paywall: true,
-    price: 14000,
-    currency: "FCFA",
+    price: 36,
+    currency: "CAD",
     shopUrl: "https://ycjmkfmn.mychariow.com/prd_2tfpnjlb",
     preamble: {
       title: "Préambule",
@@ -442,8 +442,8 @@ export const manifestes: Manifesto[] = [
     badge: "À lire",
     author: "Oscar Elimby",
     paywall: true,
-    price: 14000,
-    currency: "FCFA",
+    price: 36,
+    currency: "CAD",
     shopUrl: "https://ycjmkfmn.mychariow.com/prd_9168ut8g",
     preamble: {
       title: "Introduction",

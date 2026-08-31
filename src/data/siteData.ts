@@ -153,7 +153,7 @@ export const parcours = [
   },
   {
     title: "ENGAGEMENT",
-    description: "Rejoindre le mouvement",
+    description: "Rejoindre la vision",
     icon: "Users",
   },
 ] as const;

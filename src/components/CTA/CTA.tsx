@@ -20,7 +20,7 @@ export default function CTA() {
             <Users className="h-5 w-5 text-or-clair" aria-hidden />
           </span>
           <h2 className="font-serif text-base font-semibold uppercase tracking-wide text-vert md:text-lg">
-            Rejoindre le mouvement
+            Rejoindre la vision
           </h2>
         </div>
         <div className="mb-4 h-px w-full bg-or/30" aria-hidden />
