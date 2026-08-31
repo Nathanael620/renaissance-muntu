@@ -129,7 +129,7 @@ export default function Navbar() {
               <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
             </span>
             <span className="hidden xl:inline">Soutenir le Mouvement</span>
-            <span className="xl:hidden">Soutenir le Mouvement</span>
+            <span className="xl:hidden">Soutenir la vision</span>
           </SupportButton>
 
           <button
