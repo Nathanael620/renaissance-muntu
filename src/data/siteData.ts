@@ -100,7 +100,7 @@ export const architectureItems = [
     themes: ["Famille", "Jeunesse", "Éducation"],
   },
   {
-    title: "ACADÉMIE MUNTU",
+    title: "ACADÉMIE DU MUNTU",
     subtitle: "",
     themes: ["Conférences", "Formations", "Leadership"],
   },

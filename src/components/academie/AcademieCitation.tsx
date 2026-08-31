@@ -26,7 +26,7 @@ export default function AcademieCitation() {
           africaine juste, digne et agissante.&rdquo;
         </blockquote>
         <p className="mt-4 font-sans text-xs uppercase tracking-[0.2em] text-anthracite/60">
-          Académie Muntu — Pour la Renaissance du Muntu
+          Académie Du Muntu — Pour la Renaissance du Muntu
         </p>
       </div>
     </section>

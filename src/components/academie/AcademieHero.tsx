@@ -16,11 +16,11 @@ export default function AcademieHero() {
       <img
         src={heroBg}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-70"
+        className="absolute inset-0 h-full w-full object-cover"
         fetchPriority="high"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/85" aria-hidden />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-black/55" aria-hidden />
+      <div className="absolute inset-0 bg-black/10" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/10 to-black/30" aria-hidden />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col justify-end px-4 pb-10 pt-36 md:px-8 md:pb-14 md:pt-44 lg:justify-center lg:px-10 lg:pb-16 lg:pt-44 xl:pb-20 xl:pt-52">
         <div className="mx-auto w-full max-w-[920px]">
@@ -44,7 +44,7 @@ export default function AcademieHero() {
               ›
             </span>
             <span className="text-white" aria-current="page">
-              Académie Muntu
+              Académie Du Muntu
             </span>
           </nav>
 
@@ -55,7 +55,7 @@ export default function AcademieHero() {
             id="academie-hero-title"
             className="mt-6 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-[3.35rem] xl:text-6xl"
           >
-            Académie Muntu
+            Académie Du Muntu
           </h1>
           <p className="mt-5 max-w-2xl font-serif text-lg italic text-or-clair sm:text-xl">
             Histoire, cosmologies et reconstruction intérieure au service d&rsquo;une
