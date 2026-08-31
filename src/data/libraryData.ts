@@ -20,7 +20,7 @@ import magnificatVeBackCover from "../assets/images/4eme_de_couverture_magnifica
 
 /** Boutique officielle Chariow — ouverture dans un nouvel onglet. */
 export const CHARIOW_STORE_URL =
-  "https://app.chariow.com/stores/store_8wx36tfpvbwa/home" as const;
+  "https://ycjmkfmn.mychariow.com" as const;
 
 /**
  * TODO: renseigner ici les URLs Chariow individuelles de chaque livre
