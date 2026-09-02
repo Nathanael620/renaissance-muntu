@@ -2,16 +2,25 @@ import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Mail, Phone, Send, X } from "lucide-react";
 import { contact } from "../../data/siteData";
+import { ApiError } from "../../services/apiClient";
+import { submitContactMessage } from "../../services/contactService";
 import { openContactModalEvent } from "./contactModalEvents";
 
 export default function ContactModal() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const titleId = useId();
 
   useEffect(() => {
     const handleOpen = () => {
       setSent(false);
+      setSuccessMessage("");
+      setErrorMessage("");
+      setValidationErrors({});
       setOpen(true);
     };
     window.addEventListener(openContactModalEvent, handleOpen);
@@ -34,9 +43,50 @@ export default function ContactModal() {
     };
   }, [open]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    if (loading) return;
+
+    setErrorMessage("");
+    setValidationErrors({});
+    setLoading(true);
+
+    const formData = new FormData(event.currentTarget);
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      subject: String(formData.get("subject") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    try {
+      const response = await submitContactMessage(payload);
+      setSuccessMessage(response.message?.trim() || "Merci pour votre message. Nous reviendrons vers vous très bientôt.");
+      setSent(true);
+    } catch (error) {
+      if (error instanceof ApiError) {
+        if (error.kind === "validation") {
+          const messages = Object.fromEntries(
+            Object.entries(error.validationErrors ?? {}).map(([field, fieldMessages]) => [field, fieldMessages.join(" ")]),
+          );
+          setValidationErrors(messages);
+          setErrorMessage("Veuillez corriger les champs indiqués.");
+        } else if (error.kind === "rate_limit") {
+          setErrorMessage("Trop de demandes ont été envoyées. Veuillez patienter avant de réessayer.");
+        } else if (error.kind === "server") {
+          setErrorMessage("Le service est temporairement indisponible. Veuillez réessayer plus tard.");
+        } else if (error.kind === "network") {
+          setErrorMessage("Impossible de contacter le service. Vérifiez votre connexion puis réessayez.");
+        } else {
+          setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+        }
+      } else {
+        setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;
@@ -87,7 +137,7 @@ export default function ContactModal() {
                 <CheckCircle2 className="h-12 w-12 text-vert" aria-hidden />
                 <h3 className="mt-5 font-serif text-2xl text-vert-fonce">Message bien reçu.</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-anthracite/75">
-                  Merci pour votre message. Nous reviendrons vers vous très bientôt.
+                  {successMessage}
                 </p>
                 <button
                   type="button"
@@ -98,7 +148,7 @@ export default function ContactModal() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" aria-busy={loading}>
                 <div className="pr-8">
                   <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-or-fonce">
                     Formulaire de contact
@@ -110,10 +160,12 @@ export default function ContactModal() {
                   <label className="block text-xs font-semibold text-vert-fonce">
                     Nom complet
                     <input required name="name" type="text" autoComplete="name" placeholder="Votre nom" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.name && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.name}</p>}
                   </label>
                   <label className="block text-xs font-semibold text-vert-fonce">
                     Adresse email
                     <input required name="email" type="email" autoComplete="email" placeholder="vous@exemple.com" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.email && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.email}</p>}
                   </label>
                 </div>
 
@@ -122,6 +174,7 @@ export default function ContactModal() {
                   <span className="relative mt-2 block">
                     <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-vert/60" aria-hidden />
                     <input name="phone" type="tel" autoComplete="tel" placeholder="+237 6 00 00 00 00" className="w-full rounded-md border border-vert/15 bg-white py-3 pl-10 pr-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.phone && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.phone}</p>}
                   </span>
                 </label>
 
@@ -134,15 +187,19 @@ export default function ContactModal() {
                     <option value="contribution">Contribuer au mouvement</option>
                     <option value="other">Autre sujet</option>
                   </select>
+                  {validationErrors.subject && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.subject}</p>}
                 </label>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
                   Votre message
                   <textarea required name="message" rows={4} placeholder="Écrivez votre message ici..." className="mt-2 w-full resize-y rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                  {validationErrors.message && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.message}</p>}
                 </label>
 
-                <button type="submit" className="btn-or inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-wide">
-                  Envoyer le message
+                {errorMessage && <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{errorMessage}</p>}
+
+                <button type="submit" disabled={loading} className="btn-or inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-70">
+                  {loading ? "Envoi en cours..." : "Envoyer le message"}
                   <Send className="h-4 w-4" aria-hidden />
                 </button>
               </form>

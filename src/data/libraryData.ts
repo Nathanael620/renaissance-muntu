@@ -16,11 +16,10 @@
 import africainCover from "../assets/images/l-africain.jpeg";
 import magnificatFrCover from "../assets/images/le-magnificat.jpeg";
 import magnificatEnCover from "../assets/images/magnificat-en.jpeg";
-import magnificatVeBackCover from "../assets/images/4eme_de_couverture_magnificat_ve.png";
 
 /** Boutique officielle Chariow — ouverture dans un nouvel onglet. */
 export const CHARIOW_STORE_URL =
-  "https://ycjmkfmn.mychariow.com" as const;
+  "https://nyrtmmxf.mychariow.com" as const;
 
 /**
  * TODO: renseigner ici les URLs Chariow individuelles de chaque livre
@@ -68,6 +67,15 @@ const magnificatVfBackCoverText = `Pourquoi autant de sang, de désolation, de d
 
 Mon travail cible tous les peuples sans aucune discrimination qui acceptent de cultiver la non-violence. L'objectif est d'amener ceux qui ont tourné le dos crimes de leurs élites à prendre conscience de certaines actions horriles contre les populations et les gouvernements des pays étrangers. Ce qui explique pourquoi j'ai choisi de citer certaines personnes en entier afin d'éviter toute interprétation.`;
 
+/** Résumé / 4e de couverture de « The Magnificate Of White Thought Manuscript » (EN). */
+const magnificatEnBackCoverText = `Manuscript Summary
+
+Why so much blood, desolation, destruction, chaos wherever this so-called superior "race" goes? On what do these leucodermas elites base their alleged superiority? Is it this barbarity that the French colonizer Jules Ferry was talking about when he affirmed that his superior race had the right and the duty to civilize the inferior races? A civilization that is synonymous with looting, massacres, rapes, occupation, theft and military bases in other people's homes is what Jules Ferry was referring to? Will this short Western reign through chaos catch up with them? Certainly. Also, certain that no one can escape the Universal Law of action-reactions.
+
+In this era of the reversal of the poles of power throughout the world, the most powerful of yesterday are less and less so. My intention behind my writing is to inform, to prevent and not to incite revolt, violence or any other form of destructive action. Isn't it said that to possess knowledge is to possess power? This power and respect so much sought after by young people is information.
+
+My work targets all peoples without any discrimination that agrees to cultivate nonviolence. The objective is to bring those who turned their backs on the crimes of their elites to become aware of some horrible actions on the populations and governments of foreign countries. Which explains why I chose to quote certain people in full in order to avoid any interpretation.`;
+
 export const libraryItems: LibraryItem[] = [
   {
     id: "livre-001",
@@ -77,8 +85,8 @@ export const libraryItems: LibraryItem[] = [
     cover: magnificatFrCover,
     language: "Français",
     price: 36,
-    currency: "$ CAD",
-    shopUrl: "https://ycjmkfmn.mychariow.com/prd_884nk6hy",
+    currency: "$US",
+    shopUrl: "https://nyrtmmxf.mychariow.com/prd_p712cxk7",
     edition: "Zero Revenge Books",
     pages: "312",
     backCoverText: magnificatVfBackCoverText,
@@ -92,11 +100,11 @@ export const libraryItems: LibraryItem[] = [
     cover: magnificatEnCover,
     language: "English",
     price: 36,
-    currency: "$ CAD",
-    shopUrl: "https://ycjmkfmn.mychariow.com/prd_n8j2nhhx",
+    currency: "$US",
+    shopUrl: "https://nyrtmmxf.mychariow.com/prd_emzrs9ie",
     edition: "Zero Revenge Books",
     pages: "290",
-    backCover: magnificatVeBackCover,
+    backCoverText: magnificatEnBackCoverText,
     // summary: "..." // TODO: présentation détaillée
   },
   {
@@ -107,7 +115,7 @@ export const libraryItems: LibraryItem[] = [
     cover: africainCover,
     language: "Français",
     price: 36,
-    currency: "$ CAD",
+    currency: "$US",
     edition: "Zero Revenge Books",
     // TODO: URL Chariow de ce livre dès qu'elle sera fournie :
     // shopUrl: "https://app.chariow.com/...",

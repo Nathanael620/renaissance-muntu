@@ -95,7 +95,7 @@ export const manifestes: Manifesto[] = [
     paywall: true,
     price: 36,
     currency: "$ CAD",
-    shopUrl: "https://ycjmkfmn.mychariow.com/prd_ijgbiwjh",
+    shopUrl: "https://nyrtmmxf.mychariow.com/prd_fx2oe8os",
     preamble: {
       title: "Introduction",
       blocks: [
@@ -325,7 +325,7 @@ export const manifestes: Manifesto[] = [
     paywall: true,
     price: 36,
     currency: "$ CAD",
-    shopUrl: "https://ycjmkfmn.mychariow.com/prd_2tfpnjlb",
+    shopUrl: "https://nyrtmmxf.mychariow.com/prd_1y51ff6x",
     preamble: {
       title: "Préambule",
       blocks: [
@@ -444,7 +444,7 @@ export const manifestes: Manifesto[] = [
     paywall: true,
     price: 36,
     currency: "$ CAD",
-    shopUrl: "https://ycjmkfmn.mychariow.com/prd_9168ut8g",
+    shopUrl: "https://nyrtmmxf.mychariow.com/prd_mx5tzuy3",
     preamble: {
       title: "Introduction",
       blocks: [

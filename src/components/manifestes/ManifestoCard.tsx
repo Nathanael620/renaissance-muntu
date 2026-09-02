@@ -57,6 +57,7 @@ export default function ManifestoCard({
             }}
           />
 
+          {/* Coins supérieurs : Renaissance du Muntu + Elimb'a Dikalo */}
           <div className="absolute inset-x-3 top-3 z-10 flex items-start justify-between gap-2">
             <div className="flex h-20 w-20 items-center justify-center bg-transparent p-0 shadow-none sm:h-24 sm:w-24 lg:h-28 lg:w-28">
               <img
@@ -74,6 +75,7 @@ export default function ManifestoCard({
             </div>
           </div>
 
+          {/* Coin inférieur droit : maison d'édition */}
           <div className="absolute bottom-3 right-3 z-10 flex items-center justify-end">
             <div className="flex h-14 w-14 items-center justify-center bg-transparent p-0 shadow-none sm:h-16 sm:w-16 lg:h-20 lg:w-20">
               <img
@@ -84,11 +86,11 @@ export default function ManifestoCard({
             </div>
           </div>
 
-          <span className="relative z-10 break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
+          <span className="relative break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
             Manifeste
           </span>
 
-          <div className="relative z-10 min-w-0">
+          <div className="relative min-w-0">
             <h3 className="break-words font-serif text-2xl font-bold uppercase leading-tight text-white [overflow-wrap:anywhere]">
               {manifesto.title}
             </h3>
@@ -102,7 +104,7 @@ export default function ManifestoCard({
             ) : null}
           </div>
 
-          <span className="relative z-10 h-px w-12 bg-or/60" aria-hidden />
+          <span className="relative h-px w-12 bg-or/60" aria-hidden />
         </div>
       </div>
 
@@ -118,12 +120,6 @@ export default function ManifestoCard({
             <BookOpen className="h-3 w-3" aria-hidden />
             {manifesto.badge}
           </span>
-        ) : null}
-        {manifesto.author ? (
-          <p className="mt-2 font-sans text-sm text-anthracite/85">
-            <span className="font-semibold text-vert">Auteur&nbsp;: </span>
-            {manifesto.author}
-          </p>
         ) : null}
 
         {isPaywalled ? (

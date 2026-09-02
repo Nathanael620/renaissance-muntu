@@ -39,7 +39,8 @@ export default function Bibliotheque() {
         />
 
         <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col justify-end px-4 pb-12 pt-32 md:px-8 md:pb-16 lg:justify-center lg:px-10 lg:pb-24">
-          <div className="w-full max-w-2xl">
+          <div className="grid w-full gap-10 md:grid-cols-[1.2fr_auto] md:items-center md:gap-8">
+            <div className="w-full max-w-2xl">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
               Patrimoine • Transmission • Vision
             </p>
@@ -73,27 +74,28 @@ export default function Bibliotheque() {
               </a>
             </div>
           </div>
-        </div>
 
-        {/* Partenaire éditorial — Zero Revenge Books, en bas à droite du héro */}
-        <aside
-          className="absolute bottom-4 right-4 z-20 rounded-xl border border-or/50 bg-vert-profond/85 p-3 text-center shadow-xl backdrop-blur-sm sm:bottom-8 sm:right-8 sm:p-5 md:bottom-10 md:right-12"
-          aria-label="Maison d'édition partenaire Zero Revenge Books"
-        >
-          <div className="mx-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-or/60 bg-white sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-            <img
-              src={publisherLogo}
-              alt="Zero Revenge Books — maison d'édition partenaire"
-              className="h-full w-full object-contain p-1 sm:p-1.5"
-            />
-          </div>
-          <p className="mt-2 font-sans text-[8px] font-bold uppercase tracking-[0.12em] text-or-clair sm:mt-3 sm:text-[10px]">
-            Maison d&apos;édition
-          </p>
-          <p className="mt-0.5 hidden font-serif text-sm font-semibold uppercase leading-tight text-white sm:block">
-            Zero Revenge Books
-          </p>
-        </aside>
+          {/* Partenaire éditorial — Zero Revenge Books (en bas du héro) */}
+          <aside
+            className="mx-auto w-full max-w-xs rounded-xl border border-or/50 bg-vert-profond/85 p-6 text-center shadow-xl backdrop-blur-sm lg:absolute lg:bottom-10 lg:right-12 lg:mx-0"
+            aria-label="Maison d'édition partenaire Zero Revenge Books"
+          >
+            <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-or/60 bg-white">
+              <img
+                src={publisherLogo}
+                alt="Zero Revenge Books — maison d'édition partenaire"
+                className="h-full w-full object-contain p-1.5"
+              />
+            </div>
+            <p className="mt-4 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-or-clair">
+              Maison d&apos;édition 
+            </p>
+            <p className="mt-1 font-serif text-lg font-semibold uppercase leading-tight text-white">
+              Zero Revenge Books
+            </p>
+          </aside>
+        </div>
+        </div>
       </section>
 
       {/* ——— Introduction ——— */}

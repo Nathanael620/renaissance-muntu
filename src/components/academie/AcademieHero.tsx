@@ -16,10 +16,10 @@ export default function AcademieHero() {
       <img
         src={heroBg}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover opacity-85"
         fetchPriority="high"
       />
-      <div className="absolute inset-0 bg-black/10" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/55" aria-hidden />
       <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/10 to-black/30" aria-hidden />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col justify-end px-4 pb-10 pt-36 md:px-8 md:pb-14 md:pt-44 lg:justify-center lg:px-10 lg:pb-16 lg:pt-44 xl:pb-20 xl:pt-52">
