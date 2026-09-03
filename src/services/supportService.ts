@@ -1,7 +1,7 @@
 /**
  * supportService — abstraction pour gestion des dons et demandes de partenariat
- * TODO: brancher l'API PayPal / backend réel plus tard.
  */
+import { apiPost } from "./apiClient";
 
 export function handleDonation(): void {
   // TODO: Replace with PayPal integration when account is configured.
@@ -27,9 +27,23 @@ export type PartnershipRequest = {
   message?: string;
 };
 
-export async function submitPartnershipRequest(data: PartnershipRequest): Promise<{ ok: boolean }>{
-  // TODO: Implement API call to submit partnership request.
-  // This function is a stub to be replaced by a real POST to the backend.
-  void data; // Consommé intentionnellement tant que le backend n'est pas branché.
-  return new Promise((resolve) => setTimeout(() => resolve({ ok: true }), 800));
+/**
+ * Soumet une demande de partenariat au backend Laravel.
+ *
+ * Les champs `fullName`/`partnershipType` propres au formulaire sont convertis
+ * ici en `name`/`partnership_type` attendus par l'API.
+ */
+export async function submitPartnershipRequest(data: PartnershipRequest): Promise<{ ok: boolean }> {
+  const payload = {
+    name: data.fullName,
+    organization: data.organization ?? "",
+    email: data.email,
+    phone: data.phone ?? "",
+    partnership_type: data.partnershipType ?? "",
+    message: data.message ?? "",
+  };
+
+  await apiPost("/api/partnerships", payload);
+
+  return { ok: true };
 }

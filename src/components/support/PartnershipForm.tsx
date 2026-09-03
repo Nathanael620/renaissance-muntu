@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { User, Building2, Mail, Phone, Briefcase, MessageSquare, Send } from "lucide-react";
 import { submitPartnershipRequest, type PartnershipRequest } from "../../services/supportService";
+import { ApiError } from "../../services/apiClient";
 
 export default function PartnershipForm() {
   const [form, setForm] = useState<PartnershipRequest>({ fullName: "", organization: "", email: "", phone: "", partnershipType: "", message: "" });
@@ -27,8 +28,27 @@ export default function PartnershipForm() {
     try {
       await submitPartnershipRequest(form);
       setSuccess(true);
-    } catch {
-      setErrors({ submit: "Une erreur est survenue, veuillez réessayer." });
+    } catch (error) {
+      if (error instanceof ApiError && error.kind === "validation" && error.validationErrors) {
+        // Erreurs de validation Laravel (HTTP 422) : on les affiche sous les champs concernés.
+        const serverErrors: Record<string, string> = {};
+        const fieldMap: Record<string, string> = {
+          name: "fullName",
+          organization: "organization",
+          email: "email",
+          phone: "phone",
+          partnership_type: "partnershipType",
+          message: "message",
+        };
+        Object.entries(error.validationErrors).forEach(([field, messages]) => {
+          const formField = fieldMap[field] ?? field;
+          if (messages.length) serverErrors[formField] = messages[0];
+        });
+        setErrors(serverErrors);
+      } else {
+        const message = error instanceof ApiError ? error.message : "";
+        setErrors({ submit: message || "Une erreur est survenue, veuillez réessayer." });
+      }
     } finally { setLoading(false); }
   };
 
@@ -125,12 +145,13 @@ export default function PartnershipForm() {
         >
           <option value="">-- Sélectionnez un type --</option>
           <option value="sponsorship">Sponsorship</option>
-          <option value="collaborative">Projet collaboratif</option>
-          <option value="media">Média & Communication</option>
-          <option value="research">Recherche & Académique</option>
-          <option value="event">Événement & Formation</option>
+          <option value="collaborative_project">Projet collaboratif</option>
+          <option value="media_communication">Média & Communication</option>
+          <option value="research_academic">Recherche & Académique</option>
+          <option value="event_training">Événement & Formation</option>
           <option value="other">Autre</option>
         </select>
+        {errors.partnershipType && <p className="mt-2 text-xs font-medium text-red-600">{errors.partnershipType}</p>}
       </div>
 
       {/* Champ : Message */}
