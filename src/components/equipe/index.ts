@@ -1,0 +1,11 @@
+export { default as EquipeHero } from "./EquipeHero";
+export { default as EquipeCarousel } from "./EquipeCarousel";
+export { default as EquipeIntro } from "./EquipeIntro";
+export { default as EquipeMembres } from "./EquipeMembres";
+export { default as EquipeMembreCard } from "./EquipeMembreCard";
+export { default as EquipePhotoPlaceholder } from "./EquipePhotoPlaceholder";
+export { default as EquipeDirection } from "./EquipeDirection";
+export { default as EquipeDomaines } from "./EquipeDomaines";
+export { default as EquipeVision } from "./EquipeVision";
+export { default as EquipeCitation } from "./EquipeCitation";
+export { default as EquipeCTA } from "./EquipeCTA";

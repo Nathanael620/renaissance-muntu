@@ -95,7 +95,7 @@ export const libraryItems: LibraryItem[] = [
   {
     id: "livre-002",
     category: "livre",
-    title: "The Magnificate Of White Thought Manuscript",
+    title: "The Magnificate Of White Thought",
     author: "Oscar Elimby",
     cover: magnificatEnCover,
     language: "English",

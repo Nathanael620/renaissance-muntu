@@ -9,6 +9,7 @@ import Manifestes from "./pages/Manifestes";
 import ManifestePage from "./pages/ManifestePage";
 import TransmissionMuntu from "./pages/TransmissionMuntu";
 import AcademieMuntu from "./pages/AcademieMuntu";
+import NotreEquipe from "./pages/NotreEquipe";
 
 const routeMap = {
   "/": <Home />,
@@ -18,6 +19,7 @@ const routeMap = {
   "/manifestes": <Manifestes />,
   "/transmission-muntu": <TransmissionMuntu />,
   "/academie-muntu": <AcademieMuntu />,
+  "/notre-equipe": <NotreEquipe />,
 };
 
 const defaultDescription =
@@ -38,6 +40,11 @@ const pageMeta: Record<string, { title: string; description: string }> = {
     title: "Académie du Muntu | Pour la Renaissance du Muntu",
     description:
       "Académie du Muntu — Histoire, cosmologies, formation, décolonisation, reconstruction intérieure et leadership au service d’une nouvelle conscience africaine.",
+  },
+  "/notre-equipe": {
+    title: "Notre Équipe | Pour la Renaissance du Muntu",
+    description:
+      "Notre Équipe — Des femmes et des hommes engagés au service de la vision de Pour la Renaissance du Muntu : conscience collective, responsabilités partagées et renaissance des consciences, des peuples et de la civilisation.",
   },
 };
 

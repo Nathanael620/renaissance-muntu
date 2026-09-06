@@ -268,7 +268,7 @@ export const footerLinks = {
     { label: "Notre mission", href: "/#mission-title" },
     { label: "Nos valeurs", href: "/#valeurs-fondamentales" },
     { label: "Notre histoire", href: "/#vision" },
-    { label: "Notre equipe", href: "/#vision" },
+    { label: "Notre équipe", href: "/notre-equipe" },
   ],
   departements: [
     { label: "Renaissance des peuples", href: "/" },
