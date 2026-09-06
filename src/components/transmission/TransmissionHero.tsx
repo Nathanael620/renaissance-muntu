@@ -18,11 +18,11 @@ export default function TransmissionHero() {
       <img
         src={heroBg}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-70"
+        className="absolute inset-0 h-full w-full object-cover"
         fetchPriority="high"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/85" aria-hidden />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-black/55" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/40" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-black/5 to-black/20" aria-hidden />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col justify-end px-4 pb-10 pt-36 md:px-8 md:pb-14 md:pt-44 lg:justify-start lg:px-10 lg:pb-24 lg:pt-36 xl:pb-28 xl:pt-44">
         <div className="mx-auto w-full max-w-[900px]">

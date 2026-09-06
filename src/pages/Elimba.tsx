@@ -75,9 +75,9 @@ export default function Elimba() {
         <img
           src={heroBg}
           alt="Fond Elimb'a Dikalo"
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/80" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/35" aria-hidden />
 
         <div className="relative mx-auto grid max-w-[1440px] gap-6 px-6 pt-28 pb-10 md:grid-cols-[minmax(280px,440px)_minmax(0,1fr)] md:items-center md:gap-8 md:pt-32 md:pb-16 lg:px-10 lg:pt-36 lg:pb-14 xl:gap-14">
           <div className="max-w-2xl md:order-last md:ml-6 lg:ml-12 xl:ml-20">

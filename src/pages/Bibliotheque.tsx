@@ -31,10 +31,10 @@ export default function Bibliotheque() {
         <img
           src={bibliothequeBg}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          className="absolute inset-0 h-full w-full object-cover"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/80"
+          className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/35"
           aria-hidden
         />
 

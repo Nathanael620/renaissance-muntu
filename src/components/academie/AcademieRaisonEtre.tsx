@@ -77,7 +77,7 @@ export default function AcademieRaisonEtre() {
           id="academie-raison-ettre-title"
           className="mt-4 font-serif text-2xl font-semibold uppercase tracking-wide text-vert sm:text-3xl"
         >
-          Pourquoi l&rsquo;Académie Muntu&nbsp;?
+          Pourquoi l&rsquo;Académie du Muntu&nbsp;?
         </h2>
 
         <div className={cn("mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3", visible && "animate-fade-in-delay-1")}>

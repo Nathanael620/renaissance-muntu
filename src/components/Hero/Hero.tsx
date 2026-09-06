@@ -30,11 +30,11 @@ export default function Hero() {
         />
         {/* Overlay lisibilité — plus dense à gauche (desktop) */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/20"
+          className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-black/5"
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40"
+          className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"
           aria-hidden
         />
       </div>
