@@ -2,6 +2,7 @@ import SupportHero from "../components/support/SupportHero";
 import DonationCard from "../components/support/DonationCard";
 import PartnershipCard from "../components/support/PartnershipCard";
 import PartnershipForm from "../components/support/PartnershipForm";
+import DonationForm from "../components/support/DonationForm";
 
 export default function Soutenir() {
   return (
@@ -16,6 +17,10 @@ export default function Soutenir() {
           <DonationCard />
           <PartnershipCard />
         </div>
+      </section>
+
+      <section className="mx-auto max-w-[1200px] rounded-2xl border border-or/20 bg-white p-6 shadow-sm md:p-8">
+        <DonationForm />
       </section>
 
       <section id="partnership-form" className="scroll-mt-20 mx-auto max-w-[1200px]">

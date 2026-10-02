@@ -10,6 +10,8 @@ import ManifestePage from "./pages/ManifestePage";
 import TransmissionMuntu from "./pages/TransmissionMuntu";
 import AcademieMuntu from "./pages/AcademieMuntu";
 import NotreEquipe from "./pages/NotreEquipe";
+import DonationSuccess from "./pages/DonationSuccess";
+import DonationCancel from "./pages/DonationCancel";
 
 const routeMap = {
   "/": <Home />,
@@ -20,6 +22,10 @@ const routeMap = {
   "/transmission-muntu": <TransmissionMuntu />,
   "/academie-muntu": <AcademieMuntu />,
   "/notre-equipe": <NotreEquipe />,
+  "/don-success": <DonationSuccess />,
+  "/don-cancel": <DonationCancel />,
+  "/soutenir/succes": <DonationSuccess />,
+  "/soutenir/annulation": <DonationCancel />,
 };
 
 const defaultDescription =

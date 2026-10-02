@@ -3,20 +3,50 @@
  */
 import { apiPost } from "./apiClient";
 
+export const DONATION_CURRENCY =
+  import.meta.env.VITE_DONATION_CURRENCY?.trim().toUpperCase() || "CAD";
+
 export function handleDonation(): void {
-  // TODO: Replace with PayPal integration when account is configured.
-  // Use PAYPAL_DONATION_URL from config when available.
-  // TODO: Replace with the official PayPal donation URL/button once the PayPal account is configured.
-  // For now, show a user-friendly message.
-  window.alert("Le paiement en ligne sera bientôt disponible. Merci pour votre soutien !");
+  const donationForm = document.getElementById("donation-form");
+  donationForm?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/**
- * When PayPal account is configured, set the donation URL here (or in a central config).
- * Example: export const PAYPAL_DONATION_URL = "https://www.paypal.com/donate?hosted_button_id=...";
- * Leave undefined until the real URL is provided.
- */
-export const PAYPAL_DONATION_URL: string | undefined = undefined;
+export type DonationCheckoutPayload = {
+  donor_name: string;
+  donor_email: string;
+  donor_address: string | null;
+  donor_city: string | null;
+  donor_province: string | null;
+  donor_postal_code: string | null;
+  donor_country: string | null;
+  amount: number;
+};
+
+export type DonationCheckoutResponse = {
+  message: string;
+  checkout_url: string;
+  reference: string;
+};
+
+export async function createDonationCheckout(
+  payload: DonationCheckoutPayload,
+): Promise<DonationCheckoutResponse> {
+  const response = await apiPost<DonationCheckoutResponse>(
+    "/api/donations/checkout-session",
+    payload,
+  );
+
+  if (
+    typeof response.checkout_url !== "string" ||
+    !response.checkout_url ||
+    typeof response.reference !== "string" ||
+    !response.reference
+  ) {
+    throw new Error("La réponse du serveur est incomplète.");
+  }
+
+  return response;
+}
 
 export type PartnershipRequest = {
   fullName: string;
