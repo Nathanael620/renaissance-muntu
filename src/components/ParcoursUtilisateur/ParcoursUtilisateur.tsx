@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   ArrowRight,
   BookOpen,
@@ -38,8 +39,7 @@ export default function ParcoursUtilisateur() {
           id="parcours-title"
           className="mb-8 text-center font-serif text-lg font-semibold uppercase tracking-wide text-vert md:mb-10 md:text-xl lg:text-2xl"
         >
-          Le parcours du visiteur
-        </h2>
+          {translateContent("Le parcours du visiteur ")}</h2>
 
         <ol className="flex flex-1 flex-col items-center gap-5 sm:flex-row sm:flex-wrap sm:items-start sm:justify-center sm:gap-4 lg:flex-nowrap lg:justify-between lg:gap-2">
           {parcours.map((step, index) => {
@@ -53,18 +53,18 @@ export default function ParcoursUtilisateur() {
                   <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-or/40 bg-[#c4a574] lg:h-16 lg:w-16">
                     <Icon className="h-6 w-6 text-vert lg:h-7 lg:w-7" aria-hidden />
                   </div>
-                  {index < parcours.length - 1 && (
+                  {translateContent(index < parcours.length - 1 && (
                     <ArrowRight
                       className="ml-1 hidden h-4 w-4 shrink-0 text-anthracite/40 lg:ml-2 lg:block"
                       aria-hidden
                     />
-                  )}
+                  ))}
                 </div>
                 <p className="mt-2.5 font-sans text-[10px] font-bold uppercase tracking-wide text-vert lg:text-[11px]">
-                  {step.title}
+                  {translateContent(step.title)}
                 </p>
                 <p className="mt-1 font-sans text-[10px] leading-snug text-anthracite/75 lg:text-[11px]">
-                  {step.description}
+                  {translateContent(step.description)}
                 </p>
               </li>
             );
@@ -72,8 +72,7 @@ export default function ParcoursUtilisateur() {
         </ol>
 
         <p className="mt-8 text-center font-sans text-xs italic text-anthracite/70 md:mt-auto md:pt-8 md:text-sm">
-          Un Cheminement inspirant qui transforme la réflexion en action.
-        </p>
+          {translateContent("Un Cheminement inspirant qui transforme la réflexion en action. ")}</p>
       </div>
     </section>
   );

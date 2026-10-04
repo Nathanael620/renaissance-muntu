@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 /**
  * Section « Activités » — Elimb'a Dikalo.
  */
@@ -24,14 +25,12 @@ export default function ElimbaActivites() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Activités
-        </p>
+          {translateContent("Activités ")}</p>
         <h2
           id="elimba-activites-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Ce que nous mettons en œuvre
-        </h2>
+          {translateContent("Ce que nous mettons en œuvre ")}</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {activites.map((act) => (
             <div
@@ -42,7 +41,7 @@ export default function ElimbaActivites() {
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </span>
               <p className="font-sans text-sm leading-relaxed text-anthracite/85">
-                {act}
+                {translateContent(act)}
               </p>
             </div>
           ))}

@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowDown, ChevronDown } from "lucide-react";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -64,25 +65,21 @@ export default function AcademieProgramme() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Apprendre &amp; transmettre
-        </p>
+          {translateContent("Apprendre &amp; transmettre ")}</p>
         <h2
           id="academie-programme-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Programme Académie Muntu
-        </h2>
+          {translateContent("Programme Académie Muntu ")}</h2>
 
         <div className={cn("mt-10 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center", visible && "animate-fade-in-delay-1")}>
           <div>
             <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert/70">
-              Partie I
-            </h3>
+              {translateContent("Partie I ")}</h3>
             <p className="mt-3 max-w-2xl font-sans text-sm leading-relaxed text-anthracite/80">
-              L’histoire et la philosophie de la crise identitaire africaine.
-            </p>
+              {translateContent("L’histoire et la philosophie de la crise identitaire africaine. ")}</p>
 
-            <ol className="relative mt-8 space-y-4" aria-label="Modules de la Partie I">
+            <ol className="relative mt-8 space-y-4" aria-label={translateContent("Modules de la Partie I")}>
               <span className="absolute bottom-2 left-[19px] top-4 w-px bg-or/35" aria-hidden />
               {modules.map((mod, index) => (
                 <li key={mod.titre} className="relative flex items-start gap-6">
@@ -94,21 +91,20 @@ export default function AcademieProgramme() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <h3 className="font-serif text-xl font-semibold text-vert">
-                      {mod.titre}
+                      {translateContent(mod.titre)}
                     </h3>
                     <details className="group mt-3">
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-full border border-vert/30 bg-white/60 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors hover:border-or hover:text-or">
-                        Voir le contenu
-                        <ChevronDown className="h-4 w-4 text-or/70 transition-transform duration-300 group-open:rotate-180" aria-hidden />
+                        {translateContent("Voir le contenu ")}<ChevronDown className="h-4 w-4 text-or/70 transition-transform duration-300 group-open:rotate-180" aria-hidden />
                       </summary>
                       <ul className="mt-3 space-y-2 border-t border-or/15 pt-3">
                         {mod.points.map((point) => (
                           <li key={point.nom} className="flex flex-col gap-1">
                             <span className="font-sans text-sm font-semibold text-vert">
-                              {point.nom}
+                              {translateContent(point.nom)}
                             </span>
                             <span className="font-sans text-[13px] leading-relaxed text-anthracite/80">
-                              {point.detail}
+                              {translateContent(point.detail)}
                             </span>
                           </li>
                         ))}
@@ -116,12 +112,12 @@ export default function AcademieProgramme() {
                     </details>
                   </div>
 
-                  {index < modules.length - 1 && (
+                  {translateContent(index < modules.length - 1 && (
                     <ArrowDown
                       className="ml-auto mt-1 h-4 w-4 shrink-0 text-or-clair/60"
                       aria-hidden
                     />
-                  )}
+                  ))}
                 </li>
               ))}
             </ol>

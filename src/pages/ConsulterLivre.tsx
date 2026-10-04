@@ -1,18 +1,13 @@
+import { translateContent } from "../i18n/translateContent";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Eye, ShoppingBag } from "lucide-react";
 import { libraryItems } from "../data/libraryData";
+import { localizedPath, navigateToPath } from "../routing/routes";
 
 /** Navigation interne maison (pushState + routechange + scroll d'ancre). */
 function navigate(href: string) {
-  window.history.pushState({}, "", href);
-  window.dispatchEvent(new Event("routechange"));
-  const hashIndex = href.indexOf("#");
-  if (hashIndex !== -1) {
-    const id = href.slice(hashIndex + 1);
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 80);
-  }
+  navigateToPath(href);
 }
 
 /** Ligne d'information de la fiche ouvrage. */
@@ -20,10 +15,10 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between gap-4 border-b border-or/15 py-2">
       <dt className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-anthracite/60">
-        {label}
+        {translateContent(label)}
       </dt>
       <dd className="text-right font-sans text-sm font-medium text-anthracite">
-        {value}
+        {translateContent(value)}
       </dd>
     </div>
   );
@@ -35,16 +30,28 @@ function InfoRow({ label, value }: { label: string; value: string }) {
  * (placeholder tant que l'image n'est pas fournie).
  */
 export default function ConsulterLivre({ id }: { id: string }) {
+  const { i18n } = useTranslation();
   const book = libraryItems.find((item) => item.id === id);
+
+  useEffect(() => {
+    if (!book) {
+      document.title = translateContent("Ouvrage introuvable | Bibliothèque du Muntu");
+      return;
+    }
+    document.title = `${translateContent(book.title)} — ${translateContent("Bibliothèque du Muntu")}`;
+    const tag = document.querySelector('meta[name="description"]');
+    if (tag && book.summary) {
+      tag.setAttribute("content", translateContent(book.summary));
+    }
+  }, [i18n.language, book]);
 
   if (!book) {
     return (
       <div className="px-4 py-32 text-center md:px-8 lg:px-10">
         <p className="font-serif text-2xl font-semibold uppercase tracking-wide text-vert">
-          Ouvrage introuvable
-        </p>
+          {translateContent("Ouvrage introuvable ")}</p>
         <a
-          href="/bibliotheque"
+          href={localizedPath("/bibliotheque")}
           onClick={(e) => {
             e.preventDefault();
             navigate("/bibliotheque");
@@ -52,8 +59,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
           className="btn-or mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
-          Retour à la bibliothèque
-        </a>
+          {translateContent("Retour à la bibliothèque ")}</a>
       </div>
     );
   }
@@ -66,9 +72,9 @@ export default function ConsulterLivre({ id }: { id: string }) {
   return (
     <div className="space-y-10 px-4 py-20 md:px-8 lg:px-10">
       {/* Fil d'Ariane */}
-      <nav aria-label="Fil d'Ariane" className="mx-auto max-w-[1200px]">
+      <nav aria-label={translateContent("Fil d'Ariane")} className="mx-auto max-w-[1200px]">
         <a
-          href="/bibliotheque"
+          href={localizedPath("/bibliotheque")}
           onClick={(e) => {
             e.preventDefault();
             navigate("/bibliotheque");
@@ -76,8 +82,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
           className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors hover:text-or"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
-          Bibliothèque du Muntu
-        </a>
+          {translateContent("Bibliothèque du Muntu ")}</a>
       </nav>
 
       <section
@@ -91,7 +96,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
             <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-xl border border-or/30 bg-gradient-to-br from-vert-fonce via-vert to-vert-profond p-4 shadow-md">
               <img
                 src={book.cover}
-                alt={`Couverture de l'ouvrage « ${book.title} »`}
+                alt={translateContent(`Couverture de l'ouvrage « ${book.title} »`)}
                 className="h-full w-full object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.45)]"
               />
             </div>
@@ -99,13 +104,12 @@ export default function ConsulterLivre({ id }: { id: string }) {
             {/* 4e de couverture */}
             <div className="mt-6">
               <h3 className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-or-fonce">
-                Resumé
-              </h3>
+                {translateContent("Resumé ")}</h3>
               {book.backCover ? (
                 <div className="mt-3 flex aspect-[3/4] items-center justify-center overflow-hidden rounded-xl border border-or/30 bg-gradient-to-br from-vert-fonce via-vert to-vert-profond p-4 shadow-md">
                   <img
                     src={book.backCover}
-                    alt={`4e de couverture de l'ouvrage « ${book.title} »`}
+                    alt={translateContent(`4e de couverture de l'ouvrage « ${book.title} »`)}
                     className="h-full w-full object-contain"
                   />
                 </div>
@@ -119,7 +123,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
                         key={paragraph}
                         className="font-sans text-xs leading-relaxed text-anthracite/85"
                       >
-                        {paragraph}
+                        {translateContent(paragraph)}
                       </p>
                     ))}
                 </div>
@@ -127,13 +131,11 @@ export default function ConsulterLivre({ id }: { id: string }) {
                 <div
                   className="mt-3 flex aspect-[3/4] items-center justify-center rounded-xl border-2 border-dashed border-or/40 bg-white/60 px-6 text-center"
                   role="img"
-                  aria-label="Visuel de la 4e de couverture à venir"
+                  aria-label={translateContent("Visuel de la 4e de couverture à venir")}
                 >
                   <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-anthracite/60">
-                    Visuel de la 4e de couverture
-                    <br />
-                    à venir
-                  </p>
+                    {translateContent("Visuel de la 4e de couverture ")}<br />
+                    {translateContent("à venir ")}</p>
                 </div>
               )}
             </div>
@@ -141,13 +143,12 @@ export default function ConsulterLivre({ id }: { id: string }) {
 {/* Détails */}
           <div className="flex flex-col">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.3em] text-or-fonce">
-              Bibliothèque du Muntu
-            </span>
+              {translateContent("Bibliothèque du Muntu ")}</span>
             <h1
               id="consultation-title"
               className="mt-3 font-serif text-3xl font-bold uppercase leading-tight text-vert md:text-4xl"
             >
-              {book.title}
+              {translateContent(book.title)}
             </h1>
 
             {book.summary ? (
@@ -156,23 +157,22 @@ export default function ConsulterLivre({ id }: { id: string }) {
               </p>
             ) : (
               <p className="mt-5 font-sans text-sm italic leading-relaxed text-anthracite/70">
-                Présentation détaillée de l’ouvrage à venir.
-              </p>
+                {translateContent("Présentation détaillée de l’ouvrage à venir. ")}</p>
             )}
 
             <dl className="mt-7 space-y-1">
-              <InfoRow label="Auteur" value={book.author ?? "À communiquer"} />
+              <InfoRow label={translateContent("Auteur")} value={translateContent(book.author ?? "À communiquer")} />
               <InfoRow
-                label="Langue"
-                value={book.language ?? "À communiquer"}
+                label={translateContent("Langue")}
+                value={translateContent(book.language ?? "À communiquer")}
               />
-              <InfoRow label="Prix" value={priceLabel} />
+              <InfoRow label={translateContent("Prix")} value={translateContent(priceLabel)} />
               <InfoRow
-                label="Éditeur"
-                value={book.edition ?? "À communiquer"}
+                label={translateContent("Éditeur")}
+                value={translateContent(book.edition ?? "À communiquer")}
               />
-              <InfoRow label="Pages" value={book.pages ?? "À communiquer"} />
-              <InfoRow label="ISBN" value={book.isbn ?? "À communiquer"} />
+              <InfoRow label={translateContent("Pages")} value={translateContent(book.pages ?? "À communiquer")} />
+              <InfoRow label={translateContent("ISBN")} value={translateContent(book.isbn ?? "À communiquer")} />
             </dl>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -184,27 +184,24 @@ export default function ConsulterLivre({ id }: { id: string }) {
                   className="btn-or inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   <ShoppingBag className="h-4 w-4" aria-hidden />
-                  Acheter
-                </a>
+                  {translateContent("Acheter ")}</a>
               ) : (
                 <div>
                   <button
                     type="button"
                     disabled
                     aria-disabled="true"
-                    title="Achat Chariow — disponible prochainement"
+                    title={translateContent("Achat Chariow — disponible prochainement")}
                     className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-full px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-md"
                   >
                     <ShoppingBag className="h-4 w-4" aria-hidden />
-                    Acheter
-                  </button>
+                    {translateContent("Acheter ")}</button>
                   <p className="mt-2 font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
-                    Achat disponible prochainement
-                  </p>
+                    {translateContent("Achat disponible prochainement ")}</p>
                 </div>
               )}
               <a
-                href="/bibliotheque#nos-livres"
+                href={localizedPath("/bibliotheque#nos-livres")}
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/bibliotheque#nos-livres");
@@ -212,8 +209,7 @@ export default function ConsulterLivre({ id }: { id: string }) {
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-vert px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors duration-300 hover:bg-vert hover:text-white"
               >
                 <Eye className="h-4 w-4" aria-hidden />
-                Retour à la bibliothèque
-              </a>
+                {translateContent("Retour à la bibliothèque ")}</a>
             </div>
           </div>
         </div>

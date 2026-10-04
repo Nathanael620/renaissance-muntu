@@ -1,3 +1,4 @@
+import { translateBackendMessage, translateContent } from "../../i18n/translateContent";
 import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Mail, Phone, Send, X } from "lucide-react";
@@ -108,17 +109,14 @@ export default function ContactModal() {
               <Mail className="h-5 w-5" aria-hidden />
             </div>
             <p className="mt-8 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-or-clair">
-              Entrer en dialogue
-            </p>
+              {translateContent("Entrer en dialogue ")}</p>
             <h2 id={titleId} className="mt-3 font-serif text-3xl leading-tight text-white">
-              Écrivons la suite ensemble.
-            </h2>
+              {translateContent("Écrivons la suite ensemble. ")}</h2>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
-              Une question, une idée ou une envie de contribuer ? Notre équipe vous répond avec attention.
-            </p>
+              {translateContent("Une question, une idée ou une envie de contribuer ? Notre équipe vous répond avec attention. ")}</p>
             <div className="mt-8 border-t border-white/15 pt-5 text-xs leading-relaxed text-white/65">
-              <p className="font-semibold text-white/90">{contact.email}</p>
-              <p className="mt-1">Réponse sous 2 à 3 jours ouvrés.</p>
+              <p className="font-semibold text-white/90">{translateContent(contact.email)}</p>
+              <p className="mt-1">{translateContent("Réponse sous 2 à 3 jours ouvrés.")}</p>
             </div>
           </div>
 
@@ -127,7 +125,7 @@ export default function ContactModal() {
               type="button"
               onClick={() => setOpen(false)}
               className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-anthracite/70 transition-colors hover:bg-creme hover:text-vert"
-              aria-label="Fermer le formulaire de contact"
+              aria-label={translateContent("Fermer le formulaire de contact")}
             >
               <X className="h-5 w-5" aria-hidden />
             </button>
@@ -135,71 +133,64 @@ export default function ContactModal() {
             {sent ? (
               <div className="flex min-h-[360px] flex-col items-center justify-center text-center">
                 <CheckCircle2 className="h-12 w-12 text-vert" aria-hidden />
-                <h3 className="mt-5 font-serif text-2xl text-vert-fonce">Message bien reçu.</h3>
+                <h3 className="mt-5 font-serif text-2xl text-vert-fonce">{translateContent("Message bien reçu.")}</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-anthracite/75">
-                  {successMessage}
+                  {translateBackendMessage(successMessage, "Thank you for your message. Our team will be in touch soon.")}
                 </p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   className="btn-or mt-7 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-wide"
                 >
-                  Fermer
-                </button>
+                  {translateContent("Fermer ")}</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4" aria-busy={loading}>
                 <div className="pr-8">
                   <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-or-fonce">
-                    Formulaire de contact
-                  </p>
-                  <h3 className="mt-2 font-serif text-2xl text-vert-fonce">Comment pouvons-nous vous aider ?</h3>
+                    {translateContent("Formulaire de contact ")}</p>
+                  <h3 className="mt-2 font-serif text-2xl text-vert-fonce">{translateContent("Comment pouvons-nous vous aider ?")}</h3>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block text-xs font-semibold text-vert-fonce">
-                    Nom complet
-                    <input required name="name" type="text" autoComplete="name" placeholder="Votre nom" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
-                    {validationErrors.name && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.name}</p>}
+                    {translateContent("Nom complet ")}<input required name="name" type="text" autoComplete="name" placeholder={translateContent("Votre nom")} className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.name && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(validationErrors.name, "Please check this field.")}</p>}
                   </label>
                   <label className="block text-xs font-semibold text-vert-fonce">
-                    Adresse email
-                    <input required name="email" type="email" autoComplete="email" placeholder="vous@exemple.com" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
-                    {validationErrors.email && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.email}</p>}
+                    {translateContent("Adresse email ")}<input required name="email" type="email" autoComplete="email" placeholder={translateContent("vous@exemple.com")} className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.email && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(validationErrors.email, "Please check this field.")}</p>}
                   </label>
                 </div>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
-                  Numéro de téléphone
-                  <span className="relative mt-2 block">
+                  {translateContent("Numéro de téléphone ")}<span className="relative mt-2 block">
                     <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-vert/60" aria-hidden />
-                    <input name="phone" type="tel" autoComplete="tel" placeholder="+237 6 00 00 00 00" className="w-full rounded-md border border-vert/15 bg-white py-3 pl-10 pr-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
-                    {validationErrors.phone && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.phone}</p>}
+                    <input name="phone" type="tel" autoComplete="tel" placeholder={translateContent("+237 6 00 00 00 00")} className="w-full rounded-md border border-vert/15 bg-white py-3 pl-10 pr-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                    {validationErrors.phone && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(validationErrors.phone, "Please check this field.")}</p>}
                   </span>
                 </label>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
-                  Objet de votre message
-                  <select name="subject" defaultValue="" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20">
-                    <option value="" disabled>Sélectionnez un sujet</option>
-                    <option value="information">Demande d'information</option>
-                    <option value="partnership">Partenariat</option>
-                    <option value="contribution">Contribuer au mouvement</option>
-                    <option value="other">Autre sujet</option>
+                  {translateContent("Objet de votre message ")}<select name="subject" defaultValue="" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20">
+                    <option value="" disabled>{translateContent("Sélectionnez un sujet")}</option>
+                    <option value="information">{translateContent("Demande d'information")}</option>
+                    <option value="partnership">{translateContent("Partenariat")}</option>
+                    <option value="contribution">{translateContent("Contribuer au mouvement")}</option>
+                    <option value="other">{translateContent("Autre sujet")}</option>
                   </select>
-                  {validationErrors.subject && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.subject}</p>}
+                  {validationErrors.subject && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(validationErrors.subject, "Please check this field.")}</p>}
                 </label>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
-                  Votre message
-                  <textarea required name="message" rows={4} placeholder="Écrivez votre message ici..." className="mt-2 w-full resize-y rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
-                  {validationErrors.message && <p className="mt-2 text-xs font-medium text-red-600">{validationErrors.message}</p>}
+                  {translateContent("Votre message ")}<textarea required name="message" rows={4} placeholder={translateContent("Écrivez votre message ici...")} className="mt-2 w-full resize-y rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20" />
+                  {validationErrors.message && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(validationErrors.message, "Please check this field.")}</p>}
                 </label>
 
-                {errorMessage && <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{errorMessage}</p>}
+                {errorMessage && <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{translateBackendMessage(errorMessage, "An error occurred. Please try again.")}</p>}
 
                 <button type="submit" disabled={loading} className="btn-or inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-70">
-                  {loading ? "Envoi en cours..." : "Envoyer le message"}
+                  {translateContent(loading ? "Envoi en cours..." : "Envoyer le message")}
                   <Send className="h-4 w-4" aria-hidden />
                 </button>
               </form>

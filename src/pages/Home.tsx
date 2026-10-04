@@ -1,3 +1,4 @@
+import { translateContent } from "../i18n/translateContent";
 import Actions from "../components/Actions";
 import CarteAfrique from "../components/CarteAfrique";
 import Citation from "../components/Citation";
@@ -33,7 +34,7 @@ export default function Home() {
       {/* Grille Vision / Actions / Ressources / Engagement */}
       <section
         className="bg-creme px-4 py-10 md:px-8 md:py-12 lg:px-10"
-        aria-label="Vision, actions, ressources et engagement"
+        aria-label={translateContent("Vision, actions, ressources et engagement")}
       >
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
           <Vision />

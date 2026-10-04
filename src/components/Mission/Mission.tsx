@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { institutIdentite, missionInfo, valeurs } from "../../data/siteData";
 
 /**
@@ -14,43 +15,36 @@ export default function Mission() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 border-b border-or/25 pb-8 text-center">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-or-fonce">
-            {institutIdentite.titre}
+            {translateContent(institutIdentite.titre)}
           </p>
           <p className="mx-auto mt-3 max-w-2xl font-serif text-xl italic leading-relaxed text-vert md:text-2xl">
-            « {institutIdentite.sousTitre} »
-          </p>
+            {translateContent("« ")}{translateContent(institutIdentite.sousTitre)} {translateContent(" » ")}</p>
           <p className="mx-auto mt-4 max-w-3xl font-sans text-sm leading-7 text-anthracite md:text-base">
-            {institutIdentite.nom}, {institutIdentite.natureJuridique}, œuvrant dans les
-            domaines suivants: {institutIdentite.domaines.join(", ")}.
-          </p>
+            {translateContent(institutIdentite.nom)}{translateContent(", ")}{translateContent(institutIdentite.natureJuridique)}{translateContent(", œuvrant dans les domaines suivants: ")}{institutIdentite.domaines.map((domain) => translateContent(domain)).join(", ")}{translateContent(". ")}</p>
         </div>
 
         <h2
           id="mission-title"
           className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
         >
-          Notre mission
-        </h2>
+          {translateContent("Notre mission ")}</h2>
 
         {/* Mission générale */}
         <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-or/35 bg-creme-clair px-6 py-7 shadow-[0_8px_24px_rgba(13,40,24,0.06)] md:px-10 md:py-8">
           <p className="text-center font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-or-fonce">
-            Mission générale
-          </p>
+            {translateContent("Mission générale ")}</p>
           <p className="mt-4 text-center font-serif text-lg italic leading-relaxed text-vert md:text-xl">
-            « {missionInfo.general} »
-          </p>
+            {translateContent("« ")}{translateContent(missionInfo.general)} {translateContent(" » ")}</p>
         </div>
 
         {/* Mission explicative */}
         <p className="mx-auto mt-8 max-w-4xl text-center font-sans text-sm leading-7 text-anthracite md:text-base">
-          {missionInfo.explicative}
+          {translateContent(missionInfo.explicative)}
         </p>
 
         {/* Orientations */}
         <p className="mt-10 text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-or-fonce md:text-base">
-          Elle vise à
-        </p>
+          {translateContent("Elle vise à ")}</p>
         <ul className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
           {missionInfo.orientations.map((item) => (
             <li
@@ -58,9 +52,8 @@ export default function Mission() {
               className="flex items-start gap-3 rounded-xl border border-or/25 bg-creme-clair px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-or/50 hover:shadow-md"
             >
               <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-vert text-[10px] font-bold text-or-clair" aria-hidden>
-                ✓
-              </span>
-              <span className="font-sans text-sm font-medium leading-6 text-vert">{item}</span>
+                {translateContent("✓ ")}</span>
+              <span className="font-sans text-sm font-medium leading-6 text-vert">{translateContent(item)}</span>
             </li>
           ))}
         </ul>
@@ -70,8 +63,7 @@ export default function Mission() {
             id="valeurs-fondamentales"
             className="text-center font-sans text-sm font-bold uppercase tracking-[0.18em] text-or-fonce md:text-base"
           >
-            Nos Valeurs Fondamentales
-          </p>
+            {translateContent("Nos Valeurs Fondamentales ")}</p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {valeurs.map((valeur) => (
               <article
@@ -80,11 +72,10 @@ export default function Mission() {
               >
                 <div className="mb-3 h-1 w-10 rounded-full bg-or transition-all duration-300 group-hover:w-16" aria-hidden />
                 <h3 className="font-serif text-base font-semibold uppercase leading-snug text-vert md:text-lg">
-                  {valeur.title}
+                  {translateContent(valeur.title)}
                 </h3>
                 <p className="mt-2 font-sans text-sm leading-6 text-anthracite">
-                  {valeur.text}.
-                </p>
+                  {translateContent(valeur.text)}{translateContent(". ")}</p>
               </article>
             ))}
           </div>

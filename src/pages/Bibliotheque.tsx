@@ -1,3 +1,4 @@
+import { translateContent } from "../i18n/translateContent";
 import { BookOpen, ExternalLink } from "lucide-react";
 import bibliothequeBg from "../assets/images/bibliotheque.png";
 import publisherLogo from "../assets/icons/zero-revenge-books.jpeg";
@@ -7,6 +8,7 @@ import { CHARIOW_STORE_URL, libraryBooks } from "../data/libraryData";
 import { manifestes } from "../data/manifestesData";
 import { useFadeIn } from "../hooks/useFadeIn";
 import { cn } from "../utils/cn";
+import { localizedPath, navigateToPath } from "../routing/routes";
 
 /**
  * Page « BIBLIOTHÈQUE DU MUNTU » — vitrine / catalogue des ouvrages.
@@ -30,7 +32,7 @@ export default function Bibliotheque() {
       >
         <img
           src={bibliothequeBg}
-          alt=""
+          alt={translateContent("")}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div
@@ -42,18 +44,14 @@ export default function Bibliotheque() {
           <div className="grid w-full gap-10 md:grid-cols-[1.2fr_auto] md:items-center md:gap-8">
             <div className="w-full max-w-2xl">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
-              Patrimoine • Transmission • Vision
-            </p>
+              {translateContent("Patrimoine • Transmission • Vision ")}</p>
             <h1
               id="bibliotheque-hero-title"
               className="mt-6 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-6xl"
             >
-              Bibliothèque du Muntu
-            </h1>
+              {translateContent("Bibliothèque du Muntu ")}</h1>
             <p className="mt-6 max-w-xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-              Une sélection d&apos;ouvrages et de ressources qui transmettent la
-              pensée, la culture, les connaissances et la vision du Muntu.
-            </p>
+              {translateContent("Une sélection d&apos;ouvrages et de ressources qui transmettent la pensée, la culture, les connaissances et la vision du Muntu. ")}</p>
 
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap">
               <a
@@ -61,16 +59,14 @@ export default function Bibliotheque() {
                 className="btn-or inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider"
               >
                 <BookOpen className="h-4 w-4" aria-hidden />
-                Parcourir nos livres
-              </a>
+                {translateContent("Parcourir nos livres ")}</a>
               <a
                 href={CHARIOW_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-white/70 bg-vert/70 px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-[2px] transition-colors duration-200 hover:border-or hover:bg-vert"
               >
-                Visiter la boutique
-                <ExternalLink className="h-4 w-4" aria-hidden />
+                {translateContent("Visiter la boutique ")}<ExternalLink className="h-4 w-4" aria-hidden />
               </a>
             </div>
           </div>
@@ -78,21 +74,19 @@ export default function Bibliotheque() {
           {/* Partenaire éditorial — Zero Revenge Books (en bas du héro) */}
           <aside
             className="mx-auto w-full max-w-xs rounded-xl border border-or/50 bg-vert-profond/85 p-6 text-center shadow-xl backdrop-blur-sm lg:absolute lg:bottom-10 lg:right-12 lg:mx-0"
-            aria-label="Maison d'édition partenaire Zero Revenge Books"
+            aria-label={translateContent("Maison d'édition partenaire Zero Revenge Books")}
           >
             <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-or/60 bg-white">
               <img
                 src={publisherLogo}
-                alt="Zero Revenge Books — maison d'édition partenaire"
+                alt={translateContent("Zero Revenge Books — maison d'édition partenaire")}
                 className="h-full w-full object-contain p-1.5"
               />
             </div>
             <p className="mt-4 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-or-clair">
-              Maison d&apos;édition 
-            </p>
+              {translateContent("Maison d&apos;édition ")}</p>
             <p className="mt-1 font-serif text-lg font-semibold uppercase leading-tight text-white">
-              Zero Revenge Books
-            </p>
+              {translateContent("Zero Revenge Books ")}</p>
           </aside>
         </div>
         </div>
@@ -105,21 +99,14 @@ export default function Bibliotheque() {
       >
         <div className="mx-auto max-w-3xl text-center">
           <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-            Un patrimoine à transmettre
-          </p>
+            {translateContent("Un patrimoine à transmettre ")}</p>
           <h2
             id="bibliotheque-intro-title"
             className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
           >
-            La Bibliothèque du Muntu
-          </h2>
+            {translateContent("La Bibliothèque du Muntu ")}</h2>
           <p className="mt-5 font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-            La Bibliothèque du Muntu rassemble les ouvrages et les ressources
-            qui portent la pensée, la culture, les connaissances et la vision
-            du Muntu. Chaque livre est une fenêtre ouverte sur un héritage
-            fécond — une invitation à découvrir puis à transmettre ce qui
-            nourrit l&apos;âme des peuples.
-          </p>
+            {translateContent("La Bibliothèque du Muntu rassemble les ouvrages et les ressources qui portent la pensée, la culture, les connaissances et la vision du Muntu. Chaque livre est une fenêtre ouverte sur un héritage fécond — une invitation à découvrir puis à transmettre ce qui nourrit l&apos;âme des peuples. ")}</p>
         </div>
       </section>
 {/* ——— Nos livres ——— */}
@@ -138,8 +125,7 @@ export default function Bibliotheque() {
               id="nos-livres-title"
               className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
             >
-              Nos livres
-            </h2>
+              {translateContent("Nos livres ")}</h2>
             <span
               className="hidden h-px flex-1 max-w-40 bg-or/60 sm:block"
               aria-hidden
@@ -153,15 +139,14 @@ export default function Bibliotheque() {
               visible && "animate-fade-in",
             )}
           >
-            {libraryBooks.length > 0 ? (
+            {translateContent(libraryBooks.length > 0 ? (
               libraryBooks.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))
             ) : (
               <p className="col-span-full text-center font-sans text-sm text-anthracite/70">
-                Le catalogue des ouvrages sera bientôt disponible.
-              </p>
-            )}
+                {translateContent("Le catalogue des ouvrages sera bientôt disponible. ")}</p>
+            ))}
           </div>
         </div>
       </section>
@@ -182,8 +167,7 @@ export default function Bibliotheque() {
               id="bibliotheque-manifestes-title"
               className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
             >
-              Manifestes
-            </h2>
+              {translateContent("Manifestes ")}</h2>
             <span
               className="hidden h-px max-w-40 flex-1 bg-or/60 sm:block"
               aria-hidden
@@ -191,7 +175,7 @@ export default function Bibliotheque() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 xl:gap-8">
-            {manifestes.length > 0 ? (
+            {translateContent(manifestes.length > 0 ? (
               manifestes.map((manifesto, index) => (
                 <ManifestoCard
                   key={manifesto.slug}
@@ -201,9 +185,8 @@ export default function Bibliotheque() {
               ))
             ) : (
               <p className="col-span-full text-center font-sans text-sm text-anthracite/70">
-                La collection de manifestes sera bientôt disponible.
-              </p>
-            )}
+                {translateContent("La collection de manifestes sera bientôt disponible. ")}</p>
+            ))}
           </div>
         </div>
       </section>
@@ -216,30 +199,24 @@ export default function Bibliotheque() {
         <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-6 md:flex-row md:gap-10">
           <div className="max-w-xl text-center md:text-left">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
-              Textes fondateurs
-            </p>
+              {translateContent("Textes fondateurs ")}</p>
             <h2
               id="tous-les-manifestes-title"
               className="mt-3 font-serif text-xl font-semibold uppercase tracking-wide text-white md:text-2xl"
             >
-              Consulter tous les manifestes
-            </h2>
+              {translateContent("Consulter tous les manifestes ")}</h2>
             <p className="mt-2 font-sans text-sm leading-relaxed text-white/85">
-              Retrouvez la collection complète des manifestes et plongez dans
-              chaque texte fondateur du projet.
-            </p>
+              {translateContent("Retrouvez la collection complète des manifestes et plongez dans chaque texte fondateur du projet. ")}</p>
           </div>
           <a
-            href="/manifestes"
+            href={localizedPath("/manifestes")}
             onClick={(event) => {
               event.preventDefault();
-              window.history.pushState({}, "", "/manifestes");
-              window.dispatchEvent(new Event("routechange"));
+              navigateToPath("/manifestes");
             }}
             className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
           >
-            Voir tous les manifestes
-            <ExternalLink className="h-4 w-4" aria-hidden />
+            {translateContent("Voir tous les manifestes ")}<ExternalLink className="h-4 w-4" aria-hidden />
           </a>
         </div>
       </section>
@@ -252,19 +229,14 @@ export default function Bibliotheque() {
         <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-6 md:flex-row md:gap-10">
           <div className="max-w-xl text-center md:text-left">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
-              Notre boutique en ligne
-            </p>
+              {translateContent("Notre boutique en ligne ")}</p>
             <h2
               id="bibliotheque-boutique-title"
               className="mt-3 font-serif text-xl font-semibold uppercase tracking-wide text-white md:text-2xl"
             >
-              La sélection complète
-            </h2>
+              {translateContent("La sélection complète ")}</h2>
             <p className="mt-2 font-sans text-sm leading-relaxed text-white/85">
-              Retrouvez tous les ouvrages de la Bibliothèque du Muntu, les
-              nouvelles parutions de notre maison d&apos;édition et les
-              prochaines sorties sur la boutique Chariow.
-            </p>
+              {translateContent("Retrouvez tous les ouvrages de la Bibliothèque du Muntu, les nouvelles parutions de notre maison d&apos;édition et les prochaines sorties sur la boutique Chariow. ")}</p>
           </div>
           <a
             href={CHARIOW_STORE_URL}
@@ -272,8 +244,7 @@ export default function Bibliotheque() {
             rel="noopener noreferrer"
             className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg"
           >
-            Voir tous les livres
-            <ExternalLink className="h-4 w-4" aria-hidden />
+            {translateContent("Voir tous les livres ")}<ExternalLink className="h-4 w-4" aria-hidden />
           </a>
         </div>
       </section>

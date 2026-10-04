@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import {
@@ -90,7 +91,7 @@ export default function SocialModal() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={title}
+      aria-label={translateContent(title)}
       className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 p-4"
       onClick={closeSocialModal}
     >
@@ -101,17 +102,16 @@ export default function SocialModal() {
         <button
           type="button"
           onClick={closeSocialModal}
-          aria-label="Fermer"
+          aria-label={translateContent("Fermer")}
           className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-anthracite transition-colors hover:bg-creme hover:text-vert"
         >
           <X className="h-5 w-5" aria-hidden />
         </button>
         <h3 className="-mt-4 font-serif text-2xl font-semibold uppercase tracking-wide text-vert">
-          {title}
+          {translateContent(title)}
         </h3>
         <p className="mt-2 font-sans text-sm text-anthracite/80">
-          Sélectionnez le réseau de votre choix&nbsp;:
-        </p>
+          {translateContent("Sélectionnez le réseau de votre choix&nbsp;: ")}</p>
         <div className="mt-6 grid grid-cols-2 gap-3">
           {socialNetworks.map((network) => {
             const Icon = network.icon;
@@ -124,7 +124,7 @@ export default function SocialModal() {
                 className="flex items-center justify-center gap-2 rounded-xl border border-or/30 bg-creme px-4 py-3 font-sans text-sm font-semibold uppercase tracking-wide text-vert transition-all duration-200 hover:border-or hover:bg-vert hover:text-white"
               >
                 <Icon className="h-5 w-5" aria-hidden />
-                {network.label}
+                {translateContent(network.label)}
               </a>
             );
           })}

@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useEffect, useState } from "react";
 import { cn } from "../../utils/cn";
 
@@ -63,10 +64,9 @@ export default function ManifestoToc({ items }: { items: ManifestoTocItem[] }) {
                   activeId === item.id ? "text-or-fonce" : "text-vert",
                 )}
               >
-                {item.number}.
-              </span>
+                {item.number}{translateContent(". ")}</span>
             ) : null}
-            <span>{item.label}</span>
+            <span>{translateContent(item.label)}</span>
           </a>
         </li>
       ))}
@@ -77,23 +77,21 @@ export default function ManifestoToc({ items }: { items: ManifestoTocItem[] }) {
     <>
       {/* Mobile / tablette : bloc compact */}
       <nav
-        aria-label="Table des matières"
+        aria-label={translateContent("Table des matières")}
         className="print:hidden rounded-[1.5rem] border border-or/25 bg-creme-clair p-5 shadow-sm lg:hidden"
       >
         <h2 className="font-serif text-lg font-semibold uppercase tracking-wide text-vert">
-          Sommaire
-        </h2>
+          {translateContent("Sommaire ")}</h2>
         <div className="mt-4">{renderLinks(false)}</div>
       </nav>
 
       {/* Desktop : sticky */}
       <nav
-        aria-label="Table des matières"
+        aria-label={translateContent("Table des matières")}
         className="print:hidden sticky top-28 hidden max-h-[calc(100dvh-8rem)] overflow-y-auto self-start pr-2 lg:block"
       >
         <p className="font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-or-fonce">
-          Sommaire
-        </p>
+          {translateContent("Sommaire ")}</p>
         <div className="mt-4">{renderLinks(true)}</div>
       </nav>
     </>

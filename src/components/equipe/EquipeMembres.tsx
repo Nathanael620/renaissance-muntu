@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { equipeCollectif } from "../../data/equipeData";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -22,19 +23,14 @@ export default function EquipeMembres() {
       <div className="mx-auto max-w-[1440px]">
         <div className="max-w-3xl">
           <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-            Le collectif
-          </p>
+            {translateContent("Le collectif ")}</p>
           <h2
             id="equipe-membres-title"
             className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
           >
-            Les membres de l&rsquo;équipe
-          </h2>
+            {translateContent("Les membres de l&rsquo;équipe ")}</h2>
           <p className="mt-4 font-sans text-sm leading-relaxed text-anthracite/80 sm:text-base">
-            Chacune et chacun, à sa place, contribue à faire vivre la vision du
-            mouvement. Les profils individuels et les photographies seront
-            publiés après validation institutionnelle.
-          </p>
+            {translateContent("Chacune et chacun, à sa place, contribue à faire vivre la vision du mouvement. Les profils individuels et les photographies seront publiés après validation institutionnelle. ")}</p>
         </div>
 
         <div
@@ -51,15 +47,13 @@ export default function EquipeMembres() {
           ))}
         </div>
 
-        {equipeCollectif.length === 0 && (
+        {translateContent(equipeCollectif.length === 0 && (
           <p className="mt-10 rounded-[1.75rem] border border-dashed border-or/40 bg-creme-clair p-8 text-center font-sans text-sm text-anthracite/70">
-            La composition du collectif sera annoncée prochainement.
-          </p>
-        )}
+            {translateContent("La composition du collectif sera annoncée prochainement. ")}</p>
+        ))}
 
         <p className="mt-8 text-center font-sans text-xs uppercase tracking-[0.2em] text-anthracite/50">
-          Les informations officielles seront publiées prochainement.
-        </p>
+          {translateContent("Les informations officielles seront publiées prochainement. ")}</p>
       </div>
     </section>
   );

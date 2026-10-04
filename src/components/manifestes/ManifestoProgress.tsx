@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useReadingProgress } from "../../hooks/useReadingProgress";
 
 /**
@@ -12,7 +13,7 @@ export default function ManifestoProgress() {
   return (
     <div
       role="progressbar"
-      aria-label="Progression de lecture"
+      aria-label={translateContent("Progression de lecture")}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={percent}

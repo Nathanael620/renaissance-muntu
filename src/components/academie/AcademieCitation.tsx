@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useFadeIn } from "../../hooks/useFadeIn";
 
 /**
@@ -15,19 +16,14 @@ export default function AcademieCitation() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <span className="font-serif text-6xl leading-none text-or/40" aria-hidden>
-          &ldquo;
-        </span>
+          {translateContent("&ldquo; ")}</span>
         <blockquote
           id="academie-citation-title"
           className="mt-4 font-serif text-xl italic leading-relaxed text-vert sm:text-2xl"
         >
-          &ldquo;Savoir d&rsquo;où nous venons pour savoir où aller&nbsp;: la connaissance,
-          l&rsquo;histoire et la conscience deviennent les outils d&rsquo;une renaissance
-          africaine juste, digne et agissante.&rdquo;
-        </blockquote>
+          {translateContent("&ldquo;Savoir d&rsquo;où nous venons pour savoir où aller&nbsp;: la connaissance, l&rsquo;histoire et la conscience deviennent les outils d&rsquo;une renaissance africaine juste, digne et agissante.&rdquo; ")}</blockquote>
         <p className="mt-4 font-sans text-xs uppercase tracking-[0.2em] text-anthracite/60">
-          Académie Du Muntu — Pour la Renaissance du Muntu
-        </p>
+          {translateContent("Académie Du Muntu — Pour la Renaissance du Muntu ")}</p>
       </div>
     </section>
   );

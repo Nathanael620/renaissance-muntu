@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useEffect, useId, useState } from "react";
 import { Heart, Menu, X } from "lucide-react";
 import logo from "../../assets/icons/renaissance.png";
@@ -6,6 +7,8 @@ import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { cn } from "../../utils/cn";
 import SupportButton from "../support/SupportButton";
 import { requestContactModal } from "../ContactModal/contactModalEvents";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { localizedPath, navigateToPath, resolveRoute } from "../../routing/routes";
 
 /**
  * Navbar — maquette2 desktop (overlay hero) + mobile (barre blanche + menu).
@@ -16,9 +19,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [pathname, setPathname] = useState(window.location.pathname);
   const menuId = useId();
-  const isSupportPage = pathname === "/soutenir";
+  const currentRoute = resolveRoute(pathname);
+  const isSupportPage = currentRoute.name === "support";
   /* Pages de consultation d'un ouvrage : navbar à fond constant comme sur /soutenir. */
-  const isConsultationPage = pathname.startsWith("/bibliotheque/consulter/");
+  const isConsultationPage = currentRoute.name === "book";
 
   useEffect(() => {
     const onRouteChange = () => setPathname(window.location.pathname);
@@ -61,13 +65,17 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:px-8 lg:py-3">
         {/* ——— Logo ——— */}
         <a
-          href="#accueil"
+          href={localizedPath("/")}
+          onClick={(event) => {
+            event.preventDefault();
+            navigateToPath("/");
+          }}
           className="flex shrink-0 items-center rounded-sm bg-white px-2 py-1.5 shadow-sm transition-opacity hover:opacity-90"
-          aria-label={brand.name}
+          aria-label={translateContent(brand.name)}
         >
           <img
             src={logo}
-            alt={brand.name}
+            alt={translateContent(brand.name)}
             className="h-12 w-auto object-contain md:h-14 lg:h-[60px]"
           />
         </a>
@@ -75,13 +83,13 @@ export default function Navbar() {
         {/* ——— Liens desktop (≥ 1024px) ——— */}
         <nav
           className="hidden flex-1 items-center justify-center lg:flex"
-          aria-label="Navigation principale"
+          aria-label={translateContent("Navigation principale")}
         >
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 xl:gap-x-5">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={localizedPath(link.href)}
                   onClick={(event) => {
                     if (link.label === "CONTACT") {
                       event.preventDefault();
@@ -90,17 +98,7 @@ export default function Navbar() {
                     }
                     if (link.href.startsWith("/")) {
                       event.preventDefault();
-                      window.history.pushState({}, "", link.href);
-                      window.dispatchEvent(new Event("routechange"));
-                      // If the link contains a hash, attempt to scroll to the target
-                      const hashIndex = link.href.indexOf("#");
-                      if (hashIndex !== -1) {
-                        const id = link.href.slice(hashIndex + 1);
-                        setTimeout(() => {
-                          const el = document.getElementById(id);
-                          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                        }, 80);
-                      }
+                      navigateToPath(link.href);
                     }
                   }}
                   className={cn(
@@ -110,7 +108,7 @@ export default function Navbar() {
                     link.label === "ACCUEIL" && "border-or",
                   )}
                 >
-                  {link.label}
+                  {translateContent(link.label)}
                 </a>
               </li>
             ))}
@@ -119,6 +117,7 @@ export default function Navbar() {
 
         {/* ——— CTA + burger ——— */}
         <div className="flex items-center gap-2 md:gap-3">
+          <LanguageSwitcher />
           <SupportButton
             className={cn(
               "btn-or hidden items-center gap-2 rounded-full px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-wide shadow-md sm:inline-flex",
@@ -128,8 +127,8 @@ export default function Navbar() {
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
               <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
             </span>
-            <span className="hidden xl:inline">Soutenir la vision</span>
-            <span className="xl:hidden">Soutenir la vision</span>
+            <span className="hidden xl:inline">{translateContent("Soutenir la vision")}</span>
+            <span className="xl:hidden">{translateContent("Soutenir la vision")}</span>
           </SupportButton>
 
           <button
@@ -137,10 +136,10 @@ export default function Navbar() {
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-anthracite transition-colors hover:bg-creme lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={translateContent(open ? "Fermer le menu" : "Ouvrir le menu")}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {translateContent(open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />)}
           </button>
         </div>
       </div>
@@ -153,12 +152,12 @@ export default function Navbar() {
           open ? "max-h-[100dvh] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <nav aria-label="Navigation mobile" className="px-4 py-4">
+        <nav aria-label={translateContent("Navigation mobile")} className="px-4 py-4">
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={localizedPath(link.href)}
                   onClick={(event) => {
                     if (link.label === "CONTACT") {
                       event.preventDefault();
@@ -168,22 +167,13 @@ export default function Navbar() {
                     }
                     if (link.href.startsWith("/")) {
                       event.preventDefault();
-                      window.history.pushState({}, "", link.href);
-                      window.dispatchEvent(new Event("routechange"));
-                      const hashIndex = link.href.indexOf("#");
-                      if (hashIndex !== -1) {
-                        const id = link.href.slice(hashIndex + 1);
-                        setTimeout(() => {
-                          const el = document.getElementById(id);
-                          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                        }, 80);
-                      }
+                      navigateToPath(link.href);
                     }
                     setOpen(false);
                   }}
                   className="block rounded-md px-3 py-3 font-sans text-sm font-medium uppercase tracking-wide text-vert transition-colors hover:bg-creme hover:text-or"
                 >
-                  {link.label}
+                  {translateContent(link.label)}
                 </a>
               </li>
             ))}
@@ -193,8 +183,7 @@ export default function Navbar() {
             onClick={() => setOpen(false)}
           >
             <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
-            Soutenir la vision
-          </SupportButton>
+            {translateContent("Soutenir la vision ")}</SupportButton>
         </nav>
       </div>
     </header>

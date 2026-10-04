@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   BookOpen,
   GraduationCap,
@@ -71,14 +72,12 @@ export default function AcademieRaisonEtre() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Comprendre
-        </p>
+          {translateContent("Comprendre ")}</p>
         <h2
           id="academie-raison-ettre-title"
           className="mt-4 font-serif text-2xl font-semibold uppercase tracking-wide text-vert sm:text-3xl"
         >
-          Pourquoi l&rsquo;Académie du Muntu&nbsp;?
-        </h2>
+          {translateContent("Pourquoi l&rsquo;Académie du Muntu&nbsp;? ")}</h2>
 
         <div className={cn("mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3", visible && "animate-fade-in-delay-1")}>
           {concepts.map((concept) => (
@@ -91,11 +90,11 @@ export default function AcademieRaisonEtre() {
                   <concept.icone className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="font-serif text-lg font-semibold uppercase leading-snug text-vert">
-                  {concept.titre}
+                  {translateContent(concept.titre)}
                 </h3>
               </div>
               <p className="mt-3 font-sans text-sm leading-relaxed text-anthracite/85">
-                {concept.description}
+                {translateContent(concept.description)}
               </p>
             </article>
           ))}

@@ -1,4 +1,6 @@
+import { translateContent } from "../../i18n/translateContent";
 import React from "react";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 type Props = React.ComponentPropsWithoutRef<"a"> & { to?: string };
 
@@ -6,13 +8,12 @@ export default function SupportButton({ to = "/soutenir", onClick, children, ...
   const handle = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) onClick(e);
     e.preventDefault();
-    window.history.pushState({}, "", to);
-    window.dispatchEvent(new Event("routechange"));
+    navigateToPath(to);
   };
 
   return (
-    <a {...rest} href={to} onClick={handle}>
-      {children}
+    <a {...rest} href={localizedPath(to)} onClick={handle}>
+      {translateContent(children)}
     </a>
   );
 }

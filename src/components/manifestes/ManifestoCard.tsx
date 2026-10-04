@@ -1,13 +1,14 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, BookOpen, Eye, ShoppingBag } from "lucide-react";
 import renaissanceLogo from "../../assets/images/3.png";
 import elimbaLogo from "../../assets/images/1.png";
 import publisherLogo from "../../assets/icons/zero-revenge-books.jpeg";
 import type { Manifesto } from "../../data/manifestesData";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 /** Navigation interne maison (pushState + routechange). */
 function navigate(href: string) {
-  window.history.pushState({}, "", href);
-  window.dispatchEvent(new Event("routechange"));
+  navigateToPath(href);
 }
 
 /**
@@ -26,7 +27,7 @@ export default function ManifestoCard({
   manifesto: Manifesto;
   index?: number;
 }) {
-  const href = `/manifestes/${manifesto.slug}`;
+  const href = localizedPath(`/manifestes/${manifesto.slug}`);
   const isPaywalled = manifesto.paywall === true;
   const hasShopUrl = Boolean(manifesto.shopUrl);
 
@@ -62,14 +63,14 @@ export default function ManifestoCard({
             <div className="flex h-20 w-20 items-center justify-center bg-transparent p-0 shadow-none sm:h-24 sm:w-24 lg:h-28 lg:w-28">
               <img
                 src={renaissanceLogo}
-                alt="Logo Pour la Renaissance du Muntu"
+                alt={translateContent("Logo Pour la Renaissance du Muntu")}
                 className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
               />
             </div>
             <div className="flex h-20 w-20 items-center justify-center bg-transparent p-0 shadow-none sm:h-24 sm:w-24 lg:h-28 lg:w-28">
               <img
                 src={elimbaLogo}
-                alt="Logo Elimb'a Dikalo"
+                alt={translateContent("Logo Elimb'a Dikalo")}
                 className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
               />
             </div>
@@ -80,26 +81,25 @@ export default function ManifestoCard({
             <div className="flex h-14 w-14 items-center justify-center bg-transparent p-0 shadow-none sm:h-16 sm:w-16 lg:h-20 lg:w-20">
               <img
                 src={publisherLogo}
-                alt="Logo Zero Revenge Books — maison d'édition"
+                alt={translateContent("Logo Zero Revenge Books — maison d'édition")}
                 className="h-full w-full object-contain drop-shadow-[0_6px_16px_rgba(0,0,0,0.22)]"
               />
             </div>
           </div>
 
           <span className="relative break-words font-sans text-[10px] font-bold uppercase tracking-[0.28em] text-or-clair">
-            Manifeste
-          </span>
+            {translateContent("Manifeste ")}</span>
 
           <div className="relative min-w-0">
             <h3 className="break-words font-serif text-2xl font-bold uppercase leading-tight text-white [overflow-wrap:anywhere]">
-              {manifesto.title}
+              {translateContent(manifesto.title)}
             </h3>
             <p className="mt-3 whitespace-pre-line break-words font-serif text-sm italic leading-snug text-creme [overflow-wrap:anywhere]">
-              {manifesto.subtitle}
+              {translateContent(manifesto.subtitle)}
             </p>
             {manifesto.inspiration ? (
               <p className="mt-4 break-words font-sans text-[10px] uppercase tracking-[0.14em] text-or-clair/90 [overflow-wrap:anywhere]">
-                {manifesto.inspiration}
+                {translateContent(manifesto.inspiration)}
               </p>
             ) : null}
           </div>
@@ -112,13 +112,13 @@ export default function ManifestoCard({
       <div className="flex flex-1 flex-col items-center px-6 pb-6 pt-5 text-center">
         {index != null ? (
           <span className="font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-or-fonce">
-            Manifeste Nº&nbsp;{index + 1}
+            {translateContent("Manifeste Nº&nbsp;")}{index + 1}
           </span>
         ) : null}
         {manifesto.badge ? (
           <span className="inline-flex items-center gap-1.5 rounded-full border border-or/30 bg-or/5 px-3 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-or-fonce">
             <BookOpen className="h-3 w-3" aria-hidden />
-            {manifesto.badge}
+            {translateContent(manifesto.badge)}
           </span>
         ) : null}
 
@@ -132,8 +132,7 @@ export default function ManifestoCard({
                 </p>
               ) : (
                 <p className="inline-flex items-center rounded-full border border-or-fonce/40 bg-or/10 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-or-fonce">
-                  Prix à définir
-                </p>
+                  {translateContent("Prix à définir ")}</p>
               )}
             </div>
 
@@ -148,19 +147,17 @@ export default function ManifestoCard({
                     className="btn-or inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
                   >
                     <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
-                    Acheter
-                  </a>
+                    {translateContent("Acheter ")}</a>
                 ) : (
                   <button
                     type="button"
                     disabled
                     aria-disabled="true"
-                    title="Achat Chariow — disponible prochainement"
+                    title={translateContent("Achat Chariow — disponible prochainement")}
                     className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-md"
                   >
                     <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
-                    Acheter
-                  </button>
+                    {translateContent("Acheter ")}</button>
                 )}
                 <a
                   href={href}
@@ -171,13 +168,12 @@ export default function ManifestoCard({
                   className="inline-flex items-center justify-center gap-1.5 rounded-full border border-vert px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors duration-300 hover:bg-vert hover:text-white"
                 >
                   <Eye className="h-3.5 w-3.5" aria-hidden />
-                  {readLabel}
+                  {translateContent(readLabel)}
                 </a>
               </div>
               {!hasShopUrl ? (
                 <p className="mt-2 text-center font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
-                  Achat disponible prochainement
-                </p>
+                  {translateContent("Achat disponible prochainement ")}</p>
               ) : null}
             </div>
           </>
@@ -190,7 +186,7 @@ export default function ManifestoCard({
             }}
             className="btn-or mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
           >
-            {readLabel}
+            {translateContent(readLabel)}
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
         )}

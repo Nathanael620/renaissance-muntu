@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   ArrowRight,
   Compass,
@@ -15,6 +16,7 @@ import {
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
 import { navigateTo } from "../../utils/navigate";
+import { localizedPath } from "../../routing/routes";
 
 /** Icônes associées aux cinq piliers officiels (aucun nouveau pilier). */
 const pillarIcons: Record<string, LucideIcon> = {
@@ -44,18 +46,14 @@ export default function EquipeDomaines() {
       <div className="mx-auto max-w-[1440px]">
         <div className="max-w-3xl">
           <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-            Champs d&rsquo;engagement
-          </p>
+            {translateContent("Champs d&rsquo;engagement ")}</p>
           <h2
             id="equipe-domaines-title"
             className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
           >
-            Les domaines d&rsquo;engagement de l&rsquo;équipe
-          </h2>
+            {translateContent("Les domaines d&rsquo;engagement de l&rsquo;équipe ")}</h2>
           <p className="mt-4 font-sans text-sm leading-relaxed text-anthracite/80 sm:text-base">
-            L&rsquo;équipe se mobilise au service des cinq piliers du mouvement,
-            dans une continuité institutionnelle constante.
-          </p>
+            {translateContent("L&rsquo;équipe se mobilise au service des cinq piliers du mouvement, dans une continuité institutionnelle constante. ")}</p>
         </div>
 
         <ul
@@ -70,7 +68,7 @@ export default function EquipeDomaines() {
             return (
               <li key={pillar.id}>
                 <a
-                  href={href}
+                  href={localizedPath(href)}
                   onClick={(event) => navigateTo(event, href)}
                   className="group flex h-full flex-col rounded-[1.75rem] border border-or/25 bg-white p-6 shadow-sm transition-all duration-300 hover:border-or/60 hover:shadow-md"
                 >
@@ -86,14 +84,13 @@ export default function EquipeDomaines() {
                     </span>
                   </div>
                   <h3 className="mt-4 font-serif text-sm font-bold uppercase leading-snug text-vert">
-                    {pillar.title}
+                    {translateContent(pillar.title)}
                   </h3>
                   <p className="mt-2 flex-1 font-sans text-[13px] leading-relaxed text-anthracite/75">
-                    {pillar.themes.join(" • ")}
+                    {pillar.themes.map((theme) => translateContent(theme)).join(" • ")}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-vert transition-transform duration-300 group-hover:translate-x-1">
-                    Explorer
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    {translateContent("Explorer ")}<ArrowRight className="h-3.5 w-3.5" aria-hidden />
                   </span>
                 </a>
               </li>
@@ -102,9 +99,8 @@ export default function EquipeDomaines() {
         </ul>
 
         <p className="mt-8 border-t border-or/20 pt-6 text-center font-sans text-xs uppercase tracking-[0.18em] text-anthracite/60">
-          Compétences transverses de l&rsquo;équipe :{" "}
-          {equipeCompetencesTransverses.join(" • ")}.
-        </p>
+          {translateContent("Compétences transverses de l&rsquo;équipe :")}{translateContent(" ")}
+          {equipeCompetencesTransverses.map((skill) => translateContent(skill)).join(" • ")}{translateContent(". ")}</p>
       </div>
     </section>
   );

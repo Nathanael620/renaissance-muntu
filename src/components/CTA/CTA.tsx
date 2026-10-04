@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { Heart, Mail, Users } from "lucide-react";
 import engagementImg from "../../assets/images/engagement.png";
 import { engagementText, soutienText } from "../../data/siteData";
@@ -20,8 +21,7 @@ export default function CTA() {
             <Users className="h-5 w-5 text-or-clair" aria-hidden />
           </span>
           <h2 className="font-serif text-base font-semibold uppercase tracking-wide text-vert md:text-lg">
-            Rejoindre la vision
-          </h2>
+            {translateContent("Rejoindre la vision ")}</h2>
         </div>
         <div className="mb-4 h-px w-full bg-or/30" aria-hidden />
 
@@ -29,7 +29,7 @@ export default function CTA() {
           <div className="relative overflow-hidden rounded-xl border border-or/20 bg-white/60">
             <img
               src={engagementImg}
-              alt=""
+              alt={translateContent("")}
               className="block h-auto w-full object-contain"
               loading="lazy"
             />
@@ -38,13 +38,12 @@ export default function CTA() {
 
           <div className="flex flex-col justify-center">
             <p className="font-sans text-sm leading-relaxed text-anthracite">
-              {engagementText}
+              {translateContent(engagementText)}
             </p>
             <SupportButton
               className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce md:w-auto"
             >
-              S’engager maintenant
-            </SupportButton>
+              {translateContent("S’engager maintenant ")}</SupportButton>
           </div>
         </div>
       </article>
@@ -75,10 +74,9 @@ export function SoutienBanner() {
               id="soutien-title"
               className="font-serif text-xl font-semibold uppercase tracking-wide text-white md:text-2xl"
             >
-              Soutien et engagement
-            </h2>
+              {translateContent("Soutien et engagement ")}</h2>
             <p className="mt-2 max-w-xl font-sans text-sm leading-relaxed text-white/85">
-              {soutienText}
+              {translateContent(soutienText)}
             </p>
           </div>
         </div>
@@ -87,8 +85,7 @@ export function SoutienBanner() {
           className="btn-or inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg md:text-sm"
         >
           <Heart className="h-4 w-4 fill-white text-white" aria-hidden />
-          Soutenir la vision ou devenir partenaire
-        </SupportButton>
+          {translateContent("Soutenir la vision ou devenir partenaire ")}</SupportButton>
       </div>
     </section>
   );

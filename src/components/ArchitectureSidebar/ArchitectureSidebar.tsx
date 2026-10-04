@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { BookOpen, GraduationCap, Heart, Users } from "lucide-react";
 import logo from "../../assets/icons/renaissance.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
@@ -14,14 +15,14 @@ function ItemIcon({ index }: { index: number }) {
   if (index === 0 || index === 1) {
     return (
       <div className={wrap}>
-        <img src={logo} alt="" className="h-10 w-10 object-contain object-left" />
+        <img src={logo} alt={translateContent("")} className="h-10 w-10 object-contain object-left" />
       </div>
     );
   }
   if (index === 2) {
     return (
       <div className={wrap}>
-        <img src={elimbaIcon} alt="" className="h-full w-full object-cover object-left" />
+        <img src={elimbaIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
       </div>
     );
   }
@@ -53,14 +54,11 @@ function ArchitectureRow({ item, index }: { item: Item; index: number }) {
     return (
       <div className="rounded-2xl bg-vert px-4 py-4 text-center">
         <p className="font-sans text-xs font-bold uppercase tracking-wide text-white">
-          POUR LA RENAISSANCE
-        </p>
+          {translateContent("POUR LA RENAISSANCE ")}</p>
         <p className="font-sans text-xs font-bold uppercase tracking-wide text-white">
-          DU MUNTU
-        </p>
+          {translateContent("DU MUNTU ")}</p>
         <p className="mt-1 font-sans text-[11px] font-semibold uppercase tracking-wide text-or-clair">
-          (L’INSTITUT)
-        </p>
+          {translateContent("(L’INSTITUT) ")}</p>
       </div>
     );
   }
@@ -70,7 +68,7 @@ function ArchitectureRow({ item, index }: { item: Item; index: number }) {
       <ItemIcon index={index} />
       <div>
         <h3 className="font-sans text-xs font-bold uppercase tracking-wide text-vert">
-          {item.title}
+          {translateContent(item.title)}
         </h3>
         {item.themes.length > 0 && (
           <ul className="mt-1 space-y-0.5">
@@ -94,11 +92,10 @@ export default function ArchitectureSidebar() {
   return (
     <aside
       className="hidden w-full max-w-sm rounded-2xl border border-or/25 bg-creme-clair p-5 shadow-sm lg:block"
-      aria-label="Architecture globale du site"
+      aria-label={translateContent("Architecture globale du site")}
     >
       <h2 className="mb-4 text-center font-sans text-xs font-bold uppercase tracking-[0.12em] text-vert">
-        Architecture globale du site
-      </h2>
+        {translateContent("Architecture globale du site ")}</h2>
 
       <div className="flex flex-col gap-5">
         {architectureItems.map((item, index) => (
@@ -111,11 +108,9 @@ export default function ArchitectureSidebar() {
           <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">
             <Heart className="h-3 w-3 fill-white text-white" aria-hidden />
           </span>
-          Soutenir la Vision
-        </span>
+          {translateContent("Soutenir la Vision ")}</span>
         <span className="font-sans text-[10px] font-normal normal-case tracking-normal text-white/90">
-          Semez aujourd’hui une humanité plus juste et durable
-        </span>
+          {translateContent("Semez aujourd’hui une humanité plus juste et durable ")}</span>
       </SupportButton>
     </aside>
   );

@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useFadeIn } from "../../hooks/useFadeIn";
 
 /**
@@ -27,32 +28,24 @@ export default function EquipeVision() {
         </div>
 
         <p className="mt-6 font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
-          Une équipe, une vision
-        </p>
+          {translateContent("Une équipe, une vision ")}</p>
         <h2
           id="equipe-vision-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-white sm:text-4xl"
         >
-          Une équipe, une vision
-        </h2>
+          {translateContent("Une équipe, une vision ")}</h2>
         <p
           className={
             "mt-6 font-sans text-base leading-relaxed text-white/90 " +
             (visible ? "animate-fade-in-delay-1" : "")
           }
         >
-          La Renaissance du Muntu ne repose pas sur une personne, mais sur une
-          conscience collective, des responsabilités partagées et une volonté
-          commune de servir une vision plus grande que soi.
-        </p>
+          {translateContent("La Renaissance du Muntu ne repose pas sur une personne, mais sur une conscience collective, des responsabilités partagées et une volonté commune de servir une vision plus grande que soi. ")}</p>
         <blockquote className="mt-8">
           <p className="font-serif text-lg italic leading-relaxed text-or-clair sm:text-xl">
-            &ldquo;Si tu veux aller vite, marche seul. Si tu veux aller loin,
-            marchons ensemble.&rdquo;
-          </p>
+            {translateContent("&ldquo;Si tu veux aller vite, marche seul. Si tu veux aller loin, marchons ensemble.&rdquo; ")}</p>
           <p className="mt-3 font-sans text-xs uppercase tracking-[0.2em] text-white/70">
-            Proverbe africain
-          </p>
+            {translateContent("Proverbe africain ")}</p>
         </blockquote>
       </div>
     </section>

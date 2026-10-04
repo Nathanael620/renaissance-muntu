@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { equipeDirection } from "../../data/equipeData";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -28,20 +29,14 @@ export default function EquipeDirection() {
         >
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
-              Équipe dirigeante
-            </p>
+              {translateContent("Équipe dirigeante ")}</p>
             <h2
               id="equipe-direction-title"
               className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-white sm:text-4xl"
             >
-              Une gouvernance au service de la vision
-            </h2>
+              {translateContent("Une gouvernance au service de la vision ")}</h2>
             <p className="mt-5 max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-              L&rsquo;organisation du mouvement repose sur une gouvernance
-              collégiale, transparente et tournée vers le long terme. La
-              composition officielle de l&rsquo;équipe dirigeante et du comité
-              fondateur sera annoncée après validation institutionnelle.
-            </p>
+              {translateContent("L&rsquo;organisation du mouvement repose sur une gouvernance collégiale, transparente et tournée vers le long terme. La composition officielle de l&rsquo;équipe dirigeante et du comité fondateur sera annoncée après validation institutionnelle. ")}</p>
           </div>
 
           {/* Cadres réservés à la composition officielle — décoratifs */}
@@ -58,15 +53,14 @@ export default function EquipeDirection() {
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-vert-fonce" />
                 </div>
                 <p className="mt-3 font-sans text-[9px] uppercase tracking-[0.22em] text-white/40">
-                  Portrait
-                </p>
+                  {translateContent("Portrait ")}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Fiches de l'équipe dirigeante, dès leur déclaration dans les données */}
-        {equipeDirection.length > 0 && (
+        {translateContent(equipeDirection.length > 0 && (
           <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {equipeDirection.map((membre, index) => (
               <EquipeMembreCard
@@ -75,7 +69,7 @@ export default function EquipeDirection() {
               />
             ))}
           </div>
-        )}
+        ))}
       </div>
     </section>
   );

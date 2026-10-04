@@ -1,8 +1,10 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight } from "lucide-react";
 import { pillars } from "../../data/siteData";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
 import { navigateTo } from "../../utils/navigate";
+import { localizedPath } from "../../routing/routes";
 
 /**
  * Section 8 — Navigation vers les autres piliers.
@@ -34,8 +36,7 @@ export default function PillarNavigation() {
             id="transmission-piliers-title"
             className="text-center font-serif text-xl font-semibold uppercase tracking-wide text-vert md:text-2xl"
           >
-            Explorer les autres piliers
-          </h2>
+            {translateContent("Explorer les autres piliers ")}</h2>
           <span className="hidden h-px flex-1 max-w-40 bg-or/60 sm:block" aria-hidden />
         </div>
 
@@ -46,7 +47,7 @@ export default function PillarNavigation() {
             return (
               <a
                 key={pillar.id}
-                href={href}
+                href={localizedPath(href)}
                 aria-current={isActive ? "page" : undefined}
                 onClick={(event) => navigateTo(event, href)}
                 className={cn(
@@ -66,7 +67,7 @@ export default function PillarNavigation() {
                   {String(pillar.id).padStart(2, "0")}
                 </span>
                 <h3 className="mt-2 flex-1 font-serif text-sm font-bold uppercase leading-snug">
-                  {pillar.title}
+                  {translateContent(pillar.title)}
                 </h3>
                 <span
                   className={cn(
@@ -74,7 +75,7 @@ export default function PillarNavigation() {
                     isActive ? "text-white/80" : "text-anthracite/75",
                   )}
                 >
-                  {pillar.themes.join(" • ")}
+                  {pillar.themes.map((theme) => translateContent(theme)).join(" • ")}
                 </span>
                 <span
                   className={cn(
@@ -82,7 +83,7 @@ export default function PillarNavigation() {
                     isActive ? "text-or-clair" : "text-vert",
                   )}
                 >
-                  {isActive ? "Page actuelle" : "Découvrir"}
+                  {translateContent(isActive ? "Page actuelle" : "Découvrir")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </span>
               </a>

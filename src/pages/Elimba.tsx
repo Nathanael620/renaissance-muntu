@@ -1,4 +1,6 @@
+import { translateContent } from "../i18n/translateContent";
 import { ArrowRight } from "lucide-react";
+import { localizedPath, navigateToPath } from "../routing/routes";
 import heroBg from "../assets/images/elimba.png";
 import logo from "../assets/icons/elimba.jpeg";
 import {
@@ -74,7 +76,7 @@ export default function Elimba() {
       >
         <img
           src={heroBg}
-          alt="Fond Elimb'a Dikalo"
+          alt={translateContent("Fond Elimb'a Dikalo")}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/35" aria-hidden />
@@ -82,37 +84,30 @@ export default function Elimba() {
         <div className="relative mx-auto grid max-w-[1440px] gap-6 px-6 pt-28 pb-10 md:grid-cols-[minmax(280px,440px)_minmax(0,1fr)] md:items-center md:gap-8 md:pt-32 md:pb-16 lg:px-10 lg:pt-36 lg:pb-14 xl:gap-14">
           <div className="max-w-2xl md:order-last md:ml-6 lg:ml-12 xl:ml-20">
             <p className="font-sans text-xl font-semibold uppercase tracking-[0.18em] text-white sm:text-2xl lg:text-3xl [overflow-wrap:anywhere]">
-              ELIMB&rsquo;A DIKALO
-            </p>
+              {translateContent("ELIMB&rsquo;A DIKALO ")}</p>
             <h1
               id="elimba-hero-title"
               className="mt-6 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-6xl"
             >
-              Pour la Renaissance du Muntu
-            </h1>
+              {translateContent("Pour la Renaissance du Muntu ")}</h1>
             <p className="mt-6 max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-              Placer le dialogue exigeant et la responsabilité collective au cœur de la renaissance.
-              Ce pilier fondateur met en lumière les forces qui rendent possible une transformation authentique.
-            </p>
+              {translateContent("Placer le dialogue exigeant et la responsabilité collective au cœur de la renaissance. Ce pilier fondateur met en lumière les forces qui rendent possible une transformation authentique. ")}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#elimba-objective"
                 className="inline-flex items-center justify-center rounded-full bg-or px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white shadow-lg transition hover:bg-or-clair"
               >
-                Voir l’objectif
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
+                {translateContent("Voir l’objectif ")}<ArrowRight className="ml-2 h-4 w-4" aria-hidden />
               </a>
               <a
-                href="/"
+                href={localizedPath("/")}
                 onClick={(event) => {
                   event.preventDefault();
-                  window.history.pushState({}, "", "/");
-                  window.dispatchEvent(new Event("routechange"));
+                  navigateToPath("/");
                 }}
                 className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:border-or hover:text-or"
               >
-                Retour à l’accueil
-              </a>
+                {translateContent("Retour à l’accueil ")}</a>
             </div>
           </div>
 
@@ -121,31 +116,26 @@ export default function Elimba() {
               <div className="w-64 shrink-0 sm:w-72 lg:w-[20rem] xl:w-[22rem]">
                 <img
                   src={logo}
-                  alt="Logo Elimb'a Dikalo"
+                  alt={translateContent("Logo Elimb'a Dikalo")}
                   className="h-auto w-full object-contain"
                 />
               </div>
 
               <p className="max-w-[18rem] font-serif text-sm italic leading-snug text-white/90 sm:text-base">
-                Une même terre. Plusieurs racines. Un seul avenir.
-              </p>
+                {translateContent("Une même terre. Plusieurs racines. Un seul avenir. ")}</p>
 
               <div className="w-full">
                 <p className="font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-or-clair">
-                  Pilier fondateur
-                </p>
+                  {translateContent("Pilier fondateur ")}</p>
                 <h2 className="mt-2 break-words font-serif text-2xl font-semibold uppercase leading-tight text-white sm:text-3xl [overflow-wrap:anywhere]">
-                  Vérité &amp; Dialogue
-                </h2>
+                  {translateContent("Vérité &amp; Dialogue ")}</h2>
               </div>
 
               <div className="w-full space-y-3 text-sm leading-relaxed text-white/85 sm:text-[0.95rem]">
                 <p>
-                  Elimb&rsquo;a Dikalo est le volet de la renaissance qui interroge, relie et élève par la parole vraie.
-                </p>
+                  {translateContent("Elimb&rsquo;a Dikalo est le volet de la renaissance qui interroge, relie et élève par la parole vraie. ")}</p>
                 <p>
-                  Son engagement : écouter les peuples, mesurer les responsabilités et offrir un horizon de conscience partagée.
-                </p>
+                  {translateContent("Son engagement : écouter les peuples, mesurer les responsabilités et offrir un horizon de conscience partagée. ")}</p>
               </div>
             </div>
           </aside>
@@ -163,49 +153,38 @@ export default function Elimba() {
         <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
           <div>
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-              Objectif central
-            </p>
+              {translateContent("Objectif central ")}</p>
             <h2
               id="elimba-objective-title"
               className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
             >
-              Prévenir les fractures communautaires avant qu’elles ne deviennent des conflits.
-            </h2>
+              {translateContent("Prévenir les fractures communautaires avant qu’elles ne deviennent des conflits. ")}</h2>
             <p className="mt-5 max-w-3xl font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-              Au lieu d’attendre que les tensions explosent, agir sur les causes profondes : la peur, les préjugés, les rumeurs et les discours de division.
-            </p>
+              {translateContent("Au lieu d’attendre que les tensions explosent, agir sur les causes profondes : la peur, les préjugés, les rumeurs et les discours de division. ")}</p>
           </div>
           <div className="rounded-[2rem] border border-or/20 bg-white p-6 shadow-sm">
             <p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-or-clair">
-              Message central
-            </p>
+              {translateContent("Message central ")}</p>
             <p className="mt-5 font-serif text-lg font-semibold leading-snug text-vert">
-              Le problème n’est pas « les autres ».
-            </p>
+              {translateContent("Le problème n’est pas « les autres ». ")}</p>
             <p className="mt-3 font-sans text-sm leading-relaxed text-anthracite">
-              Le vrai danger est :
-            </p>
+              {translateContent("Le vrai danger est : ")}</p>
             <ul className="mt-4 space-y-3 text-sm leading-relaxed text-anthracite">
               <li className="flex items-start gap-2.5">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                la division,
-              </li>
+                {translateContent("la division, ")}</li>
               <li className="flex items-start gap-2.5">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                l’absence de vision,
-              </li>
+                {translateContent("l’absence de vision, ")}</li>
               <li className="flex items-start gap-2.5">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                la perte du sens communautaire,
-              </li>
+                {translateContent("la perte du sens communautaire, ")}</li>
               <li className="flex items-start gap-2.5">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                la mauvaise gestion de l’héritage,
-              </li>
+                {translateContent("la mauvaise gestion de l’héritage, ")}</li>
               <li className="flex items-start gap-2.5">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-                et la culture de la victimisation.
-              </li>
+                {translateContent("et la culture de la victimisation. ")}</li>
             </ul>
           </div>
         </div>
@@ -220,18 +199,15 @@ export default function Elimba() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-vert">
-                Navigation de la page
-              </p>
+                {translateContent("Navigation de la page ")}</p>
               <h2
                 id="elimba-architecture-title"
                 className="mt-3 font-serif text-3xl font-semibold uppercase text-vert sm:text-4xl"
               >
-                Repères rapides
-              </h2>
+                {translateContent("Repères rapides ")}</h2>
             </div>
             <p className="max-w-xl text-sm leading-relaxed text-anthracite/80">
-              Explorez chaque temps fort de la démarche Elimb’a Dikalo, de l’intention aux actions concrètes.
-            </p>
+              {translateContent("Explorez chaque temps fort de la démarche Elimb’a Dikalo, de l’intention aux actions concrètes. ")}</p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -242,15 +218,14 @@ export default function Elimba() {
                 className="group rounded-[1.5rem] border border-or/20 bg-creme-clair p-6 text-left transition hover:border-or hover:bg-or/5"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-vert transition group-hover:text-or">
-                  {item.label}
+                  {translateContent(item.label)}
                 </p>
                 <div className="mt-4 flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-vert text-white">
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </span>
                   <p className="font-sans text-sm leading-relaxed text-anthracite/85">
-                    Aller à {item.label.toLowerCase()}.
-                  </p>
+                    {translateContent("Aller à ")}{translateContent(item.label.toLowerCase())}{translateContent(". ")}</p>
                 </div>
               </a>
             ))}
@@ -275,16 +250,15 @@ export default function Elimba() {
       >
         <div className="mx-auto max-w-[1440px]">
           <h2 id="elimba-actions-title" className="font-serif text-3xl font-semibold uppercase tracking-wide text-vert">
-            Actions
-          </h2>
+            {translateContent("Actions ")}</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {actions.map((item) => (
               <article key={item.title} className="rounded-[1.75rem] border border-or/20 bg-white p-6 shadow-sm">
                 <h3 className="font-serif text-xl font-semibold uppercase text-vert">
-                  {item.title}
+                  {translateContent(item.title)}
                 </h3>
                 <p className="mt-3 font-sans text-sm leading-relaxed text-anthracite/85">
-                  {item.description}
+                  {translateContent(item.description)}
                 </p>
               </article>
             ))}
@@ -302,29 +276,25 @@ export default function Elimba() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-                Ressources
-              </p>
+                {translateContent("Ressources ")}</p>
               <h2 id="elimba-ressources-title" className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl">
-                Vers un fonds documentaire.
-              </h2>
+                {translateContent("Vers un fonds documentaire. ")}</h2>
             </div>
             <p className="max-w-xl text-sm leading-relaxed text-anthracite/80">
-              Ces ressources sont des repères pour comprendre la démarche, nourrir la réflexion et partager les idées du pilier Elimb’a Dikalo.
-            </p>
+              {translateContent("Ces ressources sont des repères pour comprendre la démarche, nourrir la réflexion et partager les idées du pilier Elimb’a Dikalo. ")}</p>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {ressources.map((item) => (
               <div key={item} className="rounded-[1.75rem] border border-or/20 bg-creme p-6 shadow-sm">
                 <div className="mb-4 h-32 rounded-3xl bg-slate-100/80" aria-hidden>
-                  <span className="sr-only">Visuel à venir</span>
+                  <span className="sr-only">{translateContent("Visuel à venir")}</span>
                 </div>
                 <p className="font-sans text-sm font-semibold uppercase tracking-[0.14em] text-vert">
-                  {item}
+                  {translateContent(item)}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-anthracite/80">
-                  Contenu illustratif à venir pour cette ressource.
-                </p>
+                  {translateContent("Contenu illustratif à venir pour cette ressource. ")}</p>
               </div>
             ))}
           </div>
@@ -339,14 +309,12 @@ export default function Elimba() {
       >
         <div className="mx-auto max-w-[1440px]">
           <h2 id="elimba-temoignages-title" className="font-serif text-3xl font-semibold uppercase tracking-wide text-vert">
-            Témoignage
-          </h2>
+            {translateContent("Témoignage ")}</h2>
           <div className="mt-8 rounded-[2rem] border border-or/20 bg-white p-10 shadow-sm">
             <p className="font-serif text-xl italic leading-relaxed text-anthracite/90 sm:text-2xl">
-              “{temoignage.quote}”
-            </p>
+              {translateContent("“")}{translateContent(temoignage.quote)}{translateContent("” ")}</p>
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-vert">
-              {temoignage.author}
+              {translateContent(temoignage.author)}
             </p>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   ArrowDown,
   ArrowRight,
@@ -61,14 +62,12 @@ export default function TransmissionJourney() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Le cheminement proposé
-        </p>
+          {translateContent("Le cheminement proposé ")}</p>
         <h2
           id="transmission-parcours-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Écouter, comprendre, transmettre.
-        </h2>
+          {translateContent("Écouter, comprendre, transmettre. ")}</h2>
 
         <div className={cn("mt-8 flex flex-col items-center gap-5 lg:flex-row lg:items-stretch lg:gap-3", visible && "animate-fade-in-delay-1")}>
           {parcours.map((etape, index) => {
@@ -80,18 +79,18 @@ export default function TransmissionJourney() {
                   <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-or/50 bg-vert/10">
                     <Icon className="h-6 w-6 text-vert" aria-hidden />
                   </div>
-                  {!last && (
+                  {translateContent(!last && (
                     <>
                       <ArrowRight className="ml-2 hidden h-4 w-4 shrink-0 text-anthracite/40 lg:block" aria-hidden />
                       <ArrowDown className="ml-2 h-4 w-4 shrink-0 text-anthracite/40 lg:hidden" aria-hidden />
                     </>
-                  )}
+                  ))}
                 </div>
                 <p className="mt-3 font-sans text-xs font-bold uppercase tracking-wide text-vert">
-                  {index + 1}. {etape.titre}
+                  {translateContent(index + 1)}{translateContent(". ")}{translateContent(etape.titre)}
                 </p>
                 <p className="mt-1.5 font-sans text-xs leading-relaxed text-anthracite/75">
-                  {etape.detail}
+                  {translateContent(etape.detail)}
                 </p>
               </div>
             );
@@ -99,9 +98,7 @@ export default function TransmissionJourney() {
         </div>
 
         <p className="mt-8 text-center font-sans text-xs italic text-anthracite/70 md:text-sm">
-          Une représentation du cheminement porté par le pilier — le programme officiel
-          et ses modalités seront précisés par l&rsquo;Institut.
-        </p>
+          {translateContent("Une représentation du cheminement porté par le pilier — le programme officiel et ses modalités seront précisés par l&rsquo;Institut. ")}</p>
       </div>
     </section>
   );

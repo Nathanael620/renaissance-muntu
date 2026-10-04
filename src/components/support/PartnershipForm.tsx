@@ -1,3 +1,4 @@
+import { translateBackendMessage, translateContent } from "../../i18n/translateContent";
 import React, { useState } from "react";
 import { User, Building2, Mail, Phone, Briefcase, MessageSquare, Send } from "lucide-react";
 import { submitPartnershipRequest, type PartnershipRequest } from "../../services/supportService";
@@ -62,8 +63,8 @@ export default function PartnershipForm() {
               <Send className="h-6 w-6 text-or-clair" aria-hidden />
             </div>
           </div>
-          <h3 className="font-serif text-xl font-semibold text-vert">Merci pour votre intérêt !</h3>
-          <p className="mt-3 text-sm leading-relaxed text-anthracite">Votre demande de partenariat a été reçue. Nous vous contacterons très bientôt pour discuter des opportunités de collaboration.</p>
+          <h3 className="font-serif text-xl font-semibold text-vert">{translateContent("Merci pour votre intérêt !")}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-anthracite">{translateContent("Votre demande de partenariat a été reçue. Nous vous contacterons très bientôt pour discuter des opportunités de collaboration.")}</p>
         </div>
       </div>
     );
@@ -75,27 +76,25 @@ export default function PartnershipForm() {
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <User className="h-4 w-4" aria-hidden />
-          Nom complet *
-        </label>
+          {translateContent("Nom complet * ")}</label>
         <input
           value={form.fullName}
           onChange={(e) => onChange("fullName", e.target.value)}
-          placeholder="Votre nom complet"
+          placeholder={translateContent("Votre nom complet")}
           className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
         />
-        {errors.fullName && <p className="mt-2 text-xs font-medium text-red-600">{errors.fullName}</p>}
+        {errors.fullName && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(errors.fullName, "Please check this field.")}</p>}
       </div>
 
       {/* Champ : Organisation */}
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <Building2 className="h-4 w-4" aria-hidden />
-          Organisation
-        </label>
+          {translateContent("Organisation ")}</label>
         <input
           value={form.organization}
           onChange={(e) => onChange("organization", e.target.value)}
-          placeholder="Nom de votre organisation"
+          placeholder={translateContent("Nom de votre organisation")}
           className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
         />
       </div>
@@ -105,27 +104,25 @@ export default function PartnershipForm() {
         <div>
           <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
             <Mail className="h-4 w-4" aria-hidden />
-            Email *
-          </label>
+            {translateContent("Email * ")}</label>
           <input
             value={form.email}
             onChange={(e) => onChange("email", e.target.value)}
-            placeholder="votre.email@example.com"
+            placeholder={translateContent("votre.email@example.com")}
             type="email"
             className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
           />
-          {errors.email && <p className="mt-2 text-xs font-medium text-red-600">{errors.email}</p>}
+          {errors.email && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(errors.email, "Please check this field.")}</p>}
         </div>
 
         <div>
           <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
             <Phone className="h-4 w-4" aria-hidden />
-            Téléphone
-          </label>
+            {translateContent("Téléphone ")}</label>
           <input
             value={form.phone}
             onChange={(e) => onChange("phone", e.target.value)}
-            placeholder="+1 (514) 123-4567"
+            placeholder={translateContent("+1 (514) 123-4567")}
             type="tel"
             className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
           />
@@ -136,40 +133,38 @@ export default function PartnershipForm() {
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <Briefcase className="h-4 w-4" aria-hidden />
-          Type de partenariat
-        </label>
+          {translateContent("Type de partenariat ")}</label>
         <select
           value={form.partnershipType}
           onChange={(e) => onChange("partnershipType", e.target.value)}
           className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
         >
-          <option value="">-- Sélectionnez un type --</option>
-          <option value="sponsorship">Sponsorship</option>
-          <option value="collaborative_project">Projet collaboratif</option>
-          <option value="media_communication">Média & Communication</option>
-          <option value="research_academic">Recherche & Académique</option>
-          <option value="event_training">Événement & Formation</option>
-          <option value="other">Autre</option>
+          <option value="">{translateContent("-- Sélectionnez un type --")}</option>
+          <option value="sponsorship">{translateContent("Sponsorship")}</option>
+          <option value="collaborative_project">{translateContent("Projet collaboratif")}</option>
+          <option value="media_communication">{translateContent("Média & Communication")}</option>
+          <option value="research_academic">{translateContent("Recherche & Académique")}</option>
+          <option value="event_training">{translateContent("Événement & Formation")}</option>
+          <option value="other">{translateContent("Autre")}</option>
         </select>
-        {errors.partnershipType && <p className="mt-2 text-xs font-medium text-red-600">{errors.partnershipType}</p>}
+        {errors.partnershipType && <p className="mt-2 text-xs font-medium text-red-600">{translateBackendMessage(errors.partnershipType, "Please check this field.")}</p>}
       </div>
 
       {/* Champ : Message */}
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <MessageSquare className="h-4 w-4" aria-hidden />
-          Message/suggestions/Commentaire
-        </label>
+          {translateContent("Message/suggestions/Commentaire ")}</label>
         <textarea
           value={form.message}
           onChange={(e) => onChange("message", e.target.value)}
-          placeholder="Décrivez votre vision de partenariat avec nous..."
+          placeholder={translateContent("Décrivez votre vision de partenariat avec nous...")}
           rows={5}
           className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite placeholder:text-anthracite/50 transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"
         />
       </div>
 
-      {errors.submit && <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700 border border-red-200">{errors.submit}</p>}
+      {errors.submit && <p className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700 border border-red-200">{translateBackendMessage(errors.submit, "An error occurred while submitting your request. Please try again.")}</p>}
 
       {/* Bouton de soumission */}
       <div className="flex items-center gap-3 pt-4">
@@ -179,9 +174,9 @@ export default function PartnershipForm() {
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-vert to-vert-fonce px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:from-vert-fonce hover:to-vert disabled:opacity-70 disabled:cursor-not-allowed"
         >
           <Send className="h-4 w-4" aria-hidden />
-          {loading ? "Envoi…" : "Envoyer ma demande"}
+          {translateContent(loading ? "Envoi…" : "Envoyer ma demande")}
         </button>
-        <p className="text-xs text-anthracite/60">* Champs obligatoires</p>
+        <p className="text-xs text-anthracite/60">{translateContent("* Champs obligatoires")}</p>
       </div>
     </form>
   );

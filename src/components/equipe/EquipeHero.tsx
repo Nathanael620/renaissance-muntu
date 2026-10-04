@@ -1,5 +1,7 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, Users } from "lucide-react";
 import { navigateTo } from "../../utils/navigate";
+import { localizedPath } from "../../routing/routes";
 import EquipeCarousel from "./EquipeCarousel";
 
 /**
@@ -41,48 +43,35 @@ export default function EquipeHero() {
           <div className="max-w-2xl">
             {/* Fil d'Ariane */}
             <nav
-              aria-label="Fil d'Ariane"
+              aria-label={translateContent("Fil d'Ariane")}
               className="mb-6 flex flex-wrap items-center gap-2 font-sans text-[12px] text-white/85 sm:text-xs"
             >
               <a
-                href="/"
+                href={localizedPath("/")}
                 onClick={(event) => navigateTo(event, "/")}
                 className="transition-colors hover:text-or-clair"
               >
-                Accueil
-              </a>
+                {translateContent("Accueil ")}</a>
               <span className="text-white/50" aria-hidden>
-                ›
-              </span>
-              <span className="text-white/85">L&rsquo;Institut</span>
+                {translateContent("› ")}</span>
+              <span className="text-white/85">{translateContent("L&rsquo;Institut")}</span>
               <span className="text-white/50" aria-hidden>
-                ›
-              </span>
+                {translateContent("› ")}</span>
               <span className="text-white" aria-current="page">
-                Notre Équipe
-              </span>
+                {translateContent("Notre Équipe ")}</span>
             </nav>
 
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.35em] text-or-clair">
-              Pour la Renaissance du Muntu
-            </p>
+              {translateContent("Pour la Renaissance du Muntu ")}</p>
             <h1
               id="equipe-hero-title"
               className="mt-6 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-[3.35rem] xl:text-6xl"
             >
-              Notre Équipe
-            </h1>
+              {translateContent("Notre Équipe ")}</h1>
             <p className="mt-5 font-serif text-lg italic text-or-clair sm:text-xl">
-              Des femmes et des hommes engagés au service d&rsquo;une vision
-              commune.
-            </p>
+              {translateContent("Des femmes et des hommes engagés au service d&rsquo;une vision commune. ")}</p>
             <p className="mt-5 max-w-2xl font-sans text-sm font-light leading-relaxed text-white/90 sm:text-base">
-              Derrière toute vision se trouve un collectif qui la porte, la
-              transmet et la fait vivre. L&rsquo;équipe du mouvement réunit des
-              parcours complémentaires, une même exigence intellectuelle et une
-              même volonté de servir la renaissance des consciences, des peuples
-              et de la civilisation.
-            </p>
+              {translateContent("Derrière toute vision se trouve un collectif qui la porte, la transmet et la fait vivre. L&rsquo;équipe du mouvement réunit des parcours complémentaires, une même exigence intellectuelle et une même volonté de servir la renaissance des consciences, des peuples et de la civilisation. ")}</p>
 
             {/* CTA */}
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-start">
@@ -90,16 +79,14 @@ export default function EquipeHero() {
                 href="#equipe-membres"
                 className="btn-or inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
               >
-                Découvrir l&rsquo;équipe
-                <ArrowRight className="h-4 w-4" aria-hidden />
+                {translateContent("Découvrir l&rsquo;équipe ")}<ArrowRight className="h-4 w-4" aria-hidden />
               </a>
               <a
                 href="#equipe-cta"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-white/70 bg-vert/70 px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-[2px] transition-colors duration-200 hover:border-or hover:bg-vert"
               >
                 <Users className="h-4 w-4" aria-hidden />
-                Rejoindre la dynamique
-              </a>
+                {translateContent("Rejoindre la dynamique ")}</a>
             </div>
           </div>
 

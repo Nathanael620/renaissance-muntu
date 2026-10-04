@@ -1,8 +1,10 @@
+import { translateContent } from "../../i18n/translateContent";
 import { BookOpen } from "lucide-react";
 import africaIcon from "../../assets/icons/Africa.png";
 import africaMap from "../../assets/images/Africa.png";
 import { ressources } from "../../data/siteData";
 import { openSocialModal } from "../social/socialModalEvents";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 const modalTitles: Record<string, string> = {
   Vidéos: "Où voir nos vidéos",
@@ -20,11 +22,10 @@ export default function Ressources() {
     >
       <div className="mb-4 flex items-center gap-3">
         <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-or/40 bg-white">
-          <img src={africaIcon} alt="" className="h-9 w-9 object-contain" />
+          <img src={africaIcon} alt={translateContent("")} className="h-9 w-9 object-contain" />
         </span>
         <h2 className="font-serif text-lg font-semibold uppercase tracking-wide text-vert md:text-xl">
-          Nos ressources
-        </h2>
+          {translateContent("Nos ressources ")}</h2>
       </div>
       <div className="mb-4 h-px w-full bg-or/30" aria-hidden />
 
@@ -32,7 +33,7 @@ export default function Ressources() {
         <div className="relative mx-auto w-36 shrink-0 sm:mx-0 sm:w-40">
           <img
             src={africaMap}
-            alt="Carte de l'Afrique"
+            alt={translateContent("Carte de l'Afrique")}
             className="h-auto w-full object-contain"
             loading="lazy"
           />
@@ -43,7 +44,7 @@ export default function Ressources() {
             <li key={item.label} className="flex items-center gap-2 font-sans text-sm text-anthracite">
               <span className="h-1.5 w-1.5 rounded-full bg-vert" aria-hidden />
               <a
-                href={item.href}
+                href={localizedPath(item.href)}
                 onClick={(event) => {
                   const opensModal = "opensModal" in item && item.opensModal === true;
                   if (opensModal) {
@@ -53,22 +54,12 @@ export default function Ressources() {
                   }
                   if (item.href.startsWith("/")) {
                     event.preventDefault();
-                    window.history.pushState({}, "", item.href);
-                    window.dispatchEvent(new Event("routechange"));
-                    const hashIndex = item.href.indexOf("#");
-                    if (hashIndex !== -1) {
-                      const id = item.href.slice(hashIndex + 1);
-                      setTimeout(() => {
-                        const el = document.getElementById(id);
-                        if (el)
-                          el.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }, 80);
-                    }
+                    navigateToPath(item.href);
                   }
                 }}
                 className="transition-colors hover:text-vert focus:outline-none focus:ring-2 focus:ring-or/50"
               >
-                {item.label}
+                {translateContent(item.label)}
               </a>
             </li>
           ))}
@@ -76,17 +67,15 @@ export default function Ressources() {
       </div>
 
       <a
-        href="/bibliotheque"
+        href={localizedPath("/bibliotheque")}
         onClick={(event) => {
           event.preventDefault();
-          window.history.pushState({}, "", "/bibliotheque");
-          window.dispatchEvent(new Event("routechange"));
+          navigateToPath("/bibliotheque");
         }}
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-vert-fonce"
       >
         <BookOpen className="h-4 w-4" aria-hidden />
-        Voir la bibliothèque
-      </a>
+        {translateContent("Voir la bibliothèque ")}</a>
     </article>
   );
 }

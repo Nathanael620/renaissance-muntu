@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 /**
  * Section « 4 Principes directeurs » — Elimb'a Dikalo.
  */
@@ -34,8 +35,7 @@ export default function ElimbaPrincipesDirecteurs() {
             id="elimba-principes-title"
             className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
           >
-            Les 4 principes directeurs
-          </h2>
+            {translateContent("Les 4 principes directeurs ")}</h2>
           <span className="hidden h-px flex-1 max-w-40 bg-or/60 sm:block" aria-hidden />
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -45,10 +45,10 @@ export default function ElimbaPrincipesDirecteurs() {
               className="flex flex-col rounded-[1.75rem] border border-or/20 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
             >
               <h3 className="font-serif text-lg font-bold uppercase leading-snug text-vert">
-                {p.title}
+                {translateContent(p.title)}
               </h3>
               <p className="mt-4 flex-1 font-sans text-sm leading-relaxed text-anthracite/85">
-                {p.desc}
+                {translateContent(p.desc)}
               </p>
             </article>
           ))}

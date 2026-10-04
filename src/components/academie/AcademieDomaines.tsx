@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   Atom,
   type LucideIcon,
@@ -48,14 +49,12 @@ export default function AcademieDomaines() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Se former & transmettre
-        </p>
+          {translateContent("Se former & transmettre ")}</p>
         <h2
           id="academie-domaines-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Nos domaines de formation
-        </h2>
+          {translateContent("Nos domaines de formation ")}</h2>
 
         <div className={cn("mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4", visible && "animate-fade-in-delay-1")}>
           {domaines.map((domaine) => (
@@ -68,17 +67,17 @@ export default function AcademieDomaines() {
                   <domaine.icone className="h-6 w-6" aria-hidden />
                 </span>
                 <span className="font-serif text-2xl font-semibold text-or/70" aria-hidden>
-                  {domaine.numero}
+                  {translateContent(domaine.numero)}
                 </span>
               </div>
               <h3 className="mt-3 font-serif text-lg font-semibold uppercase leading-snug text-vert">
-                {domaine.titre}
+                {translateContent(domaine.titre)}
               </h3>
               <ul className="mt-3 space-y-1.5 font-sans text-[13px] leading-relaxed text-anthracite/85">
                 {domaine.description.split("•").map((item) => (
                   <li key={item} className="flex items-start gap-1.5">
                     <span className="mt-1 h-1 w-1 shrink-0 rounded-full" aria-hidden />
-                    {item}
+                    {translateContent(item)}
                   </li>
                 ))}
               </ul>
@@ -86,8 +85,7 @@ export default function AcademieDomaines() {
                 href="#academie-domaines"
                 className="mt-4 inline-flex items-center gap-1 rounded-full border border-vert/40 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-wide transition-colors duration-300 group-hover:border-or group-hover:text-or"
               >
-                Explorer
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                {translateContent("Explorer ")}<ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </a>
             </article>
           ))}

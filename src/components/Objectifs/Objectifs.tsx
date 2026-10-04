@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { Target } from "lucide-react";
 import { objectifs } from "../../data/siteData";
 
@@ -18,23 +19,20 @@ export default function Objectifs() {
           id="objectifs-title"
           className="mb-8 text-center font-serif text-xl font-semibold uppercase tracking-wide text-vert md:text-2xl"
         >
-          Nos objectifs
-        </h2>
+          {translateContent("Nos objectifs ")}</h2>
 
         {/* Objectif général */}
         <div className="mx-auto max-w-3xl rounded-xl border border-or/25 bg-vert-fonce p-6 shadow-sm">
           <p className="text-center font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-or-clair">
-            Objectif général
-          </p>
+            {translateContent("Objectif général ")}</p>
           <p className="mt-4 text-center font-serif text-base italic leading-relaxed text-white md:text-lg">
-            {objectifs.general}
+            {translateContent(objectifs.general)}
           </p>
         </div>
 
         {/* Objectifs spécifiques — 5 axes */}
         <p className="mb-6 mt-10 text-center font-sans text-base font-bold uppercase tracking-[0.18em] text-or-fonce md:text-lg">
-          Objectifs spécifiques
-        </p>
+          {translateContent("Objectifs spécifiques ")}</p>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {objectifs.axes.map((axe, index) => (
             <div
@@ -45,16 +43,16 @@ export default function Objectifs() {
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-vert">
                   <Target className="h-4 w-4 text-or-clair" aria-hidden />
                 </span>
-                Axe {index + 1}
+                {translateContent("Axe ")}{translateContent(index + 1)}
               </h3>
               <p className="mt-2 font-serif text-lg font-semibold uppercase leading-snug text-vert">
-                {axe.title}
+                {translateContent(axe.title)}
               </p>
               <ul className="mt-4 space-y-2.5">
                 {axe.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-vert" aria-hidden />
-                    <span className="font-sans text-sm leading-relaxed text-anthracite/85">{item}</span>
+                    <span className="font-sans text-sm leading-relaxed text-anthracite/85">{translateContent(item)}</span>
                   </li>
                 ))}
               </ul>

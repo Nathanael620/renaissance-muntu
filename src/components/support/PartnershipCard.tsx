@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { Handshake } from "lucide-react";
 
 export default function PartnershipCard() {
@@ -12,20 +13,18 @@ export default function PartnershipCard() {
         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-vert text-white">
           <Handshake className="h-5 w-5" aria-hidden />
         </span>
-        <h3 className="font-serif text-lg font-semibold uppercase text-vert">Devenir partenaire</h3>
+        <h3 className="font-serif text-lg font-semibold uppercase text-vert">{translateContent("Devenir partenaire")}</h3>
       </div>
 
       <p className="mb-6 font-sans text-sm text-anthracite">
-        Les organisations, entreprises et structures peuvent collaborer avec nous pour porter des projets durables et impactants.
-      </p>
+        {translateContent("Les organisations, entreprises et structures peuvent collaborer avec nous pour porter des projets durables et impactants. ")}</p>
 
       <button
         type="button"
         onClick={goToForm}
         className="inline-flex items-center justify-center rounded-full border border-vert px-5 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide"
       >
-        DEVENIR PARTENAIRE
-      </button>
+        {translateContent("DEVENIR PARTENAIRE ")}</button>
     </article>
   );
 }

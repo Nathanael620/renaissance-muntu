@@ -1,5 +1,7 @@
+import { translateContent } from "../../i18n/translateContent";
 import { Eye, ShoppingBag } from "lucide-react";
 import type { LibraryItem } from "../../data/libraryData";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 /**
  * Carte d'un ouvrage de la Bibliothèque du Muntu — présentation éditoriale.
@@ -44,14 +46,14 @@ export default function BookCard({ book }: { book: LibraryItem }) {
 
           <img
             src={book.cover}
-            alt={`Couverture de l'ouvrage « ${book.title} »`}
+            alt={translateContent(`Couverture de l'ouvrage « ${book.title} »`)}
             className="relative h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02] drop-shadow-[0_16px_24px_rgba(0,0,0,0.45)]"
             loading="lazy"
           />
 
           {book.language ? (
             <span className="absolute right-2 top-2 rounded-full border border-or/30 bg-creme/95 px-2.5 py-0.5 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-vert shadow-sm">
-              {book.language}
+              {translateContent(book.language)}
             </span>
           ) : null}
         </div>
@@ -60,18 +62,17 @@ export default function BookCard({ book }: { book: LibraryItem }) {
       {/* Corps de la carte */}
       <div className="flex flex-1 flex-col items-center px-6 pb-6 pt-5 text-center">
         <span className="font-sans text-[9px] font-bold uppercase tracking-[0.22em] text-or-fonce">
-          Bibliothèque du Muntu
-        </span>
+          {translateContent("Bibliothèque du Muntu ")}</span>
 
         <h3 className="mt-2 font-serif text-xl font-bold uppercase leading-snug text-vert md:text-[22px]">
-          {book.title}
+          {translateContent(book.title)}
         </h3>
 
         <div className="mt-2.5 h-px w-12 bg-or/50" aria-hidden />
 
         <p className="mt-3 font-sans text-sm text-anthracite/85">
-          <span className="font-semibold text-vert">Auteur&nbsp;: </span>
-          {book.author ?? "À communiquer"}
+          <span className="font-semibold text-vert">{translateContent("Auteur&nbsp;: ")}</span>
+          {translateContent(book.author ?? "À communiquer")}
         </p>
 
         {book.description ? (
@@ -88,8 +89,7 @@ export default function BookCard({ book }: { book: LibraryItem }) {
             </p>
           ) : (
             <p className="inline-flex items-center rounded-full border border-or-fonce/40 bg-or/10 px-4 py-1.5 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-or-fonce">
-              Prix à définir
-            </p>
+              {translateContent("Prix à définir ")}</p>
           )}
         </div>
 
@@ -104,41 +104,32 @@ export default function BookCard({ book }: { book: LibraryItem }) {
                 className="btn-or inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-md transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
-                Acheter
-              </a>
+                {translateContent("Acheter ")}</a>
             ) : (
               <button
                 type="button"
                 disabled
                 aria-disabled="true"
-                title="Achat Chariow — disponible prochainement"
+                title={translateContent("Achat Chariow — disponible prochainement")}
                 className="btn-or inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide opacity-60 shadow-md"
               >
                 <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
-                Acheter
-              </button>
+                {translateContent("Acheter ")}</button>
             )}
             <a
-              href={`/bibliotheque/consulter/${book.id}`}
+              href={localizedPath(`/bibliotheque/consulter/${book.id}`)}
               onClick={(event) => {
                 event.preventDefault();
-                window.history.pushState(
-                  {},
-                  "",
-                  `/bibliotheque/consulter/${book.id}`,
-                );
-                window.dispatchEvent(new Event("routechange"));
+                navigateToPath(`/bibliotheque/consulter/${book.id}`);
               }}
               className="inline-flex items-center justify-center gap-1.5 rounded-full border border-vert px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors duration-300 hover:bg-vert hover:text-white"
             >
               <Eye className="h-3.5 w-3.5" aria-hidden />
-              Consulter
-            </a>
+              {translateContent("Consulter ")}</a>
           </div>
           {!hasShopUrl ? (
             <p className="mt-2 text-center font-sans text-[10px] font-medium uppercase tracking-wide text-anthracite/60">
-              Achat disponible prochainement
-            </p>
+              {translateContent("Achat disponible prochainement ")}</p>
           ) : null}
         </div>
       </div>

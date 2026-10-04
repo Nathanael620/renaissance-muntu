@@ -1,13 +1,14 @@
+import { translateContent } from "../i18n/translateContent";
 import { ArrowLeft } from "lucide-react";
 import { ManifestoCard } from "../components/manifestes";
 import { manifestes } from "../data/manifestesData";
 import { useFadeIn } from "../hooks/useFadeIn";
 import { cn } from "../utils/cn";
+import { localizedPath, navigateToPath } from "../routing/routes";
 
 /** Navigation interne maison (pushState + routechange). */
 function navigate(href: string) {
-  window.history.pushState({}, "", href);
-  window.dispatchEvent(new Event("routechange"));
+  navigateToPath(href);
 }
 
 /**
@@ -36,7 +37,7 @@ export default function Manifestes() {
         />
         <div className="relative mx-auto max-w-[1440px] px-6 pt-32 pb-24 md:pt-36 md:pb-28 lg:px-10 lg:pt-40 lg:pb-32">
           <a
-            href="/bibliotheque"
+            href={localizedPath("/bibliotheque")}
             onClick={(event) => {
               event.preventDefault();
               navigate("/bibliotheque");
@@ -44,25 +45,19 @@ export default function Manifestes() {
             className="inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-or"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
-            Retour à la bibliothèque
-          </a>
+            {translateContent("Retour à la bibliothèque ")}</a>
 
           <p className="mt-10 font-sans text-xs font-semibold uppercase tracking-[0.35em] text-or-clair">
-            Bibliothèque du Muntu
-          </p>
+            {translateContent("Bibliothèque du Muntu ")}</p>
 
           <h1
             id="manifestes-hero-title"
             className="mt-5 font-serif text-4xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-5xl lg:text-6xl"
           >
-            Manifestes
-          </h1>
+            {translateContent("Manifestes ")}</h1>
 
           <p className="mt-6 max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base">
-            Cet espace rassemble les textes fondateurs du projet : des engagements
-            de conviction, des refus assumés et des horizons partagés — pensés pour
-            être lus, diffusés et transmis.
-          </p>
+            {translateContent("Cet espace rassemble les textes fondateurs du projet : des engagements de conviction, des refus assumés et des horizons partagés — pensés pour être lus, diffusés et transmis. ")}</p>
         </div>
       </section>
 
@@ -79,8 +74,7 @@ export default function Manifestes() {
               id="nos-manifestes-title"
               className="text-center font-serif text-2xl font-semibold uppercase tracking-wide text-vert md:text-3xl"
             >
-              Nos manifestes
-            </h2>
+              {translateContent("Nos manifestes ")}</h2>
             <span className="hidden h-px flex-1 max-w-40 bg-or/60 sm:block" aria-hidden />
           </div>
 
@@ -91,7 +85,7 @@ export default function Manifestes() {
               visible && "animate-fade-in",
             )}
           >
-            {manifestes.length > 0 ? (
+            {translateContent(manifestes.length > 0 ? (
               manifestes.map((manifesto, index) => (
                 <ManifestoCard
                   key={manifesto.slug}
@@ -101,13 +95,12 @@ export default function Manifestes() {
               ))
             ) : (
               <p className="col-span-full text-center font-sans text-sm text-anthracite/70">
-                La collection de manifestes sera bientôt disponible.
-              </p>
-            )}
+                {translateContent("La collection de manifestes sera bientôt disponible. ")}</p>
+            ))}
           </div>
 
           <a
-            href="/bibliotheque"
+            href={localizedPath("/bibliotheque")}
             onClick={(event) => {
               event.preventDefault();
               navigate("/bibliotheque");
@@ -115,8 +108,7 @@ export default function Manifestes() {
             className="mt-10 inline-flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-wide text-vert transition-colors hover:text-or focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
-            Retour à la bibliothèque
-          </a>
+            {translateContent("Retour à la bibliothèque ")}</a>
         </div>
       </section>
     </div>

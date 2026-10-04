@@ -1,3 +1,4 @@
+import { translateBackendMessage, translateContent } from "../../i18n/translateContent";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Check, CreditCard, MapPin, Send, User } from "lucide-react";
@@ -119,7 +120,7 @@ export default function DonationForm() {
     autoComplete?: string,
   ) => (
     <label className="block text-xs font-semibold text-vert-fonce">
-      {fieldLabels[field]}
+      {translateContent(fieldLabels[field])}
       <input
         required={field === "donor_name" || field === "donor_email"}
         name={field}
@@ -129,7 +130,7 @@ export default function DonationForm() {
         autoComplete={autoComplete}
         className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20"
       />
-      {errors[field] && <p className="mt-2 text-xs font-medium text-red-600">{errors[field]}</p>}
+      {errors[field] && <p className="mt-2 text-xs font-medium text-red-600">{translateContent(errors[field])}</p>}
     </label>
   );
 
@@ -140,8 +141,8 @@ export default function DonationForm() {
           <CreditCard className="h-5 w-5" aria-hidden />
         </span>
         <div>
-          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-or-fonce">Don sécurisé</p>
-          <h3 className="font-serif text-2xl font-semibold text-vert-fonce">Préparez votre don</h3>
+          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-or-fonce">{translateContent("Don sécurisé")}</p>
+          <h3 className="font-serif text-2xl font-semibold text-vert-fonce">{translateContent("Préparez votre don")}</h3>
         </div>
       </div>
 
@@ -153,8 +154,8 @@ export default function DonationForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-xs font-semibold text-vert-fonce sm:col-span-2">
           <span className="flex items-center justify-between gap-3">
-            <span>Montant du don</span>
-            <span className="font-sans text-sm font-bold text-or-fonce">$ {DONATION_CURRENCY}</span>
+            <span>{translateContent("Montant du don")}</span>
+            <span className="font-sans text-sm font-bold text-or-fonce">{translateContent("$ ")}{translateContent(DONATION_CURRENCY)}</span>
           </span>
           <div className="relative mt-2">
             <CreditCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-vert/60" aria-hidden />
@@ -170,14 +171,14 @@ export default function DonationForm() {
               className="w-full rounded-md border border-vert/15 bg-white py-3 pl-10 pr-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20"
             />
           </div>
-          {errors.amount && <p className="mt-2 text-xs font-medium text-red-600">{errors.amount}</p>}
+          {errors.amount && <p className="mt-2 text-xs font-medium text-red-600">{translateContent(errors.amount)}</p>}
         </label>
       </div>
 
       <div className="border-t border-or/20 pt-5">
         <div className="mb-4 flex items-center gap-2 text-vert-fonce">
           <MapPin className="h-4 w-4" aria-hidden />
-          <p className="text-xs font-semibold uppercase tracking-wide">Informations pour le reçu</p>
+          <p className="text-xs font-semibold uppercase tracking-wide">{translateContent("Informations pour le reçu")}</p>
         </div>
         {renderInput("donor_address", "text", "street-address")}
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -190,7 +191,7 @@ export default function DonationForm() {
 
       {errors.submit && (
         <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-          {errors.submit}
+          {translateBackendMessage(errors.submit, "An error occurred while preparing your donation. Please try again.")}
         </p>
       )}
 
@@ -200,13 +201,12 @@ export default function DonationForm() {
           disabled={loading}
           className="btn-or inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {loading ? "Préparation du paiement..." : "Continuer vers Stripe"}
-          {loading ? <Check className="h-4 w-4" aria-hidden /> : <Send className="h-4 w-4" aria-hidden />}
+          {translateContent(loading ? "Préparation du paiement..." : "Continuer vers Stripe")}
+          {translateContent(loading ? <Check className="h-4 w-4" aria-hidden /> : <Send className="h-4 w-4" aria-hidden />)}
         </button>
         <p className="flex items-center gap-2 text-xs text-anthracite/65">
           <User className="h-3.5 w-3.5" aria-hidden />
-          Le reçu officiel sera envoyé après confirmation du paiement.
-        </p>
+          {translateContent("Le reçu officiel sera envoyé après confirmation du paiement. ")}</p>
       </div>
     </form>
   );

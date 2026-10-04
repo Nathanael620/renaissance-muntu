@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { cn } from "../../utils/cn";
 
 type EquipePhotoPlaceholderProps = {
@@ -25,7 +26,7 @@ export default function EquipePhotoPlaceholder({
   return (
     <div
       role="img"
-      aria-label={`Portrait à venir — ${name}`}
+      aria-label={translateContent(`Portrait à venir — ${translateContent(name)}`)}
       className={cn(
         "relative flex w-full select-none flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-vert/[0.05] to-vert/[0.13]",
         className,
@@ -49,12 +50,11 @@ export default function EquipePhotoPlaceholder({
           <span className="absolute inset-[18px] rounded-full border border-or/65" />
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-vert">
             <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-creme">
-              MUNTU
-            </span>
+              {translateContent("MUNTU ")}</span>
           </span>
         </div>
         <p className="font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-vert/60 md:text-[11px]">
-          {label}
+          {translateContent(label)}
         </p>
       </div>
     </div>

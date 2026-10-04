@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 /**
  * Section « Motivation » de la page Elimb'a Dikalo.
  */
@@ -10,23 +11,15 @@ export default function ElimbaMotivation() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Motivation
-        </p>
+          {translateContent("Motivation ")}</p>
         <h2
           id="elimba-motivation-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Pourquoi Elimb&rsquo;a Dikalo
-        </h2>
+          {translateContent("Pourquoi Elimb&rsquo;a Dikalo ")}</h2>
         <div className="mt-8 mx-auto max-w-4xl">
           <p className="font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
-            Le clivage et l’indexation d’un groupe dans un pays est très dangereux pour la
-            cohésion sociale et le vivre-ensemble. Le manque de courage de reconnaître leurs
-            faiblesses et les fabulations des parents d&rsquo;aujourd&rsquo;hui deviennent des
-            vérités de leurs enfants futurs-parents. Nous voulons contribuer à faire taire cette
-            fausse note musicale accusatrice et clivante qui pourrait entraîner des conséquences
-            destructrices à moyen et long terme pour tout le monde.
-          </p>
+            {translateContent("Le clivage et l’indexation d’un groupe dans un pays est très dangereux pour la cohésion sociale et le vivre-ensemble. Le manque de courage de reconnaître leurs faiblesses et les fabulations des parents d&rsquo;aujourd&rsquo;hui deviennent des vérités de leurs enfants futurs-parents. Nous voulons contribuer à faire taire cette fausse note musicale accusatrice et clivante qui pourrait entraîner des conséquences destructrices à moyen et long terme pour tout le monde. ")}</p>
         </div>
       </div>
     </section>

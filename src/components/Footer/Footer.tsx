@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useState } from "react";
 import {
   Mail,
@@ -7,6 +8,7 @@ import {
 import logo from "../../assets/icons/renaissance.png";
 import { brand, contact, footerLinks } from "../../data/siteData";
 import { requestContactModal } from "../ContactModal/contactModalEvents";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 /** Icônes réseaux (Lucide n'exporte plus les marques) */
 function IconFacebook({ className }: { className?: string }) {
@@ -85,12 +87,12 @@ export default function Footer() {
         {/* Marque + réseaux */}
         <div className="lg:col-span-1">
           <div className="inline-block rounded-md bg-white px-2 py-2">
-            <img src={logo} alt={brand.name} className="h-14 w-auto object-contain" />
+            <img src={logo} alt={translateContent(brand.name)} className="h-14 w-auto object-contain" />
           </div>
           <p className="mt-4 font-sans text-xs leading-relaxed text-white/70">
-            {brand.slogan}
+            {translateContent(brand.slogan)}
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Réseaux sociaux">
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label={translateContent("Réseaux sociaux")}>
             {[
               { Icon: IconFacebook, label: "Facebook", href: "https://www.facebook.com/share/1AX46GCkQg/" },
               { Icon: IconX, label: "X", href: "https://x.com/Elimba_Dikalo" },
@@ -104,7 +106,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
+                  aria-label={translateContent(label)}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-or hover:text-or"
                 >
                   <Icon className="h-4 w-4" />
@@ -114,20 +116,19 @@ export default function Footer() {
           </ul>
         </div>
 
-        <FooterCol title="L'Institut" links={footerLinks.institut} />
-        <FooterCol title="Nos piliers" links={footerLinks.departements} />
+        <FooterCol title={translateContent("L'Institut")} links={footerLinks.institut} />
+        <FooterCol title={translateContent("Nos piliers")} links={footerLinks.departements} />
         <FooterCol
-          title="Ressources"
+          title={translateContent("Ressources")}
           links={footerLinks.ressources}
           onVideosClick={() => setShowVideosModal(true)}
         />
-        <FooterCol title="Actualités" links={footerLinks.actualites} />
+        <FooterCol title={translateContent("Actualités")} links={footerLinks.actualites} />
 
         {/* Contact */}
         <div>
           <h3 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-or-clair">
-            Contact
-          </h3>
+            {translateContent("Contact ")}</h3>
           <ul className="mt-4 space-y-3 font-sans text-sm text-white/85">
             <li className="flex items-start gap-2 min-w-0">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-or" aria-hidden />
@@ -135,16 +136,16 @@ export default function Footer() {
                 href={`mailto:${contact.email}`}
                 className="hover:text-or transition-colors break-all"
               >
-                {contact.email}
+                {translateContent(contact.email)}
               </a>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-or" aria-hidden />
-              <span>{contact.phone}</span>
+              <span>{translateContent(contact.phone)}</span>
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-or" aria-hidden />
-              <span>{contact.address}</span>
+              <span>{translateContent(contact.address)}</span>
             </li>
           </ul>
           <button
@@ -156,29 +157,25 @@ export default function Footer() {
             className="btn-or mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-wide"
           >
             <IconWhatsApp className="h-3.5 w-3.5" />
-            Nous écrire
-          </button>
+            {translateContent("Nous écrire ")}</button>
         </div>
       </div>
 
       <div className="border-t border-white/10 bg-black/20">
         <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-4 py-4 text-center font-sans text-[11px] text-white/60 md:flex-row md:px-8 lg:px-10 md:text-left">
-          <p>© {new Date().getFullYear()} {brand.name} — Tous droits réservés.</p>
-          <nav aria-label="Liens légaux" className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+          <p>{translateContent("© ")}{new Date().getFullYear()} {translateContent(brand.name)} {translateContent(" — Tous droits réservés.")}</p>
+          <nav aria-label={translateContent("Liens légaux")} className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <a href="#mentions" className="hover:text-or transition-colors">
-              Mentions légales
-            </a>
+              {translateContent("Mentions légales ")}</a>
             <a href="#confidentialite" className="hover:text-or transition-colors">
-              Politique de confidentialité
-            </a>
+              {translateContent("Politique de confidentialité ")}</a>
             <a href="#plan" className="hover:text-or transition-colors">
-              Plan du site
-            </a>
+              {translateContent("Plan du site ")}</a>
           </nav>
         </div>
       </div>
       </footer>
-        {showVideosModal && (
+        {translateContent(showVideosModal && (
           <div
             role="dialog"
             aria-modal="true"
@@ -189,61 +186,54 @@ export default function Footer() {
               className="max-w-sm rounded-lg bg-white p-6 text-center"
               onClick={(e) => e.stopPropagation()}
             >
-          <h3 className="mb-4 text-lg font-semibold">Voir les vidéos sur</h3>
+          <h3 className="mb-4 text-lg font-semibold">{translateContent("Voir les vidéos sur")}</h3>
           <div className="mb-4 grid grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.facebook, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              Facebook
-            </button>
+              {translateContent("Facebook ")}</button>
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.x, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              X
-            </button>
+              {translateContent("X ")}</button>
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.linkedin, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              LinkedIn
-            </button>
+              {translateContent("LinkedIn ")}</button>
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.tiktok, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              TikTok
-            </button>
+              {translateContent("TikTok ")}</button>
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.youtube, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              YouTube
-            </button>
+              {translateContent("YouTube ")}</button>
             <button
               type="button"
               onClick={() => window.open(socialVideoLinks.instagram, "_blank", "noopener")}
               className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
             >
-              Instagram
-            </button>
+              {translateContent("Instagram ")}</button>
           </div>
           <button
             type="button"
             onClick={() => setShowVideosModal(false)}
             className="mt-2 inline-flex items-center justify-center rounded-md bg-vert px-4 py-2 text-sm text-white"
           >
-            Fermer
-          </button>
+            {translateContent("Fermer ")}</button>
         </div>
       </div>
-      )}
+      ))}
     </>
   );
 }
@@ -260,13 +250,13 @@ function FooterCol({
   return (
     <div className="border-white/10 lg:border-l lg:border-or/20 lg:pl-5">
       <h3 className="font-sans text-xs font-bold uppercase tracking-[0.14em] text-or-clair">
-        {title}
+        {translateContent(title)}
       </h3>
       <ul className="mt-4 space-y-2">
         {links.map((link) => (
           <li key={link.label}>
             <a
-              href={link.href}
+              href={localizedPath(link.href)}
               onClick={(event) => {
                 if (link.label === "Vidéos" && onVideosClick) {
                   event.preventDefault();
@@ -275,24 +265,12 @@ function FooterCol({
                 }
                 if (link.href.startsWith("/")) {
                   event.preventDefault();
-                  window.history.pushState({}, "", link.href);
-                  window.dispatchEvent(new Event("routechange"));
-                  // Si le lien pointe vers une ancre de la page d'accueil
-                  // (ex. /#vision), on défile vers elle après le changement de route.
-                  const hashIndex = link.href.indexOf("#");
-                  if (hashIndex !== -1) {
-                    const id = link.href.slice(hashIndex + 1);
-                    setTimeout(() => {
-                      const el = document.getElementById(id);
-                      if (el)
-                        el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }, 80);
-                  }
+                  navigateToPath(link.href);
                 }
               }}
               className="font-sans text-sm text-white/80 transition-colors hover:text-or"
             >
-              {link.label}
+              {translateContent(link.label)}
             </a>
           </li>
         ))}

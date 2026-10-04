@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, BookOpen, CalendarDays, GraduationCap, Users, Wrench } from "lucide-react";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { requestContactModal } from "../ContactModal/contactModalEvents";
@@ -47,14 +48,12 @@ export default function AcademieFormations() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Se former concrètement
-        </p>
+          {translateContent("Se former concrètement ")}</p>
         <h2
           id="academie-formations-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Formation &amp; Ateliers
-        </h2>
+          {translateContent("Formation &amp; Ateliers ")}</h2>
 
         {/* Formats — grille évolutive (back-end futur). */}
         <div className={cn("mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3", visible && "animate-fade-in-delay-1")}>
@@ -69,10 +68,10 @@ export default function AcademieFormations() {
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="font-serif text-lg font-semibold uppercase leading-snug text-vert">
-                  {item.titre}
+                  {translateContent(item.titre)}
                 </h3>
                 <p className="font-sans text-sm leading-relaxed text-anthracite/80">
-                  {item.description}
+                  {translateContent(item.description)}
                 </p>
               </article>
             );
@@ -85,23 +84,20 @@ export default function AcademieFormations() {
             href="#academie-domaines"
             className="btn-or inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
           >
-            Voir les formations
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            {translateContent("Voir les formations ")}<ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a
             href="#academie-raison-ettre"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-vert/40 bg-white px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-vert transition-colors duration-200 hover:border-or hover:text-or"
           >
-            Participer à un atelier
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            {translateContent("Participer à un atelier ")}<ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <button
             type="button"
             onClick={() => requestContactModal()}
             className="inline-flex items-center justify-center gap-2 rounded-md border border-white/70 bg-vert px-6 py-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-colors duration-200 hover:border-or"
           >
-            Découvrir les conférences
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            {translateContent("Découvrir les conférences ")}<ArrowRight className="h-4 w-4" aria-hidden />
           </button>
         </div>
       </div>

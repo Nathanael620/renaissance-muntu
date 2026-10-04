@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight } from "lucide-react";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -28,46 +29,39 @@ export default function TransformationSection() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Les résultats visés
-        </p>
+          {translateContent("Les résultats visés ")}</p>
         <h2
           id="transmission-transformations-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Les transformations recherchées
-        </h2>
+          {translateContent("Les transformations recherchées ")}</h2>
 
         <div className={cn("mt-10 grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-center", visible && "animate-fade-in-delay-1")}>
           <div className="space-y-5 font-sans text-sm leading-relaxed text-anthracite/85 sm:text-base">
             <p>
-              Chaque axe de transmission vise un basculement durable&nbsp;: de la
-              réparation intérieure jusqu&rsquo;à la capacité de transmettre et de durer.
-            </p>
+              {translateContent("Chaque axe de transmission vise un basculement durable&nbsp;: de la réparation intérieure jusqu&rsquo;à la capacité de transmettre et de durer. ")}</p>
             <p>
-              Ces étapes ne sont pas des injonctions&nbsp;: elles décrivent le cheminement
-              qu&rsquo;un accompagnement attentif cherche à rendre possible pour chaque
-              personne.
-            </p>
+              {translateContent("Ces étapes ne sont pas des injonctions&nbsp;: elles décrivent le cheminement qu&rsquo;un accompagnement attentif cherche à rendre possible pour chaque personne. ")}</p>
           </div>
 
-          <ol className="space-y-4" aria-label="Progression des transformations">
+          <ol className="space-y-4" aria-label={translateContent("Progression des transformations")}>
             {etapes.map((etape, index) => (
               <li key={etape.etape} className="relative flex items-center gap-4">
                 <span
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-vert text-creme font-serif text-base font-semibold"
                   aria-hidden
                 >
-                  {index + 1}
+                  {translateContent(index + 1)}
                 </span>
                 <div className="flex flex-1 items-start gap-3 rounded-[1.5rem] border border-vert/20 bg-creme p-4 shadow-sm">
                   <h3 className="font-serif text-base font-semibold uppercase text-vert">
-                    {etape.etape}
+                    {translateContent(etape.etape)}
                   </h3>
                   <span className="mt-0 text-vert/50" aria-hidden>
                     <ArrowRight className="h-4 w-4" />
                   </span>
                   <p className="font-sans text-sm italic text-or-fonce">
-                    {etape.effet}
+                    {translateContent(etape.effet)}
                   </p>
                 </div>
               </li>

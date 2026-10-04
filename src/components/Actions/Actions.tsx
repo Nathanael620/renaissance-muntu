@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   FilePen,
   FileText,
@@ -36,8 +37,7 @@ export default function Actions() {
           <FilePen className="h-5 w-5 text-or-clair" aria-hidden />
         </span>
         <h2 className="font-serif text-lg font-semibold uppercase tracking-wide text-vert md:text-xl">
-          Nos actions
-        </h2>
+          {translateContent("Nos actions ")}</h2>
       </div>
       <div className="mb-5 h-px w-full bg-or/30" aria-hidden />
 
@@ -51,7 +51,7 @@ export default function Actions() {
                 href={action.href}
                 className="font-sans text-sm text-anthracite transition-colors hover:text-vert focus:outline-none focus:ring-2 focus:ring-or/50"
               >
-                {action.label}
+                {translateContent(action.label)}
               </a>
             </li>
           );

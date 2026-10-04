@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { MembreEquipe } from "../../data/equipeData";
@@ -89,14 +90,14 @@ export default function EquipeCarousel() {
     <div
       role="region"
       aria-roledescription="carrousel"
-      aria-label="Photos des membres de l'équipe"
+      aria-label={translateContent("Photos des membres de l'équipe")}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
       className="group relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-or/30 bg-vert-fonce shadow-xl"
     >
-      {total > 0 ? (
+      {translateContent(total > 0 ? (
         slides.map((membre, index) => {
           const isActive = index === safeIndex;
           return (
@@ -104,7 +105,7 @@ export default function EquipeCarousel() {
               key={membre.image}
               role="group"
               aria-roledescription="diapositive"
-              aria-label={`${index + 1} sur ${total}`}
+              aria-label={translateContent(`${index + 1} sur ${total}`)}
               aria-hidden={!isActive}
               className={cn(
                 "absolute inset-0 transition-opacity duration-1000 ease-in-out motion-reduce:transition-none",
@@ -113,7 +114,7 @@ export default function EquipeCarousel() {
             >
               <img
                 src={membre.image}
-                alt={`Portrait de ${membre.name}`}
+                alt={translateContent(`Portrait de ${membre.name}`)}
                 loading={isActive ? "eager" : "lazy"}
                 onError={() => handleImageError(membre.image)}
                 draggable={false}
@@ -150,13 +151,13 @@ export default function EquipeCarousel() {
           label="Photographie institutionnelle à venir"
           className="h-full w-full"
         />
-      )}
+      ))}
       {/* Flèches précédent / suivant — discrètes, révélées au survol sur desktop */}
-      {canNavigate && (
+      {translateContent(canNavigate && (
         <>
           <button
             type="button"
-            aria-label="Membre précédent"
+            aria-label={translateContent("Membre précédent")}
             onClick={() => goTo(currentIndex - 1)}
             className="absolute left-2.5 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition-colors duration-200 hover:border-or hover:bg-black/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or lg:h-9 lg:w-9 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:focus-visible:opacity-100"
           >
@@ -164,23 +165,23 @@ export default function EquipeCarousel() {
           </button>
           <button
             type="button"
-            aria-label="Membre suivant"
+            aria-label={translateContent("Membre suivant")}
             onClick={() => goTo(currentIndex + 1)}
             className="absolute right-2.5 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition-colors duration-200 hover:border-or hover:bg-black/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or lg:h-9 lg:w-9 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:focus-visible:opacity-100"
           >
             <ChevronRight className="h-4 w-4" aria-hidden />
           </button>
         </>
-      )}
+      ))}
 
       {/* Points de progression */}
-      {canNavigate && (
+      {translateContent(canNavigate && (
         <div className="absolute inset-x-0 bottom-2.5 z-10 flex items-center justify-center gap-2">
           {slides.map((membre, index) => (
             <button
               key={membre.image}
               type="button"
-              aria-label={`Voir le membre ${index + 1}`}
+              aria-label={translateContent(`Voir le membre ${index + 1}`)}
               aria-current={index === safeIndex ? "true" : undefined}
               onClick={() => goTo(index)}
               className={cn(
@@ -192,7 +193,7 @@ export default function EquipeCarousel() {
             />
           ))}
         </div>
-      )}
+      ))}
     </div>
   );
 }

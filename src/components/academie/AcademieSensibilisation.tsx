@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, Globe, Megaphone, Radio, Users } from "lucide-react";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { cn } from "../../utils/cn";
@@ -27,14 +28,12 @@ export default function AcademieSensibilisation() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-or-clair">
-          S&rsquo;engager
-        </p>
+          {translateContent("S&rsquo;engager ")}</p>
         <h2
           id="academie-sensibilisation-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-white sm:text-4xl"
         >
-          Sensibilisation &amp; Influence
-        </h2>
+          {translateContent("Sensibilisation &amp; Influence ")}</h2>
 
         <div className={cn("mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4", visible && "animate-fade-in-delay-1")}>
           {piliers.map((pilier) => {
@@ -48,10 +47,10 @@ export default function AcademieSensibilisation() {
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="font-serif text-lg font-semibold uppercase leading-snug text-vert">
-                  {pilier.titre}
+                  {translateContent(pilier.titre)}
                 </h3>
                 <p className="font-sans text-sm leading-relaxed text-anthracite/85">
-                  {pilier.detail}
+                  {translateContent(pilier.detail)}
                 </p>
               </article>
             );
@@ -64,8 +63,7 @@ export default function AcademieSensibilisation() {
             onClick={() => openSocialModal("Rejoignez notre communauté")}
             className="btn-or inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-sans text-xs font-semibold uppercase tracking-wide shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or"
           >
-            Rejoindre la communauté
-            <ArrowRight className="h-4 w-4" aria-hidden />
+            {translateContent("Rejoindre la communauté ")}<ArrowRight className="h-4 w-4" aria-hidden />
           </button>
         </div>
       </div>

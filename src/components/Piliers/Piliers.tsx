@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { pillars } from "../../data/siteData";
 import { cn } from "../../utils/cn";
@@ -11,6 +12,7 @@ import elimbaImg from "../../assets/images/elimba.png";
 import transmissionImg from "../../assets/images/transmission.png";
 import academieImg from "../../assets/images/academie.png";
 import bibliothequeImg from "../../assets/images/bibliotheque.png";
+import { localizedPath, navigateToPath } from "../../routing/routes";
 
 const images: Record<string, string> = {
   "renaissance.png": renaissanceImg,
@@ -36,34 +38,34 @@ function PillarMedallion({ id }: { id: number }) {
   if (id === 1) {
     return (
       <div className={base}>
-        <img src={africaIcon} alt="" className="h-full w-full object-cover object-left" />
+        <img src={africaIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
       </div>
     );
   }
   if (id === 2) {
     return (
       <div className={base}>
-        <img src={elimbaIcon} alt="" className="h-full w-full object-cover object-left" />
+        <img src={elimbaIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
       </div>
     );
   }
   if (id === 3) {
     return (
       <div className={base}>
-        <img src={transmissionIcon} alt="" className="h-full w-full object-cover object-left" />
+        <img src={transmissionIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
       </div>
     );
   }
   if (id === 4) {
     return (
       <div className={base}>
-        <img src={academieIcon} alt="" className="h-full w-full object-cover object-left" />
+        <img src={academieIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
       </div>
     );
   }
   return (
     <div className={base}>
-      <img src={bibliothequeIcon} alt="" className="h-full w-full object-cover object-left" />
+      <img src={bibliothequeIcon} alt={translateContent("")} className="h-full w-full object-cover object-left" />
     </div>
   );
 }
@@ -85,8 +87,7 @@ export default function Piliers() {
             id="piliers-title"
             className="text-center font-serif text-xl font-semibold uppercase tracking-wide text-vert md:text-2xl lg:text-3xl"
           >
-            Nos 5 piliers fondamentaux
-          </h2>
+            {translateContent("Nos 5 piliers fondamentaux ")}</h2>
           <span className="hidden h-px flex-1 max-w-40 bg-or/60 sm:block" aria-hidden />
         </div>
 
@@ -109,7 +110,7 @@ export default function Piliers() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={images[pillar.image]}
-                    alt=""
+                    alt={translateContent("")}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                   />
@@ -119,20 +120,19 @@ export default function Piliers() {
 
               <div className="flex flex-1 flex-col px-4 pb-5 pt-10 text-center">
                 <h3 className="font-serif text-sm font-bold uppercase leading-snug text-vert md:text-[13px] xl:text-sm">
-                  {pillar.id}. {pillar.title}
+                  {translateContent(pillar.id)}{translateContent(". ")}{translateContent(pillar.title)}
                 </h3>
                 <p className="mt-2 flex-1 font-sans text-[11px] leading-relaxed text-anthracite/80">
-                  {pillar.themes.join(" • ")}
+                  {pillar.themes.map((theme) => translateContent(theme)).join(" • ")}
                 </p>
                 
                 <a
-                  href={pillarRoutes[pillar.slug] ?? `#${pillar.slug}`}
+                  href={localizedPath(pillarRoutes[pillar.slug] ?? `#${pillar.slug}`)}
                   onClick={(event) => {
                     const href = pillarRoutes[pillar.slug] ?? `#${pillar.slug}`;
                     if (href.startsWith("/")) {
                       event.preventDefault();
-                      window.history.pushState({}, "", href);
-                      window.dispatchEvent(new Event("routechange"));
+                      navigateToPath(href);
                     }
                   }}
                   className={cn(
@@ -141,8 +141,7 @@ export default function Piliers() {
                     "transition-colors duration-200 hover:border-or hover:bg-or/10",
                   )}
                 >
-                  Découvrir
-                </a>
+                  {translateContent("Découvrir ")}</a>
               </div>
             </article>
           ))}

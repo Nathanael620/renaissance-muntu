@@ -1,3 +1,4 @@
+import { translateContent } from "../../i18n/translateContent";
 import {
   Compass,
   Eye,
@@ -109,30 +110,29 @@ function AxePrincipal({ axe }: { axe: Axe }) {
   return (
     <article className="relative h-full overflow-hidden rounded-[1.75rem] border border-or/35 bg-vert-profond/95 p-6 shadow-md sm:p-8">
       <span className="absolute right-6 top-6 font-serif text-5xl font-semibold text-or-clair/40" aria-hidden>
-        {axe.numero}
+        {translateContent(axe.numero)}
       </span>
       <div className="flex items-center gap-3">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-or/20 text-or-clair">
           <Icon className="h-6 w-6" aria-hidden />
         </span>
         <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-or-clair">
-          Axe principal
-        </p>
+          {translateContent("Axe principal ")}</p>
       </div>
       <h3 className="mt-4 font-serif text-2xl font-semibold uppercase leading-tight text-white">
-        {axe.titre}
+        {translateContent(axe.titre)}
       </h3>
       <ul className="mt-5 grid gap-2.5">
         {axe.elements.map((elem) => (
           <li key={elem} className="flex items-start gap-2.5 font-sans text-sm leading-relaxed text-white/90">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-or" aria-hidden />
-            {elem}
+            {translateContent(elem)}
           </li>
         ))}
       </ul>
       <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-or/50 px-4 py-1.5 font-sans text-xs font-semibold uppercase tracking-wide text-or-clair">
-        {axe.effetLabel}
-        <span className="text-white/90">&nbsp;&bull;&nbsp;{axe.effet}</span>
+        {translateContent(axe.effetLabel)}
+        <span className="text-white/90">{translateContent("&nbsp;&bull;&nbsp;")}{translateContent(axe.effet)}</span>
       </p>
     </article>
   );
@@ -148,23 +148,23 @@ function AxeSecondaire({ axe }: { axe: Axe }) {
           <Icon className="h-5 w-5" aria-hidden />
         </span>
         <span className="font-serif text-2xl font-semibold text-or/70" aria-hidden>
-          {axe.numero}
+          {translateContent(axe.numero)}
         </span>
       </div>
       <h3 className="mt-3 font-serif text-lg font-semibold uppercase leading-snug text-vert">
-        {axe.titre}
+        {translateContent(axe.titre)}
       </h3>
       <ul className="mt-3 space-y-1.5 font-sans text-[13px] leading-relaxed text-anthracite/85">
         {axe.elements.map((elem) => (
           <li key={elem} className="flex items-start gap-2">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-or/70" aria-hidden />
-            {elem}
+            {translateContent(elem)}
           </li>
         ))}
       </ul>
       <p className="mt-4 border-t border-or/20 pt-2 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-vert">
-        {axe.effetLabel}
-        <span className="text-or-fonce">&nbsp;&bull;&nbsp;{axe.effet}</span>
+        {translateContent(axe.effetLabel)}
+        <span className="text-or-fonce">{translateContent("&nbsp;&bull;&nbsp;")}{translateContent(axe.effet)}</span>
       </p>
     </article>
   );
@@ -182,18 +182,14 @@ export default function TransmissionAxes() {
     >
       <div className="mx-auto max-w-[1440px]">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.32em] text-vert">
-          Le programme
-        </p>
+          {translateContent("Le programme ")}</p>
         <h2
           id="transmission-axes-title"
           className="mt-4 font-serif text-3xl font-semibold uppercase tracking-wide text-vert sm:text-4xl"
         >
-          Les 6 axes de transmission
-        </h2>
+          {translateContent("Les 6 axes de transmission ")}</h2>
         <p className="mt-3 max-w-2xl font-sans text-base leading-relaxed text-anthracite/80 lg:mt-4">
-          Six axes complémentaires forment un parcours de restauration intérieure,
-          de discernement et de passage à l&rsquo;action.
-        </p>
+          {translateContent("Six axes complémentaires forment un parcours de restauration intérieure, de discernement et de passage à l&rsquo;action. ")}</p>
 
         <div className={cn("mt-10 grid gap-8 items-stretch md:grid-cols-2 xl:grid-cols-3", visible && "animate-fade-in-delay-1")}>
           {axes.map((axe, index) =>
