@@ -1,11 +1,79 @@
 import { translateContent } from "../../i18n/translateContent";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import heroBg from "../../assets/images/hero.png";
+import academieBg from "../../assets/images/academie.png";
+import africaBg from "../../assets/images/Africa.png";
+import bibliothequeBg from "../../assets/images/bibliotheque.png";
+import elimbaBg from "../../assets/images/elimba.png";
+import engagementBg from "../../assets/images/engagement.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
 import { heroContent } from "../../data/siteData";
 import { cn } from "../../utils/cn";
 import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
+import "./Hero.carousel.css";
+
+const FIRST_IMAGE_DURATION_MS = 60_000;
+const SLIDE_DURATION_MS = 30_000;
+const TRANSITION_DURATION_MS = 1_200;
+
+const backgroundImages = [
+  {
+    key: "hero",
+    src: heroBg,
+    durationMs: FIRST_IMAGE_DURATION_MS,
+  },
+  {
+    key: "academie",
+    src: academieBg,
+    durationMs: SLIDE_DURATION_MS,
+  },
+  {
+    key: "africa",
+    src: africaBg,
+    durationMs: SLIDE_DURATION_MS,
+  },
+  {
+    key: "bibliotheque",
+    src: bibliothequeBg,
+    durationMs: SLIDE_DURATION_MS,
+  },
+  {
+    key: "elimba",
+    src: elimbaBg,
+    durationMs: SLIDE_DURATION_MS,
+  },
+  {
+    key: "engagement",
+    src: engagementBg,
+    durationMs: SLIDE_DURATION_MS,
+  },
+] as const;
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (event: MediaQueryListEvent) => setReduced(event.matches);
+
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", onChange);
+      return () => query.removeEventListener("change", onChange);
+    }
+
+    query.addListener(onChange);
+    return () => query.removeListener(onChange);
+  }, []);
+
+  return reduced;
+}
 
 /**
  * Hero — maquette2
@@ -15,6 +83,20 @@ import { localizedPath } from "../../routing/routes";
 export default function Hero() {
   const { titleLines, subtitle, body, ctaPrimary, ctaSecondary, pillarCard } =
     heroContent;
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setActiveIndex(
+        (currentIndex) => (currentIndex + 1) % backgroundImages.length,
+      );
+    }, backgroundImages[activeIndex]?.durationMs ?? SLIDE_DURATION_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, prefersReducedMotion]);
 
   return (
     <section
@@ -22,27 +104,39 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden bg-vert-fonce"
       aria-labelledby="hero-title"
     >
-      {/* Fond image full-bleed */}
+      {/* Fond image full-bleed — carrousel en fondu derrière le contenu */}
       <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt={translateContent("")}
-          className="h-full w-full object-cover object-[62%_center] md:object-center"
-          fetchPriority="high"
-        />
+        <div className="absolute inset-0" aria-hidden>
+          {backgroundImages.map((image, index) => (
+            <div
+              key={image.key}
+              className={cn(
+                "carousel-bg",
+                index === activeIndex ? "active" : "inactive",
+              )}
+              style={{
+                backgroundImage: `url(${image.src})`,
+                transitionDuration: `${TRANSITION_DURATION_MS}ms`,
+              }}
+            />
+          ))}
+        </div>
+
         {/* Overlay lisibilité — plus dense à gauche (desktop) */}
         <div
-          className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-black/5"
+          className="absolute inset-0 z-[1] bg-gradient-to-r from-black/50 via-black/20 to-black/5"
           aria-hidden
         />
+
         <div
-          className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"
+          className="absolute inset-0 z-[1] bg-gradient-to-t from-black/35 via-transparent to-black/10"
           aria-hidden
         />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1440px] flex-col justify-end px-5 pb-10 pt-28 md:px-8 md:pb-14 md:pt-32 lg:justify-center lg:px-10 lg:pb-16 lg:pt-28">
         <div className="grid w-full gap-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-10">
+
           {/* ——— Contenu texte ——— */}
           <div className="max-w-xl text-center lg:text-left">
             <h1
@@ -75,6 +169,7 @@ export default function Hero() {
               >
                 {translateContent(ctaPrimary)}
               </a>
+
               <a
                 href="#piliers"
                 className={cn(
@@ -105,19 +200,24 @@ export default function Hero() {
                   className="h-full w-full object-cover object-left"
                 />
               </div>
+
               <div className="min-w-0 flex-1">
                 <p className="font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-or-clair">
                   {translateContent(pillarCard.label)}
                 </p>
+
                 <h2 className="mt-0.5 font-serif text-lg font-semibold uppercase leading-tight text-white md:text-xl">
                   {translateContent(pillarCard.title)}
                 </h2>
+
                 <p className="mt-1 font-sans text-xs italic text-white/80">
                   {translateContent(pillarCard.tagline)}
                 </p>
+
                 <p className="mt-2 font-sans text-[9px] font-medium uppercase tracking-wide text-white/70">
                   {translateContent(pillarCard.keywords)}
                 </p>
+
                 <a
                   href={localizedPath("/elimba")}
                   onClick={(event) => navigateTo(event, "/elimba")}

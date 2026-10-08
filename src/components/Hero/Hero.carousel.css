@@ -1,0 +1,60 @@
+/**
+ * Animations du carrousel de background du Hero (page Accueil).
+ * Fade / fondu entre les images.
+ */
+
+@keyframes carousel-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes carousel-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.carousel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /* Le premier fond est affiché de base */
+  opacity: 1;
+
+  /* Transition douce : fade */
+  transition:
+    opacity 1.2s ease-in-out,
+
+    /* Grand fondement couche de fond (optionnel) */
+    background-position 1.2s ease-in-out;
+
+  background-size: cover;
+  background-position: center;
+
+  /* Empêche la reflow/layout thrashing pendant le changement */
+  contain: strict;
+}
+
+.carousel-bg.active {
+  opacity: 1;
+}
+
+.carousel-bg.inactive {
+  opacity: 0;
+}
+
+/* Respect de prefers-reduced-motion : fade raccourci mais conservé,
+   l'autoplay est désactivé côté React. */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-bg {
+    transition: opacity 0.4s ease-in-out;
+  }
+}

@@ -62,7 +62,7 @@ export default function Navbar() {
           "lg:bg-vert/90 lg:backdrop-blur-sm lg:shadow-md",
       )}
     >
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:px-8 lg:py-3">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 md:px-6 lg:gap-2 lg:px-3 lg:py-3 xl:gap-3 xl:px-8">
         {/* ——— Logo ——— */}
         <a
           href={localizedPath("/")}
@@ -76,18 +76,18 @@ export default function Navbar() {
           <img
             src={logo}
             alt={translateContent(brand.name)}
-            className="h-12 w-auto object-contain md:h-14 lg:h-[60px]"
+            className="h-12 w-auto object-contain md:h-14 xl:h-[60px]"
           />
         </a>
 
         {/* ——— Liens desktop (≥ 1024px) ——— */}
         <nav
-          className="hidden flex-1 items-center justify-center lg:flex"
+          className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
           aria-label={translateContent("Navigation principale")}
         >
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 xl:gap-x-5">
+          <ul className="flex flex-nowrap items-center justify-center gap-x-1 xl:gap-x-3 2xl:gap-x-5">
             {navLinks.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className="shrink-0">
                 <a
                   href={localizedPath(link.href)}
                   onClick={(event) => {
@@ -102,7 +102,7 @@ export default function Navbar() {
                     }
                   }}
                   className={cn(
-                    "font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-white",
+                    "inline-block shrink-0 whitespace-nowrap font-sans text-[10px] font-medium uppercase tracking-normal text-white xl:text-[11px] xl:tracking-[0.08em]",
                     "border-b-2 border-transparent pb-0.5 transition-colors duration-200",
                     "hover:border-or hover:text-or-clair",
                     link.label === "ACCUEIL" && "border-or",
@@ -121,7 +121,7 @@ export default function Navbar() {
           <SupportButton
             className={cn(
               "btn-or hidden items-center gap-2 rounded-full px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-wide shadow-md sm:inline-flex",
-              "md:px-5 md:text-xs",
+              "md:px-5 md:text-xs lg:px-3 lg:text-[10px] 2xl:px-5 2xl:text-xs",
             )}
           >
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80">

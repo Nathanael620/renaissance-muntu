@@ -78,7 +78,7 @@ const extra: Record<string, string> = {
   "Favoriser la connaissance et la transmission des langues, traditions, récits familiaux, savoir-faire, pratiques culturelles et valeurs qui contribuent à la mémoire et à l’identité des communautés.": "Promote knowledge of and transmission of languages, traditions, family stories, skills, cultural practices, and values that sustain community memory and identity.",
   "Équilibre • Lucidité • Action": "Balance • Clear-sightedness • Action",
   "Intérieur": "Inner life",
-  "ACADÉMIE DU MUNTU": "MUNTU ACADEMY",
+  "ACADÉMIE DU MUNTU": "THE MUNTU ACADEMY",
   "Équilibre": "Balance",
   "Lucidité": "Clear-sightedness",
   "Restauration de l’être": "Restoration of being",

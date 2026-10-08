@@ -107,7 +107,7 @@ const content: Record<string, string> = {
   "Domaines d'expertise": "Areas of expertise",
   "Don sécurisé": "Secure donation",
   "DONNEZ ET RECEVEZ UN REÇU DÉDUCTIBLE D’IMPÔT": "GIVE AND RECEIVE A TAX-DEDUCTIBLE RECEIPT",
-  "DU MUNTU": "OF MUNTU",
+  "DU MUNTU": "the muntu",
   "Du MUNTU intérieur vers le NTU transmis": "From inner MUNTU to NTU passed on",
   "du NTU": "of NTU",
   "Du NTU au MUNTU": "From NTU to MUNTU",
@@ -425,7 +425,7 @@ const content: Record<string, string> = {
   "Français": "French",
   "Anglais": "English",
   /* Compléments Phase 2 — chaînes précédemment non couvertes */
-  "POUR LA RENAISSANCE DU MUNTU": "FOR THE RENAISSANCE OF MUNTU",
+  "POUR LA RENAISSANCE DU MUNTU": "For the rebirth of the muntu",
   "Transmission du Ntu": "Transmission of NTU",
   "Page actuelle": "Current page",
   "Envoi en cours...": "Sending...",
