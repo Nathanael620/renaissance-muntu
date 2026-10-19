@@ -12,7 +12,14 @@ export type RouteName =
   | "academy"
   | "team"
   | "donationSuccess"
-  | "donationCancel";
+  | "donationCancel"
+  | "adminLogin"
+  | "adminDashboard"
+  | "adminMessages"
+  | "adminPartnerships"
+  | "adminLibrary"
+  | "adminAdministrators"
+  | "adminSettings";
 
 type RouteDefinition = {
   name: RouteName;
@@ -35,6 +42,13 @@ const routes: RouteDefinition[] = [
   { name: "team", fr: "/notre-equipe", en: "/en/our-team" },
   { name: "donationSuccess", fr: "/don-success", en: "/en/don-success", aliases: ["/soutenir/succes"] },
   { name: "donationCancel", fr: "/don-cancel", en: "/en/don-cancel", aliases: ["/soutenir/annulation"] },
+  { name: "adminLogin", fr: "/admin/connexion", en: "/en/admin/connexion" },
+  { name: "adminDashboard", fr: "/admin", en: "/en/admin" },
+  { name: "adminMessages", fr: "/admin/messages", en: "/en/admin/messages" },
+  { name: "adminPartnerships", fr: "/admin/partenariats", en: "/en/admin/partnerships" },
+  { name: "adminLibrary", fr: "/admin/bibliotheque", en: "/en/admin/library" },
+  { name: "adminAdministrators", fr: "/admin/administrateurs", en: "/en/admin/administrators" },
+  { name: "adminSettings", fr: "/admin/parametres", en: "/en/admin/settings" },
 ];
 
 export type ResolvedRoute = {

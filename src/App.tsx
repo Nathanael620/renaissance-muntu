@@ -2,6 +2,7 @@ import { translateContent } from "./i18n/translateContent";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import MainLayout from "./layouts/MainLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import Home from "./pages/Home";
 import Elimba from "./pages/Elimba";
 import Soutenir from "./pages/Soutenir";
@@ -14,6 +15,13 @@ import AcademieMuntu from "./pages/AcademieMuntu";
 import NotreEquipe from "./pages/NotreEquipe";
 import DonationSuccess from "./pages/DonationSuccess";
 import DonationCancel from "./pages/DonationCancel";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import AdminMessagesPage from "./pages/admin/AdminMessagesPage";
+import AdminPartnershipPage from "./pages/admin/AdminPartnershipPage";
+import AdminLibraryPage from "./pages/admin/AdminLibraryPage";
+import AdminAdministratorsPage from "./pages/admin/AdminAdministratorsPage";
+import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
 import { resolveRoute, type RouteName } from "./routing/routes";
 
 const routeComponents = {
@@ -27,6 +35,13 @@ const routeComponents = {
   team: NotreEquipe,
   donationSuccess: DonationSuccess,
   donationCancel: DonationCancel,
+  adminLogin: AdminLoginPage,
+  adminDashboard: AdminDashboardPage,
+  adminMessages: AdminMessagesPage,
+  adminPartnerships: AdminPartnershipPage,
+  adminLibrary: AdminLibraryPage,
+  adminAdministrators: AdminAdministratorsPage,
+  adminSettings: AdminSettingsPage,
   book: Home,
   manifesto: Home,
 };
@@ -87,6 +102,34 @@ const pageMetaByRoute: Partial<Record<RouteName, { title: string; description: s
     description:
       "Votre don n'a pas été finalisé. Vous pouvez revenir au parcours de don lorsque vous le souhaitez.",
   },
+  adminLogin: {
+    title: "Connexion | Administration",
+    description: "Espace d'administration de la Renaissance du Muntu — interface de démonstration en attente d'API.",
+  },
+  adminDashboard: {
+    title: "Tableau de bord | Administration",
+    description: "Vue d'ensemble de l'administration de la Renaissance du Muntu — données de démonstration uniquement.",
+  },
+  adminMessages: {
+    title: "Messages | Administration",
+    description: "Gestion des messages et demandes reçues par la Renaissance du Muntu.",
+  },
+  adminPartnerships: {
+    title: "Partenariats | Administration",
+    description: "Suivi des demandes de partenariat et collaborations institutionnelles.",
+  },
+  adminLibrary: {
+    title: "Bibliothèque | Administration",
+    description: "Gestion des ressources et contenus de la bibliothèque du Muntu.",
+  },
+  adminAdministrators: {
+    title: "Administrateurs | Administration",
+    description: "Gestion des comptes d'administration de la Renaissance du Muntu.",
+  },
+  adminSettings: {
+    title: "Paramètres | Administration",
+    description: "Paramètres du profil administrateur et préférences de l'interface.",
+  },
 };
 
 function App() {
@@ -144,6 +187,23 @@ function App() {
     const Page = routeComponents[route.name];
     return <Page />;
   })();
+
+  const isAdminRoute = [
+    "adminDashboard",
+    "adminMessages",
+    "adminPartnerships",
+    "adminLibrary",
+    "adminAdministrators",
+    "adminSettings",
+  ].includes(route.name);
+
+  if (route.name === "adminLogin") {
+    return <>{translateContent(content)}</>;
+  }
+
+  if (isAdminRoute) {
+    return <AdminLayout key={activeLanguage}>{translateContent(content)}</AdminLayout>;
+  }
 
   return <MainLayout key={activeLanguage}>{translateContent(content)}</MainLayout>;
 }
