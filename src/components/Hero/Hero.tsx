@@ -1,6 +1,6 @@
 import { translateContent } from "../../i18n/translateContent";
 import { useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import heroBg from "../../assets/images/hero.png";
 import academieBg from "../../assets/images/academie.png";
 import africaBg from "../../assets/images/Africa.png";
@@ -14,7 +14,7 @@ import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
 import "./Hero.carousel.css";
 
-const FIRST_IMAGE_DURATION_MS = 60_000;
+const FIRST_IMAGE_DURATION_MS = 45_000;
 const SLIDE_DURATION_MS = 30_000;
 const TRANSITION_DURATION_MS = 1_200;
 
@@ -97,6 +97,19 @@ export default function Hero() {
 
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, prefersReducedMotion]);
+
+  const showPreviousImage = () => {
+    setActiveIndex(
+      (currentIndex) =>
+        (currentIndex - 1 + backgroundImages.length) % backgroundImages.length,
+    );
+  };
+
+  const showNextImage = () => {
+    setActiveIndex(
+      (currentIndex) => (currentIndex + 1) % backgroundImages.length,
+    );
+  };
 
   return (
     <section
@@ -230,6 +243,25 @@ export default function Hero() {
             </div>
           </aside>
         </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 z-20">
+        <button
+          type="button"
+          aria-label={translateContent("Image précédente")}
+          onClick={showPreviousImage}
+          className="pointer-events-auto absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white shadow-lg backdrop-blur-sm transition-colors duration-200 hover:border-or hover:bg-vert-profond/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or sm:left-5"
+        >
+          <ArrowLeft className="h-5 w-5" aria-hidden />
+        </button>
+        <button
+          type="button"
+          aria-label={translateContent("Image suivante")}
+          onClick={showNextImage}
+          className="pointer-events-auto absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white shadow-lg backdrop-blur-sm transition-colors duration-200 hover:border-or hover:bg-vert-profond/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-or sm:right-5"
+        >
+          <ArrowRight className="h-5 w-5" aria-hidden />
+        </button>
       </div>
     </section>
   );
