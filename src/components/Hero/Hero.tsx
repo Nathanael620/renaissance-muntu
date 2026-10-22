@@ -2,11 +2,6 @@ import { translateContent } from "../../i18n/translateContent";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import heroBg from "../../assets/images/hero.png";
-import academieBg from "../../assets/images/academie.png";
-import africaBg from "../../assets/images/Africa.png";
-import bibliothequeBg from "../../assets/images/bibliotheque.png";
-import elimbaBg from "../../assets/images/elimba.png";
-import engagementBg from "../../assets/images/engagement.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
 import { heroContent } from "../../data/siteData";
 import { cn } from "../../utils/cn";
@@ -14,9 +9,14 @@ import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
 import "./Hero.carousel.css";
 
-const FIRST_IMAGE_DURATION_MS = 45_000;
-const SLIDE_DURATION_MS = 30_000;
+const FIRST_IMAGE_DURATION_MS = 30_000;
+const SLIDE_DURATION_MS = 10_000;
 const TRANSITION_DURATION_MS = 1_200;
+
+const carouselImages = import.meta.glob<string>(
+  "../../assets/images/images_carrousels/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, import: "default", query: "?url" },
+);
 
 const backgroundImages = [
   {
@@ -24,31 +24,13 @@ const backgroundImages = [
     src: heroBg,
     durationMs: FIRST_IMAGE_DURATION_MS,
   },
-  {
-    key: "academie",
-    src: academieBg,
-    durationMs: SLIDE_DURATION_MS,
-  },
-  {
-    key: "africa",
-    src: africaBg,
-    durationMs: SLIDE_DURATION_MS,
-  },
-  {
-    key: "bibliotheque",
-    src: bibliothequeBg,
-    durationMs: SLIDE_DURATION_MS,
-  },
-  {
-    key: "elimba",
-    src: elimbaBg,
-    durationMs: SLIDE_DURATION_MS,
-  },
-  {
-    key: "engagement",
-    src: engagementBg,
-    durationMs: SLIDE_DURATION_MS,
-  },
+  ...Object.entries(carouselImages)
+    .sort(([left], [right]) => left.localeCompare(right, "fr", { numeric: true }))
+    .map(([path, src]) => ({
+      key: path,
+      src,
+      durationMs: SLIDE_DURATION_MS,
+    })),
 ] as const;
 
 function usePrefersReducedMotion() {
@@ -128,7 +110,7 @@ export default function Hero() {
                 index === activeIndex ? "active" : "inactive",
               )}
               style={{
-                backgroundImage: `url(${image.src})`,
+                backgroundImage: `url("${image.src}")`,
                 transitionDuration: `${TRANSITION_DURATION_MS}ms`,
               }}
             />

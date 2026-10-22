@@ -1,7 +1,7 @@
 /**
  * supportService — abstraction pour gestion des dons et demandes de partenariat
  */
-import { apiPost } from "./apiClient";
+import { apiGet, apiPost } from "./apiClient";
 
 export const DONATION_CURRENCY =
   import.meta.env.VITE_DONATION_CURRENCY?.trim().toUpperCase() || "CAD";
@@ -27,6 +27,20 @@ export type DonationCheckoutResponse = {
   checkout_url: string;
   reference: string;
 };
+
+export type DonationStatus = "completed" | "pending" | "not_completed";
+
+export async function getDonationStatus(sessionId: string): Promise<DonationStatus> {
+  const response = await apiGet<{ status: DonationStatus }>(
+    `/api/donations/status/${encodeURIComponent(sessionId)}`,
+  );
+
+  if (!["completed", "pending", "not_completed"].includes(response.status)) {
+    throw new Error("Le statut du paiement est invalide.");
+  }
+
+  return response.status;
+}
 
 export async function createDonationCheckout(
   payload: DonationCheckoutPayload,

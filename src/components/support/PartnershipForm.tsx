@@ -15,6 +15,7 @@ export default function PartnershipForm() {
     if (!form.fullName.trim()) e.fullName = "Le nom complet est requis.";
     if (!form.email.trim()) e.email = "L'email est requis.";
     else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) e.email = "Email invalide.";
+    if (!form.partnershipType) e.partnershipType = "Le type de partenariat est obligatoire.";
     return e;
   };
 
@@ -22,6 +23,7 @@ export default function PartnershipForm() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setErrors({});
     const v = validate();
     if (Object.keys(v).length) { setErrors(v); return; }
@@ -78,6 +80,7 @@ export default function PartnershipForm() {
           <User className="h-4 w-4" aria-hidden />
           {translateContent("Nom complet * ")}</label>
         <input
+          required
           value={form.fullName}
           onChange={(e) => onChange("fullName", e.target.value)}
           placeholder={translateContent("Votre nom complet")}
@@ -106,6 +109,7 @@ export default function PartnershipForm() {
             <Mail className="h-4 w-4" aria-hidden />
             {translateContent("Email * ")}</label>
           <input
+            required
             value={form.email}
             onChange={(e) => onChange("email", e.target.value)}
             placeholder={translateContent("votre.email@example.com")}
@@ -133,8 +137,9 @@ export default function PartnershipForm() {
       <div>
         <label className="mb-2 flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-wide text-vert">
           <Briefcase className="h-4 w-4" aria-hidden />
-          {translateContent("Type de partenariat ")}</label>
+          {translateContent("Type de partenariat * ")}</label>
         <select
+          required
           value={form.partnershipType}
           onChange={(e) => onChange("partnershipType", e.target.value)}
           className="w-full rounded-lg border border-or/30 bg-white px-4 py-3 font-sans text-sm text-anthracite transition-all duration-200 focus:border-or focus:bg-creme-clair focus:outline-none focus:ring-2 focus:ring-or/20"

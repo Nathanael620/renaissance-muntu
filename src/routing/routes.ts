@@ -14,6 +14,7 @@ export type RouteName =
   | "donationSuccess"
   | "donationCancel"
   | "adminLogin"
+  | "adminInvitation"
   | "adminDashboard"
   | "adminMessages"
   | "adminPartnerships"
@@ -40,9 +41,10 @@ const routes: RouteDefinition[] = [
   { name: "transmission", fr: "/transmission-muntu", en: "/en/transmission-muntu" },
   { name: "academy", fr: "/academie-muntu", en: "/en/muntu-academy" },
   { name: "team", fr: "/notre-equipe", en: "/en/our-team" },
-  { name: "donationSuccess", fr: "/don-success", en: "/en/don-success", aliases: ["/soutenir/succes"] },
-  { name: "donationCancel", fr: "/don-cancel", en: "/en/don-cancel", aliases: ["/soutenir/annulation"] },
+  { name: "donationSuccess", fr: "/don-success", en: "/en/don-success", aliases: ["/don/success", "/soutenir/succes"] },
+  { name: "donationCancel", fr: "/don-cancel", en: "/en/don-cancel", aliases: ["/don/cancel", "/soutenir/annulation"] },
   { name: "adminLogin", fr: "/admin/connexion", en: "/en/admin/connexion" },
+  { name: "adminInvitation", fr: "/admin/invitation", en: "/en/admin/invitation" },
   { name: "adminDashboard", fr: "/admin", en: "/en/admin" },
   { name: "adminMessages", fr: "/admin/messages", en: "/en/admin/messages" },
   { name: "adminPartnerships", fr: "/admin/partenariats", en: "/en/admin/partnerships" },

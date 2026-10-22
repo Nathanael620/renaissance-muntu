@@ -1,24 +1,86 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter, MessageSquareText } from "lucide-react";
 import { AdminBadge, AdminEmptyState, AdminSearch } from "../../layouts/AdminLayout";
+import { useAdminUser } from "../../contexts/adminUserContext";
+import { adminGet, adminWrite } from "../../services/adminService";
 
-const messages = [
-  { id: 1, sender: "Amina Diop", email: "amina@culture.org", subject: "Participation à un atelier", preview: "Je souhaiterais organiser une session sur la mémoire et les patrimoines africains.", receivedAt: "2026-10-17", status: "Nouveau" },
-  { id: 2, sender: "Lea Martin", email: "lea.martin@gmail.com", subject: "Question sur la bibliothèque", preview: "Pouvez-vous me donner des détails sur le livre « Éthique du devenir » ?", receivedAt: "2026-10-11", status: "Lu" },
-  { id: 3, sender: "Koffi Tano", email: "koffi@afrique-formation.fr", subject: "Demande de partenariat", preview: "Nous aimerions lancer un programme de sensibilisation avec votre structure.", receivedAt: "2026-10-08", status: "En cours" },
-];
+type AdminContact = {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  workflow_status: "new" | "read" | "in_progress" | "archived";
+  created_at: string;
+};
+
+type Paginated<T> = {
+  data: T[];
+  current_page: number;
+  last_page: number;
+  total: number;
+};
+
+const statusLabels: Record<AdminContact["workflow_status"], string> = {
+  new: "Nouveau",
+  read: "Lu",
+  in_progress: "En cours",
+  archived: "Archivé",
+};
 
 export default function AdminMessagesPage() {
+  const user = useAdminUser();
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("Tous");
+  const [page, setPage] = useState(1);
+  const [result, setResult] = useState<Paginated<AdminContact> | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [updatingId, setUpdatingId] = useState<number | null>(null);
 
-  const filteredMessages = useMemo(() => {
-    return messages.filter((message) => {
-      const matchesQuery = [message.sender, message.email, message.subject, message.preview].join(" ").toLowerCase().includes(query.toLowerCase());
-      const matchesStatus = status === "Tous" || message.status === status;
-      return matchesQuery && matchesStatus;
-    });
-  }, [query, status]);
+  useEffect(() => {
+    let active = true;
+    const params = new URLSearchParams({ page: String(page), per_page: "20" });
+    if (query.trim()) params.set("q", query.trim());
+    if (status !== "Tous") {
+      const apiStatus = Object.entries(statusLabels).find(([, label]) => label === status)?.[0];
+      if (apiStatus) params.set("status", apiStatus);
+    }
+
+    adminGet<Paginated<AdminContact>>(`/messages?${params.toString()}`)
+      .then((response) => {
+        if (active) {
+          setResult(response);
+          setError("");
+        }
+      })
+      .catch((requestError: unknown) => {
+        if (active) setError(requestError instanceof Error ? requestError.message : "Impossible de charger les messages.");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [query, status, page]);
+
+  const updateStatus = async (message: AdminContact, workflow_status: AdminContact["workflow_status"]) => {
+    setUpdatingId(message.id);
+    setError("");
+    try {
+      const response = await adminWrite<{ data: AdminContact }>(`/messages/${message.id}`, "PATCH", { workflow_status });
+      setResult((current) => current
+        ? { ...current, data: current.data.map((item) => item.id === message.id ? response.data : item) }
+        : current);
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : "Impossible de mettre à jour le message.");
+    } finally {
+      setUpdatingId(null);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -31,7 +93,7 @@ export default function AdminMessagesPage() {
 
           <div className="inline-flex items-center gap-2 rounded-full border border-[#d7cfba] bg-[#f5f1e6] px-3 py-2 text-xs font-medium text-[#0f2d22]">
             <MessageSquareText size={14} className="text-[#b8860b]" />
-            Données fictives de démonstration
+            Données enregistrées
           </div>
         </div>
       </section>
@@ -39,31 +101,39 @@ export default function AdminMessagesPage() {
       <section className="rounded-[24px] border border-[#d7cfba] bg-white p-5 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="w-full max-w-md">
-            <AdminSearch value={query} onChange={setQuery} />
+            <AdminSearch value={query} onChange={(value) => { setLoading(true); setError(""); setQuery(value); setPage(1); }} />
           </div>
 
           <div className="flex items-center gap-2 rounded-xl border border-[#d7cfba] bg-[#fffdf9] px-3 py-2 text-sm text-[#3d3d3d]">
             <Filter size={16} className="text-[#6e5d35]" />
             <select
               value={status}
-              onChange={(event) => setStatus(event.target.value)}
+              onChange={(event) => {
+                setLoading(true);
+                setError("");
+                setStatus(event.target.value);
+                setPage(1);
+              }}
               className="border-0 bg-transparent text-sm text-[#1f2a1f] outline-none"
               aria-label="Filtrer les messages par statut"
             >
               <option>Tous</option>
-              <option>Nouveau</option>
-              <option>Lu</option>
-              <option>En cours</option>
-              <option>Archivé</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="Lu">Lu</option>
+              <option value="En cours">En cours</option>
+              <option value="Archivé">Archivé</option>
             </select>
           </div>
         </div>
 
-        {filteredMessages.length === 0 ? (
+        {error && <p className="mt-5 rounded-xl border border-[#d38a80] bg-[#fdf0ee] p-3 text-sm text-[#7c2d26]" role="alert">{error}</p>}
+        {loading ? (
+          <p className="mt-6 text-sm text-[#5d564e]">Chargement des messages…</p>
+        ) : !result || result.data.length === 0 ? (
           <div className="mt-6">
             <AdminEmptyState
               title="Aucun message correspondant"
-              description="Essayez une autre recherche ou un autre filtre pour retrouver un message spécifique."
+              description="Les messages reçus par le formulaire public apparaîtront ici."
             />
           </div>
         ) : (
@@ -80,27 +150,54 @@ export default function AdminMessagesPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredMessages.map((message) => (
+                  {result.data.map((message) => (
                     <tr key={message.id} className="border-t border-[#ece4d4] bg-white">
                       <td className="px-4 py-4 align-top">
-                        <div className="font-medium text-[#0f2d22]">{message.sender}</div>
+                        <div className="font-medium text-[#0f2d22]">{message.name}</div>
                         <div className="text-sm text-[#5d564e]">{message.email}</div>
                       </td>
                       <td className="px-4 py-4 align-top">
                         <div className="font-medium text-[#0f2d22]">{message.subject}</div>
-                        <div className="mt-1 max-w-md text-sm text-[#5d564e]">{message.preview}</div>
+                        <div className="mt-1 max-w-md text-sm text-[#5d564e]">{message.message.slice(0, 140)}{message.message.length > 140 ? "…" : ""}</div>
                       </td>
-                      <td className="px-4 py-4 align-top text-sm text-[#5d564e]">{message.receivedAt}</td>
-                      <td className="px-4 py-4 align-top"><AdminBadge status={message.status} /></td>
+                      <td className="px-4 py-4 align-top text-sm text-[#5d564e]">{new Date(message.created_at).toLocaleDateString()}</td>
+                      <td className="px-4 py-4 align-top"><AdminBadge status={statusLabels[message.workflow_status]} /></td>
                       <td className="px-4 py-4 text-right align-top">
-                        <button type="button" className="rounded-xl border border-[#d7cfba] bg-[#fffdf9] px-3 py-2 text-sm font-medium text-[#0f2d22] hover:bg-[#f5f1e6]">
-                          Ouvrir
+                        <button type="button" onClick={() => setExpandedId((id) => id === message.id ? null : message.id)} className="rounded-xl border border-[#d7cfba] bg-[#fffdf9] px-3 py-2 text-sm font-medium text-[#0f2d22] hover:bg-[#f5f1e6]">
+                          {expandedId === message.id ? "Fermer" : "Ouvrir"}
                         </button>
+                        {user.permissions.includes("messages.manage") && (
+                          <select
+                            value={message.workflow_status}
+                            disabled={updatingId === message.id}
+                            onChange={(event) => void updateStatus(message, event.target.value as AdminContact["workflow_status"])}
+                            className="ml-2 rounded-xl border border-[#d7cfba] bg-white px-2 py-2 text-xs"
+                            aria-label="Modifier le statut de traitement"
+                          >
+                            {Object.entries(statusLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                          </select>
+                        )}
                       </td>
                     </tr>
                   ))}
+                  {expandedId !== null && result.data.some((message) => message.id === expandedId) && (
+                    <tr className="border-t border-[#ece4d4] bg-[#fffdf9]">
+                      <td colSpan={5} className="whitespace-pre-wrap px-4 py-5 text-sm text-[#3d3d3d]">
+                        {result.data.find((message) => message.id === expandedId)?.message}
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
+            </div>
+          </div>
+        )}
+        {result && result.last_page > 1 && (
+          <div className="mt-5 flex items-center justify-between text-sm text-[#5d564e]">
+            <span>{result.total} message(s) · page {result.current_page} sur {result.last_page}</span>
+            <div className="flex gap-2">
+              <button type="button" disabled={page <= 1} onClick={() => { setLoading(true); setPage((current) => current - 1); }} className="rounded-lg border border-[#d7cfba] px-3 py-2 disabled:opacity-50">Précédent</button>
+              <button type="button" disabled={page >= result.last_page} onClick={() => { setLoading(true); setPage((current) => current + 1); }} className="rounded-lg border border-[#d7cfba] px-3 py-2 disabled:opacity-50">Suivant</button>
             </div>
           </div>
         )}

@@ -1,18 +1,24 @@
 import { useState } from "react";
 import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
+import { ApiError } from "../../services/apiClient";
+import { loginAdmin } from "../../services/adminService";
+import { navigateToPath } from "../../routing/routes";
 
 export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [submitState, setSubmitState] = useState<{ type: "idle" | "error" | "success"; message: string }>({
+  const [loading, setLoading] = useState(false);
+  const [submitState, setSubmitState] = useState<{ type: "idle" | "error"; message: string }>({
     type: "idle",
     message: "",
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (loading) return;
+    setSubmitState({ type: "idle", message: "" });
 
     const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     if (!emailIsValid) {
@@ -31,10 +37,23 @@ export default function AdminLoginPage() {
       return;
     }
 
-    setSubmitState({
-      type: "success",
-      message: "Le formulaire est prêt pour l'intégration Laravel. La connexion réelle sera ajoutée ultérieurement.",
-    });
+    setLoading(true);
+    try {
+      await loginAdmin({ email: email.trim(), password, remember: rememberMe });
+      setPassword("");
+      navigateToPath("/admin");
+    } catch (error) {
+      const message = error instanceof ApiError
+        ? error.kind === "unauthorized"
+          ? "Adresse e-mail ou mot de passe incorrect."
+          : error.kind === "rate_limit"
+            ? "Trop de tentatives. Veuillez patienter avant de réessayer."
+            : error.message
+        : "Une erreur est survenue. Veuillez réessayer.";
+      setSubmitState({ type: "error", message });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -88,6 +107,7 @@ export default function AdminLoginPage() {
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="admin@renaissance-muntu.org"
                     className="w-full border-0 bg-transparent text-sm text-[#1f2a1f] outline-none placeholder:text-[#8a827b]"
+                    autoComplete="username"
                     aria-invalid={submitState.type === "error" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())}
                   />
                 </div>
@@ -105,6 +125,7 @@ export default function AdminLoginPage() {
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="••••••••"
+                    autoComplete="current-password"
                     className="w-full border-0 bg-transparent text-sm text-[#1f2a1f] outline-none placeholder:text-[#8a827b]"
                   />
                   <button
@@ -129,23 +150,17 @@ export default function AdminLoginPage() {
               </label>
 
               {submitState.message ? (
-                <div
-                  className={`rounded-xl border px-3 py-2 text-sm ${
-                    submitState.type === "error"
-                      ? "border-[#d38a80] bg-[#fdf0ee] text-[#7c2d26]"
-                      : "border-[#bfd7c7] bg-[#edf8f1] text-[#214f3d]"
-                  }`}
-                  role={submitState.type === "error" ? "alert" : "status"}
-                >
+                <div className="rounded-xl border border-[#d38a80] bg-[#fdf0ee] px-3 py-2 text-sm text-[#7c2d26]" role="alert">
                   {submitState.message}
                 </div>
               ) : null}
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full rounded-xl bg-[#0f2d22] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#173b2d]"
               >
-                Se connecter
+                {loading ? "Connexion…" : "Se connecter"}
               </button>
             </form>
           </div>

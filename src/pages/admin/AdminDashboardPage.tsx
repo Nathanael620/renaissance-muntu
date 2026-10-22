@@ -1,18 +1,12 @@
-import { ArrowRight, BookOpen, Building2, CalendarClock, MessageSquareText, Sparkles, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, BookOpen, Building2, CalendarClock, MessageSquareText, Users } from "lucide-react";
 import { AdminEmptyState } from "../../layouts/AdminLayout";
+import { adminGet } from "../../services/adminService";
 
-const stats = [
-  { label: "Messages reçus", value: "128", icon: MessageSquareText, trend: "+12%" },
-  { label: "Demandes de partenariat", value: "24", icon: Building2, trend: "+3" },
-  { label: "Ressources de la bibliothèque", value: "63", icon: BookOpen, trend: "+8" },
-  { label: "Nombre d'administrateurs", value: "7", icon: Users, trend: "+1" },
-];
-
-const recentActivity = [
-  { title: "Nouveau message de l'équipe de Témoignages", detail: "2 heures ago • À traiter", tone: "warning" },
-  { title: "Demande de partenariat reçue de Maison Muntu", detail: "Aujourd'hui • En revue", tone: "primary" },
-  { title: "Nouvelle ressource ajoutée à la bibliothèque", detail: "Hier • Publiée", tone: "success" },
-];
+type DashboardData = {
+  stats: { messages: number; partnerships: number; resources: number; administrators: number; pending_invitations: number };
+  recent_activity: { type: string; id: number; title: string; detail: string | null }[];
+};
 
 const quickLinks = [
   { title: "Messages", description: "Consulter et traiter les demandes envoyées", href: "/admin/messages" },
@@ -22,6 +16,22 @@ const quickLinks = [
 ];
 
 export default function AdminDashboardPage() {
+  const [data, setData] = useState<DashboardData | null>(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    adminGet<DashboardData>("/dashboard")
+      .then(setData)
+      .catch((requestError: unknown) => setError(requestError instanceof Error ? requestError.message : "Impossible de charger le tableau de bord."));
+  }, []);
+
+  const stats = [
+    { label: "Messages reçus", value: data?.stats.messages, icon: MessageSquareText },
+    { label: "Demandes de partenariat", value: data?.stats.partnerships, icon: Building2 },
+    { label: "Ressources de la bibliothèque", value: data?.stats.resources, icon: BookOpen },
+    { label: "Administrateurs actifs", value: data?.stats.administrators, icon: Users },
+  ];
+
   return (
     <div className="space-y-8">
       <section className="rounded-[28px] border border-[#d7cfba] bg-[#fffdf9] p-6 shadow-sm md:p-8">
@@ -29,30 +39,28 @@ export default function AdminDashboardPage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a6b3d]">Bienvenue</p>
             <h2 className="mt-2 font-serif text-3xl text-[#0f2d22]">Vue d’ensemble</h2>
-            <p className="mt-2 max-w-xl text-sm text-[#5d564e]">
-              Voici une synthèse de l’activité de la plateforme. Les données ci-dessous sont des exemples de démonstration.
-            </p>
+            <p className="mt-2 max-w-xl text-sm text-[#5d564e]">Synthèse calculée à partir des données enregistrées dans le backend.</p>
           </div>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-[#d7cfba] bg-[#f5f1e6] px-3 py-2 text-xs font-medium text-[#0f2d22]">
-            <Sparkles size={14} className="text-[#b8860b]" />
-            Données de démonstration
+            {data ? "Données du backend" : "Chargement des données…"}
           </div>
         </div>
       </section>
 
+      {error && <p className="rounded-xl border border-[#d38a80] bg-[#fdf0ee] p-4 text-sm text-[#7c2d26]" role="alert">{error}</p>}
+
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {stats.map(({ label, value, icon: Icon, trend }) => (
+        {stats.map(({ label, value, icon: Icon }) => (
           <article key={label} className="rounded-2xl border border-[#d7cfba] bg-white p-5 shadow-sm">
             <div className="flex items-center justify-between">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#edf3ef] text-[#0f2d22]">
                 <Icon size={20} />
               </div>
-              <span className="rounded-full bg-[#f7eed7] px-2 py-1 text-xs font-semibold text-[#7a5510]">{trend}</span>
             </div>
             <div className="mt-5">
               <p className="text-sm text-[#5d564e]">{label}</p>
-              <p className="mt-1 text-3xl font-serif font-semibold text-[#0f2d22]">{value}</p>
+              <p className="mt-1 text-3xl font-serif font-semibold text-[#0f2d22]">{value ?? "—"}</p>
             </div>
           </article>
         ))}
@@ -68,25 +76,21 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="space-y-4">
-            {recentActivity.map(({ title, detail, tone }) => (
-              <div key={title} className="flex items-start gap-4 rounded-2xl bg-[#f8f5ee] p-4">
-                <div
-                  className={`mt-1 flex h-9 w-9 items-center justify-center rounded-full ${
-                    tone === "warning"
-                      ? "bg-[#f7eed7] text-[#7a5510]"
-                      : tone === "primary"
-                        ? "bg-[#e8efe9] text-[#0f2d22]"
-                        : "bg-[#edf8f1] text-[#1d5d47]"
-                  }`}
-                >
+            {(data?.recent_activity ?? []).map(({ title, detail, type, id }) => (
+              <div key={`${type}-${id}`} className="flex items-start gap-4 rounded-2xl bg-[#f8f5ee] p-4">
+                <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#e8efe9] text-[#0f2d22]">
                   <CalendarClock size={16} />
                 </div>
                 <div className="flex-1">
                   <p className="font-medium text-[#0f2d22]">{title}</p>
-                  <p className="mt-1 text-sm text-[#5d564e]">{detail}</p>
+                  <p className="mt-1 text-sm text-[#5d564e]">{detail ? new Date(detail).toLocaleString() : "Date indisponible"}</p>
                 </div>
               </div>
             ))}
+            {data && data.recent_activity.length === 0 && (
+              <p className="text-sm text-[#5d564e]">Aucune activité récente à afficher.</p>
+            )}
+            {!data && !error && <p className="text-sm text-[#5d564e]">Chargement…</p>}
           </div>
         </div>
 
@@ -113,7 +117,7 @@ export default function AdminDashboardPage() {
       <section className="rounded-[24px] border border-[#d7cfba] bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
           <h3 className="font-serif text-2xl text-[#0f2d22]">Suivi des opérations</h3>
-          <span className="text-sm text-[#5d564e]">Mise à jour en temps réel</span>
+          <span className="text-sm text-[#5d564e]">Invitations en attente : {data?.stats.pending_invitations ?? "—"}</span>
         </div>
         <div className="mt-6">
           <AdminEmptyState

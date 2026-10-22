@@ -172,7 +172,7 @@ export default function ContactModal() {
                 </label>
 
                 <label className="block text-xs font-semibold text-vert-fonce">
-                  {translateContent("Objet de votre message ")}<select name="subject" defaultValue="" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20">
+                  {translateContent("Objet de votre message * ")}<select required name="subject" defaultValue="" className="mt-2 w-full rounded-md border border-vert/15 bg-white px-3 py-3 text-sm font-normal text-anthracite outline-none transition focus:border-or focus:ring-2 focus:ring-or/20">
                     <option value="" disabled>{translateContent("Sélectionnez un sujet")}</option>
                     <option value="information">{translateContent("Demande d'information")}</option>
                     <option value="partnership">{translateContent("Partenariat")}</option>

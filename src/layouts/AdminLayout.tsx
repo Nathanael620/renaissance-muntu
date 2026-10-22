@@ -17,20 +17,26 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
-import { navigateToPath } from "../routing/routes";
+import { navigateToPath, resolveRoute } from "../routing/routes";
+import { ApiError } from "../services/apiClient";
+import { logoutAdmin, type AdminUser } from "../services/adminService";
+import { useAdminUser } from "../contexts/adminUserContext";
 
 const navItems = [
-  { label: "Tableau de bord", path: "/admin", icon: LayoutDashboard },
-  { label: "Messages", path: "/admin/messages", icon: Mail },
-  { label: "Partenariats", path: "/admin/partenariats", icon: Handshake },
-  { label: "Bibliothèque", path: "/admin/bibliotheque", icon: LibraryBig },
-  { label: "Administrateurs", path: "/admin/administrateurs", icon: Users },
-  { label: "Paramètres", path: "/admin/parametres", icon: Settings },
+  { label: "Tableau de bord", path: "/admin", route: "adminDashboard" as const, icon: LayoutDashboard },
+  { label: "Messages", path: "/admin/messages", route: "adminMessages" as const, icon: Mail },
+  { label: "Partenariats", path: "/admin/partenariats", route: "adminPartnerships" as const, icon: Handshake },
+  { label: "Bibliothèque", path: "/admin/bibliotheque", route: "adminLibrary" as const, icon: LibraryBig },
+  { label: "Administrateurs", path: "/admin/administrateurs", route: "adminAdministrators" as const, icon: Users },
+  { label: "Paramètres", path: "/admin/parametres", route: "adminSettings" as const, icon: Settings },
 ];
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
+  const user = useAdminUser();
   const [pathname, setPathname] = useState(window.location.pathname);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
+  const [loggingOut, setLoggingOut] = useState(false);
 
   useEffect(() => {
     const onRouteChange = () => setPathname(window.location.pathname);
@@ -42,12 +48,43 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const currentTitle = navItems.find((item) => pathname === item.path || pathname.startsWith(`${item.path}/`))?.label ?? "Administration";
+  const currentRoute = resolveRoute(pathname).name;
+  const currentTitle = navItems.find((item) => item.route === currentRoute)?.label ?? "Administration";
 
   const handleNavigation = (path: string) => {
     navigateToPath(path);
     setSidebarOpen(false);
   };
+  const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    setLogoutError("");
+    try {
+      await logoutAdmin();
+      navigateToPath("/admin/connexion");
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        navigateToPath("/admin/connexion");
+        return;
+      }
+      setLogoutError(error instanceof Error ? error.message : "La déconnexion a échoué.");
+    } finally {
+      setLoggingOut(false);
+    }
+  };
+
+  const roleLabel: Record<AdminUser["role"], string> = {
+    super_admin: "Super administrateur",
+    admin: "Administrateur",
+    editor: "Éditeur",
+    viewer: "Consultation",
+  };
+  const initials = user.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
 
   return (
     <div className="min-h-screen bg-[#f5f1e6] text-[#1f2a1f]">
@@ -77,8 +114,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         </div>
 
         <nav className="space-y-2 px-4 py-6">
-          {navItems.map(({ label, path, icon: Icon }) => {
-            const active = pathname === path || pathname.startsWith(`${path}/`);
+          {navItems.map(({ label, path, route, icon: Icon }) => {
+            const active = currentRoute === route;
             return (
               <button
                 key={path}
@@ -109,12 +146,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
           <button
             type="button"
-            onClick={() => handleNavigation("/admin/connexion")}
-            className="mt-3 flex w-full items-center justify-between rounded-xl border border-[#d4a84b]/40 px-3 py-2 text-sm text-[#f5f1e6] hover:bg-[#d4a84b]/10"
+            onClick={() => void handleLogout()}
+            disabled={loggingOut}
+            className="mt-3 flex w-full items-center justify-between rounded-xl border border-[#d4a84b]/40 px-3 py-2 text-sm text-[#f5f1e6] hover:bg-[#d4a84b]/10 disabled:opacity-60"
           >
             <span className="flex items-center gap-2">
               <LogOut size={16} />
-              Déconnexion
+              {loggingOut ? "Déconnexion…" : "Déconnexion"}
             </span>
           </button>
         </div>
@@ -151,16 +189,17 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
               <div className="flex items-center gap-3 rounded-full border border-[#d7cfba] bg-white px-3 py-2 shadow-sm">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0f2d22] text-sm font-semibold text-[#f5f1e6]">
-                  AM
+                  {initials}
                 </div>
                 <div className="hidden text-left sm:block">
-                  <p className="text-sm font-semibold text-[#0f2d22]">Aissatou M.</p>
-                  <p className="text-[11px] uppercase tracking-[0.16em] text-[#726347]">Principal</p>
+                  <p className="text-sm font-semibold text-[#0f2d22]">{user.name}</p>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-[#726347]">{roleLabel[user.role]}</p>
                 </div>
                 <ChevronDown size={16} className="text-[#0f2d22]" />
               </div>
             </div>
           </div>
+          {logoutError && <p className="px-4 pb-3 text-sm text-[#7c2d26]" role="alert">{logoutError}</p>}
         </header>
 
         <main className="p-4 md:p-8">
