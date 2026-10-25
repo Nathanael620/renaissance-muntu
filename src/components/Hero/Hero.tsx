@@ -2,6 +2,11 @@ import { translateContent } from "../../i18n/translateContent";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import heroBg from "../../assets/images/hero.png";
+import academieBg from "../../assets/images/academie.png";
+import africaBg from "../../assets/images/Africa.png";
+import bibliothequeBg from "../../assets/images/bibliotheque.png";
+import elimbaBg from "../../assets/images/elimba.png";
+import engagementBg from "../../assets/images/engagement.png";
 import elimbaIcon from "../../assets/icons/elimba.jpeg";
 import { heroContent } from "../../data/siteData";
 import { cn } from "../../utils/cn";
@@ -9,7 +14,7 @@ import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
 import "./Hero.carousel.css";
 
-const FIRST_IMAGE_DURATION_MS = 30_000;
+const FIRST_IMAGE_DURATION_MS = 15_000;
 const SLIDE_DURATION_MS = 10_000;
 const TRANSITION_DURATION_MS = 1_200;
 
@@ -18,20 +23,41 @@ const carouselImages = import.meta.glob<string>(
   { eager: true, import: "default", query: "?url" },
 );
 
-const backgroundImages = [
+const priorityImages = [
   {
     key: "hero",
     src: heroBg,
     durationMs: FIRST_IMAGE_DURATION_MS,
   },
-  ...Object.entries(carouselImages)
-    .sort(([left], [right]) => left.localeCompare(right, "fr", { numeric: true }))
-    .map(([path, src]) => ({
-      key: path,
-      src,
-      durationMs: SLIDE_DURATION_MS,
-    })),
+  { key: "academie", src: academieBg, durationMs: SLIDE_DURATION_MS },
+  { key: "africa", src: africaBg, durationMs: SLIDE_DURATION_MS },
+  { key: "bibliotheque", src: bibliothequeBg, durationMs: SLIDE_DURATION_MS },
+  { key: "elimba", src: elimbaBg, durationMs: SLIDE_DURATION_MS },
+  { key: "engagement", src: engagementBg, durationMs: SLIDE_DURATION_MS },
 ] as const;
+
+const priorityImageNames = new Set([
+  "hero.png",
+  "academie.png",
+  "africa.png",
+  "bibliotheque.png",
+  "elimba.png",
+  "engagement.png",
+]);
+
+const additionalImages = Object.entries(carouselImages)
+  .filter(([path]) => {
+    const fileName = path.split("/").pop()?.toLowerCase();
+    return fileName !== undefined && !priorityImageNames.has(fileName);
+  })
+  .sort(([left], [right]) => (left < right ? -1 : left > right ? 1 : 0))
+  .map(([path, src]) => ({
+    key: path,
+    src,
+    durationMs: SLIDE_DURATION_MS,
+  }));
+
+const backgroundImages = [...priorityImages, ...additionalImages];
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState<boolean>(() => {
