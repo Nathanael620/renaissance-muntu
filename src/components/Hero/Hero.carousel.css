@@ -43,6 +43,12 @@
   contain: strict;
 }
 
+.carousel-bg--contained {
+  background-color: #0d2818;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .carousel-bg.active {
   opacity: 1;
 }

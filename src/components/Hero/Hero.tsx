@@ -133,6 +133,7 @@ export default function Hero() {
               key={image.key}
               className={cn(
                 "carousel-bg",
+                index >= priorityImages.length && "carousel-bg--contained",
                 index === activeIndex ? "active" : "inactive",
               )}
               style={{
