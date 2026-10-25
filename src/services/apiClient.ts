@@ -38,12 +38,15 @@ function buildApiUrl(path: string): string {
     throw new ApiError("configuration", "L'URL de l'API n'est pas configurée.");
   }
 
-  const base = new URL(apiBaseUrl);
+  const usesSameOriginProxy = apiBaseUrl.startsWith("/");
+  const base = new URL(apiBaseUrl, window.location.origin);
   let relativePath = path.replace(/^\/+/, "");
   let basePath = base.pathname.replace(/\/+$/, "");
 
   if (basePath.endsWith("/api") && relativePath.startsWith("sanctum/")) {
-    basePath = basePath.slice(0, -4);
+    if (!usesSameOriginProxy) {
+      basePath = basePath.slice(0, -4);
+    }
   } else if (basePath.endsWith("/api") && relativePath.startsWith("api/")) {
     relativePath = relativePath.slice(4);
   }
