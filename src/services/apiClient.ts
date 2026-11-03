@@ -87,6 +87,9 @@ function createHttpError(status: number, body: unknown): ApiError {
       validationErrors: getValidationErrors(body),
     });
   }
+  if (status === 409) {
+    return new ApiError("http", getResponseMessage(body, "Cette demande a déjà été soumise avec des données différentes."), { status });
+  }
   if (status === 429) {
     return new ApiError("rate_limit", "Trop de demandes ont été envoyées.", { status });
   }
@@ -108,6 +111,7 @@ function createHttpError(status: number, body: unknown): ApiError {
 type RequestOptions = {
   credentials?: RequestCredentials;
   csrf?: boolean;
+  headers?: Record<string, string>;
 };
 
 function getCsrfToken(): string | undefined {
@@ -125,7 +129,10 @@ async function request<TResponse>(
   payload?: unknown,
   options: RequestOptions = {},
 ): Promise<TResponse> {
-  const headers: Record<string, string> = { Accept: "application/json" };
+  const headers: Record<string, string> = {
+    Accept: "application/json",
+    ...(options.headers ?? {}),
+  };
   if (payload !== undefined) headers["Content-Type"] = "application/json";
 
   if (options.csrf) {
@@ -169,11 +176,16 @@ async function request<TResponse>(
   return body as TResponse;
 }
 
-export async function apiPost<TResponse>(path: string, payload: unknown): Promise<TResponse> {
+export async function apiPost<TResponse>(
+  path: string,
+  payload: unknown,
+  extraHeaders: Record<string, string> = {},
+): Promise<TResponse> {
   await initializeCsrf();
   return request<TResponse>(path, "POST", payload, {
     credentials: "include",
     csrf: true,
+    headers: extraHeaders,
   });
 }
 

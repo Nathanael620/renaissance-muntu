@@ -6,6 +6,7 @@ const forwardedRequestHeaders = [
   "origin",
   "referer",
   "user-agent",
+  "idempotency-key",
   "x-requested-with",
   "x-xsrf-token",
 ];

@@ -1,11 +1,12 @@
 import { translateBackendMessage, translateContent } from "../../i18n/translateContent";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Check, CreditCard, MapPin, Send, User } from "lucide-react";
 import { ApiError } from "../../services/apiClient";
 import {
   createDonationCheckout,
   DONATION_CURRENCY,
+  generateDonationCheckoutIdempotencyKey,
   type DonationCheckoutPayload,
 } from "../../services/supportService";
 
@@ -46,6 +47,15 @@ export default function DonationForm() {
   const [form, setForm] = useState<DonationFormState>(initialForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const checkoutKeyRef = useRef<string | null>(null);
+
+  const getCheckoutKey = () => {
+    if (!checkoutKeyRef.current) {
+      checkoutKeyRef.current = generateDonationCheckoutIdempotencyKey();
+    }
+
+    return checkoutKeyRef.current;
+  };
 
   const updateField = (field: keyof DonationFormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -96,7 +106,7 @@ export default function DonationForm() {
         donor_country: form.donor_country.trim() || null,
         amount: Number(form.amount),
       };
-      const { checkout_url } = await createDonationCheckout(payload);
+      const { checkout_url } = await createDonationCheckout(payload, getCheckoutKey());
       window.location.assign(checkout_url);
     } catch (error) {
       if (error instanceof ApiError && error.kind === "validation") {

@@ -22,6 +22,16 @@ export type DonationCheckoutPayload = {
   amount: number;
 };
 
+export function generateDonationCheckoutIdempotencyKey(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+    const buffer = new Uint8Array(16);
+    crypto.getRandomValues(buffer);
+    return `checkout-${Array.from(buffer, (byte) => byte.toString(16).padStart(2, "0")).join("")}`;
+  }
+
+  return `checkout-${Math.random().toString(16).slice(2)}-${Date.now().toString(16)}`;
+}
+
 export type DonationCheckoutResponse = {
   message: string;
   checkout_url: string;
@@ -44,10 +54,12 @@ export async function getDonationStatus(sessionId: string): Promise<DonationStat
 
 export async function createDonationCheckout(
   payload: DonationCheckoutPayload,
+  idempotencyKey: string,
 ): Promise<DonationCheckoutResponse> {
   const response = await apiPost<DonationCheckoutResponse>(
     "/api/donations/checkout-session",
     payload,
+    { "Idempotency-Key": idempotencyKey },
   );
 
   if (
