@@ -107,9 +107,11 @@ export default {
       }
       for (const cookie of upstreamResponse.headers.getSetCookie()) {
         const secureCookie =
-          requestUrl.protocol === "https:" && !/(?:^|;)\s*secure(?:;|$)/i.test(cookie)
+          requestUrl.protocol === "https:" &&
+          !/(?:^|;)\s*secure(?:;|$)/i.test(cookie)
             ? `${cookie}; Secure`
             : cookie;
+
         responseHeaders.append("Set-Cookie", secureCookie);
       }
 
