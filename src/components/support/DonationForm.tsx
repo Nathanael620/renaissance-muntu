@@ -1,5 +1,5 @@
 import { translateBackendMessage, translateContent } from "../../i18n/translateContent";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { FormEvent } from "react";
 import { Check, CreditCard, MapPin, Send, User } from "lucide-react";
 import { ApiError } from "../../services/apiClient";
@@ -47,15 +47,6 @@ export default function DonationForm() {
   const [form, setForm] = useState<DonationFormState>(initialForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const checkoutKeyRef = useRef<string | null>(null);
-
-  const getCheckoutKey = () => {
-    if (!checkoutKeyRef.current) {
-      checkoutKeyRef.current = generateDonationCheckoutIdempotencyKey();
-    }
-
-    return checkoutKeyRef.current;
-  };
 
   const updateField = (field: keyof DonationFormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -106,7 +97,7 @@ export default function DonationForm() {
         donor_country: form.donor_country.trim() || null,
         amount: Number(form.amount),
       };
-      const { checkout_url } = await createDonationCheckout(payload, getCheckoutKey());
+      const { checkout_url } = await createDonationCheckout(payload, generateDonationCheckoutIdempotencyKey());
       window.location.assign(checkout_url);
     } catch (error) {
       if (error instanceof ApiError && error.kind === "validation") {
