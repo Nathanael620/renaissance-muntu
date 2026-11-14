@@ -294,7 +294,7 @@ export const footerLinks = {
 } as const;
 
 export const contact = {
-  email: "elimbadikalo.renaissancemuntu@gmail.com",
+  email: "elimbadikalo.renaissancedumuntu@gmail.com",
   phone: "+1 (514) 224-3872",
   address: "Afrique — Diaspora mondiale",
 } as const;
