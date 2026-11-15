@@ -2,16 +2,16 @@ import { translateContent } from "../../i18n/translateContent";
 import { useFadeIn } from "../../hooks/useFadeIn";
 import { pillars } from "../../data/siteData";
 import { cn } from "../../utils/cn";
-import africaIcon from "../../assets/icons/Africa.png";
-import elimbaIcon from "../../assets/icons/elimba.jpeg";
-import transmissionIcon from "../../assets/icons/transmission.png";
-import academieIcon from "../../assets/icons/academie.png";
-import bibliothequeIcon from "../../assets/icons/bibliotheque.png";
-import renaissanceImg from "../../assets/images/renaissance.png";
-import elimbaImg from "../../assets/images/elimba.png";
-import transmissionImg from "../../assets/images/transmission.png";
-import academieImg from "../../assets/images/academie.png";
-import bibliothequeImg from "../../assets/images/bibliotheque.png";
+import africaIcon from "../../assets/icons/optimized/Africa.webp";
+import elimbaIcon from "../../assets/icons/optimized/elimba.webp";
+import transmissionIcon from "../../assets/icons/optimized/transmission.webp";
+import academieIcon from "../../assets/icons/optimized/academie.webp";
+import bibliothequeIcon from "../../assets/icons/optimized/bibliotheque.webp";
+import renaissanceImg from "../../assets/images/optimized/renaissance.webp";
+import elimbaImg from "../../assets/images/optimized/elimba.webp";
+import transmissionImg from "../../assets/images/optimized/transmission.webp";
+import academieImg from "../../assets/images/optimized/academie.webp";
+import bibliothequeImg from "../../assets/images/optimized/bibliotheque.webp";
 import { localizedPath, navigateToPath } from "../../routing/routes";
 
 const images: Record<string, string> = {

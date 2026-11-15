@@ -1,8 +1,8 @@
 import { translateContent } from "../i18n/translateContent";
 import { ArrowRight } from "lucide-react";
 import { localizedPath, navigateToPath } from "../routing/routes";
-import heroBg from "../assets/images/elimba.png";
-import logo from "../assets/icons/elimba.jpeg";
+import heroBg from "../assets/images/optimized/elimba.webp";
+import logo from "../assets/icons/optimized/elimba.webp";
 import {
   ElimbaActivites,
   ElimbaDevise,

@@ -13,9 +13,9 @@
  * - Le bouton « CONSULTER » ouvre la page détail : /bibliotheque/consulter/:id.
  */
 
-import africainCover from "../assets/images/l-africain.jpeg";
-import magnificatFrCover from "../assets/images/le-magnificat.jpeg";
-import magnificatEnCover from "../assets/images/magnificat-en.jpeg";
+import africainCover from "../assets/images/optimized/l-africain.webp";
+import magnificatFrCover from "../assets/images/optimized/le-magnificat.webp";
+import magnificatEnCover from "../assets/images/optimized/magnificat-en.webp";
 
 /** Boutique officielle Chariow — ouverture dans un nouvel onglet. */
 export const CHARIOW_STORE_URL =

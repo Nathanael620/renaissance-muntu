@@ -1,6 +1,6 @@
 import { translateContent } from "../../i18n/translateContent";
 import { Heart, Mail, Users } from "lucide-react";
-import engagementImg from "../../assets/images/engagement.png";
+import engagementImg from "../../assets/images/optimized/engagement.webp";
 import { engagementText, soutienText } from "../../data/siteData";
 import SupportButton from "../support/SupportButton";
 import { cn } from "../../utils/cn";

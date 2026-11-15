@@ -1,7 +1,7 @@
 import { translateContent } from "../../i18n/translateContent";
 import { heroContent } from "../../data/siteData";
-import elimbaLogo from "../../assets/icons/elimba.jpeg";
-import menerLogo from "../../assets/images/Mener_Autrement.png";
+import elimbaLogo from "../../assets/icons/optimized/elimba.webp";
+import menerLogo from "../../assets/images/optimized/Mener_Autrement.webp";
 
 export default function SupportHero() {
   return (

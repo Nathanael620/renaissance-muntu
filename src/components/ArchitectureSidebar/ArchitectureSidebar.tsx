@@ -1,7 +1,7 @@
 import { translateContent } from "../../i18n/translateContent";
 import { BookOpen, GraduationCap, Heart, Users } from "lucide-react";
 import logo from "../../assets/icons/renaissance.png";
-import elimbaIcon from "../../assets/icons/elimba.jpeg";
+import elimbaIcon from "../../assets/icons/optimized/elimba.webp";
 import { architectureItems } from "../../data/siteData";
 import { cn } from "../../utils/cn";
 import SupportButton from "../support/SupportButton";

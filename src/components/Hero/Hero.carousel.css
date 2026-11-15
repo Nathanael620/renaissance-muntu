@@ -51,6 +51,7 @@
 
 .carousel-bg.active {
   opacity: 1;
+  animation: carousel-fade-in 1.2s ease-in-out;
 }
 
 .carousel-bg.inactive {

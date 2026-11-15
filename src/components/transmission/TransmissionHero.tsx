@@ -1,6 +1,6 @@
 import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight } from "lucide-react";
-import heroBg from "../../assets/images/transmission.png";
+import heroBg from "../../assets/images/optimized/transmission.webp";
 import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
 

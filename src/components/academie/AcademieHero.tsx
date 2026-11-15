@@ -1,6 +1,6 @@
 import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, GraduationCap } from "lucide-react";
-import heroBg from "../../assets/images/academie.png";
+import heroBg from "../../assets/images/optimized/academie.webp";
 import { navigateTo } from "../../utils/navigate";
 import { localizedPath } from "../../routing/routes";
 

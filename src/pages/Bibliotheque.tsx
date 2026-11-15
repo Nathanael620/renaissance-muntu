@@ -1,7 +1,7 @@
 import { translateContent } from "../i18n/translateContent";
 import { BookOpen, ExternalLink } from "lucide-react";
-import bibliothequeBg from "../assets/images/bibliotheque.png";
-import publisherLogo from "../assets/icons/zero-revenge-books.jpeg";
+import bibliothequeBg from "../assets/images/optimized/bibliotheque.webp";
+import publisherLogo from "../assets/icons/optimized/zero-revenge-books.webp";
 import BookCard from "../components/bibliotheque";
 import { ManifestoCard } from "../components/manifestes";
 import { CHARIOW_STORE_URL, libraryBooks } from "../data/libraryData";

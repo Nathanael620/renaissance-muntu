@@ -1,6 +1,6 @@
 import { translateContent } from "../../i18n/translateContent";
 import { brand } from "../../data/siteData";
-import heroBg from "../../assets/images/leve_de_soleil.png";
+import heroBg from "../../assets/images/optimized/leve_de_soleil.webp";
 
 /**
  * Phrase fondatrice — citation sur image paysage

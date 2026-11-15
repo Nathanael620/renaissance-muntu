@@ -1,8 +1,8 @@
 import { translateContent } from "../../i18n/translateContent";
 import { ArrowRight, BookOpen, Eye, ShoppingBag } from "lucide-react";
-import renaissanceLogo from "../../assets/images/3.png";
-import elimbaLogo from "../../assets/images/1.png";
-import publisherLogo from "../../assets/icons/zero-revenge-books.jpeg";
+import renaissanceLogo from "../../assets/images/optimized/3.webp";
+import elimbaLogo from "../../assets/images/optimized/1.webp";
+import publisherLogo from "../../assets/icons/optimized/zero-revenge-books.webp";
 import type { Manifesto } from "../../data/manifestesData";
 import { localizedPath, navigateToPath } from "../../routing/routes";
 

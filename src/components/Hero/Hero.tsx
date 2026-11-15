@@ -1,13 +1,13 @@
 import { translateContent } from "../../i18n/translateContent";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import heroBg from "../../assets/images/hero.png";
-import academieBg from "../../assets/images/academie.png";
-import africaBg from "../../assets/images/Africa.png";
-import bibliothequeBg from "../../assets/images/bibliotheque.png";
-import elimbaBg from "../../assets/images/elimba.png";
-import engagementBg from "../../assets/images/engagement.png";
-import elimbaIcon from "../../assets/icons/elimba.jpeg";
+import heroBg from "../../assets/images/optimized/hero.webp";
+import academieBg from "../../assets/images/optimized/academie.webp";
+import africaBg from "../../assets/images/optimized/Africa.webp";
+import bibliothequeBg from "../../assets/images/optimized/bibliotheque.webp";
+import elimbaBg from "../../assets/images/optimized/elimba.webp";
+import engagementBg from "../../assets/images/optimized/engagement.webp";
+import elimbaIcon from "../../assets/icons/optimized/elimba.webp";
 import { heroContent } from "../../data/siteData";
 import { cn } from "../../utils/cn";
 import { navigateTo } from "../../utils/navigate";
@@ -19,7 +19,7 @@ const SLIDE_DURATION_MS = 10_000;
 const TRANSITION_DURATION_MS = 1_200;
 
 const carouselImages = import.meta.glob<string>(
-  "../../assets/images/images_carrousels/*.{png,jpg,jpeg,webp,avif}",
+  "../../assets/images/optimized/images_carrousels/*.webp",
   { eager: true, import: "default", query: "?url" },
 );
 
@@ -37,12 +37,12 @@ const priorityImages = [
 ] as const;
 
 const priorityImageNames = new Set([
-  "hero.png",
-  "academie.png",
-  "africa.png",
-  "bibliotheque.png",
-  "elimba.png",
-  "engagement.png",
+  "hero.webp",
+  "academie.webp",
+  "africa.webp",
+  "bibliotheque.webp",
+  "elimba.webp",
+  "engagement.webp",
 ]);
 
 const additionalImages = Object.entries(carouselImages)
@@ -93,30 +93,47 @@ export default function Hero() {
     heroContent;
   const prefersReducedMotion = usePrefersReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
+
+  const changeImage = (nextIndex: number) => {
+    setPreviousIndex(activeIndex);
+    setActiveIndex(nextIndex);
+  };
 
   useEffect(() => {
     if (prefersReducedMotion) return;
 
     const timeoutId = window.setTimeout(() => {
-      setActiveIndex(
-        (currentIndex) => (currentIndex + 1) % backgroundImages.length,
-      );
+      const nextIndex = (activeIndex + 1) % backgroundImages.length;
+      setPreviousIndex(activeIndex);
+      setActiveIndex(nextIndex);
     }, backgroundImages[activeIndex]?.durationMs ?? SLIDE_DURATION_MS);
 
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, prefersReducedMotion]);
 
+  useEffect(() => {
+    if (previousIndex === null) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setPreviousIndex(null);
+    }, TRANSITION_DURATION_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [previousIndex, activeIndex]);
+
   const showPreviousImage = () => {
-    setActiveIndex(
-      (currentIndex) =>
-        (currentIndex - 1 + backgroundImages.length) % backgroundImages.length,
-    );
+    const nextIndex =
+      (activeIndex - 1 + backgroundImages.length) %
+      backgroundImages.length;
+
+    changeImage(nextIndex);
   };
 
   const showNextImage = () => {
-    setActiveIndex(
-      (currentIndex) => (currentIndex + 1) % backgroundImages.length,
-    );
+    const nextIndex = (activeIndex + 1) % backgroundImages.length;
+
+    changeImage(nextIndex);
   };
 
   return (
@@ -128,20 +145,27 @@ export default function Hero() {
       {/* Fond image full-bleed — carrousel en fondu derrière le contenu */}
       <div className="absolute inset-0">
         <div className="absolute inset-0" aria-hidden>
-          {backgroundImages.map((image, index) => (
-            <div
-              key={image.key}
-              className={cn(
-                "carousel-bg",
-                index >= priorityImages.length && "carousel-bg--contained",
-                index === activeIndex ? "active" : "inactive",
-              )}
-              style={{
-                backgroundImage: `url("${image.src}")`,
-                transitionDuration: `${TRANSITION_DURATION_MS}ms`,
-              }}
-            />
-          ))}
+          {[previousIndex, activeIndex]
+            .filter((index): index is number => index !== null)
+            .filter((index, position, indexes) => indexes.indexOf(index) === position)
+            .map((index) => {
+              const image = backgroundImages[index];
+
+              return (
+                <div
+                  key={image.key}
+                  className={cn(
+                    "carousel-bg",
+                    index >= priorityImages.length && "carousel-bg--contained",
+                    index === activeIndex ? "active" : "inactive",
+                  )}
+                  style={{
+                    backgroundImage: `url("${image.src}")`,
+                    transitionDuration: `${TRANSITION_DURATION_MS}ms`,
+                  }}
+                />
+              );
+            })}
         </div>
 
         {/* Overlay lisibilité — plus dense à gauche (desktop) */}

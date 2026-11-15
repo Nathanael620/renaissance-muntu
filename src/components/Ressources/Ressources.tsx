@@ -1,13 +1,13 @@
 import { translateContent } from "../../i18n/translateContent";
 import { BookOpen } from "lucide-react";
-import africaIcon from "../../assets/icons/Africa.png";
-import africaMap from "../../assets/images/Africa.png";
+import africaIcon from "../../assets/icons/optimized/Africa.webp";
+import africaMap from "../../assets/images/optimized/Africa.webp";
 import { ressources } from "../../data/siteData";
 import { openSocialModal } from "../social/socialModalEvents";
 import { localizedPath, navigateToPath } from "../../routing/routes";
 
 const modalTitles: Record<string, string> = {
-  Vidéos: "Où voir nos vidéos",
+  "Vidéos": "Où voir nos vidéos",
   Podcasts: "Où écouter nos podcasts",
 };
 
